@@ -24,7 +24,8 @@ task only after closure and push.
 Current agent owns main. Stage 1 is frozen/pushed; both routes use the same hold-only
 mechanism. The public-callback-only infeasibility conclusion was corrected in
 results/pr-evidence-feasibility. Read-only private scheduler access is allowed and
-CPU-qualified. No GPU performance/benefit cells have run.
+CPU-qualified. D8 calibration is complete; no decision seeds have run and no
+treatment speedup has been used to choose settings.
 
 Exact runtime 0.34.0rc1.dev465+ge9281bd93 / torch 2.14+cu130 lives in
 artifacts/venvs/pr-evidence and matched pr-evidence-post. Both have the common
@@ -87,7 +88,8 @@ frozen 0.85 fraction, below 0.74 GiB required for 6,144 tokens. No fraction/cont
 sequence/block override change is allowed for W1. Remaining HS arms and W1 not run.
 
 Admission is complete: 1,905.025330883 seconds (0.529174 hours), leaving
-1,694.974669117 seconds unused. Screen sizing/working-set passes used 2,286.111610681 seconds. GPU currently idle.
+1,694.974669117 seconds unused. Screen calibration used 12,281.828098766 seconds;
+16,518.171901234 seconds remain. GPU is idle at this checkpoint.
 benchmarks/pr-evidence/2080ti-admission.json indexes every charged attempt.
 
 Post-response holds were acknowledged but snapshots could miss their lifetime
@@ -118,14 +120,29 @@ footprints are 2.98–3.79 GiB. benchmarks/pr-evidence/d8-pool-ranking.json free
 ranking, source identities, schedule hashes/orders and the complete-block quote.
 This is baseline calibration only; no treatment benefit observed.
 
+All 21 full-arm D8 calibration cells are verified. All 336 multi-turn sessions
+completed. Seed 12003 has one late one-shot timeout in every arm (3.347 seconds
+available before the common cutoff); all seven remain in the evidence. Minimum
+available RAM was 9.920 GiB; no swap, material interference, failed stores or
+failed transfers. Native allocation refusals vary even in disabled controls and
+remain separate evidence requiring attribution. Both routes actively held chunks.
+The prescribed baseline selection is A2: pooled hinted recomputation 0.172088969,
+versus A1 0.207374737. This is calibration, not the decision opportunity label.
+benchmarks/pr-evidence/calibration/D8.json freezes the final pool, baseline, rates,
+window, all eight decision schedule hashes/orders and systematic statistic labels.
+The first-block cost re-quote is retained in pr-evidence-runtime-02; about four
+decision blocks are expected to fit, but each admission uses the actual ledger.
+Reporting/attribution notes live in pr-evidence-runtime-02/reporting-notes.txt.
+No tracked files should change while a GPU loop is running; CPU checks wait for
+idle acquisition gaps. All raw attempts, including authoring failure 01, remain.
+
 ## Next
-Commit the pool-ranking checkpoint, then run three complete seven-arm calibration
-blocks at 1 GiB, seeds 12001–12003 in their frozen randomized arm orders. Every
+Commit and push final D8 calibration after full acceptance. Run decision seeds
+12101–12108 in order until the next complete seven-arm block cannot fit. Initial
 job ceiling is 567 seconds plus 60 cleanup reserve; reserve 4,389 seconds before
-each block. Remaining screen budget is 26,513.888 seconds. Retain all failures;
-finish a failed resource block and follow the fixed candidate order if necessary.
-Select the better native baseline from pooled hinted recomputation only after all
-three complete blocks, and commit final model calibration before decision seeds.
-Continue D8 decision blocks in order, re-quote after the first; then HM/W2 as the
-budget permits. Restore swappiness, delete healthcheck, close results, push and
-send the exact handoff only when genuinely finished.
+each block and re-quote after the first decision block. Do not inspect speedups to
+choose coverage or change settings. Continue HM baseline calibration if it fits
+after D8; report incomplete model/workload coverage honestly. W2's shortest
+historical seven-arm block needs at least 4,200 seconds before startup/cleanup,
+calibration and contingency. Restore swappiness, delete healthcheck, close results,
+push and send the exact handoff only when genuinely finished.

@@ -539,9 +539,14 @@ Frozen-main job entry points:
   Sizing takes the three A2 metric records from the 240-second/no-one-shot pass;
   baseline selection takes all 21 calibration cells. D8 sizing and the candidate
   ranking are frozen in `benchmarks/pr-evidence/d8-sizing.json` and
-  `d8-pool-ranking.json`; final selection still requires all-arm validation. The
-  minimum eligible 1 GiB candidate exceeds half the finite-horizon mean working
-  set, so report its actual ratio and burst peak alongside the nominal target.
+  `d8-pool-ranking.json`. All 21 D8 calibration cells passed resource validation;
+  [the final calibration](../benchmarks/pr-evidence/calibration/D8.json) freezes
+  native ARC as the baseline, the 1 GiB pool, rates, 428-second window, decision
+  schedule hashes and deterministic statistical labels before decision seeds.
+  Every multi-turn session completed; the last one-shot in seed 12003 timed out
+  in every arm and remains counted. The minimum eligible 1 GiB pool is 1.316 times
+  the finite-horizon mean working set; usable allocator capacity is 1.307 times.
+  Report the actual ratio and burst peak alongside the nominal half-working-set target.
   Pool inputs are
   `working_sets_bytes` (three observations) and `largest_conversation_bytes` from
   admitted native geometry. Quote inputs are `horizon_seconds`,
