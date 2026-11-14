@@ -1,0 +1,66 @@
+{
+  "arrival_rate": 0.13696109776373452,
+  "failed_sessions": 0,
+  "final_arrivals_seconds": {
+    "12001": 153.22681021522294,
+    "12002": 167.68796507222618,
+    "12003": 98.69760069537358,
+    "12101": 143.53762290559808,
+    "12102": 149.18477254806314,
+    "12103": 161.8410030545695,
+    "12104": 108.92460008577403,
+    "12105": 117.32433213975798,
+    "12106": 67.52194534215118,
+    "12107": 151.7624040677267,
+    "12108": 94.80936841642313
+  },
+  "horizon_seconds": 428,
+  "initial_complete_block_reserve_seconds": 4389,
+  "largest_conversation_upper_bound_bytes": 905969664,
+  "model": "D8",
+  "offered_requests": 177,
+  "one_shot_rate": 0.024583333333333332,
+  "pooled_p95_session_seconds": 129.81986784334998,
+  "reference_pool_gib": 1,
+  "schema": "pr-screen-sizing-v1",
+  "scope": "Baseline-only sizing, not efficacy; final pool and baseline require the subsequent three-seed working-set pass and all-arm calibration.",
+  "seed_mean_session_seconds": [
+    58.410746778625004,
+    54.2558792760625,
+    66.5791418066875
+  ],
+  "sources": [
+    {
+      "admission_sha256": "3a5676633181727895eb37a75e23dffe838276d6afaf0b2d9e67e439fc122ac0",
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-sizing-12001-a2-01",
+      "metrics": "artifacts/runs/pr-evidence-runtime-02/w1-d8-sizing-12001-a2-01-metrics-qualified.json",
+      "metrics_sha256": "8816320eea4d2a31eaac3aaed2fb2fc04b40f32e6d04f3120447e5c33691d31c",
+      "terminal_sha256": "052f8412dca3b50ee2fffb4816d82abe67e131cb093bca59e05c3d3878abf3b4"
+    },
+    {
+      "admission_sha256": "0553ae0eea112762290c0ee97ad849a96d5dac2c57314e1b92bbb77859ab6c6e",
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-sizing-12002-a2-01",
+      "metrics": "artifacts/runs/pr-evidence-runtime-02/w1-d8-sizing-12002-a2-01-metrics-qualified.json",
+      "metrics_sha256": "f6c71d9e57ee80366f0ee42f10db7878ca9973d41a1ed3d68ebd55df0c041fcb",
+      "terminal_sha256": "ba19343390d0d7376129e5094f35ee438ae477e3755e1cf1486bdc03580ecf95"
+    },
+    {
+      "admission_sha256": "a394e2e23880477b25f2c1a117a3c065d32b6aff2b3dd44e69b9f88c85f23a6d",
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-sizing-12003-a2-01",
+      "metrics": "artifacts/runs/pr-evidence-runtime-02/w1-d8-sizing-12003-a2-01-metrics-qualified.json",
+      "metrics_sha256": "260adf6476695e1c0281adfb8d9c8ac4232e6b752679565c4640a35b1b11dfba",
+      "terminal_sha256": "099a406b044adaa2b1586575f12fd77149b53d9a53a61cd9e128519e2eb1d65c"
+    }
+  ],
+  "working_set_pass": {
+    "arm": "A2",
+    "cleanup_reserve_seconds": 60,
+    "maximum_seconds": 567,
+    "pool_gib": 1,
+    "seeds": [
+      12001,
+      12002,
+      12003
+    ]
+  }
+}

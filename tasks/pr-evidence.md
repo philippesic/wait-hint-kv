@@ -87,7 +87,7 @@ frozen 0.85 fraction, below 0.74 GiB required for 6,144 tokens. No fraction/cont
 sequence/block override change is allowed for W1. Remaining HS arms and W1 not run.
 
 Admission is complete: 1,905.025330883 seconds (0.529174 hours), leaving
-1,694.974669117 seconds unused. Screen time zero. GPU currently idle.
+1,694.974669117 seconds unused. Screen sizing used 862.432028090 seconds. GPU currently idle.
 benchmarks/pr-evidence/2080ti-admission.json indexes every charged attempt.
 
 Post-response holds were acknowledged but snapshots could miss their lifetime
@@ -99,11 +99,21 @@ new patch hash at 8b49f957; D8/HM A3p/A4p-02 all pass. HM post-response snapshot
 now capture 15 physical held chunks. Historical
 admissions remain valid for their exact earlier patch, not silently relabeled.
 
+D8 baseline sizing seeds 12001–12003 all completed: 48 sessions, 177 requests,
+zero failures, no swap, minimum available RAM 9.995 GiB. Outside CPU averaged
+3.22%/3.52%/3.65% of one core, no material interference or outside GPU processes.
+The frozen formula gives arrival_rate=0.13696109776373452, one_shot_rate=
+0.024583333333333332, horizon_seconds=428. Sizing metrics and derived settings are
+in pr-evidence-runtime-02. These are calibration only; no hint benefit observed.
+Resource summaries are now being added to pr-measure-cell with a regression test;
+finish full acceptance before further jobs.
+
 ## Next
-Commit admission milestone and start W1 D8 baseline sizing seeds 12001–12003:
-A2, 1 GiB, 0.2 sessions/s, zero one-shots, 240-second horizon, 379-second job ceiling
-plus 60-second cleanup reserve. Schedules and conservative 905,969,664-byte largest
-conversation bound are in pr-evidence-runtime-02/d8-initial-sizing.json and paired
-schedule files. Continue frozen calibration and D8 decision blocks, then HM and W2
-as budget allows. Do not start incomplete blocks. Restore swappiness, delete
-healthcheck, close results, push and send the exact handoff when genuinely finished.
+Commit resource reporting and sizing checkpoint, then A2 working-set calibration
+seeds 12001–12003 at the derived rates/horizon and reference pool 1 GiB, per-job
+ceiling 567 seconds plus 60 cleanup. Rank pool candidates from that working set,
+then three complete seven-arm calibration blocks at the selected candidate.
+Complete-block initial reserve is 4,389 seconds; 27,937.568 screen seconds remain.
+Commit final model calibration before any decision seed. Continue D8 blocks in
+priority order, re-quote after the first, then HM/W2 only if budget permits. Restore
+swappiness, delete healthcheck, close results, push and send the handoff at completion.

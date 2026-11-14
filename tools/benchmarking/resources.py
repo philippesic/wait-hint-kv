@@ -162,3 +162,79 @@ def sample_process_tree(root_pid: int, proc: Path = Path("/proc")) -> dict[str, 
         "host_swap_out_pages": vm["pswpout"],
         "host_major_faults": vm["pgmajfault"],
     }
+
+
+def summarize_screen_resources(path: Path, start: int, end: int) -> dict[str, Any]:
+    samples = [json.loads(line) for line in path.read_text().splitlines()]
+    if (
+        len(samples) < 2
+        or not samples[0]["monotonic_ns"] <= start < end <= samples[-1]["monotonic_ns"]
+        or any(
+            right["monotonic_ns"] <= left["monotonic_ns"]
+            for left, right in zip(samples, samples[1:])
+        )
+    ):
+        raise ValueError("resource samples do not cover the complete ordered cell")
+    hz = samples[0]["clock_ticks_per_second"]
+    if hz <= 0 or any(sample["clock_ticks_per_second"] != hz for sample in samples):
+        raise ValueError("resource CPU clock changed")
+    cpu_seconds = 0.0
+    consecutive = longest = 0.0
+    by_process: dict[str, float] = {}
+    for left, right in zip(samples, samples[1:]):
+        elapsed = (right["monotonic_ns"] - left["monotonic_ns"]) / 1e9
+        overlap = (
+            max(0, min(end, right["monotonic_ns"]) - max(start, left["monotonic_ns"]))
+            / 1e9
+        )
+        if not overlap:
+            continue
+        ticks = 0
+        for pid, current in right["outside_process_ticks"].items():
+            previous = left["outside_process_ticks"].get(pid)
+            if previous and previous["start_ticks"] == current["start_ticks"]:
+                delta = current["cpu_ticks"] - previous["cpu_ticks"]
+            elif current["start_ticks"] / hz * 1e9 >= left["monotonic_ns"]:
+                delta = current["cpu_ticks"]
+            else:
+                continue
+            if delta < 0:
+                raise ValueError("outside CPU counter regressed")
+            ticks += delta
+            identity = f"{pid}:{current['start_ticks']}"
+            by_process[identity] = (
+                by_process.get(identity, 0.0) + delta / hz * overlap / elapsed
+            )
+        share = ticks / hz / elapsed
+        cpu_seconds += share * overlap
+        consecutive = consecutive + overlap if share > 0.25 else 0.0
+        longest = max(longest, consecutive)
+    owned_pids = set().union(*(sample["processes"] for sample in samples))
+    outside_gpu = sorted(
+        {
+            fields[1].strip()
+            for sample in samples
+            if start <= sample["monotonic_ns"] <= end and "gpu" in sample
+            for line in sample["gpu"]["processes"].splitlines()
+            if len(fields := line.split(",")) == 4
+            and fields[1].strip() not in owned_pids
+        }
+    )
+    mean = cpu_seconds / ((end - start) / 1e9)
+    return {
+        "minimum_available_bytes": min(sample["available_bytes"] for sample in samples),
+        "peak_owned_pss_bytes": max(sample["pss_bytes"] for sample in samples),
+        "owned_swap_growth_bytes": max(sample["swap_bytes"] for sample in samples)
+        - samples[0]["swap_bytes"],
+        "host_swap_out_growth_pages": max(
+            sample["host_swap_out_pages"] for sample in samples
+        )
+        - samples[0]["host_swap_out_pages"],
+        "outside_cpu_core_share": mean,
+        "outside_cpu_longest_above_quarter_core_seconds": longest,
+        "outside_cpu_seconds_by_process_identity": by_process,
+        "outside_gpu_pids": outside_gpu,
+        "material_interference": mean > 0.1 or longest >= 10 or bool(outside_gpu),
+        "window_ns": [start, end],
+        "limits": "sampled Linux process counters; partial edge intervals prorated; processes that start and exit between samples and Windows activity can be missed; memory/swap cover startup through the final pre-cleanup sample",
+    }

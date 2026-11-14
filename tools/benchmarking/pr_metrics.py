@@ -6,6 +6,7 @@ from typing import Any
 
 from tools.benchmarking.pr_events import reconcile_events, request_sources
 from tools.benchmarking.pr_workload import validate_schedule
+from tools.benchmarking.resources import summarize_screen_resources
 from tools.benchmarking.streaming import verify_stream
 
 
@@ -191,4 +192,9 @@ def measure_cell(
         metrics["working_set"] = working_set(observed, report)
     if observed["policy_events"]:
         metrics["policy_events"] = observed["policy_events"]
+    resources = client.parent / "resources.jsonl"
+    if resources.exists():
+        metrics["resources"] = summarize_screen_resources(
+            resources, report["started_ns"], report["scheduled_end_ns"]
+        )
     return metrics
