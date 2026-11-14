@@ -135,14 +135,6 @@ The RTX 5080/sm_120 is a separate, unqualified gate. Adding owned C++/CUDA sourc
 requires build and diagnostic recipes plus sm_75/sm_120 acceptance in
 `tools/native.json`.
 
-## Frozen-main feasibility environment
-
-The separate `artifacts/venvs/pr-evidence` installs the exact upstream wheel
-`0.34.0rc1.dev465+ge9281bd93` for the CPU interface reproduction described in
-[the execution boundary](pr-evidence-execution.md). This does not repin the product
-or qualify that wheel on hardware. Private scheduler access is being tested to fill the missing policy callbacks;
-neither planned route is yet qualified for GPU admission.
-
 ## Frozen-main PR evidence runtime
 
 The active [PR evidence plan](pr-evidence-plan.md) uses an isolated runtime, separate
@@ -157,6 +149,9 @@ https://wheels.vllm.ai/e9281bd939d4ade90d6aacf4b2319aa89ea46c39 -r
 runtime/pr-evidence-requirements.txt`. The clean frozen upstream checkout belongs
 under `artifacts/checkouts/`. This installs the upstream wheel; it does not claim a
 local source compilation or hardware qualification.
+Both delivery routes passed the CPU feasibility gate using pinned read-only
+scheduler state. Their frozen policy contract and remaining hardware gates are
+described in [the execution boundary](pr-evidence-execution.md).
 
 Keep separate installations for delivery-unpatched and post-response arms. Apply the
 named delivery patch to the latter using `python -m tools.benchmark patch-runtime
@@ -166,8 +161,9 @@ environment or wheel cache sharing its hardlink stays unchanged. `pr-feasibility
 --post-response` checks the installed patch and exercises real engine utility
 dispatch with CPU scheduler fixtures. Hardware admission remains required.
 
-For this sm_75 screen, both evidence environments also carry `gemma-turing-main`,
-the frozen adaptation of the head-size-512 tile/stage patch. Its applicability and
-hashes are in [the execution boundary](pr-evidence-execution.md). It is common to
-all arms, including the stock policy controls. The benchmark endpoint requires the
+For this sm_75 screen, both evidence environments also carry `gemma-turing-main`
+(head-size-512 tile/stage adaptation) and `pr-mapped-host-pointer` (registered host
+memory’s CUDA device alias). Their applicability and hashes are recorded in
+[the execution boundary](pr-evidence-execution.md). Both are common to all arms,
+including the stock policy controls. The benchmark endpoint requires the
 project installed in each environment and explicit API keys.

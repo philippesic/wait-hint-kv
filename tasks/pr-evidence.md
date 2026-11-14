@@ -86,6 +86,22 @@ CPU descriptor checks pass for direct and partial sub-block pointers without CUD
 initialization (mapped-pointer-cpu-01.log); GPU byte admission must still pass.
 Admission total is 309.165604702 seconds; 3,290.834395298 seconds remain. No screen.
 
+D8/A2-06 passes native GPU admission after the matched pointer fix (ff4c0288).
+All 4,096 reusable tokens restore from CPU; byte/provenance checks pass in group 0,
+the resident and restored boundary is 4,096, and continuation tokens match. There
+are no store refusals, store failures or failed transfers. The 1 GiB pool has 113
+chunks of 9,437,184 bytes; GPU cache has 280 blocks of 64 tokens. Receipt verification
+is pr-evidence-runtime-02/admission-d8-a2-06-verified.json. Charged time is
+69.36691184 seconds; closed-attempt admission total is 378.532516542 seconds.
+D8’s remaining arm ceiling is ceil(max(120, 2 * 69.36691184)) = 139 seconds.
+The hint arms are not yet GPU-admitted. HM/A2-02 passes all four groups, with actual
+CPU reuse and resident/restored boundary 3,840, identical continuation tokens and
+zero store failures/refusals. It used 396.329096052 seconds, mostly first-time
+Triton compilation; later HM arm ceilings are capped at 600 seconds. Its 1 GiB pool
+has 102 chunks of 10,485,760 bytes and the GPU cache has 360 blocks. Verification:
+pr-evidence-runtime-02/admission-hm-a2-02-verified.json. Closed-attempt admission
+total is 774.861612594 seconds; remaining budget is 2,825.138387406 seconds.
+
 CPU reporting work now implements pooled post-stratified BCa and analytic clustered
 sensitivity intervals, the paired whole-route gap, calibration arithmetic and the
 per-route/model decision rules. Tests preserve censoring, reject duplicate seed
@@ -97,7 +113,9 @@ and remove none. The earlier old-runtime lane passed 28 CPU tests; this reportin
 checkpoint changes no adapter behavior.
 
 ## Next
-Commit/push the environment identity and resume admission within the remaining
-3,413.5385 seconds. Recreate the acquisition healthcheck. Continue the authorized
-screen when models qualify, retaining all failures. Restore vm.swappiness to 60
-after acquisition, close results under the plan, then send the exact GPU handoff.
+Run HS/A2-02; after the three native A2 probes, run A1, A3,
+A4t, A3p, A4p and A5 for passing models in D8/HM/HS order. Commit this task/docs
+checkpoint before the next GPU launch. Continue the authorized screen when models
+qualify, retaining all failures and the cumulative budgets. Restore vm.swappiness
+to 60 after acquisition, delete the healthcheck, close results under the plan,
+then send the exact GPU handoff.
