@@ -1,129 +1,106 @@
 # PR evidence on frozen vLLM main
 
 ## Goal
-Complete the authorized Stage 1 and 2080 Ti admission/screen under the accepted plan,
-then close the results for Philip’s 5080 decision.
+Complete Stage 1 and the 2080 Ti admission/screen under the accepted plan, then
+close results for Philip’s 5080 decision.
 
 ## Authorized
-Philip authorized Stage 1 and Stage 2: at most 1 GPU hour admission and 8 GPU hours
-screen, local 2080 Ti only. Check idle before every job. Freeze dependent inputs
-before GPU; run complete paired blocks in priority order and re-quote after the
-first. Retain every attempt. No Stage 2b posting, Stage 3/pilot, 5080/rental, WSL
-memory increase, changed decision rules or check exceptions. Push milestones.
+Maximum admission 1 GPU hour, screen 8,
+including failed attempts and cleanup. Check idle before every job. Freeze inputs
+before dependent GPU; complete paired blocks in priority order; re-quote after the
+first. Retain all evidence. No Stage 2b posting, Stage 3, 5080/rental, WSL memory
+increase, changed decision rules or check exceptions. Push milestones.
+
 When genuinely finished and GPU free, send Philip’s exact two-task authorization
 message from this conversation to thread 4dd4323d-196a-4973-a4cb-3e985a47c982.
 The message has not been sent.
 
 ## Done when
-Stage 1 and Stage 2 complete or stop under an actual plan rule or resource ceiling,
-with close-results, per-route/model verdicts, harms, opportunity and not-run coverage,
-updated docs/findings and pushed commits. Then send the GPU handoff.
+Close-results must retain per-route/model verdicts,
+harms, opportunity, failed/not-run coverage and update docs/FINDINGS; delete this
+task only after closure and push.
 
 ## State
-Active owner: current agent on main. Stage 1 is committed/pushed at 0b41d6a4;
-checksum cache cleanup is pushed at 087a1d8d. Both routes are CPU-feasible, using the
-same frozen hold-only mechanism. The original public-callback-only stop was wrong
-and is explicitly corrected in results/pr-evidence-feasibility. Read-only private
-scheduler access is allowed and passes native lifecycle, geometry and identity tests.
-No GPU benefit numbers have been observed.
+Current agent owns main. Stage 1 is frozen/pushed; both routes use the same hold-only
+mechanism. The public-callback-only infeasibility conclusion was corrected in
+results/pr-evidence-feasibility. Read-only private scheduler access is allowed and
+CPU-qualified. No GPU performance/benefit cells have run.
 
-Exact runtime wheel 0.34.0rc1.dev465+ge9281bd93 / torch 2.14+cu130 lives in
-artifacts/venvs/pr-evidence; matched post-response runtime is pr-evidence-post.
-The clean upstream checkout is artifacts/checkouts/vllm-pr-evidence. The original
-supported runtime is unchanged. Both environments have the common Gemma Turing
-patch; only A3p/A4p have the delivery patch. Exact hashes, model revisions, route
-limits, dependency tuple and protocol hash are in benchmarks/pr-evidence/stage1-freeze.json.
+Exact runtime 0.34.0rc1.dev465+ge9281bd93 / torch 2.14+cu130 lives in
+artifacts/venvs/pr-evidence and matched pr-evidence-post. Both have the common
+Gemma Turing and mapped-host-pointer compatibility patches. Only A3p/A4p have
+the hashed delivery patch. The clean checkout is artifacts/checkouts/vllm-pr-evidence.
+benchmarks/pr-evidence/stage1-freeze.json identifies dependencies, mechanisms,
+limits, models, patches and protocol. Original supported runtime is unchanged.
 
-CPU receipts retained under artifacts/runs: pr-policy-feasibility-11,
-pr-post-feasibility-01/02, pr-bookkeeping-01 and pr-instrument-10. Instrument 10
-covers all 21 model/arm parser configurations, poisoned-destination byte fixtures,
-real HTTP failures, paired schedules, metric regeneration and working-set accounting.
-Live GPU correctness remains unqualified. Production-size bookkeeping p99 at 1M
-chunks/1k holds is 14.9 ms ARC / 81.5 ms LRU with 18.2 MB owned metadata; this is a
-retained limitation, not GPU efficacy. LMCache 0.5.6 fails joint dependency resolution
-and has no Stage 2 lane. Qwen’s diverged-local-hit component observation remains;
-its full scheduler probe has not run.
+CPU receipts: pr-policy-feasibility-11, pr-post-feasibility-01/02/03,
+pr-bookkeeping-01 and pr-instrument-10/11 under artifacts/runs. Instrument qualification
+covers all 21 model/arm configurations, poisoned-destination fixtures, HTTP faults,
+paired schedules, metric regeneration and working-set accounting. Bookkeeping at
+1M chunks/1k holds has p99 14.9 ms ARC / 81.5 ms LRU, 18.2 MB owned metadata; retain
+this scale limitation. LMCache 0.5.6 dependency admission fails. The Qwen diverged-hit
+component reproduces; full scheduler probe remains unqualified.
 
-W1 admission pr-w1-admission-01 is complete and verified (2,071 CPU seconds).
-The full manifest SHA is d993b516214bd534e198c7122fe470407b011f974c080a42bb8cc650cd0d40da;
-benchmarks/pr-evidence/w1-freeze.json retains the compact source/tokenizer identities.
-The semi-synthetic corpus has no success filter. D8/HM/HS pilot sets contain
-1,691/1,689/1,562 tasks across 28 repositories, mostly chronologically truncated.
-Confirmation performance remains held out. Raw attempts, assets and exclusions stay.
+W1 admission pr-w1-admission-01 is verified; compact identity is
+benchmarks/pr-evidence/w1-freeze.json. Manifest SHA:
+d993b516214bd534e198c7122fe470407b011f974c080a42bb8cc650cd0d40da.
+No source-success filter. Pilot D8/HM/HS: 1,691/1,689/1,562 tasks across 28 repositories;
+mostly truncated. Confirmation performance is held out. Statistical tools implement
+frozen pooled BCa/delta sensitivity and verdict rules; arithmetic does not certify
+resource or attribution evidence.
 
-Five admission attempts stopped during startup on additional host swap-out:
-D8/A2-01/02/03, HM/A2-01 and HS/A2-01. Owned process swap stayed zero and minimum
-available RAM was 9.26–13.31 GiB. No model reached generation. All five receipts
-verify; charged admission time totals 186.461502051 seconds (0.051795 hours),
-leaving 3,413.538497949 seconds. Screen time is zero. The ledger is
-artifacts/runs/pr-evidence-2080ti. Logs/CPU checks are in pr-evidence-runtime-02.
-The checksum cache release raised free RAM but did not remove host-level swap-out.
-The GPU is idle and admission healthcheck 6b7e19e4-2836-413e-b106-6119e6418aed was deleted.
+### Acquisition and repairs
+All jobs are retained under artifacts/runs/pr-evidence-2080ti; logs and verification
+outputs under pr-evidence-runtime-02. Five initial D8/HM/HS A2 attempts stopped on
+host swap growth with zero owned swap and 9.26–13.31 GiB available RAM. Philip
+approved the machine repair and corrected the unnecessary overnight approval stop:
+routine reversible repairs should proceed autonomously.
 
-Philip approved the temporary machine-setting repair on 2026-11-14 and corrected
-the unnecessary approval stop: routine reversible repairs should proceed autonomously.
-vm.swappiness is now 0; the original 60 and boot identity are backed up in
-pr-evidence-runtime-02/swappiness-original.json. Restore 60 after acquisition.
-The committed 2080ti-environment.json identifies subsequent attempts; WSL memory,
-headroom, swap guards and decision rules stay unchanged. Root access works through
-wsl.exe -d Ubuntu-24.04 -u root (same verified boot); sudo requires a password.
-Five-minute acquisition healthcheck: scheduled-task:b9d30075-3c8f-4060-93da-acb406cfb8d2.
-Delete it when acquisition ends.
+vm.swappiness is now 0; restore original 60 after acquisition. Backup and boot ID:
+pr-evidence-runtime-02/swappiness-original.json. Committed machine scope:
+benchmarks/pr-evidence/2080ti-environment.json. No WSL memory/headroom/swap rule
+change. Root access: wsl.exe -d Ubuntu-24.04 -u root (same verified boot); sudo
+requires a password. Active five-minute healthcheck:
+scheduled-task:b9d30075-3c8f-4060-93da-acb406cfb8d2; delete when acquisition ends.
 
-D8/A2-04 under the repaired environment loaded the model and became ready with no
-new swap and at least 10 GiB available RAM. Its client was refused by the output
-path guard because the captured source expects output under its own artifacts/.
-The runner now captures there and moves the retained client directory before
-terminal hashing. Attempt04 remains charged (69.943233535 seconds); admission total
-is 256.404735586 seconds, leaving 3,343.595264414. No generation or screen yet.
+D8/A2-04 loaded without swap but the captured client output path was refused; the
+runner now captures under its source artifacts and moves output before final hashing.
+D8/A2-05 failed its first native CPU store with illegal CUDA access. Common
+pr-mapped-host-pointer translates registered mmap CPU addresses to CUDA aliases.
+All subsequent D8/HM arms pass byte/provenance/continuation admission. These repairs
+precede benefit observation; original failures remain charged and retained.
 
-D8/A2-05 reached generation but failed its first native CPU store with illegal
-CUDA access (52.760869116 seconds). The frozen worker still uses mmap CPU virtual
-addresses, matching the retained mapped-memory diagnosis. The common
-pr-mapped-host-pointer patch is applied to both runtimes and all arms, with
-exact hashes added to the freeze before further GPU. No hint mechanism changes.
-CPU descriptor checks pass for direct and partial sub-block pointers without CUDA
-initialization (mapped-pointer-cpu-01.log); GPU byte admission must still pass.
-Admission total is 309.165604702 seconds; 3,290.834395298 seconds remain. No screen.
+D8: A2-06 and A1/A3/A4t/A3p/A4p/A5-01 pass. CPU reuse 4,096 tokens, identical
+resident/restored boundary and output, group 0 byte identity, zero store failures.
+1 GiB = 113 chunks of 9,437,184 bytes; GPU 280 blocks of 64 tokens. The 4,096-token
+probe exceeds the 50% hold cap, so all D8 admission hint holds refuse physical_limit;
+it does not qualify active holding. Remaining D8 admission job ceiling 139 seconds.
 
-D8/A2-06 passes native GPU admission after the matched pointer fix (ff4c0288).
-All 4,096 reusable tokens restore from CPU; byte/provenance checks pass in group 0,
-the resident and restored boundary is 4,096, and continuation tokens match. There
-are no store refusals, store failures or failed transfers. The 1 GiB pool has 113
-chunks of 9,437,184 bytes; GPU cache has 280 blocks of 64 tokens. Receipt verification
-is pr-evidence-runtime-02/admission-d8-a2-06-verified.json. Charged time is
-69.36691184 seconds; closed-attempt admission total is 378.532516542 seconds.
-D8’s remaining arm ceiling is ceil(max(120, 2 * 69.36691184)) = 139 seconds.
-The hint arms are not yet GPU-admitted. HM/A2-02 passes all four groups, with actual
-CPU reuse and resident/restored boundary 3,840, identical continuation tokens and
-zero store failures/refusals. It used 396.329096052 seconds, mostly first-time
-Triton compilation; later HM arm ceilings are capped at 600 seconds. Its 1 GiB pool
-has 102 chunks of 10,485,760 bytes and the GPU cache has 360 blocks. Verification:
-pr-evidence-runtime-02/admission-hm-a2-02-verified.json. Closed-attempt admission
-total is 774.861612594 seconds; remaining budget is 2,825.138387406 seconds.
+HM: A2-02 and all other arms-01 pass all four groups with 3,840 CPU reused tokens,
+256 recomputed probe tokens, identical resident/restored boundary/output, zero store
+failures. 1 GiB = 102 chunks of 10,485,760 bytes; GPU 360 blocks. Initial compilation
+cost 396 seconds; later jobs about 60 seconds. Active 15-chunk holds in A4t pass
+GPU byte checks. HM ceiling 600 seconds.
 
-HS/A2-02 is not admitted: the frozen 0.85 GPU fraction and 6,144-token maximum need
-0.74 GiB KV cache, but native post-warmup planning leaves 0.20 GiB. Weights consume
-8.44 GiB. This is common model/runtime capacity, not a hint failure; no changed
-fraction, context limit, sequence count or block override is allowed for W1.
-The failed attempt is retained and charged 82.698046653 seconds. Closed-attempt
-admission total is 857.559659247 seconds; 2,742.440340753 seconds remain.
+HS/A2-02 is not admitted: weights 8.44 GiB leave 0.20 GiB native GPU cache at the
+frozen 0.85 fraction, below 0.74 GiB required for 6,144 tokens. No fraction/context/
+sequence/block override change is allowed for W1. Remaining HS arms and W1 not run.
 
-CPU reporting work now implements pooled post-stratified BCa and analytic clustered
-sensitivity intervals, the paired whole-route gap, calibration arithmetic and the
-per-route/model decision rules. Tests preserve censoring, reject duplicate seed
-pairs, exercise threshold disagreement and retain complete-block budget reserves.
-These calculations do not certify supplied validity/attribution or resource gates.
-Full acceptance passes: 134 portable tests and 105 rule proofs
-(pr-evidence-runtime-02/stats-full-02.log). Test inventory changes add ten tests
-and remove none. The earlier old-runtime lane passed 28 CPU tests; this reporting
-checkpoint changes no adapter behavior.
+Closed-attempt admission total: 1,646.666778406 seconds (0.457407 hours), leaving
+1,953.333221594 seconds. Screen time zero. GPU currently idle.
+
+Post-response holds were acknowledged but snapshots could miss their lifetime
+before the next return. The delivery utility now invokes the common read-only
+observer after publication, equally for A3p/A4p, preserving policy identity. CPU
+receipt pr-post-feasibility-03 checks snapshots and A3p/A3 eviction identity; p50
+59.335 us / p99 97.470 us dispatch cost excludes transport/observer capture. Freeze
+new patch hash and repeat affected D8/HM post arms before performance. Historical
+admissions remain valid for their exact earlier patch, not silently relabeled.
 
 ## Next
-Run A1, A3, A4t, A3p, A4p and A5 for passing D8 then HM. D8 ceilings are 139 seconds;
-HM ceilings are 600 seconds; retain the 60-second cleanup reserve and check the
-remaining admission budget before each launch. HS hint/control arms are not run.
-Continue the authorized screen when models
-qualify, retaining all failures and the cumulative budgets. Restore vm.swappiness
-to 60 after acquisition, delete the healthcheck, close results under the plan,
-then send the exact GPU handoff.
+Finish CPU qualification and commit/push the post-response observer freeze. Repeat
+D8 A3p/A4p-02 (139-second ceilings) and HM A3p/A4p-02 (600), with cleanup reserves.
+Verify HM active post holds are captured. Then commit admission milestone and run
+W1 D8 sizing/calibration/decision in the frozen order, followed by HM and W2 only
+as budget allows. Do not start incomplete paired decision blocks. Keep all failures
+and charges. Restore swappiness, delete healthcheck, close results and send handoff.

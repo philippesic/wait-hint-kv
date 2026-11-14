@@ -55,11 +55,11 @@
     "name": "pr-post-response",
     "target": "vllm/v1/engine/core.py",
     "original_sha256": "0fc5c97fdf9082b77501492d244d7c4dd0c8848532ce8438d2f082bbf73757e8",
-    "patched_sha256": "d33ae4c099f20bcb6b3e1dca4cbde2038988519ab5bc6f5ef50ec26b5b103ddb",
+    "patched_sha256": "3a15bc0e36077487d101b7faf0507957c19c2136a8d9e6088d922beec452f6db",
     "edits": [
       {
         "old": "    def get_kv_cache_group_metadata(self) -> list[dict[str, int | str | None]]:\n",
-        "new": "    def publish_kv_cache_hints(self, envelope: dict[str, Any]) -> dict[str, Any]:\n        connector = self.scheduler.get_kv_connector()\n        offloading = getattr(connector, \"connector_scheduler\", None)\n        manager = getattr(offloading, \"manager\", None)\n        if manager is None:\n            raise ValueError(\"offloading manager unavailable\")\n        with manager.lock:\n            primary = getattr(manager, \"primary_tier\", manager)\n            publish = getattr(getattr(primary, \"_policy\", None), \"publish_envelope\", None)\n            if not callable(publish):\n                raise ValueError(\"cache policy does not accept post-response hints\")\n            return publish(envelope)\n\n    def get_kv_cache_group_metadata(self) -> list[dict[str, int | str | None]]:\n"
+        "new": "    def publish_kv_cache_hints(self, envelope: dict[str, Any]) -> dict[str, Any]:\n        connector = self.scheduler.get_kv_connector()\n        offloading = getattr(connector, \"connector_scheduler\", None)\n        manager = getattr(offloading, \"manager\", None)\n        if manager is None:\n            raise ValueError(\"offloading manager unavailable\")\n        with manager.lock:\n            primary = getattr(manager, \"primary_tier\", manager)\n            publish = getattr(getattr(primary, \"_policy\", None), \"publish_envelope\", None)\n            if not callable(publish):\n                raise ValueError(\"cache policy does not accept post-response hints\")\n            result = publish(envelope)\n            record_policy = getattr(manager, \"record_policy\", None)\n            if callable(record_policy):\n                record_policy()\n            return result\n\n    def get_kv_cache_group_metadata(self) -> list[dict[str, int | str | None]]:\n"
       }
     ]
   },

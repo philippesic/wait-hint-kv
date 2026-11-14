@@ -69,6 +69,8 @@ def observe_delivery() -> dict[str, Any]:
     policy = native._policy
     now = [1_000_000_000]
     policy.clock = lambda: now[0]
+    captured_holds: list[int] = []
+    native.record_policy = lambda: captured_holds.append(len(policy.book.references))
     engine = _engine(native)
     context, action = request_fixture(owner, "first", "session", 1, [b"a", b"b"], False)
     native.on_new_request(context)
@@ -101,6 +103,7 @@ def observe_delivery() -> dict[str, Any]:
         == "cancelled"
     )
     assert not policy.book.references
+    assert captured_holds == [0, 2, 0]
     native, owner = policy_fixture("AdviceOffARC")
     native._policy.clock = lambda: 1_000_000_000
     engine = _engine(native)
@@ -117,7 +120,7 @@ def observe_delivery() -> dict[str, Any]:
         assert utility.result.result["actions"][0]["decision"] == "disabled"
         del owner._req_status[context.req_id]
     return {
-        "schema": "pr-delivery-observation-v1",
+        "schema": "pr-delivery-observation-v2",
         "identity_sequences": identity,
         "engine_utility_dispatch_exercised": True,
         "deadline_origin_is_acceptance": True,
@@ -125,6 +128,7 @@ def observe_delivery() -> dict[str, Any]:
         "duplicate_replayed": True,
         "closed_schema_refused_without_mutation": True,
         "cancellation_released": True,
+        "policy_state_captured_after_delivery": True,
         "control_delivery_ns": elapsed,
         "control_delivery_p50_ns": sorted(elapsed)[math.ceil(len(elapsed) * 0.5) - 1],
         "control_delivery_p99_ns": sorted(elapsed)[math.ceil(len(elapsed) * 0.99) - 1],

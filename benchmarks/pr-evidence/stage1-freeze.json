@@ -1,9 +1,9 @@
 {
   "A3p": {
-    "cost_scope": "CPU utility dispatch; network/serving overhead unqualified",
-    "cpu_identity_receipt": "pr-post-feasibility-01",
-    "fresh_disabled_dispatch_p50_us": 62,
-    "fresh_disabled_dispatch_p99_us": 123,
+    "cost_scope": "CPU utility dispatch; transport, observer capture and serving overhead unqualified",
+    "cpu_identity_receipt": "pr-post-feasibility-03",
+    "fresh_disabled_dispatch_p50_us": 59.335,
+    "fresh_disabled_dispatch_p99_us": 97.47,
     "messages": "same post-response envelopes as A4p",
     "policy": "AdviceOffARC",
     "runtime": "same delivery patch as A4p"
@@ -17,6 +17,10 @@
       "admission.json": "caf999f75b02e6c5c4f8ba6539ceda79531e631b79f464211235cd2eb4cef8a1",
       "terminal.json": "16ea6ee1318074d2421a94b2d413d2b7db9df4bbf97b7004069aa95d802c3e89"
     },
+    "pr-instrument-11": {
+      "admission.json": "23c3e57ca26e135eee5a0a4b6b3c4050d9be047d8959035ddfbb3ac10dea1536",
+      "terminal.json": "24c098db4d88047f9614e926958d74c817e37d32e04146353d21c82c11e9ff91"
+    },
     "pr-policy-feasibility-11": {
       "admission.json": "158aa6f688fcd0a5f44ce9012fa3da2990b3ad4e58fb386ede5015a6c07a773d",
       "terminal.json": "54e72ab788ee2e457d2764c234e4f252d4e87ef04146db42e6b2df8c6d99cb51"
@@ -24,6 +28,10 @@
     "pr-post-feasibility-01": {
       "admission.json": "bc8456e50c382eee3ac5320725573e7e8820c46531f3e6b26e50a7090eb3231b",
       "terminal.json": "5a861d65907f6b1cb2b28bb7d2c56a2904d1f652df4f0817006457660de87b2b"
+    },
+    "pr-post-feasibility-03": {
+      "admission.json": "9a54e73adfcd152d65ef64f74b934bf6bc13f2aa8d6b37e71cd132a0ffdd12b0",
+      "terminal.json": "dee92ae4ae77c702b917f0dd1ba105c6f160931831824d348f19985b5b58cd15"
     },
     "pr-w1-admission-01": {
       "admission.json": "c1f282537582afe4c31e3f1b2a6c6a59088499bea6b7233f6e9c6254eb5609c5",
@@ -72,13 +80,13 @@
     },
     "pr-post-response": {
       "original_sha256": "0fc5c97fdf9082b77501492d244d7c4dd0c8848532ce8438d2f082bbf73757e8",
-      "patched_sha256": "d33ae4c099f20bcb6b3e1dca4cbde2038988519ab5bc6f5ef50ec26b5b103ddb",
+      "patched_sha256": "3a15bc0e36077487d101b7faf0507957c19c2136a8d9e6088d922beec452f6db",
       "target": "vllm/v1/engine/core.py"
     }
   },
   "promotion": false,
   "protocol": "docs/pr-evidence-screen.md",
-  "protocol_sha256": "62169038fe12508a2c7d0be227b3da93ab8a8bedc07cdbd37718c4606d88bf52",
+  "protocol_sha256": "a727054bb302414e7c53f370863c2a96c02b0acfcf14d14297ef011181fa82d5",
   "routes": {
     "A4p": {
       "core_delivery_patch": true,

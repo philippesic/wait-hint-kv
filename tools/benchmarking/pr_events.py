@@ -125,6 +125,7 @@ def reconcile_events(directory: Path) -> dict[str, Any]:
     store_refusals = store_failures = 0
     occupancy = []
     evictions = []
+    policies = []
     for record in streams["scheduler"]:
         event, data = record["event"], record["data"]
         if event == "group_config":
@@ -217,6 +218,8 @@ def reconcile_events(directory: Path) -> dict[str, Any]:
                 raise ValueError("load CPU slots disagree with stores")
         elif event == "request_finished":
             requests[data["request_id"]]["finished"] = data
+        elif event == "policy":
+            policies.append({"monotonic_ns": record["monotonic_ns"], **data})
         elif event == "reset":
             resident.clear()
             slots.clear()
@@ -249,6 +252,7 @@ def reconcile_events(directory: Path) -> dict[str, Any]:
         "store_failures": store_failures,
         "occupancy": occupancy,
         "evictions": evictions,
+        "policy_events": policies,
         "closed_streams": {
             name: records[-1]["event"] == "close" for name, records in streams.items()
         },

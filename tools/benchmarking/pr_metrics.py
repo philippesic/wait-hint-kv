@@ -189,4 +189,6 @@ def measure_cell(
     }
     if all("reachable_keys" in request for request in observed["requests"].values()):
         metrics["working_set"] = working_set(observed, report)
+    if observed["policy_events"]:
+        metrics["policy_events"] = observed["policy_events"]
     return metrics

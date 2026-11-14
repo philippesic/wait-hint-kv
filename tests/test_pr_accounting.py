@@ -110,6 +110,7 @@ def _event_fixture(directory: Path, corruption: str | None) -> None:
         },
     )
     scheduler.emit("complete_load", {"request_id": "internal", "keys": keys})
+    scheduler.emit("policy", {"physical_held_chunks": 2, "outcomes": {"held": 1}})
     scheduler.emit(
         "prepare_store",
         {
@@ -158,6 +159,9 @@ def test_native_event_reconciliation_detects_corruption(
     assert evidence["store_failures"] == 1
     assert evidence["evictions"][-1]["key"] == "aa"
     assert evidence["occupancy"][-1]["chunks"] == 1
+    assert evidence["policy_events"][0]["physical_held_chunks"] == 2
+    assert evidence["policy_events"][0]["outcomes"] == {"held": 1}
+    assert evidence["policy_events"][0]["monotonic_ns"] > 0
     result = request_sources(
         evidence["requests"]["internal"],
         8,

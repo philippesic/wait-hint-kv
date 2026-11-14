@@ -37,6 +37,9 @@ next turn or true gap. Duplicate action IDs replay without extending deadlines.
 A3/A3p receive their respective matched messages with advice disabled. The freeze
 identifies policy files, the patched core hash, native CPU A3p/A3 eviction identity
 and delivery-cost samples, W1 manifest, model revisions and dependency tuple.
+Post-response delivery snapshots the common observer immediately after publication
+under the existing manager lock, for both A3p and A4p. This records short-lived holds
+before a subsequent return; the native policy object and mechanism are unchanged.
 
 The production-size bookkeeping cost remains a reported limitation, not an invented
 CPU stopping threshold. The Qwen diverged-local-hit component persists on main;

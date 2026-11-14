@@ -513,7 +513,9 @@ Frozen-main job entry points:
   same actual cached boundary. Fresh-versus-cached differences remain diagnostic.
 - `pr-measure-cell DIRECTORY --out artifacts/runs/FILE.json` joins the paired W1
   schedule, raw streaming captures and native events. It retains failed sessions,
-  unoffered turns, censored latency and unknown cache-source counts.
+  unoffered turns, censored latency and unknown cache-source counts. Timestamped policy
+  snapshots retain held physical keys, leases, outcomes, yields and metadata charges
+  for hold activity and abandoned-hold accounting.
 - `pr-compare-cells --treatment METRICS --baseline METRICS --cohort hinted_return
   --metric ttft_ns --contrast benefit --label MODEL-WORKLOAD-STATISTIC --out FILE`
   accepts repeated ordered treatment/baseline pairs. It refuses duplicate seeds or

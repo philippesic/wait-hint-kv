@@ -146,9 +146,11 @@ must still measure the whole serving cost at its stated scale.
 
 `pr-post-response` in the runtime patch manifest adds one EngineCore utility method.
 It locates the existing offload manager, enters that manager's lock, and calls the
-primary policy's `publish_envelope`. It does not alter request scheduling, keys,
+primary policy's `publish_envelope`, then snapshots the common observer when present.
+The snapshot records a hold before a subsequent return can release it. It does not
+alter request scheduling, keys,
 readiness, transfer, or eviction. The patched file hash is
-`d33ae4c099f20bcb6b3e1dca4cbde2038988519ab5bc6f5ef50ec26b5b103ddb`; the original is
+`3a15bc0e36077487d101b7faf0507957c19c2136a8d9e6088d922beec452f6db`; the original is
 `0fc5c97fdf9082b77501492d244d7c4dd0c8848532ce8438d2f082bbf73757e8`.
 Both runtime environments have identical dependency versions. A3p sends the same
 post-response envelopes to AdviceOffARC; A4p uses PostResponseARC.
@@ -161,12 +163,15 @@ before publication. The engine records one monotonic acceptance timestamp for
 its actions. Duplicate actions replay their original decision without renewing
 the deadline. Request-TTL actions must match their own request registration.
 
-`artifacts/runs/pr-post-feasibility-01` exercises the actual utility dispatcher and
+`artifacts/runs/pr-post-feasibility-03` exercises the actual utility dispatcher and
 MessagePack argument encoding with fixture scheduler state. A3p and A3 eviction
 sequences match. Acceptance-origin deadlines, late readiness, cancellation and
-invalid-message refusal pass. Incremental CPU dispatch/policy cost for 1,000 fresh
-disabled messages was p50 62 us / p99 123 us. Socket/interprocess transport and
-serving overhead are outside that CPU measurement and remain to be qualified.
+invalid-message refusal and post-publication snapshots pass. Incremental CPU
+dispatch/policy cost for 1,000 fresh disabled messages was p50 59.335 us / p99 97.470 us.
+Socket/interprocess transport, observer capture and serving overhead are outside
+that CPU measurement. The earlier delivery patch and admissions remain retained;
+the observer repair is frozen before performance acquisition, with affected GPU
+control/treatment admissions repeated.
 
 ## W1 admission recipe
 

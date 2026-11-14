@@ -480,6 +480,8 @@ def verify_delivery(observed: dict[str, Any]) -> dict[str, Any]:
         "closed_schema_refused_without_mutation",
         "cancellation_released",
     }
+    if observed.get("schema") == "pr-delivery-observation-v2":
+        flags.add("policy_state_captured_after_delivery")
     if set(observed) != flags | {
         "schema",
         "identity_sequences",
@@ -489,9 +491,10 @@ def verify_delivery(observed: dict[str, Any]) -> dict[str, Any]:
         "scope",
     }:
         raise ValueError("unknown post-response observation fields")
-    if observed["schema"] != "pr-delivery-observation-v1" or any(
-        observed[flag] is not True for flag in flags
-    ):
+    if observed["schema"] not in {
+        "pr-delivery-observation-v1",
+        "pr-delivery-observation-v2",
+    } or any(observed[flag] is not True for flag in flags):
         raise ValueError("failed post-response lifecycle")
     identities = observed["identity_sequences"]
     if (
