@@ -1,0 +1,166 @@
+{
+  "all_arm_seeds": [
+    12001,
+    12002,
+    12003
+  ],
+  "charged_seconds": {
+    "admission": 1905.0253308830002,
+    "screen": 2286.111610681
+  },
+  "model": "D8",
+  "paired_schedules": {
+    "12001": {
+      "arm_order": [
+        "A1",
+        "A3",
+        "A4p",
+        "A4t",
+        "A2",
+        "A3p",
+        "A5"
+      ],
+      "path": "artifacts/runs/pr-evidence-runtime-02/d8-calibration-12001-schedule.json",
+      "sha256": "8472cc688036fa5af8e1ee0f8def1921efbf12f99232cc2f92edf60db65b6f9f"
+    },
+    "12002": {
+      "arm_order": [
+        "A3p",
+        "A4t",
+        "A3",
+        "A1",
+        "A2",
+        "A5",
+        "A4p"
+      ],
+      "path": "artifacts/runs/pr-evidence-runtime-02/d8-calibration-12002-schedule.json",
+      "sha256": "b627170c82e91bde31bd4494bf1cd8e91708324a3a15b8b3c40548eb5356b24f"
+    },
+    "12003": {
+      "arm_order": [
+        "A5",
+        "A3",
+        "A2",
+        "A4p",
+        "A3p",
+        "A4t",
+        "A1"
+      ],
+      "path": "artifacts/runs/pr-evidence-runtime-02/d8-calibration-12003-schedule.json",
+      "sha256": "34585aa7e77fa06915762976d3532884d046c129af861014416ed5c609e2def8"
+    }
+  },
+  "quote": {
+    "complete_block_reserved_seconds": 4389,
+    "fits": true,
+    "per_job_ceiling_seconds": 567,
+    "remaining_screen_seconds": 26513.888389319,
+    "scope": "seven complete arms including cleanup contingency; re-quote from the first complete decision block"
+  },
+  "ranking": {
+    "largest_conversation_bytes": 905969664,
+    "median_mean_working_set_bytes": 816199119.3106891,
+    "pool_order_gib": [
+      1,
+      2,
+      4
+    ],
+    "pool_working_set_ratio": 1.3155390622166014,
+    "resource_status": "needs all-arm validation"
+  },
+  "schema": "pr-pool-ranking-v1",
+  "scope": "Fixed candidate ordering from native ARC working-set measurements; select first candidate that passes resource limits for all arms across complete calibration blocks. No treatment performance used.",
+  "sizing": "benchmarks/pr-evidence/d8-sizing.json",
+  "sources": [
+    {
+      "admission_sha256": "b89b095b248db2385fd76d0fe372b7fe3c28d3521f02133775abdd6cb01eb569",
+      "metrics": "artifacts/runs/pr-evidence-runtime-02/w1-d8-working-set-12001-a2-01-metrics.json",
+      "metrics_sha256": "a86d9af859f96e316deb808ab6a2cf4f438f7917d45eff3d3b351a4c9f8ca687",
+      "one_shot_failures": 0,
+      "resource_limits": {
+        "host_swap_out_growth_pages": 0,
+        "limits": "sampled Linux process counters; partial edge intervals prorated; processes that start and exit between samples and Windows activity can be missed; memory/swap cover startup through the final pre-cleanup sample",
+        "material_interference": false,
+        "minimum_available_bytes": 10843320320,
+        "outside_cpu_core_share": 0.03183959858169606,
+        "outside_cpu_longest_above_quarter_core_seconds": 1.686024636,
+        "outside_gpu_pids": [],
+        "owned_swap_growth_bytes": 0,
+        "peak_owned_pss_bytes": 7312491520,
+        "window_ns": [
+          282513994898944,
+          282941994898944
+        ]
+      },
+      "session_failures": 0,
+      "terminal_sha256": "afe39b61a339f8cf5c0ef8ad74d33b5aeca871705ed45455f6000438b0b9e9c1",
+      "working_set": {
+        "definition": "current submitted prompt's largest reusable native boundary, window/recurrent reachable keys, unique physical-key union while session active; no future turns, independent of cache readiness",
+        "largest_observed_conversation_bytes": 858783744,
+        "mean_active_prefixes": 2.3467595881799066,
+        "mean_unique_reachable_bytes": 816199119.3106891,
+        "peak_unique_reachable_bytes": 3199205376
+      }
+    },
+    {
+      "admission_sha256": "7ee4695bb550af5ba2a0cd3469c8f4f5deea67b0ddad4cbc565d906149ea4152",
+      "metrics": "artifacts/runs/pr-evidence-runtime-02/w1-d8-working-set-12002-a2-01-metrics.json",
+      "metrics_sha256": "06137b173baf2c33a9836f779afb807a3e3c91cee5a0918944f4de6b23511de6",
+      "one_shot_failures": 0,
+      "resource_limits": {
+        "host_swap_out_growth_pages": 0,
+        "limits": "sampled Linux process counters; partial edge intervals prorated; processes that start and exit between samples and Windows activity can be missed; memory/swap cover startup through the final pre-cleanup sample",
+        "material_interference": false,
+        "minimum_available_bytes": 10716295168,
+        "outside_cpu_core_share": 0.03357837891514307,
+        "outside_cpu_longest_above_quarter_core_seconds": 1.1333156139999998,
+        "outside_gpu_pids": [],
+        "owned_swap_growth_bytes": 0,
+        "peak_owned_pss_bytes": 6878649344,
+        "window_ns": [
+          283018775454943,
+          283446775454943
+        ]
+      },
+      "session_failures": 0,
+      "terminal_sha256": "32c5fd2e35f66488ffc1d08d1b737aeaeebd2112acd4007f65c560901ddf8281",
+      "working_set": {
+        "definition": "current submitted prompt's largest reusable native boundary, window/recurrent reachable keys, unique physical-key union while session active; no future turns, independent of cache readiness",
+        "largest_observed_conversation_bytes": 887095296,
+        "mean_active_prefixes": 2.141381373196262,
+        "mean_unique_reachable_bytes": 742040099.5332026,
+        "peak_unique_reachable_bytes": 3689938944
+      }
+    },
+    {
+      "admission_sha256": "98be6c303ca3f03af2f47424966176a22ea44e17025a4de7f4d491db6ae4268c",
+      "metrics": "artifacts/runs/pr-evidence-runtime-02/w1-d8-working-set-12003-a2-01-metrics.json",
+      "metrics_sha256": "d0dfaddaf2616094c22401668747c7bac1464a68050ef66a8095e2d4ae4d29c1",
+      "one_shot_failures": 1,
+      "resource_limits": {
+        "host_swap_out_growth_pages": 0,
+        "limits": "sampled Linux process counters; partial edge intervals prorated; processes that start and exit between samples and Windows activity can be missed; memory/swap cover startup through the final pre-cleanup sample",
+        "material_interference": false,
+        "minimum_available_bytes": 10777243648,
+        "outside_cpu_core_share": 0.032792119235724386,
+        "outside_cpu_longest_above_quarter_core_seconds": 1.2099950750000001,
+        "outside_gpu_pids": [],
+        "owned_swap_growth_bytes": 0,
+        "peak_owned_pss_bytes": 7106420736,
+        "window_ns": [
+          283525135704979,
+          283953135704979
+        ]
+      },
+      "session_failures": 0,
+      "terminal_sha256": "914a6a797e25619d090a3c2f6928e77e107008657c4c6e906f813f9a143365b6",
+      "working_set": {
+        "definition": "current submitted prompt's largest reusable native boundary, window/recurrent reachable keys, unique physical-key union while session active; no future turns, independent of cache readiness",
+        "largest_observed_conversation_bytes": 877658112,
+        "mean_active_prefixes": 2.944589897542056,
+        "mean_unique_reachable_bytes": 830225457.1337405,
+        "peak_unique_reachable_bytes": 4067426304
+      }
+    }
+  ]
+}

@@ -87,7 +87,7 @@ frozen 0.85 fraction, below 0.74 GiB required for 6,144 tokens. No fraction/cont
 sequence/block override change is allowed for W1. Remaining HS arms and W1 not run.
 
 Admission is complete: 1,905.025330883 seconds (0.529174 hours), leaving
-1,694.974669117 seconds unused. Screen sizing used 862.432028090 seconds. GPU currently idle.
+1,694.974669117 seconds unused. Screen sizing/working-set passes used 2,286.111610681 seconds. GPU currently idle.
 benchmarks/pr-evidence/2080ti-admission.json indexes every charged attempt.
 
 Post-response holds were acknowledged but snapshots could miss their lifetime
@@ -105,15 +105,27 @@ zero failures, no swap, minimum available RAM 9.995 GiB. Outside CPU averaged
 The frozen formula gives arrival_rate=0.13696109776373452, one_shot_rate=
 0.024583333333333332, horizon_seconds=428. Sizing metrics and derived settings are
 in pr-evidence-runtime-02. These are calibration only; no hint benefit observed.
-Resource summaries are now being added to pr-measure-cell with a regression test;
-finish full acceptance before further jobs.
+Resource reporting and sizing are committed/pushed at aa806acd; full acceptance
+passes 136 portable tests and 105 rule proofs. No tests removed or checks weakened.
+
+D8 working-set seeds 12001–12003 are complete at the calibrated rate. All 48
+multi-turn sessions completed; one last-second one-shot in seed 12003 was censored.
+No swap, material interference, store failure or failed transfer. Native store
+refusals are 16/9/5 and remain reported. Median time-average working set is
+816,199,119.311 bytes; fixed pool ranking is 1/2/4 GiB. The 1 GiB candidate is
+1.31554 times that average because no smaller eligible candidate exists; peak
+footprints are 2.98–3.79 GiB. benchmarks/pr-evidence/d8-pool-ranking.json freezes
+ranking, source identities, schedule hashes/orders and the complete-block quote.
+This is baseline calibration only; no treatment benefit observed.
 
 ## Next
-Commit resource reporting and sizing checkpoint, then A2 working-set calibration
-seeds 12001–12003 at the derived rates/horizon and reference pool 1 GiB, per-job
-ceiling 567 seconds plus 60 cleanup. Rank pool candidates from that working set,
-then three complete seven-arm calibration blocks at the selected candidate.
-Complete-block initial reserve is 4,389 seconds; 27,937.568 screen seconds remain.
-Commit final model calibration before any decision seed. Continue D8 blocks in
-priority order, re-quote after the first, then HM/W2 only if budget permits. Restore
-swappiness, delete healthcheck, close results, push and send the handoff at completion.
+Commit the pool-ranking checkpoint, then run three complete seven-arm calibration
+blocks at 1 GiB, seeds 12001–12003 in their frozen randomized arm orders. Every
+job ceiling is 567 seconds plus 60 cleanup reserve; reserve 4,389 seconds before
+each block. Remaining screen budget is 26,513.888 seconds. Retain all failures;
+finish a failed resource block and follow the fixed candidate order if necessary.
+Select the better native baseline from pooled hinted recomputation only after all
+three complete blocks, and commit final model calibration before decision seeds.
+Continue D8 decision blocks in order, re-quote after the first; then HM/W2 as the
+budget permits. Restore swappiness, delete healthcheck, close results, push and
+send the exact handoff only when genuinely finished.

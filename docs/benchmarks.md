@@ -537,7 +537,12 @@ Frozen-main job entry points:
 - `pr-calibration INPUT --step sizing|pools|baseline|quote --out FILE` calculates the
   frozen sizing settings, pool ranking, better baseline or complete-block quote.
   Sizing takes the three A2 metric records from the 240-second/no-one-shot pass;
-  baseline selection takes all 21 calibration cells. Pool inputs are
+  baseline selection takes all 21 calibration cells. D8 sizing and the candidate
+  ranking are frozen in `benchmarks/pr-evidence/d8-sizing.json` and
+  `d8-pool-ranking.json`; final selection still requires all-arm validation. The
+  minimum eligible 1 GiB candidate exceeds half the finite-horizon mean working
+  set, so report its actual ratio and burst peak alongside the nominal target.
+  Pool inputs are
   `working_sets_bytes` (three observations) and `largest_conversation_bytes` from
   admitted native geometry. Quote inputs are `horizon_seconds`,
   `startup_cleanup_seconds` and `remaining_screen_seconds`. These calculations do
