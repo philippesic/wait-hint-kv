@@ -1,0 +1,372 @@
+{
+  "attempts": [
+    {
+      "admission_sha256": "2f011c320dbeb061698cf3e17192fa361286aed2a145c308f5b1a49901649479",
+      "arm": "A1",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 69.62063856,
+      "model": "D8",
+      "name": "admission-d8-a1-01",
+      "status": "client_complete",
+      "terminal_sha256": "572c43fa1d77fa05261de3df0b64cc3b50e2ed224d486a6067543092fb90bcee",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-d8-a1-01-verified.json",
+      "verification_sha256": "3bfbe72f9ebf17642c7b0befa5e84a9530283e3222ad488eada36e06d53ce000"
+    },
+    {
+      "admission_sha256": "b4b61161854f1f2daf4638eecbc1ed9c854b3b34423c463e9c57dd517bf17a4b",
+      "arm": "A2",
+      "detail": "available RAM below 2 GiB or additional swap",
+      "gpu_charge_seconds": 16.930461794,
+      "model": "D8",
+      "name": "admission-d8-a2-01",
+      "status": "resource_exhaustion",
+      "terminal_sha256": "85b48a2cb95a4b26452c1feaecb940cd917944c2f0f604668a062ee2d2a2e116",
+      "verification_path": null,
+      "verification_sha256": null
+    },
+    {
+      "admission_sha256": "af31a60662c695b28b771632a0d0dfe8988e4ee903b7e6e7b3ef6fbca95700da",
+      "arm": "A2",
+      "detail": "available RAM below 2 GiB or additional swap",
+      "gpu_charge_seconds": 6.146208329,
+      "model": "D8",
+      "name": "admission-d8-a2-02",
+      "status": "resource_exhaustion",
+      "terminal_sha256": "ddacedc4e3d41ab56a6328ddbf56eaaebd4d3ee72e81b6bd6aec32b6c0e18012",
+      "verification_path": null,
+      "verification_sha256": null
+    },
+    {
+      "admission_sha256": "a3dd76927be09b46e1849960f1660f4e452c39746cfe4fae270f1e893849e6ab",
+      "arm": "A2",
+      "detail": "available RAM below 2 GiB or additional swap",
+      "gpu_charge_seconds": 51.71449248,
+      "model": "D8",
+      "name": "admission-d8-a2-03",
+      "status": "resource_exhaustion",
+      "terminal_sha256": "badd10583f5fc2be5d9a92e4db5c86d2398f29443246bc005625119683b1eeba",
+      "verification_path": null,
+      "verification_sha256": null
+    },
+    {
+      "admission_sha256": "ef2255b6aa59c30ed5e43b5a14870dfd01cc8bd4090902d39fbcef06bc4bb7a4",
+      "arm": "A2",
+      "detail": "client exited 2",
+      "gpu_charge_seconds": 69.943233535,
+      "model": "D8",
+      "name": "admission-d8-a2-04",
+      "status": "client_failed",
+      "terminal_sha256": "88ac7a40ed0c2592bc9e59d2924df7fcbbbcf780d9516a65e4dfa048841aeeca",
+      "verification_path": null,
+      "verification_sha256": null
+    },
+    {
+      "admission_sha256": "2939632c0db6586939c77eaba90961cb212a9d64ac9ed51d8730d88741ef3d71",
+      "arm": "A2",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 52.760869116,
+      "model": "D8",
+      "name": "admission-d8-a2-05",
+      "status": "client_complete",
+      "terminal_sha256": "4edf2095651669a38968da94595ab3d1af3ebe04ff3a541fafe86b6275b1b4c3",
+      "verification_path": null,
+      "verification_sha256": null
+    },
+    {
+      "admission_sha256": "5484cb4f04ffeb1db86398ed7e16ca04d77008c86cb038530f5d6d7ce92155a1",
+      "arm": "A2",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 69.36691184,
+      "model": "D8",
+      "name": "admission-d8-a2-06",
+      "status": "client_complete",
+      "terminal_sha256": "e94683b23e592d0b6d65fc39ccb933e788960a64933d4c7d01adfbcde42bc4d9",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-d8-a2-06-verified.json",
+      "verification_sha256": "8f10d1f490391f8167583886d52ac7b600b0a50a120480190d559b6fc49d9d37"
+    },
+    {
+      "admission_sha256": "e3399a05240b266406aa64e51fb782a15560cbf263eb2f927f2e74f2a44b49de",
+      "arm": "A3",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 69.102302763,
+      "model": "D8",
+      "name": "admission-d8-a3-01",
+      "status": "client_complete",
+      "terminal_sha256": "3f75f4743871b94b14ccd12727028f651b64cd64904fcae275575a19816b536d",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-d8-a3-01-verified.json",
+      "verification_sha256": "e767a19aaf8b0c4308661a7f81ad02b449b915bfecb79d66a6246aa960461e8d"
+    },
+    {
+      "admission_sha256": "dc7b13cd7a94b100ec64fc116ebe5df7d19daca1f65dda06c8a89f074239b0d3",
+      "arm": "A3p",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 79.263048826,
+      "model": "D8",
+      "name": "admission-d8-a3p-01",
+      "status": "client_complete",
+      "terminal_sha256": "49966e4defeb3f9b1a8788973b9e6d97b60c95724d11e55def307523f97bab07",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-d8-a3p-01-verified.json",
+      "verification_sha256": "718b4661cd761225f10ab1f08a8a8a9775695aaa4fe364b73f42ec032b8fcf9f"
+    },
+    {
+      "admission_sha256": "0aa85f921cd43ef35e84a6ca414f18f49b95b1123751044d0d724778f7fa8af4",
+      "arm": "A3p",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 69.997974125,
+      "model": "D8",
+      "name": "admission-d8-a3p-02",
+      "status": "client_complete",
+      "terminal_sha256": "63eccf53d5eddefadfc55b539c295154ad0539f65150482cd42e0e5a91fe0013",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-d8-a3p-02-verified.json",
+      "verification_sha256": "f5c82729863c1147018004eb1ffa736db6b9e1de4eeca2d35bb6c3d0547e5355"
+    },
+    {
+      "admission_sha256": "fa19f11a351f9ec4dcadf74cbfff284479137895c78ba0f5e49b256834c9cf3c",
+      "arm": "A4p",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 70.602826126,
+      "model": "D8",
+      "name": "admission-d8-a4p-01",
+      "status": "client_complete",
+      "terminal_sha256": "4a92e8a77f90b0d0a22aff3bcfa7c8ae2aab2010b4ff7427205324a7779bbb92",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-d8-a4p-01-verified.json",
+      "verification_sha256": "de58861006338b73b1e0024be664ce131f66b3be42ecf95fec6c16333b038df3"
+    },
+    {
+      "admission_sha256": "9f75d3429c03916959e400245afda5d50c746bcde90c86a7a691aa15c2bce876",
+      "arm": "A4p",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 68.161352072,
+      "model": "D8",
+      "name": "admission-d8-a4p-02",
+      "status": "client_complete",
+      "terminal_sha256": "7f26f77136ec280a1ec2c39436c52256a279eb5bcdb887fd0432ad3ffcf668ef",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-d8-a4p-02-verified.json",
+      "verification_sha256": "fa47ce1d77187e2f39ff1e213acf20c695b8c1745a4fe712f4fa4110daee0770"
+    },
+    {
+      "admission_sha256": "a9b3f00ce71d49eb0cded54d0dabf0d756dc73d086f65938dd95c89ac2a83a18",
+      "arm": "A4t",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 69.042201126,
+      "model": "D8",
+      "name": "admission-d8-a4t-01",
+      "status": "client_complete",
+      "terminal_sha256": "f17f4497f393ff7db09f6eb4058b62019db5cbaed2a39b83a03241455a7f5782",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-d8-a4t-01-verified.json",
+      "verification_sha256": "853f8f0239055b79c91d468cb8ed944b778b8c6b370ea0436348c36aded0268e"
+    },
+    {
+      "admission_sha256": "b81cf5ec0b9231357832a91a304074dcd12d46f5c3b23fb8556f3bad838f913f",
+      "arm": "A5",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 68.998194646,
+      "model": "D8",
+      "name": "admission-d8-a5-01",
+      "status": "client_complete",
+      "terminal_sha256": "d7953224f548a533096d14c07e011c0554ac1ab11a731754f5b9b106c927924a",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-d8-a5-01-verified.json",
+      "verification_sha256": "d94fb98b9c508dad046aa8f8e1f71392ad9f824f8bf2a9101b7f103298a34fa9"
+    },
+    {
+      "admission_sha256": "1532422128f63c638b1e30cfb3b078ea31bf9435b2328be2b33cda56e6e237f4",
+      "arm": "A1",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 60.022161253,
+      "model": "HM",
+      "name": "admission-hm-a1-01",
+      "status": "client_complete",
+      "terminal_sha256": "874df917884b4f7b6fc69dcfc6c7d0e1d68aebe2285fcc935e3f74940a58371c",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-hm-a1-01-verified.json",
+      "verification_sha256": "ea043439ccac556a9db4bd42aba235189bd04693443533186b8c0be97ced21fa"
+    },
+    {
+      "admission_sha256": "5b268ed565ad339ddeca9896992003bbcc0e72593291ce7894227e4f5548e54a",
+      "arm": "A2",
+      "detail": "available RAM below 2 GiB or additional swap",
+      "gpu_charge_seconds": 57.102442097,
+      "model": "HM",
+      "name": "admission-hm-a2-01",
+      "status": "resource_exhaustion",
+      "terminal_sha256": "e59a4d88a2b2d2fc43183baecffc69c88e073851dc7e11bc4ff5e7c866db2bd7",
+      "verification_path": null,
+      "verification_sha256": null
+    },
+    {
+      "admission_sha256": "eaa09476944ebb9e618bc1d1fbf569bf99864f684acbef40c33f1ccf4b8d74c4",
+      "arm": "A2",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 396.329096052,
+      "model": "HM",
+      "name": "admission-hm-a2-02",
+      "status": "client_complete",
+      "terminal_sha256": "6c3c30b5dfeb7f7ee68235a2d76be3ce27dd56fa2978b96fc710dc273f695b62",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-hm-a2-02-verified.json",
+      "verification_sha256": "72212d378bb71b2cf35562ca020ec644bdf30cc2a0095829f8558e983a47c382"
+    },
+    {
+      "admission_sha256": "d0166de5c870e98d4925c6e1817baf2f189bd01a3a574da32575cfce3c0f4e8f",
+      "arm": "A3",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 60.441757225,
+      "model": "HM",
+      "name": "admission-hm-a3-01",
+      "status": "client_complete",
+      "terminal_sha256": "c6d41fe3e8a06f388ea9de4f90245cce63540233c223326d15153826f76934d7",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-hm-a3-01-verified.json",
+      "verification_sha256": "601564eea799672ffaedcd5d86d6b8fb36ad8567d1003409bb198fa6fccc5e13"
+    },
+    {
+      "admission_sha256": "5abcb2a33cad6cc350735409eaddf03ac19e1df3b779e680b2fd34026db84cdf",
+      "arm": "A3p",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 60.580226539,
+      "model": "HM",
+      "name": "admission-hm-a3p-01",
+      "status": "client_complete",
+      "terminal_sha256": "278ec6428b7c80269a4f6b3d84013f88e46e8b4114944daebfb3cd56a1e53924",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-hm-a3p-01-verified.json",
+      "verification_sha256": "50559e280f2c9e1e182e88191436ba871ffaef71b4a8f7a955fcfee6038f3c99"
+    },
+    {
+      "admission_sha256": "3f6ff7ed8be7aca093d5b51d37d5329a9f5c69ca6c931d974202301cb1e654cc",
+      "arm": "A3p",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 60.400784221,
+      "model": "HM",
+      "name": "admission-hm-a3p-02",
+      "status": "client_complete",
+      "terminal_sha256": "9ca25b3a776f950166daae0f964b89f6a423a081613f76215110e0efd6a6774a",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-hm-a3p-02-verified.json",
+      "verification_sha256": "14189810a1cf2ae4acd4eae3a6237b76bce21639eae6b9da79f728c61bcb20d0"
+    },
+    {
+      "admission_sha256": "ca910702a50f95dcd1cb925c0545b08a2ad987f27aa99250c40e0f50555825c5",
+      "arm": "A4p",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 60.502169102,
+      "model": "HM",
+      "name": "admission-hm-a4p-01",
+      "status": "client_complete",
+      "terminal_sha256": "5abaa00df7e435241dba84c02d09e2dfd387052c2c6a7495b7afe3ebc66f4aac",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-hm-a4p-01-verified.json",
+      "verification_sha256": "c9cf9a75a5a7f5c89f6d01751918cd7927c2e53d06daed49c5a801066ad18c20"
+    },
+    {
+      "admission_sha256": "84406dcae2f1d46ff9e210e9dfa1a0045c22bc00e51e07775577a8a3336564bf",
+      "arm": "A4p",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 59.798442059,
+      "model": "HM",
+      "name": "admission-hm-a4p-02",
+      "status": "client_complete",
+      "terminal_sha256": "399e03845006fb6b94eec1878004221f9d9f59e2758a364465f72543cbee9c99",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-hm-a4p-02-verified.json",
+      "verification_sha256": "230288ec71645b978c91271d9c4726aff9b1547da8bea2dee30f7c077f831ace"
+    },
+    {
+      "admission_sha256": "243ac18298257ab3f7aa41ad894764d2c7e19d7ffebd0c9a85fe579f2bad7e70",
+      "arm": "A4t",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 60.465609286,
+      "model": "HM",
+      "name": "admission-hm-a4t-01",
+      "status": "client_complete",
+      "terminal_sha256": "55283d0a09722d60ea1fcbcd1b59dc4c299077bf10699a6b2b4220c49879218f",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-hm-a4t-01-verified.json",
+      "verification_sha256": "bf6fe18d8cc11ac3343e773e7b4aaa2c186a2406eecd6b1ea2b3ab0293a7cb86"
+    },
+    {
+      "admission_sha256": "60b6c8600f55029305df6f1987ae70932d2da594bfbf14a44e2044e5692b4e78",
+      "arm": "A5",
+      "detail": "client exited 0",
+      "gpu_charge_seconds": 60.465983707,
+      "model": "HM",
+      "name": "admission-hm-a5-01",
+      "status": "client_complete",
+      "terminal_sha256": "22f511dd6a8867609f4b91a06b478d5e3dd4dbdeda2d5097f279e7a5682d6109",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-hm-a5-01-verified.json",
+      "verification_sha256": "ad07974f8f2ad5cfdec176501fe6c0740de929ed8204b6cd9869b96e5873dbe0"
+    },
+    {
+      "admission_sha256": "ff9a6abaada1e3260f7c97277a529bc92c667decf0fd461cee743be737cc4b64",
+      "arm": "A2",
+      "detail": "available RAM below 2 GiB or additional swap",
+      "gpu_charge_seconds": 54.567897351,
+      "model": "HS",
+      "name": "admission-hs-a2-01",
+      "status": "resource_exhaustion",
+      "terminal_sha256": "960e4e10eaa635f7b5271eea69cb2528250ab232c4f19bd0e593abf31f3e9e81",
+      "verification_path": null,
+      "verification_sha256": null
+    },
+    {
+      "admission_sha256": "51caf58739c858679b0be1df85e4df00084ff2af5b42dc36ca909757e5033850",
+      "arm": "A2",
+      "detail": "server exited 1",
+      "gpu_charge_seconds": 82.698046653,
+      "model": "HS",
+      "name": "admission-hs-a2-02",
+      "status": "failed",
+      "terminal_sha256": "e4f172915615f700d190deac9b24122fea0ae69bdc02fad9866098c542fe9f7a",
+      "verification_path": "artifacts/runs/pr-evidence-runtime-02/admission-hs-a2-02-verified.json",
+      "verification_sha256": "a284269aa9694e994888318d2ff6ffb9238e99f6d66a28723cb65d5fb2b38f94"
+    }
+  ],
+  "campaign": "artifacts/runs/pr-evidence-2080ti",
+  "charged_seconds": {
+    "admission": 1905.0253308830002,
+    "screen": 0.0
+  },
+  "limitations": [
+    "Common mapped-host-pointer and Gemma compatibility patches apply to every arm.",
+    "Post-response snapshot repair reran D8/HM A3p/A4p under the new hashed patch; earlier attempts remain retained.",
+    "D8 active holding not exercised by this long-prefix correctness probe.",
+    "Qwen diverged-GPU-hit full scheduler probe not run; CPU component reproduction remains.",
+    "No efficacy measurements or verdicts from admission."
+  ],
+  "models": {
+    "D8": {
+      "active_hold_probe": "inactive: 4096-token prefix exceeds unchanged 50% cap at 1 GiB",
+      "admitted_arms": [
+        "A1",
+        "A2",
+        "A3",
+        "A4t",
+        "A3p",
+        "A4p",
+        "A5"
+      ],
+      "initial_sizing_pool_gib": 1,
+      "largest_conversation_upper_bound_bytes": 905969664,
+      "remaining_admission_job_ceiling_seconds": 139
+    },
+    "HM": {
+      "active_hold_probe": "15 physical chunks observed in both routes; all four groups restore exact bytes",
+      "admitted_arms": [
+        "A1",
+        "A2",
+        "A3",
+        "A4t",
+        "A3p",
+        "A4p",
+        "A5"
+      ],
+      "remaining_admission_job_ceiling_seconds": 600
+    },
+    "HS": {
+      "admitted_arms": [],
+      "not_run": [
+        "A1",
+        "A3",
+        "A4t",
+        "A3p",
+        "A4p",
+        "A5",
+        "W1"
+      ],
+      "reason": "0.20 GiB native GPU cache available, below 0.74 GiB needed for frozen 6144-token context at 0.85 fraction; weights 8.44 GiB"
+    }
+  },
+  "schema": "pr-admission-summary-v1"
+}

@@ -419,3 +419,21 @@ MemAvailable, the swap guard or OS settings. The checksum reader now releases ea
 safetensors file's clean cache pages after hashing. This is startup input hygiene,
 not a policy/threshold change. The two failed attempts remain immutable; a new
 attempt must establish whether this removes the interference.
+
+## 2080 Ti admission outcome
+
+[The admission index](../benchmarks/pr-evidence/2080ti-admission.json) retains all
+attempt identities and charges: 1,905.025 seconds (0.529 hours), including failures.
+D8 and HM pass all seven arms with actual CPU reuse, exact restored bytes and
+matching resident/restored continuation at the same cache boundary. HM exercises
+active holds in both routes across all four groups. D8’s 4,096-token probe exceeds
+the fixed 50% hold cap at 1 GiB, so its admission proves restoration but not active
+holding. The screen must report actual hold activity.
+
+HS is not admitted: 8.44 GiB weights leave 0.20 GiB native GPU cache, below 0.74 GiB
+needed for the frozen 6,144-token context and 0.85 GPU-memory fraction. Remaining
+HS arms and W1 are not run. Neither this capacity limit nor the common mapped-host
+address failure is evidence against a hint route. Initial host-swap stops, the
+captured-client path failure and the failed native transfer remain retained.
+Post-response snapshot repair was CPU-qualified, frozen and repeated on D8/HM
+controls/treatments before any performance measurement.

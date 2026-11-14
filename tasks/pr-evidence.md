@@ -86,21 +86,24 @@ HS/A2-02 is not admitted: weights 8.44 GiB leave 0.20 GiB native GPU cache at th
 frozen 0.85 fraction, below 0.74 GiB required for 6,144 tokens. No fraction/context/
 sequence/block override change is allowed for W1. Remaining HS arms and W1 not run.
 
-Closed-attempt admission total: 1,646.666778406 seconds (0.457407 hours), leaving
-1,953.333221594 seconds. Screen time zero. GPU currently idle.
+Admission is complete: 1,905.025330883 seconds (0.529174 hours), leaving
+1,694.974669117 seconds unused. Screen time zero. GPU currently idle.
+benchmarks/pr-evidence/2080ti-admission.json indexes every charged attempt.
 
 Post-response holds were acknowledged but snapshots could miss their lifetime
 before the next return. The delivery utility now invokes the common read-only
 observer after publication, equally for A3p/A4p, preserving policy identity. CPU
 receipt pr-post-feasibility-03 checks snapshots and A3p/A3 eviction identity; p50
-59.335 us / p99 97.470 us dispatch cost excludes transport/observer capture. Freeze
-new patch hash and repeat affected D8/HM post arms before performance. Historical
+59.335 us / p99 97.470 us dispatch cost excludes transport/observer capture. Frozen
+new patch hash at 8b49f957; D8/HM A3p/A4p-02 all pass. HM post-response snapshots
+now capture 15 physical held chunks. Historical
 admissions remain valid for their exact earlier patch, not silently relabeled.
 
 ## Next
-Finish CPU qualification and commit/push the post-response observer freeze. Repeat
-D8 A3p/A4p-02 (139-second ceilings) and HM A3p/A4p-02 (600), with cleanup reserves.
-Verify HM active post holds are captured. Then commit admission milestone and run
-W1 D8 sizing/calibration/decision in the frozen order, followed by HM and W2 only
-as budget allows. Do not start incomplete paired decision blocks. Keep all failures
-and charges. Restore swappiness, delete healthcheck, close results and send handoff.
+Commit admission milestone and start W1 D8 baseline sizing seeds 12001–12003:
+A2, 1 GiB, 0.2 sessions/s, zero one-shots, 240-second horizon, 379-second job ceiling
+plus 60-second cleanup reserve. Schedules and conservative 905,969,664-byte largest
+conversation bound are in pr-evidence-runtime-02/d8-initial-sizing.json and paired
+schedule files. Continue frozen calibration and D8 decision blocks, then HM and W2
+as budget allows. Do not start incomplete blocks. Restore swappiness, delete
+healthcheck, close results, push and send the exact handoff when genuinely finished.
