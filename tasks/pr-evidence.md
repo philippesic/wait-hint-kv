@@ -102,6 +102,13 @@ has 102 chunks of 10,485,760 bytes and the GPU cache has 360 blocks. Verificatio
 pr-evidence-runtime-02/admission-hm-a2-02-verified.json. Closed-attempt admission
 total is 774.861612594 seconds; remaining budget is 2,825.138387406 seconds.
 
+HS/A2-02 is not admitted: the frozen 0.85 GPU fraction and 6,144-token maximum need
+0.74 GiB KV cache, but native post-warmup planning leaves 0.20 GiB. Weights consume
+8.44 GiB. This is common model/runtime capacity, not a hint failure; no changed
+fraction, context limit, sequence count or block override is allowed for W1.
+The failed attempt is retained and charged 82.698046653 seconds. Closed-attempt
+admission total is 857.559659247 seconds; 2,742.440340753 seconds remain.
+
 CPU reporting work now implements pooled post-stratified BCa and analytic clustered
 sensitivity intervals, the paired whole-route gap, calibration arithmetic and the
 per-route/model decision rules. Tests preserve censoring, reject duplicate seed
@@ -113,9 +120,10 @@ and remove none. The earlier old-runtime lane passed 28 CPU tests; this reportin
 checkpoint changes no adapter behavior.
 
 ## Next
-Run HS/A2-02; after the three native A2 probes, run A1, A3,
-A4t, A3p, A4p and A5 for passing models in D8/HM/HS order. Commit this task/docs
-checkpoint before the next GPU launch. Continue the authorized screen when models
+Run A1, A3, A4t, A3p, A4p and A5 for passing D8 then HM. D8 ceilings are 139 seconds;
+HM ceilings are 600 seconds; retain the 60-second cleanup reserve and check the
+remaining admission budget before each launch. HS hint/control arms are not run.
+Continue the authorized screen when models
 qualify, retaining all failures and the cumulative budgets. Restore vm.swappiness
 to 60 after acquisition, delete the healthcheck, close results under the plan,
 then send the exact GPU handoff.
