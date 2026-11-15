@@ -389,9 +389,9 @@ def run_gpu_job(
                     root / "benchmarks/pr-evidence/pressure" / (label + ".json")
                 ).read_text()
             )
-            allowed = {calibration["pool_bytes"]}
+            allowed = set(calibration["pools_bytes"])
             if arm == "A1":
-                allowed.add(calibration["oracle_pool_bytes"])
+                allowed.add(calibration["large_pool_bytes"])
             if (
                 phase != "decision"
                 or pool_bytes not in allowed

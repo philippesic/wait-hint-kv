@@ -1,0 +1,30 @@
+{
+  "schema": "pr-pressure-calibration-v1",
+  "decision_seeds": [
+    22001,
+    22002,
+    22003,
+    22004,
+    22005,
+    22006,
+    22007,
+    22008
+  ],
+  "rule": "working set = median over pilot seeds of each seed's median stock-LRU (A1) mean unique reachable bytes at pressure pools (large-pool cells excluded); primary pool = 1.0x working set; D8 secondary pool = the pilot-tested 1,254 MiB (about 0.6x)",
+  "change_record": "Revision 4 planned a 0.5x pool. Pilot round 3 (single seed 21002) showed that at about 0.5-0.6x the 50% hold cap holds roughly one session and HM's 256 MiB pool could not hold a usable hybrid prefix (no benefit), so the 1.0x level, defined from the working-set rule before its A7 result was seen, became primary and the lower D8 level is retained as secondary. Both levels are reported.",
+  "model": "D8",
+  "gpu_blocks": 195,
+  "gpu_kv_tokens": 12480,
+  "pools_bytes": [
+    2147483648,
+    1314914304
+  ],
+  "large_pool_bytes": 6442450944,
+  "working_set_bytes": 2123861327,
+  "largest_conversation_bytes": 726923214,
+  "pilot_sources": [
+    "pilot-d8-21001-A1-p2048-g195-a1",
+    "pilot-d8-21002-A1-p1254-g195-a1",
+    "pilot-d8-21002-A1-p2048-g195-a1"
+  ]
+}
