@@ -35,7 +35,16 @@ profile with the claim limits the thread must state.
   Event traces show every hold released within 0.3-2.6 s of the returning request's
   arrival, then evicted during 6-24 s of queueing before lookup. Fixed only in
   `policy_variants.py` (return-aware release, commit c87aeb77); frozen files unchanged.
-  Pilot round 3 tests the fix and a 2 GiB D8 pool.
+- Pilot round 3 (seed 21002, single observations): with the fix, D8 at 2,048 MiB cut
+  hinted recompute 71%->41% and unhinted 46%->34%; at 1,254 MiB hinted 83%->60% but
+  unhinted 46%->57%; HM at 256 MiB showed no benefit (90%->94%). Calibration frozen in
+  `benchmarks/pr-evidence/pressure/` (primary pool 1.0x working set; D8 secondary
+  1,254 MiB), with the change from the planned 0.5x recorded there.
+- Decision run started 2026-11-15 ~10:15 UTC: manifest
+  `artifacts/runs/discussion-plan/manifest-decision.json` (83 jobs: D8/HM 1.0x pools
+  A1/A6/A7 x 8 seeds, D8 1,254 MiB x 4 seeds, A1 repeats x 3, large pools x 2, 13 W1
+  regular cells), detached driver PID in `decision-driver.pid`. Pilot used 1.9 GPU h;
+  decision estimate ~11.8 h. Touch the campaign's `STOP` file to stop between jobs.
 
 ### Plan (revision 4, after debate with GPT-6.1 Sol)
 - Claims: C1 hints cut hinted-return recompute and TTFT under pressure (LRU pair);
