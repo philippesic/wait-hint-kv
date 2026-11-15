@@ -8,7 +8,7 @@ The authorized 2080 Ti acquisition is closed at 0.529174 admission hours and
 7.756192 screen hours (8.285366 total). D8/W1 has three valid complete decision
 blocks; both ARC routes are INCONCLUSIVE, with no observed benefit and unavailable
 required bootstrap intervals. HM is admitted but only sizing ran; HS is not admitted.
-The [detailed evidence](../results/pr-evidence-2080ti/evidence-notes.md) owns the
+The [closed result](../results/pr-evidence-2080ti/result.md) owns the
 measurements, failures, limits and not-run coverage. No later stage is authorized.
 
 Temporary `vm.swappiness=0` was authorized on 2026-11-14 after host swap-growth

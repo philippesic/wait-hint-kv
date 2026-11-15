@@ -161,7 +161,7 @@ environment or wheel cache sharing its hardlink stays unchanged. `pr-feasibility
 --post-response` checks the installed patch and exercises real engine utility
 dispatch with CPU scheduler fixtures. D8/HM passed the recorded 2080 Ti admission;
 HS did not fit. New hardware or settings require their own admission. The
-[closed screen](../results/pr-evidence-2080ti/evidence-notes.md) records the limits,
+[closed screen](../results/pr-evidence-2080ti/result.md) records the limits,
 including D8 admission without active holds and HM with active holds.
 
 For this sm_75 screen, both evidence environments also carry `gemma-turing-main`

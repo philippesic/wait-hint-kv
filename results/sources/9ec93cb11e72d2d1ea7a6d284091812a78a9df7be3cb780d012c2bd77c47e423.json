@@ -1,0 +1,9 @@
+{
+  "source": {
+    "repository": "current",
+    "revision": "3724d4e14f5bda2082a7c4d5dcdb9dabe201d37a",
+    "path": "benchmarks/pr-evidence/2080ti-screen-invalid-attempts.json",
+    "sha256": "9ec93cb11e72d2d1ea7a6d284091812a78a9df7be3cb780d012c2bd77c47e423"
+  },
+  "content": "{\n  \"attempts\": [\n    {\n      \"path\": \"artifacts/runs/pr-evidence-runtime-02/d8-decision-12101-pool1-block-01.json\",\n      \"sha256\": \"1475389c469ac7ec192c6cf107d2561b9316ceebcebbaa74c0c517a05e7c2db6\"\n    },\n    {\n      \"path\": \"artifacts/runs/pr-evidence-runtime-03/d8-decision-12101-pool1-block-02.json\",\n      \"sha256\": \"0e8b4fba053c9460fdb0abc4b50de8a2ab07d1b410402a78e2e18affe47b0176\"\n    },\n    {\n      \"path\": \"artifacts/runs/pr-evidence-runtime-03/d8-decision-12101-interference-diagnosis-02.json\",\n      \"sha256\": \"c612a3095d60a2a91f0be4dc00ae7aef3436421f97b57b9f31448a9b5f094097\"\n    }\n  ],\n  \"restart\": {\n    \"attempt\": 3,\n    \"capture_campaign\": \"2080ti-screen-02\",\n    \"quote\": {\n      \"complete_block_reserved_seconds\": 4389,\n      \"fits\": true,\n      \"per_job_ceiling_seconds\": 567,\n      \"remaining_screen_seconds\": 11751.745736673998,\n      \"scope\": \"seven complete arms including cleanup contingency; re-quote from the first complete decision block\"\n    },\n    \"rule\": \"Stop an invalid acquisition attempt after its active cell closes, retain every acquired cell and explicitly enumerate unrun arms. Repeat the complete seven-arm block from the start. Treatment failures are outcomes and do not trigger measurement exclusion.\",\n    \"seed\": 12101,\n    \"spent_seconds\": {\n      \"admission\": 1905.0253308830002,\n      \"screen\": 17048.254263326002\n    }\n  },\n  \"schema\": \"pr-screen-invalid-attempts-v1\"\n}\n"
+}

@@ -1,12 +1,12 @@
-# Frozen policy callbacks omit arrival and GPU-hit keys; private-state feasibility remains open
+# Public callbacks omit lifecycle data; this did not establish route infeasibility
 
-2026-11-13 · current · unresolved
+2026-11-14 · current · unresolved
 
-CPU tests on frozen vLLM confirmed missing request-arrival policy callbacks and empty policy finish key lists for GPU-hit prefixes. This does not establish route infeasibility: the concrete request context exposes private scheduler state, and the accepted plan does not restrict a pinned plugin to public callbacks. The earlier stop interpretation was too narrow. Stage 1 continues; no GPU has run.
+This CPU diagnostic on frozen vLLM established missing public arrival callbacks and incomplete finish key lists for GPU-hit prefixes. It did not establish route infeasibility: the accepted plan permits pinned private scheduler reads. The initial stop interpretation was retracted. Both routes subsequently passed private-state feasibility and the bounded screen is closed in the [2080 Ti result](../pr-evidence-2080ti/result.md).
 
 ## Scope
 
-CPU reproduction using the exact upstream wheel, with nine installed source files checked against the frozen checkout; actual CHUNK_LEVEL store-handler skipping and REQUEST_LEVEL alternative exercised. Late-store readiness callbacks work. Observer eviction sequences match stock on five CPU request schedules per policy; this does not qualify an unbuilt hold plugin or A3p. Final attempt: artifacts/runs/pr-feasibility-08.
+At this early CPU diagnostic checkpoint only: CPU reproduction using the exact upstream wheel, with nine installed source files checked against the frozen checkout; actual CHUNK_LEVEL store-handler skipping and REQUEST_LEVEL alternative exercised. Late-store readiness callbacks work. Observer eviction sequences match stock on five CPU request schedules per policy; this does not qualify an unbuilt hold plugin or A3p. Final attempt: artifacts/runs/pr-feasibility-08.
 
 | Model | A4t W1 / W2 | A4p W1 / W2 | Admission / opportunity |
 | --- | --- | --- | --- |
@@ -18,15 +18,15 @@ GPU hours: 0 admission + 0 screen. All benefit, harm and whole-route differences
 
 ## Limits
 
-Private context state contains the full key-position map and can reach the scheduler; polling it could support a different integration. These tests do not prove all out-of-tree Python approaches impossible. They qualify neither public hint delivery nor serving correctness. No local CUDA build, model admission, full hold lifecycle suite, million-chunk microbenchmark, Qwen diverged-hit reproduction, tiering lifecycle, W1 manifest, streaming/event instrument, patch/control freeze, calibration or performance cell was completed. The retained evidence lists every attempt and all work not run. Initial setup, wrapper, import, size and type failures are retained; no check was weakened. No efficacy verdict or safety inference is available.
+The following limits describe this early diagnostic, not the subsequent implementation and screen. Private context state contains the full key-position map and can reach the scheduler; polling it could support a different integration. These tests do not prove all out-of-tree Python approaches impossible. They qualify neither public hint delivery nor serving correctness. No local CUDA build, model admission, full hold lifecycle suite, million-chunk microbenchmark, Qwen diverged-hit reproduction, tiering lifecycle, W1 manifest, streaming/event instrument, patch/control freeze, calibration or performance cell was completed. The retained evidence lists every attempt and all work not run. Initial setup, wrapper, import, size and type failures are retained; no check was weakened. No efficacy verdict or safety inference is available.
 
 ## Decision
 
-Continue authorized Stage 1 by testing private scheduler reads for complete key/group information and release-before-eviction on returns, including bounded cost. Do not treat this diagnostic as a Stage 1 stop, efficacy verdict or approval to promote to the 5080. Stage 2 remains authorized within the original 1-hour admission and 8-hour screen limits once its gates pass. The handoff message has not been sent. Later-stage publication, harm-limit and hardware decisions remain Philip's.
+Retain the public-callback limitation and correction as an API lesson. The subsequent private-state implementation and hardware evidence have their own [closed result](../pr-evidence-2080ti/result.md). This diagnostic grants no new acquisition or publication authority.
 
 ## Correction
 
-2026-11-13: retracted the Stage 1 stop interpretation. Missing public callbacks do not rule out the private scheduler access available to an out-of-tree plugin on this frozen runtime; the plan did not require public-only access. Original CPU observations and immutable attempts are unchanged. The source evidence's route_classification and stop_rule fields record the superseded interpretation, not the current decision.
+2026-11-13: retracted the Stage 1 stop interpretation. Missing public callbacks do not rule out the private scheduler access available to an out-of-tree plugin on this frozen runtime; the plan did not require public-only access. Original CPU observations and immutable attempts are unchanged. The source evidence's route_classification and stop_rule fields record the superseded interpretation, not the current decision. 2026-11-14: replaced stale open-work wording with a link to the completed private-state implementation and 2080 Ti screen. The original CPU observations, source record and checkpoint coverage are unchanged.
 
 ## Sources
 

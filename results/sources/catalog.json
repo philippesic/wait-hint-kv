@@ -4398,6 +4398,111 @@
       "results": [
         "pr-evidence-feasibility"
       ]
+    },
+    {
+      "sha256": "bd4fead6fd28179baea42d91e83b2bd557f875ba791bd98dff579dfef8c7db28",
+      "path": "results/pr-evidence-2080ti/evidence.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "f40b851aec2dc36ead4beaf7dab6d356f6553b8facb737b9e9ec1d5a55eb73fc",
+      "path": "results/pr-evidence-2080ti/evidence-notes.md",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "20351ffc86e57026bd7f03117d5524198543e99e6be0155afed86c3e79889e6e",
+      "path": "results/pr-evidence-2080ti/analysis-index.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "d9cc6ee777760522d977929485f6499f37ae40e498a81dbf4364d71579342c7e",
+      "path": "results/pr-evidence-2080ti/statistics-primary.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "c4ae42aa36095b2819340cf4bca73fb81af0f94c8dc7efa8d071298217938a67",
+      "path": "results/pr-evidence-2080ti/statistics-first-task-occurrence.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "d52dde5406fcb8f2135bf240bad5e819987009d53469ae56aa7a5b020a5fce2e",
+      "path": "results/pr-evidence-2080ti/guardrails.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "cb3fee63b561c3c9771ffbdf478b34c8012e9528a8b90552dcb43a3ea38bc07a",
+      "path": "results/pr-evidence-2080ti/aa-diagnosis.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "20a975ecabe250c7d480c12184cd0269b3450303c86a46368928fb937e783a3d",
+      "path": "results/pr-evidence-2080ti/verdicts.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "3178515cda0f6666990a0047aabf8b1b883beb34a68faca8432ef68556453e86",
+      "path": "results/pr-evidence-2080ti/regeneration.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "d4c42c6023ac91de9f038d9900618dfbdbffa3b089df17d2d93024b9e2f64612",
+      "path": "results/pr-evidence-2080ti/cpu-attempts.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "801c0c9cae0ce6ce92f1bdc59afb13e4a7b34ca118c0ef3936cc9f92c851a55b",
+      "path": "benchmarks/pr-evidence/stage1-freeze.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "f64f453ee33dc2683029ceb7238c1f3901729e76fb50438048e2f33c18ca278e",
+      "path": "benchmarks/pr-evidence/2080ti-admission.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "a8456f5211eaccc94aa48bed4141f970e2aa92aa77e86af0e85c471aca3fc338",
+      "path": "benchmarks/pr-evidence/calibration/D8.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "9ec93cb11e72d2d1ea7a6d284091812a78a9df7be3cb780d012c2bd77c47e423",
+      "path": "benchmarks/pr-evidence/2080ti-screen-invalid-attempts.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
+    },
+    {
+      "sha256": "671eba2ca480ba33bb42ac4f77d2f25454c45fea9088e04aff8f246199edd2c2",
+      "path": "benchmarks/pr-evidence/2080ti-acquisition-close.json",
+      "results": [
+        "pr-evidence-2080ti"
+      ]
     }
   ]
 }

@@ -594,7 +594,7 @@ The admission driver uses a fixed 4,097-token prefix and 32 generated tokens, wi
 prime, GPU-resident and CPU-restored requests. The synchronous byte detector is
 admission-only. Performance cells use normal asynchronous native copies.
 
-The completed [2080 Ti analysis](../results/pr-evidence-2080ti/evidence-notes.md)
+The completed [2080 Ti analysis](../results/pr-evidence-2080ti/result.md)
 retains 21 minimal per-request input files, all-arm descriptive diagnostics, both
 statistical analyses, the A/A identity recheck and every harm criterion. Its
 [regeneration recipe](../results/pr-evidence-2080ti/regeneration.json) uses the
