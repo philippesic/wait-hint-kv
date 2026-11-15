@@ -59,10 +59,15 @@ def main() -> int:
     pr_job.add_argument("--model-path", type=Path, required=True)
     pr_job.add_argument("--model", choices=("D8", "HM", "HS"), required=True)
     pr_job.add_argument("--arm", required=True)
-    pr_job.add_argument("--phase", choices=("admission", "screen"), required=True)
-    pr_job.add_argument("--pool-gib", type=int, required=True)
+    pr_job.add_argument(
+        "--phase", choices=("admission", "screen", "pilot", "decision"), required=True
+    )
+    pool = pr_job.add_mutually_exclusive_group(required=True)
+    pool.add_argument("--pool-gib", type=int)
+    pool.add_argument("--pool-mib", type=int)
     pr_job.add_argument("--seconds", type=int, required=True)
     pr_job.add_argument("--schedule", type=Path)
+    pr_job.add_argument("--gpu-blocks", type=int)
     pr_model_verify = sub.add_parser("verify-pr-model-admission")
     pr_model_verify.add_argument("directory", type=Path)
     pr_job_verify = sub.add_parser("verify-pr-gpu-job")
@@ -90,6 +95,7 @@ def main() -> int:
     feasibility_native.add_argument("--bookkeeping", action="store_true")
     feasibility_native.add_argument("--post-response", action="store_true")
     feasibility_native.add_argument("--instrument", action="store_true")
+    feasibility_native.add_argument("--variants", action="store_true")
     feasibility_verify = sub.add_parser("verify-pr-feasibility")
     feasibility_verify.add_argument("directory", type=Path)
     for operation in ("pr-admit-w1", "pr-w1-native"):
@@ -115,10 +121,21 @@ def main() -> int:
     pr_schedule.add_argument("--one-shot-rate", type=float, required=True)
     pr_schedule.add_argument("--horizon", type=float, required=True)
     pr_schedule.add_argument("--out", type=Path, required=True)
+    pr_run = sub.add_parser("pr-discussion-run")
+    pr_run.add_argument("--manifest", type=Path, required=True)
+    pr_pressure = sub.add_parser("pr-plan-pressure")
+    pr_pressure.add_argument("--model", choices=("D8", "HM"), required=True)
+    pr_pressure.add_argument(
+        "--partition", choices=("pressure-pilot", "pressure"), required=True
+    )
+    pr_pressure.add_argument("--seed", type=int, required=True)
+    pr_pressure.add_argument("--out", type=Path, required=True)
     pr_client = sub.add_parser("pr-client-native")
     pr_client.add_argument("--schedule", type=Path, required=True)
     pr_client.add_argument(
-        "--arm", choices=("A1", "A2", "A3", "A4t", "A3p", "A4p", "A5"), required=True
+        "--arm",
+        choices=("A1", "A2", "A3", "A4t", "A3p", "A4p", "A5", "A6", "A7"),
+        required=True,
     )
     pr_client.add_argument("--url", required=True)
     pr_client.add_argument("--out", type=Path, required=True)
@@ -288,6 +305,30 @@ def main() -> int:
             )
         )
         return 0
+    if args.operation == "pr-discussion-run":
+        from tools.benchmarking.pr_discussion import run_manifest
+
+        print(json.dumps(run_manifest(args.manifest.resolve()), indent=2))
+        return 0
+    if args.operation == "pr-plan-pressure":
+        from tools.benchmarking.pr_pressure import (
+            pressure_schedule,
+            validate_pressure_schedule,
+        )
+
+        result = pressure_schedule(args.model, args.partition, args.seed)
+        validate_pressure_schedule(result)
+        write_record(args.out, result)
+        print(
+            json.dumps(
+                {
+                    "schedule": str(args.out),
+                    "horizon_seconds": result["horizon_seconds"],
+                    "one_shots": len(result["one_shots"]),
+                }
+            )
+        )
+        return 0
     if args.operation == "pr-calibration":
         from tools.benchmarking.pr_calibration import (
             block_quote,
@@ -403,9 +444,12 @@ def main() -> int:
                     args.model,
                     args.arm,
                     args.phase,
-                    args.pool_gib,
+                    args.pool_gib * 1024**3
+                    if args.pool_gib is not None
+                    else args.pool_mib * 1024**2,
                     args.seconds,
                     args.schedule,
+                    args.gpu_blocks,
                 ),
                 indent=2,
             )
@@ -463,6 +507,13 @@ def main() -> int:
             else w1.verify(args.directory)
         )
         print(json.dumps(result, indent=2))
+        return 0
+    if args.operation == "pr-feasibility-native" and args.variants:
+        from wait_hint_offload.vllm_adapter.policy_variant_checks import (
+            observe_policy_variants,
+        )
+
+        write_record(args.out, observe_policy_variants())
         return 0
     if args.operation == "pr-feasibility-native" and args.instrument:
         from tools.benchmarking.instrument import observe_instrument

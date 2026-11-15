@@ -603,3 +603,30 @@ ARC routes; HM comparisons and both W2 variants are not run, and HS is not admit
 Unavailable BCa intervals are retained, including their undefined-replicate reason;
 the delta sensitivity alone cannot establish efficacy STOP. No additional GPU
 acquisition or public posting is authorized by this closeout.
+
+## Upstream discussion campaign
+
+The discussion campaign (`artifacts/runs/discussion-2080ti`, budget caps pilot 2 h and
+decision 14 h) reuses the frozen-main job lifecycle for two workloads; the open task
+[upstream-discussion-evidence](../tasks/upstream-discussion-evidence.md) owns the plan.
+
+- `pr-plan-pressure --model D8|HM --partition pressure-pilot|pressure --seed N --out FILE`
+  writes a deterministic synthetic pressure schedule (`pr-pressure-schedule-v1`): eight
+  sessions of 5-9 growing token-ID turns up to 5,000 tokens, five hinted, three ending
+  with an abandoned hold, LogNormal(4 s, 0.8) tool waits plus a 5% long class (20-120 s),
+  10% compaction to 600 tokens and Poisson one-shot competitors every 20 s on average.
+  Hints use the post-response route with a 12 s (fast) or 60 s (long, the frozen server
+  clamp) hold. The cell ends when every session finishes; one-shots not yet started are
+  recorded as `not_started` and leave the denominators. Validation regenerates the
+  schedule from its identity.
+- Arms: A1 stock LRU, A6 `AutomaticHoldLRU` (12 s hold from every request's finish, no
+  client hint) and A7 `PostResponseLRU` (post-response hints, patched runtime), both in
+  `wait_hint_offload.vllm_adapter.policy_variants`; the frozen policy files are unchanged.
+  `pr-feasibility-native --variants` records their CPU fixture checks.
+- `pr-gpu-job --campaign artifacts/runs/discussion-2080ti --phase pilot|decision` takes
+  `--pool-mib` and `--gpu-blocks` for pressure schedules (two running requests, GPU KV
+  capped). Pressure decision jobs must match `benchmarks/pr-evidence/pressure/MODEL.json`.
+  W1 jobs keep the frozen D8 calibration.
+- `pr-discussion-run --manifest FILE` runs a job list sequentially, retries a
+  non-complete job once (retaining every attempt), waits while the GPU is busy, stops on
+  any refusal including budget, and writes cell metrics to the campaign's `metrics/`.

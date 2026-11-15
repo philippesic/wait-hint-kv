@@ -22,11 +22,15 @@ from wait_hint_offload.vllm_adapter.policy import (
 )
 
 
-def policy_fixture(name: str, capacity: int = 4) -> tuple[Any, Any]:
+def policy_fixture(
+    name: str,
+    capacity: int = 4,
+    module: str = "wait_hint_offload.vllm_adapter.policy",
+) -> tuple[Any, Any]:
     native = getattr(manager, "CPUOffloadingManager")(
         num_chunks=capacity,
         cache_policy=name,
-        cache_policy_module_path="wait_hint_offload.vllm_adapter.policy",
+        cache_policy_module_path=module,
     )
     group = SimpleNamespace(
         group_idx=0,

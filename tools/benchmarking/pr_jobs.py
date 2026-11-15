@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 from tools.benchmarking.feasibility import SOURCE_PATHS, UPSTREAM
-from tools.benchmarking.pr_workload import ARMS
+from tools.benchmarking.pr_workload import ALL_ARMS, POST_RESPONSE_ARMS
 from tools.benchmarking.probe import digest_file, request
 from tools.benchmarking.resources import sample_process_tree
 from tools.config import pr_evidence_environment
@@ -28,13 +28,21 @@ POLICIES = {
     "A3p": "AdviceOffARC",
     "A4p": "PostResponseARC",
     "A5": "RequestTTLLRU",
+    "A6": "AutomaticHoldLRU",
+    "A7": "PostResponseLRU",
 }
+VARIANT_ARMS = frozenset({"A6", "A7"})
 MODEL_REVISIONS = {
     "D8": "4da05a8edb55c6046cce958586c33b61da07bb79",
     "HM": "d3e78b50c727b1f34802f440ca84b25781625352",
     "HS": "7c781be42ce8d29d0975b857f6d0c0b2558d9b63",
 }
-CAPS = {"admission": 3600.0, "screen": 28800.0}
+CAMPAIGN_CAPS = {
+    "pr-evidence-2080ti": {"admission": 3600.0, "screen": 28800.0},
+    "discussion-2080ti": {"pilot": 7200.0, "decision": 50400.0},
+}
+CAPS = CAMPAIGN_CAPS["pr-evidence-2080ti"]
+GIB = 1024**3
 
 
 def client_command(
@@ -63,23 +71,41 @@ def screen_server_command(
     label: str,
     arm: str,
     port: int,
-    pool_gib: int,
+    pool_bytes: int,
     events: Path,
     byte_probe: bool,
+    gpu_blocks: int | None = None,
 ) -> list[str]:
-    if label not in MODEL_REVISIONS or arm not in ARMS or pool_gib not in {1, 2, 4}:
+    if (
+        label not in MODEL_REVISIONS
+        or arm not in ALL_ARMS
+        or (
+            pool_bytes not in {GIB, 2 * GIB, 4 * GIB}
+            if gpu_blocks is None
+            else not 256 * 1024**2 <= pool_bytes <= 8 * GIB
+            or pool_bytes % 1024**2
+            or not 8 <= gpu_blocks <= 4096
+        )
+    ):
         raise ValueError("job outside frozen screen models, arms or pools")
     extra = {
         "spec_name": "ObservedCPUOffloadingSpec",
         "spec_module_path": "wait_hint_offload.vllm_adapter.evidence_manager",
-        "cpu_bytes_to_use": pool_gib * 1024**3,
+        "cpu_bytes_to_use": pool_bytes,
         "blocks_per_chunk": 1,
         "eviction_policy": POLICIES[arm],
         "evidence_directory": str(events),
         "evidence_byte_probe": byte_probe,
     }
-    if arm not in {"A1", "A2"}:
+    if arm in VARIANT_ARMS:
+        extra["cache_policy_module_path"] = (
+            "wait_hint_offload.vllm_adapter.policy_variants"
+        )
+    elif arm not in {"A1", "A2"}:
         extra["cache_policy_module_path"] = "wait_hint_offload.vllm_adapter.policy"
+    pressure = (
+        [] if gpu_blocks is None else ["--num-gpu-blocks-override", str(gpu_blocks)]
+    )
     return [
         str(python),
         "-m",
@@ -110,7 +136,7 @@ def screen_server_command(
         "--max-model-len",
         "6144",
         "--max-num-seqs",
-        "16",
+        "16" if gpu_blocks is None else "2",
         "--max-num-batched-tokens",
         "512" if label == "HS" else "2048",
         "--enable-prefix-caching",
@@ -118,6 +144,7 @@ def screen_server_command(
         "0",
         "--language-model-only",
         "--enable-per-request-metrics",
+        *pressure,
         "--kv-transfer-config",
         json.dumps(
             {
@@ -162,7 +189,7 @@ def _sample_job(
 
 
 def spent_seconds(campaign: Path) -> dict[str, float]:
-    spent = dict.fromkeys(CAPS, 0.0)
+    spent = dict.fromkeys(CAMPAIGN_CAPS.get(campaign.name, CAPS), 0.0)
     for path in sorted(campaign.glob("jobs/*/admission.json")):
         admission = json.loads(path.read_text())
         terminal = path.parent / "terminal.json"
@@ -238,7 +265,7 @@ def runtime_identity(root: Path, python: Path, arm: str) -> dict[str, Any]:
         elif patch["name"] == "pr-post-response":
             paths[patch["target"]] = (
                 patch["patched_sha256"]
-                if arm in {"A3p", "A4p"}
+                if arm in POST_RESPONSE_ARMS
                 else patch["original_sha256"]
             )
     installed = {path: digest_file(site / path) for path in paths}
@@ -309,23 +336,28 @@ def run_gpu_job(
     label: str,
     arm: str,
     phase: str,
-    pool_gib: int,
+    pool_bytes: int,
     maximum_seconds: int,
     schedule: Path | None = None,
+    gpu_blocks: int | None = None,
 ) -> dict[str, Any]:
     root = Path(__file__).resolve().parents[2]
     campaign = campaign.resolve()
     python, model = python.absolute(), model.absolute()
+    caps = CAMPAIGN_CAPS.get(campaign.name, {})
+    discussion = campaign.name == "discussion-2080ti"
     if (
-        campaign != root / "artifacts/runs/pr-evidence-2080ti"
+        campaign.parent != root / "artifacts/runs"
+        or not caps
         or not name
         or Path(name).name != name
         or name in {".", ".."}
-        or phase not in CAPS
+        or phase not in caps
         or not 30 <= maximum_seconds <= 1800
         or label not in MODEL_REVISIONS
         or model.name != MODEL_REVISIONS[label]
-        or (phase == "screen") != (schedule is not None)
+        or (schedule is not None) != (discussion or phase == "screen")
+        or (not discussion and arm in VARIANT_ARMS)
     ):
         raise ValueError("job arguments outside authorized protocol")
     freeze = root / "benchmarks/pr-evidence/stage1-freeze.json"
@@ -339,11 +371,36 @@ def run_gpu_job(
     }
     if any(digest_file(root / path) != digest for path, digest in frozen_paths.items()):
         raise ValueError("Stage 1 mechanism or protocol freeze drift")
+    planned: dict[str, Any] | None = None
     if schedule is not None:
         from tools.benchmarking.pr_workload import validate_schedule
 
         planned = json.loads(schedule.read_text())
         validate_schedule(planned)
+    pressure = planned is not None and planned["schema"] == "pr-pressure-schedule-v1"
+    if pressure != (gpu_blocks is not None) or (pressure and not discussion):
+        raise ValueError("GPU block cap belongs only to discussion pressure schedules")
+    if planned is not None and pressure:
+        if planned["model"] != label:
+            raise ValueError("pressure schedule differs from model")
+        if planned["partition"] == "pressure":
+            calibration = json.loads(
+                (
+                    root / "benchmarks/pr-evidence/pressure" / (label + ".json")
+                ).read_text()
+            )
+            allowed = {calibration["pool_bytes"]}
+            if arm == "A1":
+                allowed.add(calibration["oracle_pool_bytes"])
+            if (
+                phase != "decision"
+                or pool_bytes not in allowed
+                or gpu_blocks != calibration["gpu_blocks"]
+            ):
+                raise ValueError("pressure decision settings differ from calibration")
+        elif phase != "pilot":
+            raise ValueError("pressure pilot schedules run only in the pilot phase")
+    elif planned is not None:
         if (
             planned["manifest_sha256"] != frozen["w1_manifest_sha256"]
             or planned["model"] != label
@@ -362,7 +419,7 @@ def run_gpu_job(
                     planned[key] != calibration[key]
                     for key in ("arrival_rate", "one_shot_rate", "horizon_seconds")
                 )
-                or pool_gib != calibration["pool_gib"]
+                or pool_bytes != calibration["pool_gib"] * GIB
             ):
                 raise ValueError("decision settings differ from committed calibration")
     if subprocess.check_output(
@@ -370,7 +427,7 @@ def run_gpu_job(
     ).strip():
         raise ValueError("GPU job requires a clean committed source")
     spent = spent_seconds(campaign)
-    if spent[phase] + maximum_seconds + 60 > CAPS[phase]:
+    if spent[phase] + maximum_seconds + 60 > caps[phase]:
         raise ValueError("complete job plus cleanup does not fit remaining GPU budget")
     runtime = runtime_identity(root, python, arm)
     host_environment = json.loads(
@@ -400,9 +457,10 @@ def run_gpu_job(
         label,
         arm,
         port,
-        pool_gib,
+        pool_bytes,
         output / "events",
         phase == "admission",
+        gpu_blocks,
     )
     idle = gpu_status()
     write_record(output / "idle.json", idle)
@@ -418,7 +476,9 @@ def run_gpu_job(
         "phase": phase,
         "model": label,
         "arm": arm,
-        "pool_gib": pool_gib,
+        "campaign": campaign.name,
+        "pool_bytes": pool_bytes,
+        "gpu_blocks": gpu_blocks,
         "maximum_seconds": maximum_seconds,
         "started_ns": started,
         "source_sha256": identities,

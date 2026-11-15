@@ -13,6 +13,8 @@ from wait_hint_offload.evidence_protocol import EvidenceRequest
 from wait_hint_offload.policy_protocol import PolicySession
 
 ARMS = ("A1", "A2", "A3", "A4t", "A3p", "A4p", "A5")
+ALL_ARMS = (*ARMS, "A6", "A7")
+POST_RESPONSE_ARMS = frozenset({"A3p", "A4p", "A7"})
 
 
 def seeded_order(seed: int, label: str, identity: str) -> str:
@@ -162,7 +164,7 @@ def w1_schedule(
 def request_payload(
     schedule: dict[str, Any], session: dict[str, Any], index: int, arm: str
 ) -> dict[str, Any]:
-    if arm not in ARMS:
+    if arm not in ALL_ARMS:
         raise ValueError("unknown arm")
     one_shot = "turns" not in session
     turn = session if one_shot else session["turns"][index]
@@ -184,6 +186,11 @@ def request_payload(
 
 
 def validate_schedule(schedule: dict[str, Any]) -> None:
+    if schedule.get("schema") == "pr-pressure-schedule-v1":
+        from tools.benchmarking.pr_pressure import validate_pressure_schedule
+
+        validate_pressure_schedule(schedule)
+        return
     fields = {
         "schema",
         "model",

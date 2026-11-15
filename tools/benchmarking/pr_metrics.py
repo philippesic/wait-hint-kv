@@ -34,7 +34,7 @@ def working_set(observed: dict[str, Any], report: dict[str, Any]) -> dict[str, A
     timeline += [(ended, 1, session, set()) for session, ended in ends.items()]
     active: dict[str, set[str]] = {}
     previous = report["started_ns"]
-    end = report["scheduled_end_ns"]
+    end = report.get("measurement_end_ns", report["scheduled_end_ns"])
     integral = peak = largest = 0
     overlap_integral = 0
     for timestamp, _, session, keys in sorted(timeline, key=lambda entry: entry[:3]):
@@ -87,6 +87,8 @@ def measure_cell(
     for session in schedule["sessions"] + schedule["one_shots"]:
         one_shot = "turns" not in session
         terminal = terminal_sessions[session["session_id"]]
+        if one_shot and terminal["outcome"] == "not_started":
+            continue
         turns = [session] if one_shot else session["turns"]
         offered = {request["request_id"] for request in terminal["requests"]}
         unoffered = set(terminal["not_offered_request_ids"])
@@ -137,6 +139,9 @@ def measure_cell(
                     if session["adopter"]
                     else "unhinted_return",
                     "outcome": status,
+                    "wait_class": None
+                    if one_shot or index == 0
+                    else session["turns"][index - 1].get("wait_class", "fast"),
                     "eligible_tokens": eligible,
                     "exact_lcp_tokens": lcp,
                     "lost_alignment_tokens": lcp - eligible,
@@ -173,7 +178,7 @@ def measure_cell(
             if not session["one_shot"]
         ),
         "one_shot_failures": sum(
-            session["outcome"] != "complete"
+            session["outcome"] not in {"complete", "not_started"}
             for session in report["sessions"]
             if session["one_shot"]
         ),
@@ -186,6 +191,7 @@ def measure_cell(
         "occupancy": observed["occupancy"],
         "group_config": observed["group_config"],
         "cpu_config": observed["cpu_config"],
+        "schedule_schema": schedule.get("schema", "pr-w1-schedule-v1"),
         "scope": "finite horizon; failed and unoffered requests retained, no speed ratio from censored pairs",
     }
     if all("reachable_keys" in request for request in observed["requests"].values()):
@@ -195,6 +201,8 @@ def measure_cell(
     resources = client.parent / "resources.jsonl"
     if resources.exists():
         metrics["resources"] = summarize_screen_resources(
-            resources, report["started_ns"], report["scheduled_end_ns"]
+            resources,
+            report["started_ns"],
+            report.get("measurement_end_ns", report["scheduled_end_ns"]),
         )
     return metrics

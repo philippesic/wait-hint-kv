@@ -33,7 +33,7 @@ def test_screen_commands_keep_platform_and_route_controls_matched(
                 model,
                 arm,
                 8000,
-                2,
+                2 * 1024**3,
                 tmp_path / "events",
                 False,
             )
@@ -57,6 +57,45 @@ def test_screen_commands_keep_platform_and_route_controls_matched(
             for key, value in commands["A4p"].items()
             if key != "eviction_policy"
         }
+
+
+def test_pressure_commands_cap_gpu_and_load_variant_policies(tmp_path: Path) -> None:
+    configs = {}
+    for arm in ("A1", "A6", "A7"):
+        command = screen_server_command(
+            Path("python"),
+            tmp_path,
+            "D8",
+            arm,
+            8000,
+            1536 * 1024**2,
+            tmp_path / "events",
+            False,
+            780,
+        )
+        assert command[command.index("--num-gpu-blocks-override") + 1] == "780"
+        assert command[command.index("--max-num-seqs") + 1] == "2"
+        configs[arm] = json.loads(command[-1])["kv_connector_extra_config"]
+    assert "cache_policy_module_path" not in configs["A1"]
+    assert {configs[arm]["eviction_policy"] for arm in ("A6", "A7")} == {
+        "AutomaticHoldLRU",
+        "PostResponseLRU",
+    }
+    assert {configs[arm]["cache_policy_module_path"] for arm in ("A6", "A7")} == {
+        "wait_hint_offload.vllm_adapter.policy_variants"
+    }
+    with pytest.raises(ValueError, match="outside"):
+        screen_server_command(
+            Path("python"),
+            tmp_path,
+            "D8",
+            "A1",
+            8000,
+            1536 * 1024**2 + 1,
+            tmp_path / "events",
+            False,
+            780,
+        )
 
 
 def test_gpu_budget_retains_failed_attempt_and_blocks_unfinished_job(

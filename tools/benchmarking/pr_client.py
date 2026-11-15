@@ -7,7 +7,12 @@ import time
 from pathlib import Path
 from typing import Any
 
-from tools.benchmarking.pr_workload import ARMS, request_payload, validate_schedule
+from tools.benchmarking.pr_workload import (
+    ALL_ARMS,
+    POST_RESPONSE_ARMS,
+    request_payload,
+    validate_schedule,
+)
 from tools.benchmarking.streaming import request_stream, verify_stream
 from tools.runtime_verify import write_record
 from wait_hint_offload.evidence_events import EventJournal
@@ -69,7 +74,7 @@ async def run_schedule(
     api_key: str = "local-benchmark",
 ) -> dict[str, Any]:
     validate_schedule(schedule)
-    if arm not in ARMS or not url.startswith("http://127.0.0.1:"):
+    if arm not in ALL_ARMS or not url.startswith("http://127.0.0.1:"):
         raise ValueError("unknown schedule or arm")
     directory.mkdir(parents=True, exist_ok=False)
     (directory / "requests").mkdir()
@@ -80,9 +85,21 @@ async def run_schedule(
     hint_tasks: list[asyncio.Task[dict[str, Any]]] = []
     sessions = []
     hints = []
+    early_end = bool(schedule.get("end_when_sessions_finish"))
+    stop = asyncio.Event()
+    measurement_end: int | None = None
 
     async def delay(until: int) -> None:
         await asyncio.sleep(max(0.0, (until - time.monotonic_ns()) / 1e9))
+
+    async def delay_unless_stopped(until: int) -> bool:
+        try:
+            await asyncio.wait_for(
+                stop.wait(), max(0.0, (until - time.monotonic_ns()) / 1e9)
+            )
+        except TimeoutError:
+            return False
+        return True
 
     async with aiohttp.ClientSession(
         headers={"Authorization": "Bearer " + api_key},
@@ -100,7 +117,25 @@ async def run_schedule(
             scheduled = arrival
             records = []
             for index in range(turn_count):
-                await delay(min(scheduled, session_deadline))
+                if one_shot and early_end:
+                    if await delay_unless_stopped(min(scheduled, session_deadline)):
+                        result = {
+                            "session_id": session["session_id"],
+                            "one_shot": True,
+                            "scheduled_arrival_ns": arrival,
+                            "ended_ns": time.monotonic_ns(),
+                            "outcome": "not_started",
+                            "planned_turns": 1,
+                            "offered_turns": 0,
+                            "not_offered_after_failure_or_deadline": 1,
+                            "not_offered_request_ids": [f"{session['session_id']}-t00"],
+                            "failure_reason": "cell ended after all sessions finished",
+                            "requests": [],
+                        }
+                        journal.emit("session_terminal", result)
+                        return result
+                else:
+                    await delay(min(scheduled, session_deadline))
                 if time.monotonic_ns() >= session_deadline:
                     break
                 payload = request_payload(schedule, session, index, arm)
@@ -146,14 +181,18 @@ async def run_schedule(
                 if not one_shot:
                     turn = session["turns"][index]
                     if (
-                        arm in {"A3p", "A4p"}
+                        arm in POST_RESPONSE_ARMS
                         and session["adopter"]
                         and turn["post_response_eligible"]
                     ):
                         hint_tasks.append(
                             asyncio.create_task(
                                 _publish(
-                                    client, url, payload, schedule["ttl_ms"], deadline
+                                    client,
+                                    url,
+                                    payload,
+                                    turn.get("hint_ttl_ms", schedule["ttl_ms"]),
+                                    deadline,
                                 )
                             )
                         )
@@ -184,13 +223,24 @@ async def run_schedule(
             journal.emit("session_terminal", result)
             return result
 
-        tasks = [
+        main = [
             asyncio.create_task(session_run(session))
-            for session in schedule["sessions"] + schedule["one_shots"]
+            for session in schedule["sessions"]
         ]
+        shots = [
+            asyncio.create_task(session_run(session))
+            for session in schedule["one_shots"]
+        ]
+        tasks = main + shots
         try:
-            sessions = await asyncio.gather(*tasks)
-            await delay(deadline)
+            if early_end:
+                main_results = await asyncio.gather(*main)
+                measurement_end = time.monotonic_ns()
+                stop.set()
+                sessions = list(main_results) + list(await asyncio.gather(*shots))
+            else:
+                sessions = await asyncio.gather(*tasks)
+                await delay(deadline)
             if hint_tasks:
                 hints = await asyncio.gather(*hint_tasks)
         finally:
@@ -210,5 +260,7 @@ async def run_schedule(
         "scheduled_sessions": len(schedule["sessions"]),
         "scheduled_one_shots": len(schedule["one_shots"]),
     }
+    if measurement_end is not None:
+        report["measurement_end_ns"] = measurement_end
     write_record(directory / "report.json", report)
     return report

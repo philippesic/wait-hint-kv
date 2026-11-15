@@ -7,10 +7,12 @@ help, against current upstream. Upstream already discards unreachable sliding-wi
 and recurrent chunks; the claim is the hold, not dead-first eviction.
 
 ## Authorized
-2026-11-15: Philip asked for a plan and accepted a fixed 5% harm margin, an automatic
-hold comparison and a 5% long-wait share. He asked for a smaller GPU budget that reuses
-earlier benchmarks, then asked for a debate with GPT-6.1 Sol. Design only so far.
-Implementation, GPU use, WSL memory changes and any public posting are not authorized.
+2026-11-15: Philip accepted revision 4 and authorized implementation and the RTX 2080 Ti
+acquisition: estimate 10-12 GPU hours, hard ceiling 16 GPU hours. Spare budget goes to
+more seeds on existing claims first. The plan is guidance, not fixed: change it when
+needed for defensible evidence for an upstream discussion. Temporary vm.swappiness=0 is
+authorized (backup artifacts/runs/discussion-host/swappiness-original.json); restore 60
+at the end. No WSL memory change and no public posting.
 
 ## Done when
 Philip agrees the plan; the tooling changes are implemented and CPU-qualified; the
