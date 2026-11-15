@@ -125,6 +125,9 @@ def main() -> int:
     pr_schedule.add_argument("--out", type=Path, required=True)
     pr_run = sub.add_parser("pr-discussion-run")
     pr_run.add_argument("--manifest", type=Path, required=True)
+    pr_report = sub.add_parser("pr-discussion-report")
+    pr_report.add_argument("--metrics", type=Path, action="append", required=True)
+    pr_report.add_argument("--out", type=Path, required=True)
     pr_pressure = sub.add_parser("pr-plan-pressure")
     pr_pressure.add_argument("--model", choices=("D8", "HM"), required=True)
     pr_pressure.add_argument(
@@ -311,6 +314,11 @@ def main() -> int:
         from tools.benchmarking.pr_discussion import run_manifest
 
         print(json.dumps(run_manifest(args.manifest.resolve()), indent=2))
+        return 0
+    if args.operation == "pr-discussion-report":
+        from tools.benchmarking.pr_discussion import campaign_report
+
+        write_record(args.out, campaign_report(args.metrics))
         return 0
     if args.operation == "pr-plan-pressure":
         from tools.benchmarking.pr_pressure import (

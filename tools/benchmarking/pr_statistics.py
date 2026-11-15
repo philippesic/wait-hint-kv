@@ -43,6 +43,7 @@ def summarize_cohort(
         if row["cohort"] == cohort
         and (wait_class is None or row.get("wait_class") == wait_class)
     ]
+    pool_strata = pool_strata and cohort != "one_shot"
     if pool_strata:
         rows = [row | {"stratum": "pooled"} for row in rows]
     strata = {}
