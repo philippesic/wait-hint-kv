@@ -163,6 +163,13 @@ Primary metric and rules:
   automatic holds displaced it within 3-30 s. Age ordering puts the longest-waiting
   hold first in line, and the 50% cap is 113 chunks at 2,048 MiB (69 at 1,254 MiB)
   against prefixes of up to 78.
+- Gap: A9s did not test the design. Per-hint hold time (ttl_ms, already in the
+  protocol) was suppressed and expected-return ordering was deferred, so A9s equalled
+  A6s on about 95% of waits. Philip had asked for the new design; the screen measures
+  release messages over a strengthened automatic hold only.
+- Typical 2,048 MiB A6s recompute by source: about 45% from short-wait holds displaced
+  before return, 22-30% held at return (cap-trimmed), 14-22% never held, about 11% from
+  long waits.
 - Cap check: arrived leases truncated by the cap were 4 of 26 at 2,048 MiB but 12 of
   21 (A6s) and 13 of 25 (A9s) at 1,254 MiB, above the 25% rule. This is a decision for
   Philip.
@@ -198,6 +205,14 @@ Primary metric and rules:
 - The cap, if the exit check reaches 25%.
 
 ## Next
-Philip decides the follow-up after the screen report: an advised-hold precedence fix
-so long hints get a fair test, the cap at the tight pool, or the server-side framing.
-Record the final mixed results with `pr-discussion-report` as well.
+Philip deferred the next run on 2026-11-15. When he resumes it, test the actual design
+without a protocol change:
+- Per-wait hint hold time that replaces the 30 s automatic hold.
+- Displacement and yield by expected return (furthest first); automatic holds never
+  displace client-requested holds.
+- Cancel plus evict-first demotion for one-shots and finished sessions.
+- Timing at the exact gap and at a +/-50% estimate, against A6s on adopt 23001 and
+  adopt-long 23003 (6 jobs).
+- Compaction (`keep_tokens`) needs a protocol bump and a freeze-check change that
+  Philip must approve.
+Also record the final mixed results with `pr-discussion-report`.
