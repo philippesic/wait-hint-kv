@@ -107,8 +107,9 @@ all A/A metrics and missing/degenerate intervals. Systematic statistic labels ar
 frozen in D8 calibration. Do not inspect benefits to choose more coverage/settings.
 
 ## Next
-Commit/push acquisition closure and HM sizing after full acceptance. Implement and
-verify the maintained reporting/diagnostic extensions, then analyze the three valid
+Acquisition closure is committed/pushed at 0171031e. Reporting/diagnostic extensions
+are implemented; fast checks pass 143 tests (six added, none removed). Commit after
+full acceptance, then analyze the three valid
 D8 blocks with the frozen labels and rules. Include first-task sensitivity, native
 allocation-refusal attribution, cross-session reuse, lease activity, resource/fault
 observations and every A/A metric. Re-verify CPU identity if A/A intervals demand it.

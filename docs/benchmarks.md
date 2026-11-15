@@ -535,10 +535,25 @@ Frozen-main job entry points:
   unqualified. Raw counts, unweighted and weighted complete-response descriptions
   retain failure counts alongside inference. Use one deterministic label per
   reported model/workload/statistic.
+  Add `--first-task-occurrence` for the separately labelled sensitivity: keep the
+  first session per task in ascending seed/session order, identically across arms,
+  and every one-shot. The report retains an exclusion audit and leaves primary
+  metric files unchanged. Failed first occurrences are retained.
 - `pr-route-difference --post METRICS --ttl METRICS --baseline METRICS --label LABEL
   --out FILE` takes the same repeated paired seeds and reports post-response benefit
   minus TTL benefit, using their common baseline. This whole-route contrast is
   descriptive and cannot isolate the delivery hook.
+  The same `--first-task-occurrence` option applies to the whole-route contrast.
+- `pr-cell-diagnostics JOB --out FILE` derives source-identified diagnostics from
+  immutable captures: unweighted complete-response latency/token descriptions with
+  failure denominators, session completion, first-turn cross-session reuse, observed
+  owner/generation hold segments and final/truncated holds, native refusal capacity,
+  transfers, evictions and sampled resources/faults. Primary inference still uses
+  the post-stratified paired estimator. Refusal replay excludes in-flight and
+  protected offered keys; absence of direct hold obstruction does not rule out an
+  indirect cache/scheduling effect. Snapshot metadata maxima and lease timestamps
+  are observations, not exhaustive mutation or exact expiry records. GPU clocks
+  and Windows process activity were not captured.
 - `pr-calibration INPUT --step sizing|pools|baseline|quote --out FILE` calculates the
   frozen sizing settings, pool ranking, better baseline or complete-block quote.
   Sizing takes the three A2 metric records from the 240-second/no-one-shot pass;

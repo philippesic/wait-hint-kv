@@ -38,15 +38,20 @@ def main() -> int:
         required=True,
     )
     pr_compare.add_argument("--label", required=True)
+    pr_compare.add_argument("--first-task-occurrence", action="store_true")
     pr_compare.add_argument("--out", type=Path, required=True)
     pr_gap = sub.add_parser("pr-route-difference")
     for name in ("post", "ttl", "baseline"):
         pr_gap.add_argument("--" + name, type=Path, action="append", required=True)
     pr_gap.add_argument("--label", required=True)
+    pr_gap.add_argument("--first-task-occurrence", action="store_true")
     pr_gap.add_argument("--out", type=Path, required=True)
     pr_metrics = sub.add_parser("pr-measure-cell")
     pr_metrics.add_argument("directory", type=Path)
     pr_metrics.add_argument("--out", type=Path, required=True)
+    pr_diagnostics = sub.add_parser("pr-cell-diagnostics")
+    pr_diagnostics.add_argument("directory", type=Path)
+    pr_diagnostics.add_argument("--out", type=Path, required=True)
     pr_job = sub.add_parser("pr-gpu-job")
     pr_job.add_argument("--campaign", type=Path, required=True)
     pr_job.add_argument("--name", required=True)
@@ -315,6 +320,7 @@ def main() -> int:
         return 0
     if args.operation == "pr-route-difference":
         from tools.benchmarking.pr_statistics import (
+            first_task_occurrences,
             route_difference,
             summarize_cohort,
             validate_pairs,
@@ -325,18 +331,23 @@ def main() -> int:
             for paths in (args.post, args.ttl, args.baseline)
         ]
         validate_pairs(*groups)
+        audit = None
+        if args.first_task_occurrence:
+            groups, audit = first_task_occurrences(groups)
         summaries = [
             [summarize_cohort(cell, "hinted_return", "ttft_ns") for cell in group]
             for group in groups
         ]
         write_record(
             args.out,
-            route_difference(summaries[0], summaries[1], summaries[2], args.label),
+            route_difference(summaries[0], summaries[1], summaries[2], args.label)
+            | {"first_task_audit": audit},
         )
         return 0
     if args.operation == "pr-compare-cells":
         from tools.benchmarking.pr_statistics import (
             compare,
+            first_task_occurrences,
             summarize_cohort,
             validate_pairs,
         )
@@ -344,6 +355,10 @@ def main() -> int:
         treatment = [json.loads(path.read_text()) for path in args.treatment]
         baseline = [json.loads(path.read_text()) for path in args.baseline]
         validate_pairs(treatment, baseline)
+        audit = None
+        if args.first_task_occurrence:
+            groups, audit = first_task_occurrences([treatment, baseline])
+            treatment, baseline = groups
         write_record(
             args.out,
             compare(
@@ -354,8 +369,14 @@ def main() -> int:
                 [summarize_cohort(cell, args.cohort, args.metric) for cell in baseline],
                 args.contrast,
                 args.label,
-            ),
+            )
+            | {"first_task_audit": audit},
         )
+        return 0
+    if args.operation == "pr-cell-diagnostics":
+        from tools.benchmarking.pr_diagnostics import diagnose_cell
+
+        write_record(args.out, diagnose_cell(args.directory))
         return 0
     if args.operation == "pr-measure-cell":
         from tools.benchmarking.pr_metrics import measure_cell

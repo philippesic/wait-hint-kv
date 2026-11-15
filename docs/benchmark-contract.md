@@ -109,3 +109,15 @@ calculator implements the accepted thresholds but cannot infer attribution or
 identity from a number: its explicit qualification inputs still need receipt review.
 Calibration calculators likewise do not authorize a resource-failed pool or a
 partial paired block. The [frozen procedure](pr-evidence-screen.md) owns those gates.
+
+The frozen-main screen's first-task-occurrence sensitivity retains each task's first
+session in ascending seed/session order across all arms, including failed first
+occurrences, and keeps every one-shot. It never changes primary records. Separate
+cell diagnostics count cross-session reuse only on first turns using their full
+native reusable boundary; later-turn shared reuse is not exhaustively attributed.
+Allocation-refusal replay checks instantaneous native capacity without holds while
+respecting pending transfers and protected offers. It cannot establish the absence
+of indirect cache-state or scheduling harm. Paired refusal counts remain evidence.
+Observed lease generations/segments, final-turn holds, metadata maxima and process
+fault deltas retain their sampling limits; release-attempt counters are not actual
+held-lease release counts.

@@ -7,6 +7,33 @@ from typing import Any
 from wait_hint_offload.evidence_events import read_journal
 
 
+def refusal_capacity(
+    offered: list[str], resident: dict[str, dict[str, Any]], capacity: int
+) -> dict[str, Any]:
+    missing = sum(key not in resident for key in offered)
+    free = capacity - len(resident)
+    idle = {
+        key for key, chunk in resident.items() if chunk["ready"] and not chunk["loads"]
+    }
+    eligible = idle - set(offered)
+    needed = max(0, missing - free)
+    if free < 0:
+        raise ValueError("resident cache exceeds capacity")
+    return {
+        "missing_chunks": missing,
+        "free_chunks": free,
+        "required_evictions": needed,
+        "idle_chunks": len(idle),
+        "eligible_idle_chunks": len(eligible),
+        "native_capacity_would_fit": needed <= len(eligible),
+        "reason": "native capacity permits eviction without holds"
+        if needed <= len(eligible)
+        else "insufficient idle chunks"
+        if needed > len(idle)
+        else "offered keys protect too many idle chunks",
+    }
+
+
 def token_positions(start: int, end: int, limit: int) -> set[int]:
     if type(start) is not int or type(end) is not int or not 0 <= start <= end:
         raise ValueError("invalid scheduled token range")
@@ -126,6 +153,7 @@ def reconcile_events(directory: Path) -> dict[str, Any]:
     occupancy = []
     evictions = []
     policies = []
+    refusals = []
     for record in streams["scheduler"]:
         event, data = record["event"], record["data"]
         if event == "group_config":
@@ -174,6 +202,20 @@ def reconcile_events(directory: Path) -> dict[str, Any]:
                     jobs[job] = {"kind": kind, "request_id": request_id}
         elif event == "prepare_store":
             store_refusals += not data["accepted"]
+            if not data["accepted"]:
+                if cpu_config is None:
+                    raise ValueError("refused store lacks CPU geometry")
+                refusals.append(
+                    {
+                        "monotonic_ns": record["monotonic_ns"],
+                        "request_id": data["request_id"],
+                        **refusal_capacity(
+                            [entry["key"] for entry in data["offered"]],
+                            resident,
+                            cpu_config["num_chunks"],
+                        ),
+                    }
+                )
             if not data["accepted"] and (data["stored"] or data["evicted"]):
                 raise ValueError("refused store mutated cache")
             for entry in data["evicted"]:
@@ -249,6 +291,7 @@ def reconcile_events(directory: Path) -> dict[str, Any]:
         "pending_jobs": sorted(jobs.keys() - completed),
         "transfer": transfer,
         "store_refusals": store_refusals,
+        "refusal_capacity": refusals,
         "store_failures": store_failures,
         "occupancy": occupancy,
         "evictions": evictions,

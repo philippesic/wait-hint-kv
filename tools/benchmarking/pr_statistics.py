@@ -61,6 +61,77 @@ def summarize_cohort(cell: dict[str, Any], cohort: str, metric: str) -> dict[str
     }
 
 
+def first_task_occurrences(
+    groups: Sequence[Sequence[dict[str, Any]]],
+) -> tuple[list[list[dict[str, Any]]], dict[str, Any]]:
+    validate_pairs(*groups)
+    seeds = [cell["seed"] for cell in groups[0]]
+    if seeds != sorted(seeds):
+        raise ValueError("first-task sensitivity requires ascending seeds")
+    seen: dict[str, tuple[int, str]] = {}
+    excluded = []
+    retained: dict[int, set[str]] = {}
+    for index, cell in enumerate(groups[0]):
+        identities = {
+            (
+                row["request_id"],
+                row["session_id"],
+                row["task"],
+                row["stratum"],
+                row["cohort"],
+            )
+            for row in cell["requests"]
+        }
+        for group in groups[1:]:
+            if identities != {
+                (
+                    row["request_id"],
+                    row["session_id"],
+                    row["task"],
+                    row["stratum"],
+                    row["cohort"],
+                )
+                for row in group[index]["requests"]
+            }:
+                raise ValueError("paired request and task identities differ")
+        tasks = {row["session_id"]: row["task"] for row in cell["requests"]}
+        keep = retained[cell["seed"]] = set()
+        for session, task in sorted(tasks.items()):
+            if task is None:
+                keep.add(session)
+            elif task not in seen:
+                seen[task] = (cell["seed"], session)
+                keep.add(session)
+            else:
+                excluded.append(
+                    {
+                        "seed": cell["seed"],
+                        "session_id": session,
+                        "task": task,
+                        "first_occurrence": list(seen[task]),
+                    }
+                )
+    filtered = [
+        [
+            cell
+            | {
+                "requests": [
+                    row
+                    for row in cell["requests"]
+                    if row["session_id"] in retained[cell["seed"]]
+                ]
+            }
+            for cell in group
+        ]
+        for group in groups
+    ]
+    return filtered, {
+        "retained_unique_tasks": len(seen),
+        "excluded_sessions": excluded,
+        "scope": "Sensitivity only: first task by ascending seed/session_id; all one-shots retained; primary cells unchanged. Non-request cell totals remain original and are not sensitivity denominators.",
+    }
+
+
 def pooled(
     summaries: Sequence[dict[str, Any]], *, descriptive: bool = False
 ) -> dict[str, Any]:
