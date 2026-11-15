@@ -39,6 +39,8 @@ def main() -> int:
     )
     pr_compare.add_argument("--label", required=True)
     pr_compare.add_argument("--first-task-occurrence", action="store_true")
+    pr_compare.add_argument("--pool-strata", action="store_true")
+    pr_compare.add_argument("--wait-class", choices=("fast", "long"))
     pr_compare.add_argument("--out", type=Path, required=True)
     pr_gap = sub.add_parser("pr-route-difference")
     for name in ("post", "ttl", "baseline"):
@@ -404,10 +406,25 @@ def main() -> int:
             args.out,
             compare(
                 [
-                    summarize_cohort(cell, args.cohort, args.metric)
+                    summarize_cohort(
+                        cell,
+                        args.cohort,
+                        args.metric,
+                        pool_strata=args.pool_strata,
+                        wait_class=args.wait_class,
+                    )
                     for cell in treatment
                 ],
-                [summarize_cohort(cell, args.cohort, args.metric) for cell in baseline],
+                [
+                    summarize_cohort(
+                        cell,
+                        args.cohort,
+                        args.metric,
+                        pool_strata=args.pool_strata,
+                        wait_class=args.wait_class,
+                    )
+                    for cell in baseline
+                ],
                 args.contrast,
                 args.label,
             )

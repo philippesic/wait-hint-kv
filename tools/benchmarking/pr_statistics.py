@@ -25,12 +25,26 @@ def validate_pairs(*groups: Sequence[dict[str, Any]]) -> None:
             raise ValueError("each contrast group must contain one arm")
 
 
-def summarize_cohort(cell: dict[str, Any], cohort: str, metric: str) -> dict[str, Any]:
+def summarize_cohort(
+    cell: dict[str, Any],
+    cohort: str,
+    metric: str,
+    *,
+    pool_strata: bool = False,
+    wait_class: str | None = None,
+) -> dict[str, Any]:
     if cohort not in {"first_turn", "hinted_return", "unhinted_return", "one_shot"}:
         raise ValueError("unknown screen cohort")
     if metric not in {"ttft_ns", "client_itl_ns", "recompute"}:
         raise ValueError("unknown screen metric")
-    rows = [row for row in cell["requests"] if row["cohort"] == cohort]
+    rows = [
+        row
+        for row in cell["requests"]
+        if row["cohort"] == cohort
+        and (wait_class is None or row.get("wait_class") == wait_class)
+    ]
+    if pool_strata:
+        rows = [row | {"stratum": "pooled"} for row in rows]
     strata = {}
     for stratum in {row["stratum"] for row in rows}:
         selected = [row for row in rows if row["stratum"] == stratum]
@@ -55,7 +69,11 @@ def summarize_cohort(cell: dict[str, Any], cohort: str, metric: str) -> dict[str
         }
     return {
         "strata": strata,
-        "weights": {"one_shot": 1} if cohort == "one_shot" else cell["stratum_weights"],
+        "weights": {"one_shot": 1}
+        if cohort == "one_shot"
+        else {"pooled": 1}
+        if pool_strata
+        else cell["stratum_weights"],
         "cohort": cohort,
         "metric": metric,
     }
