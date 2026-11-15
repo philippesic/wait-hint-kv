@@ -621,8 +621,8 @@ decision 13 h) reuses the frozen-main job lifecycle for two workloads; the open 
   schedule from its identity. The client closes idle keep-alive connections after 2 s
   so long waits cannot reuse a connection the server (5 s keep-alive) is closing.
 - `--profile adopt|adopt-long` (default `mixed`, unchanged) makes 7 of 8 sessions hint,
-  adds arm A8 (automatic hold plus post-response hints that extend or cancel it) and
-  sends `cancel` after a hinting session's final turn and after every one-shot.
+  adds arms A6s and A9s and sends `cancel` after a hinting session's final turn and after
+  every one-shot.
   `adopt` keeps the mixed waits with a 150 s long-class hint; `adopt-long` makes 25% of
   waits long (30-240 s, authored) with a 300 s hint. Variant arms clamp hints at 300 s.
 - Arms: A1 stock LRU, A6 `AutomaticHoldLRU` (12 s hold from every request's finish, no
@@ -632,6 +632,15 @@ decision 13 h) reuses the frozen-main job lifecycle for two workloads; the open 
   request merely arrives, so under queueing the prefix was evicted before its lookup
   (2026-11-15 pilot). The variants keep a hold that was still live at arrival for up to
   120 s and release it when the returning request loads or stores (after load pinning).
+- A6s `StrengthenedHoldLRU` holds for 30 s from every finish (one-shots included) and
+  keeps an arrived session's hold through queueing and its own run until that request
+  finishes (bounded at 120 s from arrival). Under the 50% hold cap it displaces older
+  waiting holds, then holds the longest leading part that fits; to free space it yields
+  waiting holds oldest-finish first and arrived holds last. A9s runs the same policy on
+  the patched runtime with client release and long-wait advice: `cancel` after one-shots
+  and known-final turns and the long-class hint; it sends no fast-class hint, which
+  would shorten the 30 s hold. A9s is a screen of the revision-3 candidate, without
+  demotion, compaction or return-time ordering.
   `pr-feasibility-native --variants` records their CPU fixture checks.
 - `pr-gpu-job --campaign artifacts/runs/discussion-2080ti --phase pilot|decision` takes
   `--pool-mib` and `--gpu-blocks` for pressure schedules (two running requests, GPU KV

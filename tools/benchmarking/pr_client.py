@@ -207,6 +207,7 @@ async def run_schedule(
                         arm in POST_RESPONSE_ARMS
                         and session["adopter"]
                         and turn["post_response_eligible"]
+                        and (arm != "A9s" or turn.get("wait_class") == "long")
                     ):
                         hint_tasks.append(
                             asyncio.create_task(

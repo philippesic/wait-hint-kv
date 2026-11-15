@@ -45,9 +45,7 @@ swappiness is restored and this file is deleted.
   - `AutomaticHoldLRU` (A6) puts a 12 s hold on every finish.
   - `PostResponseLRU` (A7) applies post-response hints.
   - CPU fixture checks run with `pr-feasibility-native --variants`.
-- The `adopt` profiles, the A8 arm (`AutomaticHoldLRU` plus post-response extend or
-  cancel) and client `cancel` messages are committed but never run. Revision 3
-  supersedes A8.
+- The never-run A8 arm was replaced by the screen arms A6s and A9s.
 - Calibration is in `benchmarks/pr-evidence/pressure/{D8,HM}.json`:
   - D8: GPU KV 195 blocks (12,480 tokens; 64-token blocks), pools 2,048 and 1,254 MiB,
     large pool 6,144 MiB;
@@ -55,12 +53,11 @@ swappiness is restored and this file is deleted.
 
 ### Runs and results so far (mixed profile: 5 of 8 sessions hint)
 - Where things are: GPU jobs run from the detached worktree
-  `artifacts/checkouts/discussion-runner` (currently d4dc272f). Campaign:
+  `artifacts/checkouts/discussion-runner` (checked out at the screen commit). Campaign:
   `.../discussion-runner/artifacts/runs/discussion-2080ti` (jobs/, metrics/,
   metrics-invalid/, driver.jsonl). Manifests are in `artifacts/runs/discussion-plan/`.
-- The decision manifest (83 jobs) is done except the last seed. Unit
-  `wait-hint-finish-2.service` is finishing seed 22008 (D8 and HM) plus two reruns of
-  HM cells invalidated by client transport errors.
+- The decision manifest (83 jobs) is complete. Only the rerun of the invalid HM 22004
+  A7 cell was not run (stopped at 12:35 for the screen).
 - `manifest-extension.json` and `chain.sh` are obsolete; do not run them.
 - Interim (4-5 seeds, D8, 2,048 MiB), versus stock LRU:
   - hinted recompute: A7 -20 points, A6 -19;
@@ -146,28 +143,24 @@ Primary metric and rules:
   - otherwise "unresolved".
 - If A9o helps but A9 does not, the open problem is information availability.
 
-### Screening test (about 90 minutes total, before any large run)
-1. CPU (about 30 min):
-   - implement S1/S1b/S2, A6s, A9 and A9o in `policy_variants.py`, the A9 client
-     signals, schedule fields for A9o, and the A6s/A9/A9o arms in the job map and
-     report pairs;
-   - extend `pr-feasibility-native --variants` with checks for each mechanism,
-     including shared-chunk demotion safety and expiry independent of ordering;
-   - run `tools/check.py --full`.
-2. Exit check (about 5 min, CPU): from retained decision-run events, estimate the share
-   of arrived-session leases refused or truncated at the 50% cap. If it is 25% or more,
-   stop and ask Philip about the cap.
-3. GPU (about 45-50 min): D8, profile `adopt`, 2,048 MiB, 195 blocks; arms A6s, A9
-   and A9o; 3 seeds (23001-23003).
-   - Stock A1 at `adopt` is optional context if time allows.
-   - Run through a systemd unit (see Next).
-4. Report (about 10 min):
-   - mechanism counts (truncations, displacements, demotions, flags), failures, total
-     recompute and TTFT;
-   - A9o minus A6s and A9 minus A6s point estimates.
-   - Go suggests the large run if A9o beats A6s by about 3 points or more and the
-     mechanisms work. Within about 2 points, recommend the server-side framing instead.
-     Three seeds are screening, not evidence.
+### Screening test (agreed 2026-11-15 with Philip; reviewed with GPT-6 Astra, both AGREE)
+Philip's framing: opt-in deployments first; compare stock LRU, automatic hold and the
+candidate across a little-benefit, a shine and a could-it-hurt workload; about 2 h, soft.
+- A9o dropped. Full A9 deferred: its protocol bump trips the Stage 1 freeze check.
+- Arms: A1; A6s `StrengthenedHoldLRU` (30 s automatic hold plus S1, S1b and S2 with age
+  ordering); A9s = same policy on the post-response runtime with existing `cancel` after
+  one-shots and known-final turns plus long-class hints, no fast-class hints. A9s
+  results speak only to release plus long-wait advice; a null does not reject full A9.
+- Matrix (D8, 195 blocks, schedule arm order, manifest
+  `artifacts/runs/discussion-plan/manifest-screen.json`): adopt 23001 at 2,048 MiB,
+  adopt-long 23003 at 2,048 MiB, adopt 23001 at 1,254 MiB; three arms each, 9 jobs. If
+  late, drop the whole 1,254 MiB group and report the gap.
+- The cap-exit check uses the A6s cells' `arrived_hold_refused` and
+  `arrived_partial_hold` counts against `return_pending`.
+- Report, descriptive only: hinted-return recompute ratio and TTFT, the non-hinting
+  session, one-shot TTFT and offered or not-started counts, failures, mechanism counts,
+  and how many >30 s returns were hinted (adopt 23001 plans 2, adopt-long 23003 plans 7).
+- No heavy CPU work while cells run.
 
 ### Large run (only if Philip approves after the screen)
 - `adopt` first: 8 paired seeds x A6s, A9 and A9o (about 120 min).
@@ -200,6 +193,5 @@ Primary metric and rules:
 - The cap, if the exit check reaches 25%.
 
 ## Next
-Wait for `wait-hint-finish-2.service` to finish, then run `pr-discussion-report` over
-`results/pr-evidence-2080ti/inputs` and the campaign `metrics/` to record final mixed
-results. Then do the screening test above and report it to Philip.
+Run `manifest-screen.json` from the runner worktree, then report the screen to Philip.
+Record the final mixed results with `pr-discussion-report` afterwards.

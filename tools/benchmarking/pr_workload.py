@@ -13,8 +13,8 @@ from wait_hint_offload.evidence_protocol import EvidenceRequest
 from wait_hint_offload.policy_protocol import PolicySession
 
 ARMS = ("A1", "A2", "A3", "A4t", "A3p", "A4p", "A5")
-ALL_ARMS = (*ARMS, "A6", "A7", "A8")
-POST_RESPONSE_ARMS = frozenset({"A3p", "A4p", "A7", "A8"})
+ALL_ARMS = (*ARMS, "A6", "A7", "A6s", "A9s")
+POST_RESPONSE_ARMS = frozenset({"A3p", "A4p", "A7", "A9s"})
 
 
 def seeded_order(seed: int, label: str, identity: str) -> str:

@@ -142,7 +142,7 @@ def main() -> int:
     pr_client.add_argument("--schedule", type=Path, required=True)
     pr_client.add_argument(
         "--arm",
-        choices=("A1", "A2", "A3", "A4t", "A3p", "A4p", "A5", "A6", "A7", "A8"),
+        choices=("A1", "A2", "A3", "A4t", "A3p", "A4p", "A5", "A6", "A7", "A6s", "A9s"),
         required=True,
     )
     pr_client.add_argument("--url", required=True)

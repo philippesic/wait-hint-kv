@@ -203,8 +203,10 @@ def campaign_report(metric_dirs: list[Path]) -> dict[str, Any]:
     for workload, model in groups:
         arms = {key[2] for key in cells if key[:2] == (workload, model)}
         comparisons = []
-        pairs = [(arm, "A1") for arm in ("A8", "A7", "A6", "A5", "A1rep", "A1large")]
-        pairs += [("A7", "A6"), ("A8", "A6"), ("A8", "A7")]
+        pairs = [
+            (arm, "A1") for arm in ("A9s", "A6s", "A7", "A6", "A5", "A1rep", "A1large")
+        ]
+        pairs += [("A7", "A6"), ("A9s", "A6s")]
         for treatment_arm, baseline_arm in pairs:
             if treatment_arm not in arms or baseline_arm not in arms:
                 continue

@@ -18,14 +18,14 @@ PROFILES: dict[str, dict[str, Any]] = {
         "long_ttl_ms": 60000,
     },
     "adopt": {
-        "arms": ("A1", "A6", "A7", "A8"),
+        "arms": ("A1", "A6", "A7", "A6s", "A9s"),
         "adopters": 7,
         "long_share": 0.05,
         "long_wait": (20.0, 120.0),
         "long_ttl_ms": 150000,
     },
     "adopt-long": {
-        "arms": ("A1", "A6", "A7", "A8"),
+        "arms": ("A1", "A6", "A7", "A6s", "A9s"),
         "adopters": 7,
         "long_share": 0.25,
         "long_wait": (30.0, 240.0),
