@@ -1,0 +1,46 @@
+{
+  "artifacts_directory": "artifacts/runs/pr-evidence-runtime-03",
+  "calibration": {
+    "path": "benchmarks/pr-evidence/calibration/D8.json",
+    "sha256": "a8456f5211eaccc94aa48bed4141f970e2aa92aa77e86af0e85c471aca3fc338"
+  },
+  "campaign": "2080ti-screen-02",
+  "caps_seconds": {
+    "admission": 3600,
+    "screen": 28800
+  },
+  "change": "Observe client exit before resource sampling and use that observed return code to complete the iteration. A client exiting during sampling receives another sample before completion. The ordered-window coverage check and every threshold remain unchanged.",
+  "cost_requote": {
+    "path": "artifacts/runs/pr-evidence-runtime-02/d8-first-decision-block-requote-01.json",
+    "sha256": "0b5f7002756c2e75e2070e9afa6c36370d6005507491a1e31ec31fe75c9fd4f9"
+  },
+  "diagnosis": {
+    "path": "artifacts/runs/pr-evidence-runtime-02/d8-decision-12101-capture-diagnosis-01.json",
+    "sha256": "0c7bfff91b00ab67af82acb05fd3af7b18b575d1165fdd041bc42299d7363ede"
+  },
+  "global_budget_ledger": "artifacts/runs/pr-evidence-2080ti",
+  "inheritance": "All27 D8 sizing/working-set/full-arm calibration cells passed the unchanged resource coverage check. Their committed settings remain frozen. No runtime/model/route/mechanism/workload/threshold changes are made. The new capture campaign repeats all seven arms of seed12101 and retains the old campaign completely; only valid complete paired blocks enter its primary estimates.",
+  "invalid_a1_outcomes": {
+    "path": "artifacts/runs/pr-evidence-runtime-02/d8-decision-12101-a1-invalid-outcomes-01.json",
+    "sha256": "b43625ca14380b4ff84ed6fa1928f282168c8b9418087b6cf9b2bff1cbc26909"
+  },
+  "original_block": {
+    "path": "artifacts/runs/pr-evidence-runtime-02/d8-decision-12101-pool1-block-01.json",
+    "sha256": "1475389c469ac7ec192c6cf107d2561b9316ceebcebbaa74c0c517a05e7c2db6"
+  },
+  "outcomes_observed_before_restart": "Request/session outcomes, resource checks, store/transfer counts and hint activity; no treatment speedup inspected for the repair or coverage choice.",
+  "regression_test": {
+    "path": "tests/test_pr_jobs.py",
+    "sha256": "41b6ff6cea27ed6eff160e9973ee470799f29f08761b1c2480f7af907c917d6f"
+  },
+  "repair_source": {
+    "path": "tools/benchmarking/pr_jobs.py",
+    "sha256": "ce2b2024f12f80082961cbf00efeb7e03f60c2c2301080000172fbefbb62955e"
+  },
+  "schema": "pr-screen-capture-campaign-v1",
+  "spent_before_restart": {
+    "admission": 1905.0253308830002,
+    "screen": 15613.102814949001
+  },
+  "supersedes_for_comparison": "2080ti-screen-01 decision seed12101 attempt01"
+}

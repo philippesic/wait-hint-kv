@@ -154,6 +154,13 @@ def gpu_status() -> dict[str, Any]:
     return {"monotonic_ns": time.monotonic_ns(), **captures}
 
 
+def _sample_job(
+    client: subprocess.Popen[str] | None,
+) -> tuple[dict[str, Any], int | None]:
+    client_status = client.poll() if client is not None else None
+    return sample_process_tree(os.getpid()), client_status
+
+
 def spent_seconds(campaign: Path) -> dict[str, float]:
     spent = dict.fromkeys(CAPS, 0.0)
     for path in sorted(campaign.glob("jobs/*/admission.json")):
@@ -455,7 +462,7 @@ def run_gpu_job(
                 output / "server-owner.json", {"pid": server.pid, "identity": owner}
             )
             while (time.monotonic_ns() - started) / 1e9 < maximum_seconds:
-                sample = sample_process_tree(os.getpid())
+                sample, client_status = _sample_job(client)
                 if first_sample is None:
                     first_sample = sample
                 if sample["monotonic_ns"] - last_gpu >= 5_000_000_000:
@@ -502,11 +509,11 @@ def run_gpu_job(
                             "command": command_client,
                         },
                     )
-                elif client.poll() is not None:
+                elif client_status is not None:
                     status = (
-                        "client_complete" if client.returncode == 0 else "client_failed"
+                        "client_complete" if client_status == 0 else "client_failed"
                     )
-                    detail = f"client exited {client.returncode}"
+                    detail = f"client exited {client_status}"
                     break
                 time.sleep(0.5)
             else:

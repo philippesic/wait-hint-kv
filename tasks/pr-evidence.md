@@ -24,8 +24,10 @@ task only after closure and push.
 Current agent owns main. Stage 1 is frozen/pushed; both routes use the same hold-only
 mechanism. The public-callback-only infeasibility conclusion was corrected in
 results/pr-evidence-feasibility. Read-only private scheduler access is allowed and
-CPU-qualified. D8 calibration is complete; no decision seeds have run and no
-treatment speedup has been used to choose settings.
+CPU-qualified. D8 calibration is complete and frozen at 1a2b2e6b. The first decision
+block completed but is invalid because of a resource-capture race. No valid
+decision block is available yet; no treatment speedup has been used to choose
+settings, coverage or the repair.
 
 Exact runtime 0.34.0rc1.dev465+ge9281bd93 / torch 2.14+cu130 lives in
 artifacts/venvs/pr-evidence and matched pr-evidence-post. Both have the common
@@ -88,8 +90,9 @@ frozen 0.85 fraction, below 0.74 GiB required for 6,144 tokens. No fraction/cont
 sequence/block override change is allowed for W1. Remaining HS arms and W1 not run.
 
 Admission is complete: 1,905.025330883 seconds (0.529174 hours), leaving
-1,694.974669117 seconds unused. Screen calibration used 12,281.828098766 seconds;
-16,518.171901234 seconds remain. GPU is idle at this checkpoint.
+1,694.974669117 seconds unused. The screen has used 15,613.102814949 seconds,
+including calibration and the invalid decision block; 13,186.897185051 seconds
+remain. GPU is idle at this checkpoint.
 benchmarks/pr-evidence/2080ti-admission.json indexes every charged attempt.
 
 Post-response holds were acknowledged but snapshots could miss their lifetime
@@ -130,19 +133,40 @@ The prescribed baseline selection is A2: pooled hinted recomputation 0.172088969
 versus A1 0.207374737. This is calibration, not the decision opportunity label.
 benchmarks/pr-evidence/calibration/D8.json freezes the final pool, baseline, rates,
 window, all eight decision schedule hashes/orders and systematic statistic labels.
-The first-block cost re-quote is retained in pr-evidence-runtime-02; about four
-decision blocks are expected to fit, but each admission uses the actual ledger.
+The first calibration-block and first decision-block cost re-quotes are retained
+in pr-evidence-runtime-02. Three valid decision blocks, including the required
+rerun, are now expected to fit; each admission uses the actual ledger.
 Reporting/attribution notes live in pr-evidence-runtime-02/reporting-notes.txt.
 No tracked files should change while a GPU loop is running; CPU checks wait for
 idle acquisition gaps. All raw attempts, including authoring failure 01, remain.
 
+Decision seed 12101 attempt01 completed all seven arms in 3,331.274716183 seconds.
+All requests completed; zero failed stores/transfers. A1's final resource sample
+started 32,001,872 ns before the cutoff; the client exited during its 72 ms sample.
+The loop previously polled the client after sampling and then stopped. The strict
+coverage check correctly refuses this cell, invalidating the paired comparison.
+The complete original block, native outcomes and diagnosis remain in runtime-02;
+no raw receipt was edited and no old cell enters the primary comparison.
+
+The runner now polls before sampling and uses that observed return code, ensuring
+another sample if the client exits during capture. A real-process regression test
+reproduces the race without sleeping. Fast checks pass 137 tests; full acceptance
+is required before the repair commit. No coverage or resource check was weakened.
+benchmarks/pr-evidence/2080ti-screen-capture.json defines capture campaign 02, which
+inherits the valid committed calibration and repeats all seven arms of seed 12101.
+Use artifacts/runs/pr-evidence-runtime-03 for new metrics/logs, but keep every GPU
+attempt in the same cumulative pr-evidence-2080ti ledger. Mechanism, runtime,
+routes, workload, thresholds and schedule hashes are unchanged.
+
 ## Next
-Commit and push final D8 calibration after full acceptance. Run decision seeds
-12101–12108 in order until the next complete seven-arm block cannot fit. Initial
-job ceiling is 567 seconds plus 60 cleanup reserve; reserve 4,389 seconds before
-each block and re-quote after the first decision block. Do not inspect speedups to
-choose coverage or change settings. Continue HM baseline calibration if it fits
-after D8; report incomplete model/workload coverage honestly. W2's shortest
+Commit and push the capture repair after full acceptance. Start capture campaign 02
+with the complete seed 12101 rerun (attempt 02), then decision seeds 12102–12108 in
+order until the next complete seven-arm block cannot fit. Job ceiling remains 567
+seconds plus 60 cleanup reserve; reserve 4,389 seconds before each block. The first
+decision-block re-quote includes the invalid block and mandatory rerun; update it
+from the first valid block's actual costs too. Do not inspect speedups to choose
+coverage or change settings. Continue HM baseline calibration if it fits after D8;
+report incomplete model/workload coverage honestly. W2's shortest
 historical seven-arm block needs at least 4,200 seconds before startup/cleanup,
 calibration and contingency. Restore swappiness, delete healthcheck, close results,
 push and send the exact handoff only when genuinely finished.

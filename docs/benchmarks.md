@@ -519,7 +519,12 @@ Frozen-main job entry points:
   present, the same command checks complete time coverage and reports startup memory/
   swap limits plus outside CPU/GPU activity during the client window. The frozen
   interference thresholds apply; short-lived unobserved processes and activity
-  outside Linux remain explicit measurement limits.
+  outside Linux remain explicit measurement limits. The runner observes client exit
+  before taking the resource sample used to finish a cell. Exit during sampling
+  therefore requires another iteration, preserving coverage through the endpoint.
+  The first D8 decision block exposed this race and is retained as invalid; the
+  [capture campaign record](../benchmarks/pr-evidence/2080ti-screen-capture.json)
+  identifies its complete-block rerun, unchanged calibration and cumulative budget.
 - `pr-compare-cells --treatment METRICS --baseline METRICS --cohort hinted_return
   --metric ttft_ns --contrast benefit --label MODEL-WORKLOAD-STATISTIC --out FILE`
   accepts repeated ordered treatment/baseline pairs. It refuses duplicate seeds or

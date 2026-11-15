@@ -5,11 +5,13 @@ import os
 import select
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 import pytest
 
 from tools.benchmarking.pr_jobs import (
+    _sample_job,
     _stop,
     client_command,
     model_digest,
@@ -143,3 +145,41 @@ def test_captured_client_command_passes_real_output_guard(
     assert json.loads((tmp_path / "client/partial.json").read_text()) == {
         "retained": True
     }
+
+
+def test_client_exit_during_sampling_requires_a_sample_after_exit(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import tools.benchmarking.pr_jobs
+
+    client = subprocess.Popen(
+        [sys.executable, "-c", "import sys; sys.stdin.read()"],
+        stdin=subprocess.PIPE,
+        text=True,
+    )
+    observed_exit: list[int] = []
+
+    def sample(root_pid: int) -> dict[str, int]:
+        assert root_pid == os.getpid()
+        started = time.monotonic_ns()
+        if not observed_exit:
+            assert client.stdin is not None
+            client.stdin.close()
+            assert client.wait(timeout=5) == 0
+            observed_exit.append(time.monotonic_ns())
+        return {"monotonic_ns": started}
+
+    monkeypatch.setattr(tools.benchmarking.pr_jobs, "sample_process_tree", sample)
+    try:
+        first, first_status = _sample_job(client)
+        assert first_status is None
+        assert first["monotonic_ns"] < observed_exit[0]
+        final, final_status = _sample_job(client)
+        assert final_status == 0
+        assert final["monotonic_ns"] >= observed_exit[0]
+    finally:
+        if client.poll() is None:
+            client.kill()
+            client.wait(timeout=5)
+        if client.stdin is not None and not client.stdin.closed:
+            client.stdin.close()
