@@ -620,6 +620,11 @@ decision 13 h) reuses the frozen-main job lifecycle for two workloads; the open 
   recorded as `not_started` and leave the denominators. Validation regenerates the
   schedule from its identity. The client closes idle keep-alive connections after 2 s
   so long waits cannot reuse a connection the server (5 s keep-alive) is closing.
+- `--profile adopt|adopt-long` (default `mixed`, unchanged) makes 7 of 8 sessions hint,
+  adds arm A8 (automatic hold plus post-response hints that extend or cancel it) and
+  sends `cancel` after a hinting session's final turn and after every one-shot.
+  `adopt` keeps the mixed waits with a 150 s long-class hint; `adopt-long` makes 25% of
+  waits long (30-240 s, authored) with a 300 s hint. Variant arms clamp hints at 300 s.
 - Arms: A1 stock LRU, A6 `AutomaticHoldLRU` (12 s hold from every request's finish, no
   client hint) and A7 `PostResponseLRU` (post-response hints, patched runtime), both in
   `wait_hint_offload.vllm_adapter.policy_variants`; the frozen policy files are unchanged.

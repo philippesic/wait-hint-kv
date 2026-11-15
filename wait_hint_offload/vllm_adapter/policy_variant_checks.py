@@ -95,12 +95,19 @@ def _post_response() -> dict[str, Any]:
     )
     assert acknowledgement["actions"][0]["decision"] == "held"
     observation = next(iter(policy.observations.values()))
-    assert observation.deadline_ns == now[0] + 60_000_000_000
+    assert observation.deadline_ns == now[0] + 150_000_000_000
+    capped = PolicyAction.parse(action | {"action_id": "second", "ttl_ms": 900000})
+    policy.publish(capped.to_dict())
+    assert observation.deadline_ns == now[0] + 300_000_000_000
+    cancel = PolicyAction.parse(action | {"action_id": "done", "kind": "cancel"})
+    assert policy.publish(cancel.to_dict())["decision"] == "cancelled"
+    assert not policy.book.references
     native.reset_cache()
     return {
         "request_ttl_ignored": True,
         "envelope_held": True,
-        "server_clamp_ms": 60000,
+        "server_clamp_ms": 300000,
+        "cancel_releases": True,
     }
 
 

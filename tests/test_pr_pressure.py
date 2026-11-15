@@ -153,3 +153,24 @@ def test_campaign_report_separates_pool_levels_and_judges_harm(
         heavy[("unhinted_return", "ttft_ns", "relative_harm", None)]["verdict"]
         == "worse"
     )
+
+
+def test_adoption_profiles_keep_mixed_schedules_and_add_combined_arm() -> None:
+    mixed = pressure_schedule("D8", "pressure", 22003)
+    assert "profile" not in mixed
+    assert mixed == pressure_schedule("D8", "pressure", 22003, "mixed")
+    for profile, long_ttl in (("adopt", 150000), ("adopt-long", 300000)):
+        schedule = pressure_schedule("D8", "pressure", 22003, profile)
+        validate_schedule(schedule)
+        assert schedule["profile"] == profile
+        assert sum(session["adopter"] for session in schedule["sessions"]) == 7
+        assert set(schedule["arm_order"]) == {"A1", "A6", "A7", "A8"}
+        hints = {
+            turn["hint_ttl_ms"]
+            for session in schedule["sessions"]
+            for turn in session["turns"]
+            if turn["wait_class"] == "long"
+        }
+        assert hints <= {long_ttl}
+        adopter = next(s for s in schedule["sessions"] if s["adopter"])
+        assert request_payload(schedule, adopter, 0, "A8")["ttl_ms"] is None

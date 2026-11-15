@@ -1,139 +1,205 @@
 # Evidence for an upstream wait-hint discussion
 
 ## Goal
-Collect the measurements needed to open a vLLM discussion thread on wait-hint holds:
-a measured advantage under CPU cache pressure and no material harm where hints cannot
-help, against current upstream. Upstream already discards unreachable sliding-window
-and recurrent chunks; the claim is the hold, not dead-first eviction.
+Produce defensible evidence for a vLLM discussion contribution on bounded CPU-offload
+holds during agent tool waits. Primary target: opt-in deployments where clients send
+hints (100% adoption, with one small non-hinting check session). Question: does client
+knowledge (what is dead, what will change, who returns when) measurably beat a
+strengthened server-only automatic hold? Upstream already discards unreachable
+sliding-window and recurrent chunks, so that is not part of the claim.
 
 ## Authorized
-2026-11-15: Philip accepted revision 4 and authorized implementation and the RTX 2080 Ti
-acquisition: estimate 10-12 GPU hours, hard ceiling 16 GPU hours. Spare budget goes to
-more seeds on existing claims first. The plan is guidance, not fixed: change it when
-needed for defensible evidence for an upstream discussion. Temporary vm.swappiness=0 is
-authorized (backup artifacts/runs/discussion-host/swappiness-original.json); restore 60
-at the end. No WSL memory change and no public posting.
+- 2026-11-15, Philip: implementation and RTX 2080 Ti acquisition under a 16 GPU-hour
+  hard ceiling; the plan is guidance, change it when needed for defensible evidence.
+  Spent: pilot 1.92 h + decision 7.18 h (completed jobs). Campaign caps live in
+  `tools/benchmarking/pr_jobs.py` (`discussion-2080ti`: pilot 3 h, decision 13 h).
+- Later the same day Philip asked for a small screening test (about 90 minutes) of the
+  revision-3 design before any further large run. A large run needs his decision after
+  the screen.
+- Temporary `vm.swappiness=0` is authorized. Restore it to 60 with sudo at the end; the
+  backup is `artifacts/runs/discussion-host/swappiness-original.json`. If sudo is
+  needed, ask Philip with the T3 `request_secret` tool, never in chat.
+- No WSL memory change, no public posting, no upstream outreach.
 
 ## Done when
-Philip agrees the plan; the tooling changes are implemented and CPU-qualified; the
-separately authorized acquisition has run; the result is closed through the result
-profile with the claim limits the thread must state.
+The revision-3 screen has run and been reported to Philip. Then either the large run
+he approves is acquired and analysed, or he stops it. The evidence is closed through
+`skills/close-results` with claim limits stated, FINDINGS includes a prior-art entry,
+swappiness is restored and this file is deleted.
 
 ## State
-### Execution (2026-11-15)
-- Tooling committed: pressure schedules, A6/A7 variant arms, discussion campaign caps
-  (pilot 3 h, decision 13 h, total 16 h), `pr-discussion-run` driver and
-  `pr-discussion-report`. GPU jobs run from the detached worktree
-  `artifacts/checkouts/discussion-runner`; its campaign is
-  `artifacts/checkouts/discussion-runner/artifacts/runs/discussion-2080ti`.
-- Pilot facts: D8 GPU KV capped at 195 blocks (12,480 tokens; D8 uses 64-token blocks,
-  a 780-block attempt oversubscribed and was interrupted and retained); HM at 48 blocks
-  (11,342 tokens). Mean working set D8 2.45/1.53 GiB (seeds 21001/21002), HM 0.46/0.38
-  GiB. At half-working-set pools, A1 recomputed 83% (D8) and 90% (HM) of hinted
-  prefixes; a 6 GiB D8 pool recomputed 0%.
-- Pilot finding: with the frozen release rule, A6/A7 matched A1 (D8 82%/81%, HM 90%).
-  Event traces show every hold released within 0.3-2.6 s of the returning request's
-  arrival, then evicted during 6-24 s of queueing before lookup. Fixed only in
-  `policy_variants.py` (return-aware release, commit c87aeb77); frozen files unchanged.
-- Pilot round 3 (seed 21002, single observations): with the fix, D8 at 2,048 MiB cut
-  hinted recompute 71%->41% and unhinted 46%->34%; at 1,254 MiB hinted 83%->60% but
-  unhinted 46%->57%; HM at 256 MiB showed no benefit (90%->94%). Calibration frozen in
-  `benchmarks/pr-evidence/pressure/` (primary pool 1.0x working set; D8 secondary
-  1,254 MiB), with the change from the planned 0.5x recorded there.
-- Decision run started 2026-11-15 ~10:15 UTC: manifest
-  `artifacts/runs/discussion-plan/manifest-decision.json` (83 jobs: D8/HM 1.0x pools
-  A1/A6/A7 x 8 seeds, D8 1,254 MiB x 4 seeds, A1 repeats x 3, large pools x 2, 13 W1
-  regular cells), detached driver PID in `decision-driver.pid`. Pilot used 1.9 GPU h;
-  decision estimate ~11.8 h. Touch the campaign's `STOP` file to stop between jobs.
-- Spare budget, declared after 20 decision cells and before any comparison was
-  computed (cells ran ~5 min, so ~9 h total was projected): `manifest-extension.json`
-  adds pressure seeds 22009-22016 (D8 2,048 MiB and HM 428 MiB, A1/A6/A7), then W1
-  regular seeds 12109-12116 (A1/A7; W1 schedule seed range widened to 12101-12116,
-  same frozen calibration and generator). It starts automatically after the decision
-  driver exits and stops when the 13 h decision cap refuses a job; unpaired cells are
-  excluded from paired comparisons.
-- Two HM cells (22003 A1, 22004 A7) had one client `transport_error` each: a connection
-  reset 1-3 ms after submission that the server never received (keep-alive race after
-  long waits). Commit d4dc272f closes idle client connections after 2 s (server 5 s);
-  the cells are set aside in the campaign's `metrics-invalid/` and rerun first in the
-  extension. All other cells had no failed requests.
+### What exists (committed)
+- Campaign tooling (see the "Upstream discussion campaign" section of
+  `docs/benchmarks.md`):
+  - `pr-plan-pressure` writes pressure schedules with profiles `mixed`, `adopt` and
+    `adopt-long`.
+  - `pr-gpu-job` takes `--pool-mib` and `--gpu-blocks`.
+  - `pr-discussion-run` is the sequential driver: retry once, STOP file, metrics.
+  - `pr-discussion-report` gives paired BCa comparisons per pool and profile group.
+  - The client closes keep-alive connections after 2 s. Mixed-profile schedules are
+    byte-identical to before.
+- Policy variants live in `wait_hint_offload/vllm_adapter/policy_variants.py`;
+  the frozen `policy.py` is untouched:
+  - `ReturnAwareHold` keeps a live hold through queueing until the returning request
+    loads, for up to 120 s, and clamps hint TTLs at 300 s.
+  - `AutomaticHoldLRU` (A6) puts a 12 s hold on every finish.
+  - `PostResponseLRU` (A7) applies post-response hints.
+  - CPU fixture checks run with `pr-feasibility-native --variants`.
+- The `adopt` profiles, the A8 arm (`AutomaticHoldLRU` plus post-response extend or
+  cancel) and client `cancel` messages are committed but never run. Revision 3
+  supersedes A8.
+- Calibration is in `benchmarks/pr-evidence/pressure/{D8,HM}.json`:
+  - D8: GPU KV 195 blocks (12,480 tokens; 64-token blocks), pools 2,048 and 1,254 MiB,
+    large pool 6,144 MiB;
+  - HM: 48 blocks, pool 428 MiB, large pool 2,048 MiB.
 
-### Plan (revision 4, after debate with GPT-6.1 Sol)
-- Claims: C1 hints cut hinted-return recompute and TTFT under pressure (LRU pair);
-  C2 no harm to other cohorts under pressure; C3 not worse in the low-opportunity
-  regular case; client hints versus automatic hold is descriptive.
-- Harm criteria: per cohort (hinted return, unhinted return, one-shot), TTFT and ITL
-  95% upper bound <= +5%, unhinted recompute <= +2 points. Each hinted arm is compared
-  with its matching stock baseline (A5 vs A1, A4t vs A2, A6 vs A1). Any cohort failure
-  fails the claim; an undefined interval is unresolved; aggregates cannot override.
-- Regular case: extend the frozen D8 W1 screen with seeds 12104-12108 (already
-  scheduled) for A1, A2, A3, A4t and A5, keeping A4t/A5 code hash-identical. Label the
-  eight-seed analysis an extension of the screen, not fresh confirmation.
-- Pressure case: the `pressure` benchmark on frozen main with stock connector arms.
-  Decision arms A1, A1 repeat, A5 and A6, 12 seeds per model on HM and D8 (a budget
-  choice, not demonstrated precision); gpu-only and oracle controls on 4 seeds as the
-  discrimination gate (an inconclusive gate stays inconclusive). A2/A4t only if budget
-  remains; without them the pressure conclusion is LRU-only. Gemma omitted. Arm order
-  interleaved per seed. Per arm retain CPU-restored tokens, recompute, hold activity,
-  expiry and yield, refused and failed stores, actual GPU/CPU capacities and
-  working-set ratios; treatment failures stay in denominators.
-- A6 automatic hold: same LRU policy, offload_prompt_only, 50% physical cap counting
-  the ready-chunk union once, promotion, release on return and earliest-deadline yield
-  as A5. A fixed 12 s hold starts at every request's engine finish and renews at each
-  later finish, for every request including ones that never return, with no future
-  knowledge. Hinted arms get class TTLs (12 s fast, 150 s long). The comparison tests
-  selective retention plus class-specific duration against this rule only; a tie
-  supports the simpler automatic alternative.
-- Long waits: each turn independently joins the long class with probability 5%, wait
-  uniform on 20-120 s, on top of the existing LogNormal(4 s, 0.8) gaps. The cell
-  deadline covers every session's full scheduled sequence: arrival plus the sum of its
-  scheduled waits plus a per-turn service allowance (frozen from the pilot's p95 turn
-  time) plus drain. One-shot competitors and other sessions continue until that
-  deadline. Report completion and censoring by arm and wait class.
-- Statistics (frozen before acquisition): paired bootstrap over independent seeds
-  preserving arm pairing; for hinted returns the extension estimand pools prompt-length
-  strata (a disclosed population change) so a missing stratum cannot void the interval;
-  the frozen post-stratified result is reported beside it. Seed count, weighting,
-  interval method and stopping rule are fixed in advance. CPU fixtures test the
-  implementation, not interval coverage.
-- Precision forecast before any GPU request, from existing screen seeds and pressure
-  A/A pairs, presented as uncertain. Expected: +5% latency non-inferiority may end
-  unresolved (3-seed harm half-widths were 15-18%; Qwen pressure A/A hinted TTFT moved
-  +13%, +110% and +4% per seed). Then the thread could say only "pressure benefit
-  observed; latency non-inferiority unresolved", not "no material harm".
-- Overhead diagnostic: a small capped run, separate from decision arms, timing live
-  per-step plugin and hold bookkeeping against step time and counting eviction
-  decisions that differ from the hints-off control. Supporting evidence only; it cannot
-  bound end-to-end latency harm.
-- Earlier campaign results (July vLLM, non-stock baseline, dead-first included) may be
-  cited only as labelled history.
+### Runs and results so far (mixed profile: 5 of 8 sessions hint)
+- Where things are: GPU jobs run from the detached worktree
+  `artifacts/checkouts/discussion-runner` (currently d4dc272f). Campaign:
+  `.../discussion-runner/artifacts/runs/discussion-2080ti` (jobs/, metrics/,
+  metrics-invalid/, driver.jsonl). Manifests are in `artifacts/runs/discussion-plan/`.
+- The decision manifest (83 jobs) is done except the last seed. Unit
+  `wait-hint-finish-2.service` is finishing seed 22008 (D8 and HM) plus two reruns of
+  HM cells invalidated by client transport errors.
+- `manifest-extension.json` and `chain.sh` are obsolete; do not run them.
+- Interim (4-5 seeds, D8, 2,048 MiB), versus stock LRU:
+  - hinted recompute: A7 -20 points, A6 -19;
+  - hinted TTFT: A7 9% faster, A6 13% faster; one-shot TTFT 19-29% faster for both;
+  - A7 versus A6: a tie on hinted reuse, A6 better on unhinted (it holds them too);
+  - long-wait returns favour A7, but there are too few to bound.
+  - D8 at 1,254 MiB: similar. One unhinted-ITL comparison exceeds the 5% margin
+    (point estimate +5.5%).
+  - D8 A1 repeats (A/A): 0-2%.
+  - HM: A6 hinted recompute -18; A7 pending reruns.
+- Regular case (W1, 8 seeds): pooled-strata estimates. One-shot TTFT is not worse;
+  other harm comparisons are likely unresolved.
+- Pilot lesson: the frozen release-on-arrival rule makes holds useless under
+  queueing. Event traces show prefixes evicted between arrival and lookup.
+- Attribution (Claude Fable 5.2, unreviewed quick tabulation of A7 cells):
+  - 764 of 1,125 lost held chunks were evicted while the session's own request ran, and
+    350 between arrival and first token; 9 during the wait.
+  - Leases covering the full prefix lost nothing.
+  - Timing advice can recover at most about 9 of A7's 26.6 recompute points.
+- Prior art:
+  - Dynamo `cache_control` with SGLang HiCache pinning: client TTL 300-3600 s, demotes
+    to host memory, refresh-on-hit, priority hints.
+  - Continuum: server-side GPU TTL per tool call.
+  - InferCept: preserve, discard or swap.
+  - Open vLLM RFCs #52113, #57103, #64150 and #51428.
+  - The repo plan already listed HiCache (`docs/pr-evidence-plan.md:521`) but never
+    reported the overlap.
+  - Novelty must be claimed narrowly.
 
-### Required changes
-1. Port `pressure` to the frozen-main runtime and stock OffloadingConnector arms with
-   request-TTL hints (largest piece).
-2. A6 automatic-hold arm in the frozen-main plugin.
-3. D8 pressure model definition and simulator precheck.
-4. Long-wait class, class TTLs and full-schedule deadlines in the pressure workload.
-5. Paired-seed intervals, the extension estimand and per-claim verdicts (advantage /
-   not worse / worse / unresolved); the precision forecast.
-6. The capped overhead diagnostic.
+### Revision-3 design (agreed unanimously by Claude Fable 5.2, GPT-6 Astra, Claude Opus 5.5)
+Implement these as new policy variants only.
 
-### Deferred
-Closed-population W1 under pressure, pool curve, throughput, ARC pressure pair unless
-budget remains, HM regular case, 5080, Gemma and longer contexts.
+Server mechanism, in every new hold arm:
+- S1, lease continuity: when a session's next request arrives, keep its prefix protected
+  through queueing and the request's own run until that request finishes and becomes
+  the next observation.
+- S1b, partial holds: if the 50% cap cannot fit a prefix, hold the longest leading part
+  that fits.
+- S2, precedence for yield, displacement and admission:
+  - arrived (queued or running) sessions come before waiting ones;
+  - among waiting holds, rank by estimated remaining wait and yield or displace the
+    largest first;
+  - unadvised holds use age (longest-waiting is largest);
+  - advised holds use expected return minus now;
+  - once a hold is overdue, rank it by age;
+  - expected return is used for ordering only and never sets expiry.
+- The rest is unchanged: still yield before any store would fail, and never start a
+  transfer.
 
-### Risks
-- Pressure evidence is synthetic, with Qwen's GPU cache capped at 36 blocks and two
-  running requests; label it beside the realistic regular case.
-- Hold without dead-first tied recency on Qwen in the old promote-hold round; the
-  hold-only gain on frozen main may be much smaller than the earlier campaign.
-- Upstream's hybrid lookup discards complete CPU copies, capping HM gains.
-- Cost: ~10-12 GPU hours is an estimate; requote from frozen-main pressure cell timings.
+Arms:
+- A1: stock LRU.
+- A6s, strengthened automatic: a 30 s hold on every finish (preregistered from the
+  captured-trace p99; not tuned on GPU), plus S1/S1b/S2 with age ordering. It gets no
+  client knowledge.
+- A9, causal hints: A6s plus four client signals, each from information the caller
+  has at that time.
+  - (a) `ephemeral` request flag on one-shot calls: no hold, and at finish demote its
+    chunks to the evict-first end.
+  - (b) `done` after a final turn, only when the client knows the session ended:
+    release and demote.
+  - (c) `keep_tokens` on compaction turns: hold only chunks wholly before the
+    boundary and demote the rest.
+  - (d) `expected_return_ms` for long tools, used for ordering. Expiry is the class
+    upper bound, clamped at 300 s.
+  - Demotion skips chunks shared with a live session. It writes the native LRU's
+    private `_ranks` and heap (`vllm/v1/kv_offload/cpu/policies/lru.py` in the
+    `pr-evidence` venv), which ties it to this vLLM revision.
+  - The new fields need a closed-schema version bump in
+    `wait_hint_offload/policy_protocol.py` and the client.
+- A9o, oracle-information diagnostic: A9 given the exact next-use time, whether reuse
+  happens and the reusable prefix extent, all from the schedule. It is not a
+  performance ceiling.
+- Reserve: A6s with native `store_threshold=2`.
 
-### Open decisions
-- Philip accepts revision 4, including the likely unresolved latency outcome, or asks
-  for more seeds after the precision forecast.
+Primary metric and rules:
+- Metric: total recomputed tokens over all returns divided by total eligible tokens,
+  in percentage points; paired BCa with seeds as the unit.
+- Benefit is A6s minus the arm. The meaningful threshold is 3 points.
+- Outcomes:
+  - "helps" if the lower bound is above 0;
+  - "real but below threshold" if the interval lies within (0, 3);
+  - "no meaningful case" if the upper bound is below 3;
+  - otherwise "unresolved".
+- If A9o helps but A9 does not, the open problem is information availability.
+
+### Screening test (about 90 minutes total, before any large run)
+1. CPU (about 30 min):
+   - implement S1/S1b/S2, A6s, A9 and A9o in `policy_variants.py`, the A9 client
+     signals, schedule fields for A9o, and the A6s/A9/A9o arms in the job map and
+     report pairs;
+   - extend `pr-feasibility-native --variants` with checks for each mechanism,
+     including shared-chunk demotion safety and expiry independent of ordering;
+   - run `tools/check.py --full`.
+2. Exit check (about 5 min, CPU): from retained decision-run events, estimate the share
+   of arrived-session leases refused or truncated at the 50% cap. If it is 25% or more,
+   stop and ask Philip about the cap.
+3. GPU (about 45-50 min): D8, profile `adopt`, 2,048 MiB, 195 blocks; arms A6s, A9
+   and A9o; 3 seeds (23001-23003).
+   - Stock A1 at `adopt` is optional context if time allows.
+   - Run through a systemd unit (see Next).
+4. Report (about 10 min):
+   - mechanism counts (truncations, displacements, demotions, flags), failures, total
+     recompute and TTFT;
+   - A9o minus A6s and A9 minus A6s point estimates.
+   - Go suggests the large run if A9o beats A6s by about 3 points or more and the
+     mechanisms work. Within about 2 points, recommend the server-side framing instead.
+     Three seeds are screening, not evidence.
+
+### Large run (only if Philip approves after the screen)
+- `adopt` first: 8 paired seeds x A6s, A9 and A9o (about 120 min).
+- Then A6s+st2 on 4 `adopt` seeds (about 20 min).
+- Then `adopt-long`: 3 descriptive seeds (about 135 min).
+- If the cap binds, cut whole `adopt-long` seeds.
+- Remaining budget before the screen: about 5.8 h under the decision cap, about 6.9 h
+  under the 16 h ceiling.
+
+### Operating notes
+- Session interrupts kill processes started from the agent shell, even with
+  setsid/nohup. Launch drivers with
+  `systemd-run --user --unit=NAME --collect --working-directory=<runner>
+  --setenv=PATH="$PATH" --setenv=HOME="$HOME" /bin/bash -c '<driver> > LOG 2>&1'`.
+  PATH must include `/usr/lib/wsl/lib` for nvidia-smi.
+- Before launching, check out the committed commit in the runner worktree (detached,
+  clean) and check that the GPU is idle.
+- To stop between jobs, touch `<campaign>/STOP`.
+- For long jobs, keep an hourly healthcheck (a background wait that exits on driver exit
+  or after about 55 min) and stop it when acquisition ends.
+- Interrupted or invalid attempts stay on record. Rerun under a new job name; set
+  invalid metrics aside in `metrics-invalid/` with a README.
+- The debate record is in `artifacts/runs/discussion-debate/` (brief, revisions 1-3,
+  and `proposal-final.md`).
+
+### Open decisions for Philip
+- After the screen, whether to run the large run.
+- Framing of the thread: hints as information on top of automatic hold, or a
+  server-side return-aware hold with optional release and compaction hints.
+- The cap, if the exit check reaches 25%.
 
 ## Next
-After Philip accepts: implement changes 1-6, run the precision forecast and CPU
-qualification, then request GPU authorization with a costed manifest.
+Wait for `wait-hint-finish-2.service` to finish, then run `pr-discussion-report` over
+`results/pr-evidence-2080ti/inputs` and the campaign `metrics/` to record final mixed
+results. Then do the screening test above and report it to Philip.

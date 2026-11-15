@@ -25,10 +25,15 @@ from wait_hint_offload.policy_protocol import (
 
 
 async def _publish(
-    client: Any, url: str, payload: dict[str, Any], ttl_ms: int, deadline_ns: int
+    client: Any,
+    url: str,
+    payload: dict[str, Any],
+    ttl_ms: int,
+    deadline_ns: int,
+    kind: str = "hold",
 ) -> dict[str, Any]:
     action = PolicyAction(
-        payload["request_id"], PolicySession.parse(payload["session"]), "hold", ttl_ms
+        payload["request_id"], PolicySession.parse(payload["session"]), kind, ttl_ms
     )
     envelope = PolicyEnvelope(payload["request_id"], (action,)).to_dict()
     started = time.monotonic_ns()
@@ -178,6 +183,24 @@ async def run_schedule(
                 )
                 if capture["outcome"] != "complete":
                     break
+                done = one_shot or (
+                    session["adopter"]
+                    and index == turn_count - 1
+                    and not session["turns"][index]["post_response_eligible"]
+                )
+                if done and arm in POST_RESPONSE_ARMS and "profile" in schedule:
+                    hint_tasks.append(
+                        asyncio.create_task(
+                            _publish(
+                                client,
+                                url,
+                                payload,
+                                schedule["ttl_ms"],
+                                deadline,
+                                "cancel",
+                            )
+                        )
+                    )
                 if not one_shot:
                     turn = session["turns"][index]
                     if (

@@ -11,6 +11,7 @@ from wait_hint_offload.vllm_adapter.policy import WaitHoldPolicy
 
 AUTOMATIC_HOLD_MS = 12000
 RETURN_PENDING_MS = 120000
+HINT_CLAMP_MS = 300000
 
 
 class ReturnAwareHold(WaitHoldPolicy):
@@ -21,6 +22,31 @@ class ReturnAwareHold(WaitHoldPolicy):
     def _retire(self, owner: str) -> None:
         super()._retire(owner)
         self.pending_returns.discard(owner)
+
+    def publish(
+        self, raw: object, deadline_origin_ns: int | None = None
+    ) -> dict[str, Any]:
+        origin = self.clock() if deadline_origin_ns is None else deadline_origin_ns
+        result = super().publish(raw, deadline_origin_ns=origin)
+        if result["replayed"] or not self.advice_enabled:
+            return result
+        try:
+            action = PolicyAction.parse(raw)
+        except (TypeError, ValueError):
+            return result
+        observation = self.observations.get(action.session.owner)
+        if (
+            action.kind != "hold"
+            or action.ttl_ms <= 60000
+            or observation is None
+            or observation.session != action.session
+            or observation.deadline_ns <= 0
+        ):
+            return result
+        observation.deadline_ns = origin + min(action.ttl_ms, HINT_CLAMP_MS) * 1_000_000
+        observation.expires_ns = max(observation.expires_ns, observation.deadline_ns)
+        self._refresh(observation)
+        return result
 
     def _maintain(self) -> None:
         now = self.clock()

@@ -152,7 +152,14 @@ def _cell_key(path: Path, cell: dict[str, Any]) -> tuple[str, str, str, int]:
                 ).read_text()
             )
             level = calibration["pools_bytes"][0] // 1024**2
-        workload = f"pressure-p{level}"
+        profile = (
+            "-adopt-long"
+            if "-adopt-long-" in path.name
+            else "-adopt"
+            if "-adopt-" in path.name
+            else ""
+        )
+        workload = f"pressure{profile}-p{level}"
     arm = cell["arm"]
     if "-A1rep" in path.name:
         arm = "A1rep"
@@ -196,8 +203,8 @@ def campaign_report(metric_dirs: list[Path]) -> dict[str, Any]:
     for workload, model in groups:
         arms = {key[2] for key in cells if key[:2] == (workload, model)}
         comparisons = []
-        pairs = [(arm, "A1") for arm in ("A7", "A6", "A5", "A1rep", "A1large")]
-        pairs.append(("A7", "A6"))
+        pairs = [(arm, "A1") for arm in ("A8", "A7", "A6", "A5", "A1rep", "A1large")]
+        pairs += [("A7", "A6"), ("A8", "A6"), ("A8", "A7")]
         for treatment_arm, baseline_arm in pairs:
             if treatment_arm not in arms or baseline_arm not in arms:
                 continue

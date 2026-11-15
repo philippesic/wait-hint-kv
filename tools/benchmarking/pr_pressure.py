@@ -5,14 +5,35 @@ from typing import Any
 
 from tools.benchmarking.pr_workload import _rng, seeded_order
 
-PRESSURE_ARMS = ("A1", "A6", "A7")
 PRESSURE_MODELS = ("D8", "HM")
 SESSIONS = 8
-ADOPTERS = 5
 ABANDONING = 3
 FAST_TTL_MS = 12000
-LONG_TTL_MS = 60000
-LONG_SHARE = 0.05
+PROFILES: dict[str, dict[str, Any]] = {
+    "mixed": {
+        "arms": ("A1", "A6", "A7"),
+        "adopters": 5,
+        "long_share": 0.05,
+        "long_wait": (20.0, 120.0),
+        "long_ttl_ms": 60000,
+    },
+    "adopt": {
+        "arms": ("A1", "A6", "A7", "A8"),
+        "adopters": 7,
+        "long_share": 0.05,
+        "long_wait": (20.0, 120.0),
+        "long_ttl_ms": 150000,
+    },
+    "adopt-long": {
+        "arms": ("A1", "A6", "A7", "A8"),
+        "adopters": 7,
+        "long_share": 0.25,
+        "long_wait": (30.0, 240.0),
+        "long_ttl_ms": 300000,
+    },
+}
+ADOPTERS = PROFILES["mixed"]["adopters"]
+LONG_TTL_MS = PROFILES["mixed"]["long_ttl_ms"]
 MAX_CONTEXT = 5000
 TURN_ALLOWANCE_SECONDS = 20.0
 DRAIN_SECONDS = 60.0
@@ -24,16 +45,23 @@ def _tokens(rng: Any, count: int) -> list[int]:
     return [rng.randrange(1000, 30000) for _ in range(count)]
 
 
-def pressure_schedule(model: str, partition: str, seed: int) -> dict[str, Any]:
-    if model not in PRESSURE_MODELS or partition not in {"pressure-pilot", "pressure"}:
+def pressure_schedule(
+    model: str, partition: str, seed: int, profile: str = "mixed"
+) -> dict[str, Any]:
+    if (
+        model not in PRESSURE_MODELS
+        or partition not in {"pressure-pilot", "pressure"}
+        or profile not in PROFILES
+    ):
         raise ValueError("pressure schedule outside admitted models or partitions")
+    shape = PROFILES[profile]
     content, gaps, shots = (
         _rng(seed, f"pressure-{label}") for label in ("content", "gaps", "one-shots")
     )
     order = sorted(
         range(SESSIONS), key=lambda index: seeded_order(seed, "adoption", str(index))
     )
-    adopters = set(order[:ADOPTERS])
+    adopters = set(order[: shape["adopters"]])
     abandoning = set(
         sorted(
             range(SESSIONS),
@@ -52,9 +80,9 @@ def pressure_schedule(model: str, partition: str, seed: int) -> dict[str, Any]:
             output = content.randint(32, 96)
             if len(prompt) + output > MAX_CONTEXT:
                 break
-            long_wait = gaps.random() < LONG_SHARE
+            long_wait = gaps.random() < shape["long_share"]
             gap = (
-                gaps.uniform(20.0, 120.0)
+                gaps.uniform(*shape["long_wait"])
                 if long_wait
                 else min(300.0, gaps.lognormvariate(math.log(4.0), 0.8))
             )
@@ -70,7 +98,7 @@ def pressure_schedule(model: str, partition: str, seed: int) -> dict[str, Any]:
                     "post_response_eligible": True,
                     "gap_seconds": gap,
                     "wait_class": "long" if long_wait else "fast",
-                    "hint_ttl_ms": LONG_TTL_MS if long_wait else FAST_TTL_MS,
+                    "hint_ttl_ms": shape["long_ttl_ms"] if long_wait else FAST_TTL_MS,
                 }
             )
             appended = _tokens(content, output) + _tokens(
@@ -120,7 +148,7 @@ def pressure_schedule(model: str, partition: str, seed: int) -> dict[str, Any]:
             }
         )
         arrival += shots.expovariate(1 / ONE_SHOT_MEAN_SECONDS)
-    return {
+    schedule = {
         "schema": "pr-pressure-schedule-v1",
         "model": model,
         "partition": partition,
@@ -132,15 +160,18 @@ def pressure_schedule(model: str, partition: str, seed: int) -> dict[str, Any]:
         "sessions": sessions,
         "one_shots": one_shots,
         "arm_order": sorted(
-            PRESSURE_ARMS, key=lambda arm: seeded_order(seed, "arm-order", arm)
+            shape["arms"], key=lambda arm: seeded_order(seed, "arm-order", arm)
         ),
         "stratum_weights": {"pressure": 1},
         "end_when_sessions_finish": True,
     }
+    if profile != "mixed":
+        schedule["profile"] = profile
+    return schedule
 
 
 def validate_pressure_schedule(schedule: dict[str, Any]) -> None:
-    if set(schedule) != {
+    if set(schedule) - {"profile"} != {
         "schema",
         "model",
         "partition",
@@ -157,6 +188,9 @@ def validate_pressure_schedule(schedule: dict[str, Any]) -> None:
     }:
         raise ValueError("closed pressure schedule required")
     if schedule != pressure_schedule(
-        schedule["model"], schedule["partition"], schedule["seed"]
+        schedule["model"],
+        schedule["partition"],
+        schedule["seed"],
+        schedule.get("profile", "mixed"),
     ):
         raise ValueError("pressure schedule differs from its deterministic generator")

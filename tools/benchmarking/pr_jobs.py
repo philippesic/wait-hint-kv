@@ -30,8 +30,9 @@ POLICIES = {
     "A5": "RequestTTLLRU",
     "A6": "AutomaticHoldLRU",
     "A7": "PostResponseLRU",
+    "A8": "AutomaticHoldLRU",
 }
-VARIANT_ARMS = frozenset({"A6", "A7"})
+VARIANT_ARMS = frozenset({"A6", "A7", "A8"})
 MODEL_REVISIONS = {
     "D8": "4da05a8edb55c6046cce958586c33b61da07bb79",
     "HM": "d3e78b50c727b1f34802f440ca84b25781625352",

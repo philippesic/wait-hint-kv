@@ -134,12 +134,15 @@ def main() -> int:
         "--partition", choices=("pressure-pilot", "pressure"), required=True
     )
     pr_pressure.add_argument("--seed", type=int, required=True)
+    pr_pressure.add_argument(
+        "--profile", choices=("mixed", "adopt", "adopt-long"), default="mixed"
+    )
     pr_pressure.add_argument("--out", type=Path, required=True)
     pr_client = sub.add_parser("pr-client-native")
     pr_client.add_argument("--schedule", type=Path, required=True)
     pr_client.add_argument(
         "--arm",
-        choices=("A1", "A2", "A3", "A4t", "A3p", "A4p", "A5", "A6", "A7"),
+        choices=("A1", "A2", "A3", "A4t", "A3p", "A4p", "A5", "A6", "A7", "A8"),
         required=True,
     )
     pr_client.add_argument("--url", required=True)
@@ -326,7 +329,7 @@ def main() -> int:
             validate_pressure_schedule,
         )
 
-        result = pressure_schedule(args.model, args.partition, args.seed)
+        result = pressure_schedule(args.model, args.partition, args.seed, args.profile)
         validate_pressure_schedule(result)
         write_record(args.out, result)
         print(
