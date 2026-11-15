@@ -1,0 +1,811 @@
+{
+  "budget_stop": {
+    "path": "artifacts/runs/pr-evidence-runtime-03/d8-decision-budget-stop-03.json",
+    "sha256": "670880cff1cc7f77f78b038a77a565224643bb5cf2b8b2cf4bdfec0076186453"
+  },
+  "calibration": {
+    "path": "benchmarks/pr-evidence/calibration/D8.json",
+    "sha256": "a8456f5211eaccc94aa48bed4141f970e2aa92aa77e86af0e85c471aca3fc338"
+  },
+  "capture_campaign": {
+    "path": "benchmarks/pr-evidence/2080ti-screen-capture.json",
+    "sha256": "1996cb9649064be5f411739a09f179f1ece70813bdc2e2d453476ff7dccd03e3"
+  },
+  "cells": [
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a5-pool1-03/admission.json",
+        "sha256": "a758995d086e85fbabacad19ecc6757e819309b35e44a9eaa227e5ef4f5d90e4"
+      },
+      "arm": "A5",
+      "capture_failures": 0,
+      "complete_requests": 79,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 478.00968684,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a5-pool1-03",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a5-pool1-03-metrics.json",
+        "sha256": "9e8cc13be71cbbaba864c8ec02a7c8f367b17dc8811c0ae276a586d5005a2875"
+      },
+      "minimum_available_bytes": 10613018624,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 47,
+      "planned_requests": 79,
+      "seed": 12101,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 9,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a5-pool1-03/terminal.json",
+        "sha256": "45c074c12248c8f494b9e7a7b2ac0be3d187485c4df3c5f5bbd813ae2a817c68"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a5-pool1-03-verification.json",
+        "sha256": "5abe3312431693c28cfed3e9bbadc76c76970d1f3f1e357b1a4cceffd1662267"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a3-pool1-03/admission.json",
+        "sha256": "da039e73a4982dd165b5c248f6c3ce1f724e2033727b662ef5de268c26d745a8"
+      },
+      "arm": "A3",
+      "capture_failures": 0,
+      "complete_requests": 79,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 475.589348491,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a3-pool1-03",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a3-pool1-03-metrics.json",
+        "sha256": "e42f1f3f4b00470d7337d200714a992cba126f50ccfbf301e50f9617058b807c"
+      },
+      "minimum_available_bytes": 10461970432,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 79,
+      "seed": 12101,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 4,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a3-pool1-03/terminal.json",
+        "sha256": "94073c487e0734e34f8c3938dffd553e726be034b3391ed19bcb7665da6cb318"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a3-pool1-03-verification.json",
+        "sha256": "e5ccb949491b0b42be00e13165b0d377e36182e0a45a6cacfec434b3623fe739"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a3p-pool1-03/admission.json",
+        "sha256": "b373bc9c769a0ec222bf0eb2986ae8d313809476de380fb2f890b4c1b6eac1d9"
+      },
+      "arm": "A3p",
+      "capture_failures": 0,
+      "complete_requests": 79,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 476.897463801,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a3p-pool1-03",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a3p-pool1-03-metrics.json",
+        "sha256": "cea29f46afb31cbdbebd6f7ffd237c8b8d27ea408f401f262323e8d9401a71a5"
+      },
+      "minimum_available_bytes": 10615652352,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 79,
+      "seed": 12101,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 9,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a3p-pool1-03/terminal.json",
+        "sha256": "166ea1aea86722cd6c3dc0060a8f135677975e1c047689ded58ae9c088a806ca"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a3p-pool1-03-verification.json",
+        "sha256": "43e73a8cb30247e7fe923d73b76997fb1327fb0db50b9a560b5624f6b4170693"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a1-pool1-03/admission.json",
+        "sha256": "5eb204b4af95f370b96ed9bfff6e038a413d3c5db776f422a3f510c5f4385ff5"
+      },
+      "arm": "A1",
+      "capture_failures": 0,
+      "complete_requests": 79,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 475.241728117,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a1-pool1-03",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a1-pool1-03-metrics.json",
+        "sha256": "17c1ef962f70d24466b61958101991d6926290394decc3c67f2f02fd16799cdd"
+      },
+      "minimum_available_bytes": 10573414400,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 79,
+      "seed": 12101,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 8,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a1-pool1-03/terminal.json",
+        "sha256": "2674be24fe8f696f484f66e22a459a94a904ede82cd0ff3d936e3c5407c5ccc4"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a1-pool1-03-verification.json",
+        "sha256": "c1fb4a2ba9eb033846d777d97b33f36803317520269e7c3815b581ad4f3d73ad"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a4t-pool1-03/admission.json",
+        "sha256": "bc7ce96100e81a304cf668d7fb14a212d0dbe5d412ea0e77eda1c474b7461fbe"
+      },
+      "arm": "A4t",
+      "capture_failures": 0,
+      "complete_requests": 79,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 476.473418326,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a4t-pool1-03",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a4t-pool1-03-metrics.json",
+        "sha256": "2e5136cafbed7fc57992dabd3b7e25823be07e2dfe2a60351e9834a9fb093b43"
+      },
+      "minimum_available_bytes": 10598719488,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 56,
+      "planned_requests": 79,
+      "seed": 12101,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 10,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a4t-pool1-03/terminal.json",
+        "sha256": "49e29d8d94da549318ec2e3ac4bce7dac735b64bd5f6cc2b63d14344178a5e13"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a4t-pool1-03-verification.json",
+        "sha256": "885b7bd30b52cc02065a61be95fe79a9a45e8d19dbe08c92e612439014540a7e"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a4p-pool1-03/admission.json",
+        "sha256": "5c091ef75f7f9331cc3f62ac75eecbbca09e3f36b206e38f8168087d8db71d32"
+      },
+      "arm": "A4p",
+      "capture_failures": 0,
+      "complete_requests": 79,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 476.844149705,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a4p-pool1-03",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a4p-pool1-03-metrics.json",
+        "sha256": "50192065ac8aab1a10af6ffcf20d93af45afba2e8591452049f341d95c2bd6c9"
+      },
+      "minimum_available_bytes": 10438012928,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 14,
+      "planned_requests": 79,
+      "seed": 12101,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 8,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a4p-pool1-03/terminal.json",
+        "sha256": "6c65ecbb55cb6d9f9464ea9a624f0478d5871ecc07650844f6bc64befdc76fbe"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a4p-pool1-03-verification.json",
+        "sha256": "137bd7f0da86577bc6e150119c021e3e4bb4540805919247b695182a8c3ab5ef"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a2-pool1-03/admission.json",
+        "sha256": "4aaa96ebae3b0d63d0ccccadfcf065adb5ebf9e91254b03400bb9e686082f98c"
+      },
+      "arm": "A2",
+      "capture_failures": 0,
+      "complete_requests": 79,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 476.898915627,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a2-pool1-03",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a2-pool1-03-metrics.json",
+        "sha256": "2b1f9f85ea5044903d3ee9206756799433ba4abc73eda464827ae339871eef02"
+      },
+      "minimum_available_bytes": 10427580416,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 79,
+      "seed": 12101,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 9,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12101-a2-pool1-03/terminal.json",
+        "sha256": "02af357b1c501c06085850443205d4d7296684f69c9edbc48a7e38b27dc62d73"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a2-pool1-03-verification.json",
+        "sha256": "4be5db767b6399ffba238fbcde99828f57fcc944c9b20f7b9a9ac4cb38e7e964"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a5-pool1-01/admission.json",
+        "sha256": "7331116140750669716203e6e4f620412d45b8d844187217003db63a0e0c8bff"
+      },
+      "arm": "A5",
+      "capture_failures": 0,
+      "complete_requests": 67,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 475.289460419,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a5-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a5-pool1-01-metrics.json",
+        "sha256": "5df6394de74371c4fe546e009d5d91bede941415069fef78c434ce07b22dad53"
+      },
+      "minimum_available_bytes": 10614222848,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 55,
+      "planned_requests": 67,
+      "seed": 12102,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 4,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a5-pool1-01/terminal.json",
+        "sha256": "990783077657aaeb99965b92a9936169a06f0a0f17714ae132532cdfb8acc634"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a5-pool1-01-verification.json",
+        "sha256": "1cafd72c443d1fb4712ba6d090de205fb1197fd41948aed546eb4b6412741ffc"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a1-pool1-01/admission.json",
+        "sha256": "aea4ca409043c4e85813fa2537c6f852b09395808ba273c568e5c352a6c63da0"
+      },
+      "arm": "A1",
+      "capture_failures": 0,
+      "complete_requests": 67,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 475.9649462,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a1-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a1-pool1-01-metrics.json",
+        "sha256": "fda449ab09699958bed6b487f488a9d7412a37eec2e08d0e72dd01f02fb81107"
+      },
+      "minimum_available_bytes": 10479058944,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 67,
+      "seed": 12102,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 7,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a1-pool1-01/terminal.json",
+        "sha256": "719e2635f0459780b615a45d1e603165cbc406cf2a5998a4e2f64decea088a73"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a1-pool1-01-verification.json",
+        "sha256": "6e97265524359e5515a9f82cbb754c17d5877ae529f752fb5ff21ca044f3eeb2"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a2-pool1-01/admission.json",
+        "sha256": "9c34c2d9dbe63c572b2a299ecb8a9050da56070a23f1f40824538ded182e9e14"
+      },
+      "arm": "A2",
+      "capture_failures": 0,
+      "complete_requests": 67,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 474.575463449,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a2-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a2-pool1-01-metrics.json",
+        "sha256": "398e083e7245a5cac38d542fd705176f688a7304f30af860d4ab655a31e154bc"
+      },
+      "minimum_available_bytes": 10568699904,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 67,
+      "seed": 12102,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 4,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a2-pool1-01/terminal.json",
+        "sha256": "c12384e5b7019b7c877f2a822d6bfb14fd4cd03cafe0baf4f85d47c952b0ef3f"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a2-pool1-01-verification.json",
+        "sha256": "3e3a111210f0999bedbdcfadbb66e5156a88be4f1511ba911676340c4013ce68"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a4t-pool1-01/admission.json",
+        "sha256": "6cadcc673c822f35874d4f6f7ffa4d85025ec4050110f9bc456b96d380613acd"
+      },
+      "arm": "A4t",
+      "capture_failures": 0,
+      "complete_requests": 67,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 476.368765676,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a4t-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a4t-pool1-01-metrics.json",
+        "sha256": "ac04b851c62ac63837b2402bbdd076ff0edb296d2eb4110840327af63f869fab"
+      },
+      "minimum_available_bytes": 10415149056,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 33,
+      "planned_requests": 67,
+      "seed": 12102,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 4,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a4t-pool1-01/terminal.json",
+        "sha256": "350347a9e6ceb56971d6660fbf6f72cbce01e82ebd5b643e4aefcc1a309392bd"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a4t-pool1-01-verification.json",
+        "sha256": "5a02c862c6f05186b1511097e68f163193547210fa6ffc05cabda86b734ec9f3"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a4p-pool1-01/admission.json",
+        "sha256": "9d95c57335773b3e573a0096e4feab629a37a08e5ef752faae2714630b1ab41b"
+      },
+      "arm": "A4p",
+      "capture_failures": 0,
+      "complete_requests": 67,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 475.773398394,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a4p-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a4p-pool1-01-metrics.json",
+        "sha256": "06b84bf4bbc708c2ffd56a4fe92e2daf7a6c29da1f91e7ec01ef3a35e75860f6"
+      },
+      "minimum_available_bytes": 10349740032,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 35,
+      "planned_requests": 67,
+      "seed": 12102,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 4,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a4p-pool1-01/terminal.json",
+        "sha256": "7b01fb2566560535c4d880ac51cfb7ad499664a7d67be15af15e638747bca859"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a4p-pool1-01-verification.json",
+        "sha256": "d9167bbd7559d20016a5d07bbcceeabad3566369274ef5eea6030fbc77e5cd31"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a3-pool1-01/admission.json",
+        "sha256": "0a9bc8201bd7b97115f741fb26693b0f4e5cf7aabbc50a4e1e767ed7f7011b3e"
+      },
+      "arm": "A3",
+      "capture_failures": 0,
+      "complete_requests": 67,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 477.403686337,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a3-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a3-pool1-01-metrics.json",
+        "sha256": "5a46e09d32134cdc691a9e05c0ead007ee9cbf2d696623dcc1a19ae913dd95e5"
+      },
+      "minimum_available_bytes": 10536435712,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 67,
+      "seed": 12102,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 5,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a3-pool1-01/terminal.json",
+        "sha256": "8da5fb96e57067f9557386349a494203d74ebf40390277b944a5b977b1dcbf1a"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a3-pool1-01-verification.json",
+        "sha256": "e47528de3d61a0a4a5ccac084d427a194f3d5766713cba64e7baafc48105908f"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a3p-pool1-01/admission.json",
+        "sha256": "7b8f6bdbe91eeeee080109fcd7b039e9e69025cdccc5a564f778d9c07752bf5e"
+      },
+      "arm": "A3p",
+      "capture_failures": 0,
+      "complete_requests": 67,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 476.009857741,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a3p-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a3p-pool1-01-metrics.json",
+        "sha256": "1a0af4c8ae2e994c3906266343c3745ad17b2ec56f12e9206cc6b3a5b1687c06"
+      },
+      "minimum_available_bytes": 10513240064,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 67,
+      "seed": 12102,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 5,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12102-a3p-pool1-01/terminal.json",
+        "sha256": "512270ab2c9f0430249aaf3c55c6e80e1a8c18a541ce99d2310e66f91a013059"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12102-a3p-pool1-01-verification.json",
+        "sha256": "3a9bfc7f5c826b59fd61a247bf574fca3a4c46db37329349c84d0b8c71fc0003"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a2-pool1-01/admission.json",
+        "sha256": "4c8d56b79562b54fc516cd3b9f6098f14066b4012c48af56975651b4fce5bb8c"
+      },
+      "arm": "A2",
+      "capture_failures": 0,
+      "complete_requests": 83,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 475.495354599,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a2-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a2-pool1-01-metrics.json",
+        "sha256": "8e78845dc8164fbce6130bf493daf2127d2f186365ced8f852f1c0bd8eb5a4b2"
+      },
+      "minimum_available_bytes": 10485186560,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 83,
+      "seed": 12103,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 16,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a2-pool1-01/terminal.json",
+        "sha256": "5b8ca6b7ef897365b49415ffbae41cbb3cb069faf84f690116456867604f8fd2"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a2-pool1-01-verification.json",
+        "sha256": "8881cec692c2b990b566240456cb524de90b8c12aea2b00a33948d4b5f07d277"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a4t-pool1-01/admission.json",
+        "sha256": "5aa816574821e40384ff203ff43523c529403591477dad44dec94857d0889ec8"
+      },
+      "arm": "A4t",
+      "capture_failures": 0,
+      "complete_requests": 83,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 475.560208201,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a4t-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a4t-pool1-01-metrics.json",
+        "sha256": "403ea3b21d04fbd77c18f0f6eef1272a0f1b48cb3defdcb67a850d3b3da414a8"
+      },
+      "minimum_available_bytes": 10591535104,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 34,
+      "planned_requests": 83,
+      "seed": 12103,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 15,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a4t-pool1-01/terminal.json",
+        "sha256": "5ee82952d91dc8c14b2ed2db577adca16a9b36dbbccc8f36186f53c919f7c18d"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a4t-pool1-01-verification.json",
+        "sha256": "12011320e7500c794e9b960c4b93e6400487521faea735816115026f574857bb"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a3-pool1-01/admission.json",
+        "sha256": "ef59dd9490ca83819df1c9d2ae03618d9ea9e5d2895bb4dd33877b74d9710cb8"
+      },
+      "arm": "A3",
+      "capture_failures": 0,
+      "complete_requests": 83,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 477.966694517,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a3-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a3-pool1-01-metrics.json",
+        "sha256": "17f29a892eb3337ce12580e5287dc1e91027af64de0e87461e37f50a5ee31bd6"
+      },
+      "minimum_available_bytes": 10522525696,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 83,
+      "seed": 12103,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 12,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a3-pool1-01/terminal.json",
+        "sha256": "046875ea64406e36d23ccccfaceec52a3df04778da763c08c61d80721f2fc5fd"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a3-pool1-01-verification.json",
+        "sha256": "e0d49d08b89e5a308b26570d409d61f17bbbc12abf79f5859c50fea753759f09"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a4p-pool1-01/admission.json",
+        "sha256": "90b3453ae4cc7bdaf4adfc87622b7d71054df3ca5b6afc52525352362b9ad6bc"
+      },
+      "arm": "A4p",
+      "capture_failures": 0,
+      "complete_requests": 83,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 475.268862684,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a4p-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a4p-pool1-01-metrics.json",
+        "sha256": "a2a87e9bfd267ecb8d3289c79e3b2868781471de781b8173e8f0937ac90c0c18"
+      },
+      "minimum_available_bytes": 10550669312,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 24,
+      "planned_requests": 83,
+      "seed": 12103,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 15,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a4p-pool1-01/terminal.json",
+        "sha256": "cd77834251343836f9bfafab81a539a506b02976b0136bb563fbf32bf2dd2311"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a4p-pool1-01-verification.json",
+        "sha256": "c4ecd64b69da36e44d245732859666e48bb865c79551e5e5ad1388a78cf45234"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a1-pool1-01/admission.json",
+        "sha256": "541a8f0dfb98d7a002769ab37ce090109077c66fd5cb0e0fbcd3933e9b6a0254"
+      },
+      "arm": "A1",
+      "capture_failures": 0,
+      "complete_requests": 83,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 476.222283004,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a1-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a1-pool1-01-metrics.json",
+        "sha256": "2f7fe62c821fe1b6020937672f23115a86427e4dc5301f6ad1b1814edf174fdc"
+      },
+      "minimum_available_bytes": 10633314304,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 83,
+      "seed": 12103,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 17,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a1-pool1-01/terminal.json",
+        "sha256": "f39f3ef7eb772f6f20549f63b6edb060d0fea1cefe1985e1eb7fdb9ef721535e"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a1-pool1-01-verification.json",
+        "sha256": "5455fdc1df6623dd89f1ece8f684807311130db302d8acc19615168b46bc7567"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a5-pool1-01/admission.json",
+        "sha256": "c02f8a936d3f6c5b5803a56fe7e69cdfba058aae3e5282f693803fb3bc324660"
+      },
+      "arm": "A5",
+      "capture_failures": 0,
+      "complete_requests": 83,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 475.347657877,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a5-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a5-pool1-01-metrics.json",
+        "sha256": "2e7fa3cefe8b8f9161356e295c9dd5fc506edef457758344fe08055dc5db7877"
+      },
+      "minimum_available_bytes": 10634690560,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 40,
+      "planned_requests": 83,
+      "seed": 12103,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 10,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a5-pool1-01/terminal.json",
+        "sha256": "876906b3df97cbadaa42f22cfef67e83e95da057f970435cf3b8d5cbeeb900b6"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a5-pool1-01-verification.json",
+        "sha256": "33e9e7f443b9485b78d5b30e7df7df430578fb68b020801ae4ab482a7c8d89ea"
+      }
+    },
+    {
+      "admission": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a3p-pool1-01/admission.json",
+        "sha256": "fcd61050a5b8ea4b47325ad2414bbd8d61969635a3ee8a0544e34773970f03e1"
+      },
+      "arm": "A3p",
+      "capture_failures": 0,
+      "complete_requests": 83,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 476.983478383,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "job": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a3p-pool1-01",
+      "metrics": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a3p-pool1-01-metrics.json",
+        "sha256": "efc0e4301fd1ac460f16ccaf076a32a73154f4f4acc5c0b9c760c1f0fdbe276d"
+      },
+      "minimum_available_bytes": 10570305536,
+      "one_shot_failures": 0,
+      "owned_swap_growth_bytes": 0,
+      "peak_held_chunks": 0,
+      "planned_requests": 83,
+      "seed": 12103,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 12,
+      "terminal": {
+        "path": "artifacts/runs/pr-evidence-2080ti/jobs/w1-d8-decision-12103-a3p-pool1-01/terminal.json",
+        "sha256": "2e9feff5c2d9dbac0b8132e2a05a31cc46fe54399f2ea54cb7b502e91f8a3832"
+      },
+      "verification": {
+        "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12103-a3p-pool1-01-verification.json",
+        "sha256": "895c8c3a127c3445627568027c62883b9c5940e2e833c7685279d8cfe48c09ff"
+      }
+    }
+  ],
+  "first_valid_block_requote": {
+    "path": "artifacts/runs/pr-evidence-runtime-03/d8-first-valid-block-requote-03.json",
+    "sha256": "5f191f1ada3197dc175b0b0d201a4db311cd2efe234fdc8ec8f6a24fdaca85a0"
+  },
+  "invalid_attempts": {
+    "path": "benchmarks/pr-evidence/2080ti-screen-invalid-attempts.json",
+    "sha256": "9ec93cb11e72d2d1ea7a6d284091812a78a9df7be3cb780d012c2bd77c47e423"
+  },
+  "model": "D8",
+  "not_run_decision_seeds": [
+    12104,
+    12105,
+    12106,
+    12107,
+    12108
+  ],
+  "remaining_screen_seconds": 1751.5609082859955,
+  "schema": "pr-screen-acquisition-v1",
+  "scope": "Three complete paired decision seeds, all seven arms, no treatment speedup inspected to choose coverage. All invalid attempts retained and charged. Acquisition validity does not determine efficacy or harm verdicts.",
+  "source_revision": "d82776aea4bddb4c2ab4c9a70d1f9c87ca290078",
+  "spent_seconds": {
+    "admission": 1905.0253308830002,
+    "screen": 27048.439091714004
+  },
+  "valid_blocks": [
+    {
+      "path": "artifacts/runs/pr-evidence-runtime-03/d8-decision-12101-pool1-block-03.json",
+      "sha256": "f310e2ed4f88e7b8b3852340c717557e1e4dd1c2d57c36661cb7a1e352695089"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-runtime-03/d8-decision-12102-pool1-block-03.json",
+      "sha256": "941972d282658cf19c048f1ff9649be2a223f0be651a970994f9c411148281d3"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-runtime-03/d8-decision-12103-pool1-block-03.json",
+      "sha256": "44dd5bcddaef7b0f093027e73ac4e98fb79e5b33dff9a25b9b9fc27977f74947"
+    }
+  ],
+  "workload": "W1"
+}

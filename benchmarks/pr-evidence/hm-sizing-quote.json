@@ -1,0 +1,43 @@
+{
+  "admission_geometry_job": "artifacts/runs/pr-evidence-2080ti/jobs/admission-hm-a2-02",
+  "arm": "A2",
+  "arrival_rate": 0.2,
+  "budget_rule": "Baseline-only sizing jobs are admitted sequentially only when each840+60-second reservation fits the actual remaining ledger. These are not selected arms of a paired decision block. All three sizing jobs are required to derive a rate; partial calibration remains explicit. No lowering of startup allowance.",
+  "capacity_basis": "Four admitted groups,320 tokens/chunk,10485760 bytes/chunk. Conservatively count ceil(6144/320) chunks in every group, including unreachable recurrent history. This upper bound fits the smallest1GiB candidate.",
+  "cleanup_reserve_seconds": 60,
+  "downstream": "After sizing, derive and freeze rates/horizon only if all three seeds complete with valid measurements. Then assess each native ARC working-set calibration job against remaining budget. No paired all-arm or decision block starts unless its complete quote fits.",
+  "horizon_seconds": 240,
+  "largest_conversation_conservative_bytes": 838860800,
+  "maximum_job_seconds": 840,
+  "model": "HM",
+  "one_shot_rate": 0.0,
+  "partition": "calibration",
+  "per_job_reserve_seconds": 900,
+  "reference_pool_gib": 1,
+  "remaining_screen_seconds": 1751.5609082859955,
+  "schedules": {
+    "12001": {
+      "path": "artifacts/runs/pr-evidence-runtime-03/hm-sizing-12001-schedule.json",
+      "planned_requests": 60,
+      "sha256": "eacc7adda72691b989d9a99d119b42204178329f87baa4229e8ce35d7f21c77f"
+    },
+    "12002": {
+      "path": "artifacts/runs/pr-evidence-runtime-03/hm-sizing-12002-schedule.json",
+      "planned_requests": 61,
+      "sha256": "44bbc2d2b8e7d6ea3409f6830b6a15efc3873b41a9f7bc151292fdda338c5469"
+    },
+    "12003": {
+      "path": "artifacts/runs/pr-evidence-runtime-03/hm-sizing-12003-schedule.json",
+      "planned_requests": 52,
+      "sha256": "e1731bc7c9e95494ccdbda9c82a2e13bd07e380e4e9205718a6c4c3419934cb3"
+    }
+  },
+  "schema": "pr-initial-sizing-quote-v1",
+  "seeds": [
+    12001,
+    12002,
+    12003
+  ],
+  "three_job_upper_quote_seconds": 2700,
+  "workload": "W1"
+}
