@@ -66,6 +66,10 @@ def run_manifest(manifest_path: Path, retries: int = 1) -> dict[str, Any]:
     for job in manifest["jobs"]:
         if set(job) != JOB_FIELDS:
             raise ValueError("closed discussion job required")
+        if (campaign / "STOP").exists():
+            summary["stopped"] = {"reason": "STOP file present"}
+            _log(campaign, {"stopped": "STOP file present"})
+            return summary
         attempts = _attempts(campaign, job["name"])
         done = [item for item in attempts if item["status"] == "client_complete"]
         while not done and len(attempts) <= retries:
@@ -102,6 +106,11 @@ def run_manifest(manifest_path: Path, retries: int = 1) -> dict[str, Any]:
                     return summary
             _log(campaign, {"job": attempt, "status": terminal["status"]})
             attempts.append({"name": attempt} | terminal)
+            if terminal["status"] == "interrupted" or "GPU block override" in str(
+                terminal["detail"]
+            ):
+                summary["stopped"] = {"job": attempt, "reason": terminal["status"]}
+                return summary
             done = [item for item in attempts if item["status"] == "client_complete"]
         if done:
             _measure(campaign, done[0]["name"])

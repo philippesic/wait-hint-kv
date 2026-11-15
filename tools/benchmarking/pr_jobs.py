@@ -543,6 +543,17 @@ def run_gpu_job(
                 if server.poll() is not None:
                     detail = f"server exited {server.returncode}"
                     break
+                if gpu_blocks is not None and client is None:
+                    override = re.search(
+                        r"Overriding num_gpu_blocks=(\d+) with num_gpu_blocks_override=(\d+)",
+                        (output / "server.log").read_text(errors="replace"),
+                    )
+                    if override and int(override[2]) > int(override[1]):
+                        status, detail = (
+                            "resource_exhaustion",
+                            "GPU block override exceeds available KV memory",
+                        )
+                        break
                 if client is None:
                     try:
                         request(f"http://127.0.0.1:{port}/v1/models", timeout=1)
