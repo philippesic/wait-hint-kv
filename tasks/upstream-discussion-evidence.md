@@ -20,11 +20,22 @@ separately authorized acquisition has run; the result is closed through the resu
 profile with the claim limits the thread must state.
 
 ## State
-### Why the 2080 Ti screen could not answer
-- D8's GPU KV cache held 17,920 tokens (~2.5 GiB) against a 0.82 GiB time-averaged
-  working set; the 1 GiB CPU pool was 1.3x. Only 576 of 191,296 hinted tokens came from
-  CPU. Burst pressure and allocation refusals still occurred.
-- It is a valid low-opportunity regular-case observation with three seeds.
+### Execution (2026-11-15)
+- Tooling committed: pressure schedules, A6/A7 variant arms, discussion campaign caps
+  (pilot 3 h, decision 13 h, total 16 h), `pr-discussion-run` driver and
+  `pr-discussion-report`. GPU jobs run from the detached worktree
+  `artifacts/checkouts/discussion-runner`; its campaign is
+  `artifacts/checkouts/discussion-runner/artifacts/runs/discussion-2080ti`.
+- Pilot facts: D8 GPU KV capped at 195 blocks (12,480 tokens; D8 uses 64-token blocks,
+  a 780-block attempt oversubscribed and was interrupted and retained); HM at 48 blocks
+  (11,342 tokens). Mean working set D8 2.45/1.53 GiB (seeds 21001/21002), HM 0.46/0.38
+  GiB. At half-working-set pools, A1 recomputed 83% (D8) and 90% (HM) of hinted
+  prefixes; a 6 GiB D8 pool recomputed 0%.
+- Pilot finding: with the frozen release rule, A6/A7 matched A1 (D8 82%/81%, HM 90%).
+  Event traces show every hold released within 0.3-2.6 s of the returning request's
+  arrival, then evicted during 6-24 s of queueing before lookup. Fixed only in
+  `policy_variants.py` (return-aware release, commit c87aeb77); frozen files unchanged.
+  Pilot round 3 tests the fix and a 2 GiB D8 pool.
 
 ### Plan (revision 4, after debate with GPT-6.1 Sol)
 - Claims: C1 hints cut hinted-return recompute and TTFT under pressure (LRU pair);
