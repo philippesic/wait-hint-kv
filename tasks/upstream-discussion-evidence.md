@@ -52,6 +52,11 @@ profile with the claim limits the thread must state.
   same frozen calibration and generator). It starts automatically after the decision
   driver exits and stops when the 13 h decision cap refuses a job; unpaired cells are
   excluded from paired comparisons.
+- Two HM cells (22003 A1, 22004 A7) had one client `transport_error` each: a connection
+  reset 1-3 ms after submission that the server never received (keep-alive race after
+  long waits). Commit d4dc272f closes idle client connections after 2 s (server 5 s);
+  the cells are set aside in the campaign's `metrics-invalid/` and rerun first in the
+  extension. All other cells had no failed requests.
 
 ### Plan (revision 4, after debate with GPT-6.1 Sol)
 - Claims: C1 hints cut hinted-return recompute and TTFT under pressure (LRU pair);

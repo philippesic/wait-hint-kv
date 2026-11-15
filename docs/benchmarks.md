@@ -618,7 +618,8 @@ decision 13 h) reuses the frozen-main job lifecycle for two workloads; the open 
   Hints use the post-response route with a 12 s (fast) or 60 s (long, the frozen server
   clamp) hold. The cell ends when every session finishes; one-shots not yet started are
   recorded as `not_started` and leave the denominators. Validation regenerates the
-  schedule from its identity.
+  schedule from its identity. The client closes idle keep-alive connections after 2 s
+  so long waits cannot reuse a connection the server (5 s keep-alive) is closing.
 - Arms: A1 stock LRU, A6 `AutomaticHoldLRU` (12 s hold from every request's finish, no
   client hint) and A7 `PostResponseLRU` (post-response hints, patched runtime), both in
   `wait_hint_offload.vllm_adapter.policy_variants`; the frozen policy files are unchanged.
