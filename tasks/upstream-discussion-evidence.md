@@ -143,24 +143,29 @@ Primary metric and rules:
   - otherwise "unresolved".
 - If A9o helps but A9 does not, the open problem is information availability.
 
-### Screening test (agreed 2026-11-15 with Philip; reviewed with GPT-6 Astra, both AGREE)
-Philip's framing: opt-in deployments first; compare stock LRU, automatic hold and the
-candidate across a little-benefit, a shine and a could-it-hurt workload; about 2 h, soft.
-- A9o dropped. Full A9 deferred: its protocol bump trips the Stage 1 freeze check.
-- Arms: A1; A6s `StrengthenedHoldLRU` (30 s automatic hold plus S1, S1b and S2 with age
-  ordering); A9s = same policy on the post-response runtime with existing `cancel` after
-  one-shots and known-final turns plus long-class hints, no fast-class hints. A9s
-  results speak only to release plus long-wait advice; a null does not reject full A9.
-- Matrix (D8, 195 blocks, schedule arm order, manifest
-  `artifacts/runs/discussion-plan/manifest-screen.json`): adopt 23001 at 2,048 MiB,
-  adopt-long 23003 at 2,048 MiB, adopt 23001 at 1,254 MiB; three arms each, 9 jobs. If
-  late, drop the whole 1,254 MiB group and report the gap.
-- The cap-exit check uses the A6s cells' `arrived_hold_refused` and
-  `arrived_partial_hold` counts against `return_pending`.
-- Report, descriptive only: hinted-return recompute ratio and TTFT, the non-hinting
-  session, one-shot TTFT and offered or not-started counts, failures, mechanism counts,
-  and how many >30 s returns were hinted (adopt 23001 plans 2, adopt-long 23003 plans 7).
-- No heavy CPU work while cells run.
+### Screening test (done 2026-11-15, 12:47-13:37; reviewed with GPT-6 Astra, both AGREE)
+- Arms: A1; A6s `StrengthenedHoldLRU` (30 s automatic hold, S1, S1b, S2 age ordering);
+  A9s = same policy on the post-response runtime with `cancel` after one-shots and
+  known-final turns plus long-class hints, no fast-class hints. A9o and full A9 were
+  deferred (A9's protocol bump trips the Stage 1 freeze check).
+- 9 of 9 cells complete, no interference flags, no failures. Manifest
+  `artifacts/runs/discussion-plan/manifest-screen.json`; descriptive summary
+  `artifacts/runs/discussion-plan/screen-summary.json`. One seed per workload.
+- Hinted-return recompute, A1 / A6s / A9s:
+  - adopt 23001, 2,048 MiB: 49.8 / 32.2 / 33.3%.
+  - adopt-long 23003, 2,048 MiB: 22.2 / 22.2 / 22.3%. All of it is the 7 long returns
+    (100% recomputed in every arm); short returns had no pressure.
+  - adopt 23001, 1,254 MiB: 67.3 / 44.4 / 47.7%.
+  - Long-class returns were 100% recomputed in every arm and workload.
+- No harm seen against A1. The non-hinting session's recompute was never above A1's,
+  and one-shot median TTFT was not worse (5 non-hinting returns per cell).
+- Why long hints did nothing: each long hint extended its hold to 150-300 s, but newer
+  automatic holds displaced it within 3-30 s. Age ordering puts the longest-waiting
+  hold first in line, and the 50% cap is 113 chunks at 2,048 MiB (69 at 1,254 MiB)
+  against prefixes of up to 78.
+- Cap check: arrived leases truncated by the cap were 4 of 26 at 2,048 MiB but 12 of
+  21 (A6s) and 13 of 25 (A9s) at 1,254 MiB, above the 25% rule. This is a decision for
+  Philip.
 
 ### Large run (only if Philip approves after the screen)
 - `adopt` first: 8 paired seeds x A6s, A9 and A9o (about 120 min).
@@ -187,11 +192,12 @@ candidate across a little-benefit, a shine and a could-it-hurt workload; about 2
   and `proposal-final.md`).
 
 ### Open decisions for Philip
-- After the screen, whether to run the large run.
+- After the screen, whether to run the large run and which follow-up comes first.
 - Framing of the thread: hints as information on top of automatic hold, or a
   server-side return-aware hold with optional release and compaction hints.
 - The cap, if the exit check reaches 25%.
 
 ## Next
-Run `manifest-screen.json` from the runner worktree, then report the screen to Philip.
-Record the final mixed results with `pr-discussion-report` afterwards.
+Philip decides the follow-up after the screen report: an advised-hold precedence fix
+so long hints get a fair test, the cap at the tight pool, or the server-side framing.
+Record the final mixed results with `pr-discussion-report` as well.
