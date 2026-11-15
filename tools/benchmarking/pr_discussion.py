@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import time
 from pathlib import Path
 from typing import Any
@@ -136,11 +137,22 @@ BENEFIT = (
 
 
 def _cell_key(path: Path, cell: dict[str, Any]) -> tuple[str, str, str, int]:
-    workload = (
-        "pressure"
-        if cell.get("schedule_schema") == "pr-pressure-schedule-v1"
-        else "regular"
-    )
+    workload = "regular"
+    if cell.get("schedule_schema") == "pr-pressure-schedule-v1":
+        pool = re.search(r"-p(\d+)-", path.name)
+        if pool is None:
+            raise ValueError(f"pressure metric name lacks a pool level: {path.name}")
+        level = int(pool[1])
+        if "-A1large" in path.name:
+            calibration = json.loads(
+                (
+                    Path(__file__).resolve().parents[2]
+                    / "benchmarks/pr-evidence/pressure"
+                    / (cell["model"] + ".json")
+                ).read_text()
+            )
+            level = calibration["pools_bytes"][0] // 1024**2
+        workload = f"pressure-p{level}"
     arm = cell["arm"]
     if "-A1rep" in path.name:
         arm = "A1rep"

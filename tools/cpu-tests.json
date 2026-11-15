@@ -106,6 +106,7 @@
   "tests/test_pr_jobs.py::test_model_checksum_cache_release_preserves_exact_bytes",
   "tests/test_pr_jobs.py::test_pressure_commands_cap_gpu_and_load_variant_policies",
   "tests/test_pr_jobs.py::test_screen_commands_keep_platform_and_route_controls_matched",
+  "tests/test_pr_pressure.py::test_campaign_report_separates_pool_levels_and_judges_harm",
   "tests/test_pr_pressure.py::test_pressure_schedule_is_deterministic_and_closed",
   "tests/test_pr_pressure.py::test_pressure_turns_share_prefixes_and_carry_class_ttl",
   "tests/test_pr_pressure.py::test_variant_arms_send_no_request_ttl",

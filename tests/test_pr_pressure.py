@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from pathlib import Path
+from typing import Any
+
 import pytest
 
 from tools.benchmarking.pr_pressure import (
@@ -63,3 +66,90 @@ def test_variant_arms_send_no_request_ttl() -> None:
     assert request_payload(schedule, adopter, 0, "A5")["ttl_ms"] == 12000
     for arm in ("A1", "A6", "A7"):
         assert request_payload(schedule, adopter, 0, arm)["ttl_ms"] is None
+
+
+def _metric_cell(arm: str, seed: int, recompute: float, ttft: float) -> dict[str, Any]:
+    rows: list[dict[str, Any]] = []
+    for cohort, count in (
+        ("hinted_return", 4),
+        ("unhinted_return", 3),
+        ("one_shot", 2),
+    ):
+        for index in range(count):
+            rows.append(
+                {
+                    "request_id": f"{cohort}-{index}",
+                    "session_id": f"{cohort}-{index}",
+                    "task": None,
+                    "stratum": "one_shot" if cohort == "one_shot" else "pressure",
+                    "cohort": cohort,
+                    "outcome": "complete",
+                    "wait_class": "fast",
+                    "eligible_tokens": 1000,
+                    "sources": {
+                        "recomputed_tokens": int(1000 * recompute) + index,
+                        "unobserved_tokens": 0,
+                        "cpu_reused_tokens": 0,
+                        "gpu_reused_tokens": 0,
+                    },
+                    "ttft_ns": ttft * (1 + index / 100) * (1 + seed % 7 / 50),
+                    "client_itl_ns": 50.0 + index,
+                }
+            )
+    return {
+        "schema": "pr-cell-metrics-v1",
+        "schedule_schema": "pr-pressure-schedule-v1",
+        "model": "D8",
+        "seed": seed,
+        "arm": arm,
+        "partition": "pressure",
+        "stratum_weights": {"pressure": 1},
+        "requests": rows,
+        "cpu_config": {"num_chunks": 10, "kv_bytes_per_chunk": 1},
+    }
+
+
+def test_campaign_report_separates_pool_levels_and_judges_harm(
+    tmp_path: Path,
+) -> None:
+    import json
+
+    from tools.benchmarking.pr_discussion import campaign_report
+
+    for seed in range(22001, 22005):
+        for pool, arm, recompute, ttft in (
+            (2048, "A1", 0.7, 100.0),
+            (2048, "A7", 0.4, 80.0),
+            (1254, "A1", 0.8, 100.0),
+            (1254, "A7", 0.6, 120.0),
+        ):
+            path = tmp_path / f"press-d8-{seed}-p{pool}-{arm}-a1.json"
+            path.write_text(json.dumps(_metric_cell(arm, seed, recompute, ttft)))
+    report = campaign_report([tmp_path])
+    assert set(report["groups"]) == {"pressure-p2048-D8", "pressure-p1254-D8"}
+    moderate = {
+        (
+            entry["cohort"],
+            entry["metric"],
+            entry["contrast"],
+            entry["wait_class"],
+        ): entry
+        for entry in report["groups"]["pressure-p2048-D8"]["comparisons"]
+    }
+    benefit = moderate[("hinted_return", "recompute", "absolute_change", None)]
+    assert benefit["point"] < -0.25 and "verdict" not in benefit
+    harm = moderate[("unhinted_return", "ttft_ns", "relative_harm", None)]
+    assert harm["verdict"] == "not worse"
+    heavy = {
+        (
+            entry["cohort"],
+            entry["metric"],
+            entry["contrast"],
+            entry["wait_class"],
+        ): entry
+        for entry in report["groups"]["pressure-p1254-D8"]["comparisons"]
+    }
+    assert (
+        heavy[("unhinted_return", "ttft_ns", "relative_harm", None)]["verdict"]
+        == "worse"
+    )
