@@ -1,0 +1,147 @@
+{
+  "aa": {
+    "one_shot_itl": {
+      "delta_interval": [
+        -0.011055224195612556,
+        0.006887820664368771
+      ],
+      "interval": [
+        -0.008479825885962078,
+        0.003731523547879201
+      ],
+      "point": -0.0021240307197029074
+    },
+    "one_shot_ttft": {
+      "delta_interval": [
+        -0.041900880112860306,
+        0.2731893376914287
+      ],
+      "interval": [
+        -0.009156202229759658,
+        0.20583747413697906
+      ],
+      "point": 0.10446438778796674
+    },
+    "unhinted_itl": {
+      "delta_interval": [
+        0.009100155334584192,
+        0.15005196932765674
+      ],
+      "interval": [
+        0.030081169250042672,
+        0.11927764132057006
+      ],
+      "point": 0.07727323409216047
+    },
+    "unhinted_recompute": {
+      "delta_interval": [
+        -0.03311768115571372,
+        0.01048964116681033
+      ],
+      "interval": [
+        -0.032269117800644564,
+        0.0
+      ],
+      "point": -0.011314019994451696
+    },
+    "unhinted_ttft": {
+      "delta_interval": [
+        -0.13264145353403334,
+        -0.06772468611563398
+      ],
+      "interval": [
+        -0.11210374446938076,
+        -0.03592745202771486
+      ],
+      "point": -0.10076868317609922
+    }
+  },
+  "aa_diagnosed": true,
+  "baseline_recompute_share": 0.2038323892670928,
+  "benefit": {
+    "delta_interval": [
+      -0.033135828745303186,
+      0.005083444701733053
+    ],
+    "interval": null,
+    "point": -0.013846112529163568
+  },
+  "blocking_reasons": [],
+  "evidence_paths": [
+    "results/pr-evidence-2080ti/statistics-primary.json",
+    "results/pr-evidence-2080ti/aa-diagnosis.json",
+    "benchmarks/pr-evidence/2080ti-d8-screen.json",
+    "results/pr-evidence-2080ti/diagnostics-manifest.json"
+  ],
+  "harms": {
+    "one_shot_itl": {
+      "delta_interval": [
+        -0.022665159108137156,
+        -0.005496756074885534
+      ],
+      "interval": [
+        -0.026417993843538157,
+        -0.006313187760497718
+      ],
+      "point": -0.014118328769627042
+    },
+    "one_shot_ttft": {
+      "delta_interval": [
+        -0.3068484372257425,
+        0.11059745642484575
+      ],
+      "interval": [
+        -0.25615958104995895,
+        0.04521194149151908
+      ],
+      "point": -0.12261048414401643
+    },
+    "unhinted_itl": {
+      "delta_interval": [
+        -0.03653477745976996,
+        0.26420901275675246
+      ],
+      "interval": [
+        0.016226164791929953,
+        0.36570293839423873
+      ],
+      "point": 0.10364007620829407
+    },
+    "unhinted_recompute": {
+      "delta_interval": [
+        -0.2649173895935829,
+        0.15540347122945555
+      ],
+      "interval": [
+        -0.23824393289187562,
+        0.07925624069690831
+      ],
+      "point": -0.05475695918206369
+    },
+    "unhinted_ttft": {
+      "delta_interval": [
+        -0.284651766450825,
+        0.06601435865021377
+      ],
+      "interval": [
+        -0.20478484371961836,
+        0.15283517377060973
+      ],
+      "point": -0.12674660699285734
+    }
+  },
+  "hint_off_identity": true,
+  "model": "D8",
+  "recompute": {
+    "delta_interval": [
+      -0.04679279792820059,
+      0.07251297323004194
+    ],
+    "interval": null,
+    "point": 0.01286008765092067
+  },
+  "route": "A4t",
+  "schema": "pr-screen-decision-input-v1",
+  "valid": true,
+  "workload": "W1"
+}

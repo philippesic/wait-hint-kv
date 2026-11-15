@@ -1,0 +1,514 @@
+{
+  "capacity_matrix": [
+    {
+      "capacity": 1,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 1,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 1,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 2,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 2,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 2,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 1
+    },
+    {
+      "capacity": 16,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 16,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 4
+    },
+    {
+      "capacity": 16,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 8
+    },
+    {
+      "capacity": 1024,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 1024,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 256
+    },
+    {
+      "capacity": 1024,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLARC",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 512
+    },
+    {
+      "capacity": 1,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 1,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 1,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 2,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 2,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 2,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 1
+    },
+    {
+      "capacity": 16,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 16,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 4
+    },
+    {
+      "capacity": 16,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 8
+    },
+    {
+      "capacity": 1024,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 1024,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 256
+    },
+    {
+      "capacity": 1024,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "RequestTTLLRU",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 512
+    },
+    {
+      "capacity": 1,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 1,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 1,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 2,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 2,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 2,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 1
+    },
+    {
+      "capacity": 16,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 16,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 4
+    },
+    {
+      "capacity": 16,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 8
+    },
+    {
+      "capacity": 1024,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.0,
+      "shared_held_union": 0
+    },
+    {
+      "capacity": 1024,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.25,
+      "shared_held_union": 256
+    },
+    {
+      "capacity": 1024,
+      "failed_store_preserved_holds": true,
+      "feasible_store_succeeded_after_yield": true,
+      "late_ready_did_not_rehold": true,
+      "policy": "PostResponseARC",
+      "reset_cleared": true,
+      "share": 0.5,
+      "shared_held_union": 512
+    }
+  ],
+  "cases": {
+    "AdviceOffARC": {
+      "changed_action_refused": true,
+      "duplicate_replayed": true,
+      "impossible_eviction_preserved_holds": true,
+      "late_ready_hold_keys": 0,
+      "pending_not_held": true,
+      "reset_cleared_metadata": true,
+      "return_released_before_eviction": true
+    },
+    "AdviceOffLRU": {
+      "changed_action_refused": true,
+      "duplicate_replayed": true,
+      "impossible_eviction_preserved_holds": true,
+      "late_ready_hold_keys": 0,
+      "pending_not_held": true,
+      "reset_cleared_metadata": true,
+      "return_released_before_eviction": true
+    },
+    "PostResponseARC": {
+      "changed_action_refused": true,
+      "duplicate_replayed": true,
+      "impossible_eviction_preserved_holds": true,
+      "late_ready_hold_keys": 2,
+      "pending_not_held": true,
+      "reset_cleared_metadata": true,
+      "return_released_before_eviction": true
+    },
+    "RequestTTLARC": {
+      "changed_action_refused": true,
+      "duplicate_replayed": true,
+      "impossible_eviction_preserved_holds": true,
+      "late_ready_hold_keys": 2,
+      "pending_not_held": true,
+      "reset_cleared_metadata": true,
+      "return_released_before_eviction": true
+    },
+    "RequestTTLLRU": {
+      "changed_action_refused": true,
+      "duplicate_replayed": true,
+      "impossible_eviction_preserved_holds": true,
+      "late_ready_hold_keys": 2,
+      "pending_not_held": true,
+      "reset_cleared_metadata": true,
+      "return_released_before_eviction": true
+    }
+  },
+  "diverged_lookup": {
+    "complete_cpu_copy_remains_ready": true,
+    "external_hit_with_512_local_tokens": 0,
+    "external_hit_with_zero_local_tokens": 512,
+    "inference": "core schedule reconciles a diverged local hit when external tokens are zero without retrying the CPU lookup at the reconciled boundary",
+    "ready_cpu_prefix_tokens": 512,
+    "scope": "native offloading scheduler and CPU manager; supplied local-hit boundary, no GPU block-manager execution",
+    "supplied_local_tokens": 512
+  },
+  "endpoint": {
+    "delta_stream_distinguishes_metadata_tokens_and_done": true,
+    "disconnect_aborts_owned_request": true,
+    "request_ttl_and_registration_reach_engine": true,
+    "route_registration": true,
+    "token_ids_pass_through_without_chat_rerendering": true
+  },
+  "extended": {
+    "cancellation_preserves_other_owner": true,
+    "expiry_and_duplicate_do_not_rehold": true,
+    "failed_eviction_preserves_holds": true,
+    "failed_store_never_ready_or_held": true,
+    "gpu_only_shared_prefix_hold": true,
+    "identity_sequences": {
+      "arc": {
+        "disabled": [
+          [],
+          [],
+          [
+            "6100000000"
+          ],
+          [
+            "6300000000",
+            "6500000000"
+          ],
+          [
+            "6400000000",
+            "6600000000"
+          ]
+        ],
+        "stock": [
+          [],
+          [],
+          [
+            "6100000000"
+          ],
+          [
+            "6300000000",
+            "6500000000"
+          ],
+          [
+            "6400000000",
+            "6600000000"
+          ]
+        ]
+      },
+      "lru": {
+        "disabled": [
+          [],
+          [],
+          [
+            "6100000000"
+          ],
+          [
+            "6300000000",
+            "6200000000"
+          ],
+          [
+            "6500000000",
+            "6400000000"
+          ]
+        ],
+        "stock": [
+          [],
+          [],
+          [
+            "6100000000"
+          ],
+          [
+            "6300000000",
+            "6200000000"
+          ],
+          [
+            "6500000000",
+            "6400000000"
+          ]
+        ]
+      }
+    },
+    "shared_union_counted_once": true,
+    "yield_prevents_added_store_failure": true
+  },
+  "geometry": {
+    "forks_preserve_shared_anchor_and_distinct_checkpoints": true,
+    "partial_boundary_matches_native_lookup": true,
+    "partial_tail_requires_every_group_ready": true,
+    "window_uses_selected_boundary_not_unaligned_finish": true
+  },
+  "schema": "pr-policy-observation-v6",
+  "tiering": {
+    "late_store_after_finish_joins_hold": true,
+    "primary_tier_preserves_scheduler_context": true,
+    "return_releases_and_reset_clears": true
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "computed": [
+    {
+      "basis": "interval methods disagree across a threshold",
+      "bca": {
+        "criteria": {},
+        "reason": "missing benefit interval",
+        "verdict": "INCONCLUSIVE"
+      },
+      "delta": {
+        "criteria": {
+          "efficacy_stop": true,
+          "one_shot_itl": true,
+          "one_shot_ttft": true,
+          "positive_benefit": false,
+          "recompute_reduction": false,
+          "unhinted_itl": false,
+          "unhinted_recompute": false,
+          "unhinted_ttft": true,
+          "worthwhile_point": false
+        },
+        "harm_margins": {
+          "one_shot_itl": 0.05,
+          "one_shot_ttft": 0.15754510890214452,
+          "unhinted_itl": 0.07047590699653627,
+          "unhinted_recompute": 0.021803661161262027,
+          "unhinted_ttft": 0.05
+        },
+        "missing_harm_intervals": [],
+        "reason": "benefit interval excludes the minimum worthwhile benefit with opportunity",
+        "verdict": "STOP"
+      },
+      "evidence_paths": [
+        "results/pr-evidence-2080ti/statistics-primary.json",
+        "results/pr-evidence-2080ti/aa-diagnosis.json",
+        "benchmarks/pr-evidence/2080ti-d8-screen.json",
+        "results/pr-evidence-2080ti/diagnostics-manifest.json"
+      ],
+      "model": "D8",
+      "opportunity": true,
+      "route": "A4t",
+      "schema": "pr-screen-decision-v1",
+      "scope": "decision arithmetic; supplied validity, identity and attribution still require receipt review",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W1"
+    },
+    {
+      "basis": "interval methods disagree across a threshold",
+      "bca": {
+        "criteria": {},
+        "reason": "missing benefit interval",
+        "verdict": "INCONCLUSIVE"
+      },
+      "delta": {
+        "criteria": {
+          "efficacy_stop": true,
+          "one_shot_itl": true,
+          "one_shot_ttft": true,
+          "positive_benefit": false,
+          "recompute_reduction": false,
+          "unhinted_itl": true,
+          "unhinted_recompute": true,
+          "unhinted_ttft": true,
+          "worthwhile_point": false
+        },
+        "harm_margins": {
+          "one_shot_itl": 0.05,
+          "one_shot_ttft": 0.2150022347138576,
+          "unhinted_itl": 0.1520257275166435,
+          "unhinted_recompute": 0.21016043041151922,
+          "unhinted_ttft": 0.1657727882507744
+        },
+        "missing_harm_intervals": [],
+        "reason": "benefit interval excludes the minimum worthwhile benefit with opportunity",
+        "verdict": "STOP"
+      },
+      "evidence_paths": [
+        "results/pr-evidence-2080ti/statistics-primary.json",
+        "results/pr-evidence-2080ti/aa-diagnosis.json",
+        "benchmarks/pr-evidence/2080ti-d8-screen.json",
+        "results/pr-evidence-2080ti/diagnostics-manifest.json"
+      ],
+      "model": "D8",
+      "opportunity": true,
+      "route": "A4p",
+      "schema": "pr-screen-decision-v1",
+      "scope": "decision arithmetic; supplied validity, identity and attribution still require receipt review",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W1"
+    }
+  ],
+  "interpretation": "Both INCONCLUSIVE. BCa benefit/recompute intervals are unavailable because some paired-seed draws omit a required prompt stratum; delta alone would STOP. The calculator labels this interval-method disagreement, but two valid conflicting intervals were not observed. No fallback or changed threshold.",
+  "not_admitted": {
+    "HS": "Native GPU KV capacity insufficient at frozen settings; both routes, all workloads not run. No route efficacy verdict."
+  },
+  "schema": "pr-route-verdict-summary-v1",
+  "unmeasured": [
+    {
+      "model": "D8",
+      "opportunity": null,
+      "reason": "Not run within screen budget",
+      "route": "A4t",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W2"
+    },
+    {
+      "model": "D8",
+      "opportunity": null,
+      "reason": "Not run within screen budget",
+      "route": "A4t",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W2-12s"
+    },
+    {
+      "model": "D8",
+      "opportunity": null,
+      "reason": "Not run within screen budget",
+      "route": "A4p",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W2"
+    },
+    {
+      "model": "D8",
+      "opportunity": null,
+      "reason": "Not run within screen budget",
+      "route": "A4p",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W2-12s"
+    },
+    {
+      "model": "HM",
+      "opportunity": null,
+      "reason": "W1 baseline sizing only; comparison not run within budget",
+      "route": "A4t",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W1"
+    },
+    {
+      "model": "HM",
+      "opportunity": null,
+      "reason": "Not run within screen budget",
+      "route": "A4t",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W2"
+    },
+    {
+      "model": "HM",
+      "opportunity": null,
+      "reason": "Not run within screen budget",
+      "route": "A4t",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W2-12s"
+    },
+    {
+      "model": "HM",
+      "opportunity": null,
+      "reason": "W1 baseline sizing only; comparison not run within budget",
+      "route": "A4p",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W1"
+    },
+    {
+      "model": "HM",
+      "opportunity": null,
+      "reason": "Not run within screen budget",
+      "route": "A4p",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W2"
+    },
+    {
+      "model": "HM",
+      "opportunity": null,
+      "reason": "Not run within screen budget",
+      "route": "A4p",
+      "verdict": "INCONCLUSIVE",
+      "workload": "W2-12s"
+    }
+  ]
+}

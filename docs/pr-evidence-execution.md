@@ -4,24 +4,26 @@ The accepted [plan](pr-evidence-plan.md) owns the decision rules. Philip authori
 Stage 1 and the local 2080 Ti admission/screen on 2026-11-13, with a 1-hour admission
 and 8-hour screen ceiling. Later stages and public posting remain unauthorized.
 
-The first five admission attempts stopped during startup on host swap-out while
-owned process swap stayed zero. Subsequent attempts use the committed
-`benchmarks/pr-evidence/2080ti-environment.json`: temporary `vm.swappiness=0`, with
-the original 60 backed up and restored after acquisition. Philip authorized the
-repair on 2026-11-14. This changes no memory limit, headroom requirement, no-swap
-guard or decision threshold. Earlier failures retain their original source and
-environment, and remain charged to the same authorization ledger.
+The authorized 2080 Ti acquisition is closed at 0.529174 admission hours and
+7.756192 screen hours (8.285366 total). D8/W1 has three valid complete decision
+blocks; both ARC routes are INCONCLUSIVE, with no observed benefit and unavailable
+required bootstrap intervals. HM is admitted but only sizing ran; HS is not admitted.
+The [detailed evidence](../results/pr-evidence-2080ti/evidence-notes.md) owns the
+measurements, failures, limits and not-run coverage. No later stage is authorized.
 
-D8/A2-05 reached its first native CPU store and failed with illegal CUDA access.
-The frozen worker still populated copy descriptors with registered mmap host
-addresses, matching the previously isolated device-alias failure in
-[mapped memory](../results/mapped-memory/result.md). The `pr-mapped-host-pointer`
-runtime patch queries each pinned tensor’s CUDA device alias once at allocation
-and uses it as the descriptor base. It applies identically to both runtimes and
-every arm. Its exact original/patched hashes are in the patch manifest and Stage 1
-freeze. This is an additional common runtime compatibility patch, not part of
-either hint route, and precedes all efficacy observations. Native transfers still
-require the current GPU byte/provenance and continuation admission checks.
+Temporary `vm.swappiness=0` was authorized on 2026-11-14 after host swap-growth
+startup stops. The original 60 is restored and the periodic healthcheck is deleted.
+The WSL memory limit, headroom, no-swap guard and decision thresholds stayed fixed.
+The [acquisition close](../benchmarks/pr-evidence/2080ti-acquisition-close.json)
+retains phase accounting and restoration identity. All attempts remain retained.
+
+Both environments carry the common `gemma-turing-main` and
+`pr-mapped-host-pointer` compatibility patches. The latter uses each registered
+host tensor's CUDA device alias as the native copy descriptor base, following the
+[mapped memory](../results/mapped-memory/result.md) failure diagnosis. Only A3p/A4p
+also carry `pr-post-response`. Exact original/patched hashes are frozen in the
+Stage 1 record. Compatibility repairs and affected readmissions preceded performance
+comparison; a pure policy plugin does not imply a wholly unpatched runtime.
 
 ## Implementation estimate before building
 
@@ -43,54 +45,31 @@ hardware evidence before rank agreement; do not build it for this screen.
 Competitor integrations/full-matrix work would add at least several engineering
 days plus separately authorized compute and are outside this phase.
 
-Stage 1 failures are classified per route. If both routes require an interface
-revision, stop before GPU and retain the precise missing contract; do not silently
-expand the delivery patch or revive the old connector as a pure policy plugin.
-
 ## Feasibility boundary
 
-The CPU reproduction uses the exact upstream wheel
-`0.34.0rc1.dev465+ge9281bd93`, in `artifacts/venvs/pr-evidence`. It verifies nine
-relevant installed Python files against the clean frozen checkout. This is an
-isolated wheel installation and CPU interface test, not a local CUDA build or a
-full runtime qualification. The original supported runtime remains unchanged.
+The isolated runtime is the exact upstream wheel
+`0.34.0rc1.dev465+ge9281bd93` in `artifacts/venvs/pr-evidence`, with matching post
+installation. CPU admission verifies relevant installed Python files against the
+clean frozen checkout. No local CUDA compilation is claimed; the original supported
+runtime remains unchanged.
 
-The public CachePolicy callbacks do not provide request arrival or the complete
-key chain for GPU-hit prefixes. CPUOffloadingManager.on_new_request creates manager
-state without calling the policy. Its finish callback passes only keys observed
-through CPU load/store operations. The scheduler's CHUNK_LEVEL store handler skips
-GPU-hit chunks. Tests reproduce this for both native policies, including a prefix
-shared by a different session. Successful stores completing after finish do call
-mark_evictable; that part of the proposed readiness design is viable.
+Public CachePolicy callbacks omit request arrival and complete GPU-hit key chains.
+The qualified out-of-tree plugin reads pinned private context/scheduler state to
+recover complete native keys/group geometry and release returning sessions before
+eviction. It never mutates scheduler state. Native late-store readiness callbacks
+allow newly ready keys to join a valid hold. Tier-originated requests without the
+required scheduler/session context receive no advice.
 
-The missing keys exist in private ReqContext._offload_key_positions; the concrete
-context also reaches the private scheduler. Private introspection could recover
-keys and group geometry. Detecting returns without a callback would additionally
-require retaining that scheduler reference and polling its active-request state
-before eviction. This is a possible different integration, not an impossibility
-proof about all Python plugins. It does not establish the proposed CachePolicy
-lifecycle contract, especially for tier-originated contexts without that scheduler.
-Changing to REQUEST_LEVEL offers GPU-hit chunks again but changes storage behavior,
-is controlled by the manager rather than the policy, and still lacks arrival
-notification. Releasing at request finish is too late; sending a cancellation at
-return changes A4t's request-only delivery and adds behavior beyond A4p's
-post-response-only patch. Monkey-patching the manager changes the core contract.
+Both routes pass this CPU gate. The earlier public-callback-only stop interpretation
+was too narrow and is corrected in [the diagnostic result](../results/pr-evidence-feasibility/result.md).
+Pinned private access is a compatibility dependency, not a public API guarantee.
+The [frozen screening procedure](pr-evidence-screen.md) and
+[Stage 1 record](../benchmarks/pr-evidence/stage1-freeze.json) preserve the pre-GPU
+contract. D8/HM hardware qualification and its limits are described below.
 
-Both routes pass the CPU feasibility gate. The original public-callback-only stop
-interpretation was too narrow: the accepted plan permits pinned private state reads.
-The qualified policy recovers complete keys/group geometry and releases returned
-sessions before eviction through read-only scheduler inspection. CPU lifecycle,
-identity, geometry, tiering and bookkeeping evidence is described below. The
-[Stage 1 exit and screening procedure](pr-evidence-screen.md) freezes hold-only and
-admits GPU model qualification; it does not yet qualify any GPU model.
+## Hold-only policy
 
-The [diagnostic result](../results/pr-evidence-feasibility/result.md) records the
-observations and explicitly corrects the initial stop interpretation. Its original
-source record remains immutable. The active work is in [the task](../tasks/pr-evidence.md).
-
-## Hold-only prototype
-
-The candidate out-of-tree policies live in `vllm_adapter/policy.py` and load through
+The out-of-tree policies live in `vllm_adapter/policy.py` and load through
 native CachePolicyFactory. They require the exact new runtime and delegate native
 readiness, references and storage. Private scheduler state is read only. Holds
 release lazily before eviction when a newer registered generation is visible;
@@ -142,7 +121,7 @@ cost as a scale limitation. The plan has no CPU latency cutoff; Stage 2 guardrai
 must still measure the whole serving cost at its stated scale.
 
 
-## Post-response delivery candidate
+## Post-response delivery
 
 `pr-post-response` in the runtime patch manifest adds one EngineCore utility method.
 It locates the existing offload manager, enters that manager's lock, and calls the
@@ -202,7 +181,7 @@ excluded task IDs. Pilot pools contain D8 1,691, HM 1,689 and HS 1,562 tasks fro
 context/turn truncations. This is a major limit on whole-route/abandoned-hold claims.
 No source-success filter was applied. Performance confirmation remains held out.
 
-## Streaming measurement candidate
+## Streaming measurement
 
 The common `pr_evidence` endpoint plugin accepts closed, bounded token-ID requests,
 uses native delta output, and exposes authenticated generation, hints, reset and
@@ -409,16 +388,10 @@ traces and detects an injected 28-token recomputation regression, preserving bot
 failed sessions and both unoffered returns.
 
 
-Admission attempts D8/A2-01 and -02 stopped at the unchanged swap guard during
-Python startup, before model execution. Charged time was 16.9305 and 6.1462 seconds.
-Both had over 12 GiB available RAM and zero owned swapped pages; global swap-out
-increased by 31 and 170 pages. Preflight hashing had promoted about 6 GiB of model
-weight pages into file cache. An advisory release of those exact read-only file
-pages increased free RAM from about 3 GiB to 9 GiB without changing file bytes,
-MemAvailable, the swap guard or OS settings. The checksum reader now releases each
-safetensors file's clean cache pages after hashing. This is startup input hygiene,
-not a policy/threshold change. The two failed attempts remain immutable; a new
-attempt must establish whether this removes the interference.
+The checksum reader releases each model safetensors file's clean cache pages after
+hashing. This avoids retaining a second startup file-cache footprint; bytes, memory
+limits and the resource guard are unchanged. Startup failures and subsequent repairs
+are retained in the result rather than treated as successful admission.
 
 ## 2080 Ti admission outcome
 
@@ -428,7 +401,7 @@ D8 and HM pass all seven arms with actual CPU reuse, exact restored bytes and
 matching resident/restored continuation at the same cache boundary. HM exercises
 active holds in both routes across all four groups. D8’s 4,096-token probe exceeds
 the fixed 50% hold cap at 1 GiB, so its admission proves restoration but not active
-holding. The screen must report actual hold activity.
+holding. The screen observes active D8 holds, but does not replace active-hold byte qualification.
 
 HS is not admitted: 8.44 GiB weights leave 0.20 GiB native GPU cache, below 0.74 GiB
 needed for the frozen 6,144-token context and 0.85 GPU-memory fraction. Remaining

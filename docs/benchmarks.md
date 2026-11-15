@@ -449,8 +449,8 @@ or hold-policy qualification. The verifier distinguishes its receipt schema.
 
 Add `--hold-policy` instead of `--private-state` for the native hold prototype CPU
 probe. It also compares registered, advice-disabled eviction sequences against stock
-LRU/ARC. Successful policy-method injection is not qualification of the pending
-post-response delivery patch.
+LRU/ARC. Successful policy-method injection is not qualification of
+post-response delivery; the separate patched-runtime probe covers that boundary.
 
 The same frozen-main CPU receipt command accepts `--bookkeeping` for the full
 ARC/LRU chunk/session cost matrix. It runs with CUDA hidden, retains raw latency
@@ -593,3 +593,13 @@ its complete reservation before starting.
 The admission driver uses a fixed 4,097-token prefix and 32 generated tokens, with
 prime, GPU-resident and CPU-restored requests. The synchronous byte detector is
 admission-only. Performance cells use normal asynchronous native copies.
+
+The completed [2080 Ti analysis](../results/pr-evidence-2080ti/evidence-notes.md)
+retains 21 minimal per-request input files, all-arm descriptive diagnostics, both
+statistical analyses, the A/A identity recheck and every harm criterion. Its
+[regeneration recipe](../results/pr-evidence-2080ti/regeneration.json) uses the
+maintained comparison and whole-route commands. D8/W1 is INCONCLUSIVE for both
+ARC routes; HM comparisons and both W2 variants are not run, and HS is not admitted.
+Unavailable BCa intervals are retained, including their undefined-replicate reason;
+the delta sensitivity alone cannot establish efficacy STOP. No additional GPU
+acquisition or public posting is authorized by this closeout.

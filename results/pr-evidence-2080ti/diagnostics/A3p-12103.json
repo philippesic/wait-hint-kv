@@ -1,0 +1,3625 @@
+{
+  "analysis_source_sha256": {
+    "pr_diagnostics.py": "098414f55405dfd423edf2fcd837191b31a61b6ae5c3cd24e7a93e94047c5c11",
+    "pr_events.py": "cf0a6bf2186278f5d80ad6351404f7bab14e073b26169ad82bad30ba242fa690",
+    "pr_metrics.py": "34a140024c25932c3e7161e5e09748fac65af59190d7b11d004fb38c2d63bbea",
+    "pr_statistics.py": "ed2c35d13fcd55d05ce2f7971ccf592d526fe8168cb9e60dafa93ac3b2004d70",
+    "resources.py": "db311f46d8340c12a349d8c7120838a681f377a5540b8a2fbc332ca24d68be64",
+    "streaming.py": "571608f3e10089bf5d220232fa832c81af48706037903df643f92c3fad8c8297"
+  },
+  "arm": "A3p",
+  "cohorts": {
+    "first_turn": {
+      "coalesced_chunks": 0,
+      "complete_requests": 16,
+      "latency_ns": {
+        "client_mean_chunk_itl_ns": {
+          "count": 16,
+          "maximum": 183268343.86915886,
+          "mean": 106314009.56119694,
+          "minimum": 57586058.15492958,
+          "p95": 178421440.48199558
+        },
+        "client_mean_token_itl_ns": {
+          "count": 16,
+          "maximum": 183268343.86915886,
+          "mean": 106314009.56119694,
+          "minimum": 57586058.15492958,
+          "p95": 178421440.48199558
+        },
+        "engine_mean_token_itl_ns": {
+          "count": 16,
+          "maximum": 183275269.58870363,
+          "mean": 106346318.7016171,
+          "minimum": 57695273.23944101,
+          "p95": 178426958.6178403
+        },
+        "submission_lateness_ns": {
+          "count": 16,
+          "maximum": 8996172.0,
+          "mean": 1798428.6875,
+          "minimum": 438065.0,
+          "p95": 4624853.25
+        },
+        "ttft_scheduled_ns": {
+          "count": 16,
+          "maximum": 33527812637.0,
+          "mean": 6576790279.8125,
+          "minimum": 243811057.0,
+          "p95": 25863450197.0
+        },
+        "ttft_submitted_ns": {
+          "count": 16,
+          "maximum": 33526012593.0,
+          "mean": 6574991851.125,
+          "minimum": 242434190.0,
+          "p95": 25861646620.5
+        }
+      },
+      "outcomes": {
+        "complete": 16
+      },
+      "output_tokens": 1536,
+      "planned_requests": 16,
+      "requested_output_tokens": 1536,
+      "sources": {
+        "cpu_reused_tokens": 0,
+        "eligible_tokens": 0,
+        "gpu_reused_tokens": 0,
+        "prompt_compute_tokens": 10571,
+        "recomputed_tokens": 0,
+        "repeated_prompt_compute_tokens": 0,
+        "unobserved_tokens": 0
+      }
+    },
+    "hinted_return": {
+      "coalesced_chunks": 0,
+      "complete_requests": 30,
+      "latency_ns": {
+        "client_mean_chunk_itl_ns": {
+          "count": 30,
+          "maximum": 310066499.5769231,
+          "mean": 121870852.93003088,
+          "minimum": 55451067.481481485,
+          "p95": 257943847.23636833
+        },
+        "client_mean_token_itl_ns": {
+          "count": 30,
+          "maximum": 310066499.5769231,
+          "mean": 121870852.93003088,
+          "minimum": 55451067.481481485,
+          "p95": 257943847.23636833
+        },
+        "engine_mean_token_itl_ns": {
+          "count": 30,
+          "maximum": 310161029.65356994,
+          "mean": 121933546.57241473,
+          "minimum": 55516204.888893604,
+          "p95": 257938235.46534237
+        },
+        "submission_lateness_ns": {
+          "count": 30,
+          "maximum": 5129886.0,
+          "mean": 1737807.7333333334,
+          "minimum": 503945.0,
+          "p95": 2774198.55
+        },
+        "ttft_scheduled_ns": {
+          "count": 30,
+          "maximum": 38880527964.0,
+          "mean": 10276676517.366667,
+          "minimum": 138000444.0,
+          "p95": 30888524050.349964
+        },
+        "ttft_submitted_ns": {
+          "count": 30,
+          "maximum": 38877852403.0,
+          "mean": 10274938709.633333,
+          "minimum": 136947597.0,
+          "p95": 30887008591.599964
+        }
+      },
+      "outcomes": {
+        "complete": 30
+      },
+      "output_tokens": 3164,
+      "planned_requests": 30,
+      "requested_output_tokens": 3164,
+      "sources": {
+        "cpu_reused_tokens": 576,
+        "eligible_tokens": 70400,
+        "gpu_reused_tokens": 33024,
+        "prompt_compute_tokens": 72039,
+        "recomputed_tokens": 36800,
+        "repeated_prompt_compute_tokens": 0,
+        "unobserved_tokens": 0
+      }
+    },
+    "one_shot": {
+      "coalesced_chunks": 0,
+      "complete_requests": 13,
+      "latency_ns": {
+        "client_mean_chunk_itl_ns": {
+          "count": 13,
+          "maximum": 273716151.38582677,
+          "mean": 109683258.79648697,
+          "minimum": 54605691.88188976,
+          "p95": 236242542.72598416
+        },
+        "client_mean_token_itl_ns": {
+          "count": 13,
+          "maximum": 273716151.38582677,
+          "mean": 109683258.79648697,
+          "minimum": 54605691.88188976,
+          "p95": 236242542.72598416
+        },
+        "engine_mean_token_itl_ns": {
+          "count": 13,
+          "maximum": 273726157.5906112,
+          "mean": 109734417.11027454,
+          "minimum": 54702656.64561747,
+          "p95": 236263640.8849259
+        },
+        "submission_lateness_ns": {
+          "count": 13,
+          "maximum": 46804171.0,
+          "mean": 7226295.769230769,
+          "minimum": 456358.0,
+          "p95": 36049871.19999997
+        },
+        "ttft_scheduled_ns": {
+          "count": 13,
+          "maximum": 7140906513.0,
+          "mean": 2301135335.6923075,
+          "minimum": 1284062871.0,
+          "p95": 6459619922.399998
+        },
+        "ttft_submitted_ns": {
+          "count": 13,
+          "maximum": 7139640179.0,
+          "mean": 2293909039.923077,
+          "minimum": 1283124002.0,
+          "p95": 6457108735.999998
+        }
+      },
+      "outcomes": {
+        "complete": 13
+      },
+      "output_tokens": 1664,
+      "planned_requests": 13,
+      "requested_output_tokens": 1664,
+      "sources": {
+        "cpu_reused_tokens": 0,
+        "eligible_tokens": 0,
+        "gpu_reused_tokens": 0,
+        "prompt_compute_tokens": 26624,
+        "recomputed_tokens": 0,
+        "repeated_prompt_compute_tokens": 0,
+        "unobserved_tokens": 0
+      }
+    },
+    "unhinted_return": {
+      "coalesced_chunks": 0,
+      "complete_requests": 24,
+      "latency_ns": {
+        "client_mean_chunk_itl_ns": {
+          "count": 24,
+          "maximum": 228990030.80851063,
+          "mean": 116723307.45320228,
+          "minimum": 56268871.14545455,
+          "p95": 211685250.28690472
+        },
+        "client_mean_token_itl_ns": {
+          "count": 24,
+          "maximum": 228990030.80851063,
+          "mean": 116723307.45320228,
+          "minimum": 56268871.14545455,
+          "p95": 211685250.28690472
+        },
+        "engine_mean_token_itl_ns": {
+          "count": 24,
+          "maximum": 228745297.21299583,
+          "mean": 116773757.82231998,
+          "minimum": 56317768.872461535,
+          "p95": 211765421.0094045
+        },
+        "submission_lateness_ns": {
+          "count": 24,
+          "maximum": 2710687.0,
+          "mean": 1270181.0833333333,
+          "minimum": 275228.0,
+          "p95": 2344232.6499999994
+        },
+        "ttft_scheduled_ns": {
+          "count": 24,
+          "maximum": 35764497282.0,
+          "mean": 8873431728.791666,
+          "minimum": 204456069.0,
+          "p95": 31268004224.69999
+        },
+        "ttft_submitted_ns": {
+          "count": 24,
+          "maximum": 35762878768.0,
+          "mean": 8872161547.708334,
+          "minimum": 203305287.0,
+          "p95": 31266761007.149986
+        }
+      },
+      "outcomes": {
+        "complete": 24
+      },
+      "output_tokens": 2121,
+      "planned_requests": 24,
+      "requested_output_tokens": 2121,
+      "sources": {
+        "cpu_reused_tokens": 576,
+        "eligible_tokens": 53248,
+        "gpu_reused_tokens": 28736,
+        "prompt_compute_tokens": 38189,
+        "recomputed_tokens": 23936,
+        "repeated_prompt_compute_tokens": 0,
+        "unobserved_tokens": 0
+      }
+    }
+  },
+  "eviction_count": 2695,
+  "failed_transfer_jobs": [],
+  "first_turn_cross_session_reuse": {
+    "missing_native_requests": 0,
+    "requests": [
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0000-t00",
+        "session_id": "s12103-0000",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1408,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 1472,
+          "recomputed_tokens": 1408,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            1472,
+            1473,
+            1474,
+            1475,
+            1476,
+            1477,
+            1478,
+            1479,
+            1480,
+            1481,
+            1482,
+            1483,
+            1484,
+            1485,
+            1486,
+            1487,
+            1488,
+            1489,
+            1490,
+            1491,
+            1492,
+            1493,
+            1494,
+            1495,
+            1496,
+            1497,
+            1498,
+            1499,
+            1500,
+            1501,
+            1502,
+            1503,
+            1504,
+            1505,
+            1506,
+            1507,
+            1508,
+            1509,
+            1510,
+            1511,
+            1512,
+            1513,
+            1514,
+            1515,
+            1516,
+            1517,
+            1518,
+            1519,
+            1520,
+            1521,
+            1522,
+            1523,
+            1524,
+            1525,
+            1526,
+            1527,
+            1528,
+            1529,
+            1530,
+            1531,
+            1532,
+            1533,
+            1534,
+            1535,
+            1536,
+            1537,
+            1538,
+            1539,
+            1540,
+            1541,
+            1542,
+            1543,
+            1544,
+            1545,
+            1546,
+            1547,
+            1548,
+            1549,
+            1550,
+            1551,
+            1552,
+            1553,
+            1554,
+            1555,
+            1556,
+            1557,
+            1558,
+            1559,
+            1560,
+            1561,
+            1562,
+            1563,
+            1564,
+            1565,
+            1566,
+            1567,
+            1568,
+            1569,
+            1570,
+            1571,
+            1572,
+            1573,
+            1574,
+            1575,
+            1576,
+            1577,
+            1578,
+            1579,
+            1580,
+            1581,
+            1582,
+            1583,
+            1584,
+            1585,
+            1586,
+            1587,
+            1588,
+            1589,
+            1590,
+            1591,
+            1592,
+            1593
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "pandas-dev__pandas.95280573.lm_rewrite__9ab6dmgk"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0001-t00",
+        "session_id": "s12103-0001",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 448,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 495,
+          "recomputed_tokens": 448,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            495,
+            496,
+            497,
+            498,
+            499,
+            500,
+            501,
+            502,
+            503,
+            504,
+            505,
+            506,
+            507,
+            508,
+            509,
+            510,
+            511,
+            512,
+            513,
+            514,
+            515,
+            516,
+            517,
+            518,
+            519,
+            520,
+            521,
+            522,
+            523,
+            524,
+            525,
+            526,
+            527,
+            528,
+            529,
+            530,
+            531,
+            532,
+            533,
+            534
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "Project-MONAI__MONAI.a09c1f08.pr_4186"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0002-t00",
+        "session_id": "s12103-0002",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 576,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 594,
+          "recomputed_tokens": 576,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            594,
+            595,
+            596,
+            597,
+            598,
+            599,
+            600,
+            601,
+            602,
+            603,
+            604,
+            605,
+            606,
+            607,
+            608,
+            609,
+            610,
+            611,
+            612,
+            613,
+            614,
+            615,
+            616,
+            617,
+            618,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629,
+            630,
+            631,
+            632,
+            633,
+            634,
+            635,
+            636,
+            637,
+            638,
+            639,
+            640,
+            641,
+            642,
+            643,
+            644,
+            645,
+            646,
+            647,
+            648,
+            649,
+            650,
+            651,
+            652,
+            653,
+            654,
+            655,
+            656,
+            657,
+            658,
+            659,
+            660,
+            661,
+            662,
+            663,
+            664,
+            665,
+            666,
+            667,
+            668
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "python-jsonschema__jsonschema.93e0caa5.combine_file__e7io5469"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0003-t00",
+        "session_id": "s12103-0003",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1408,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 562,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1458,
+            1459,
+            1460,
+            1461,
+            1462,
+            1463,
+            1464,
+            1465,
+            1466,
+            1467,
+            1468,
+            1469,
+            1470,
+            1471,
+            1472,
+            1473,
+            1474,
+            1475,
+            1476,
+            1477,
+            1478,
+            1479,
+            1480,
+            1481,
+            1482,
+            1483,
+            1484,
+            1485,
+            1486,
+            1487,
+            1488,
+            1489,
+            1490,
+            1491,
+            1492,
+            1493,
+            1494,
+            1495,
+            1496,
+            1497,
+            1498,
+            1499,
+            1500,
+            1501,
+            1502,
+            1503,
+            1504,
+            1505,
+            1506,
+            1507,
+            1508,
+            1509,
+            1510,
+            1511,
+            1512,
+            1513,
+            1514,
+            1515,
+            1516,
+            1517,
+            1518,
+            1519,
+            1520,
+            1521,
+            1522,
+            1523,
+            1524,
+            1525,
+            1526,
+            1527,
+            1528,
+            1529,
+            1530,
+            1531,
+            1532,
+            1533,
+            1534,
+            1535,
+            1536,
+            1537,
+            1538,
+            1539,
+            1540,
+            1541,
+            1542,
+            1543,
+            1544,
+            1545,
+            1546,
+            1547,
+            1548,
+            1549,
+            1550,
+            1551,
+            1552,
+            1553,
+            1554,
+            1555,
+            1556,
+            1557,
+            1558,
+            1559,
+            1560,
+            1561,
+            1562,
+            1563,
+            1564,
+            1565,
+            1566
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "Project-MONAI__MONAI.a09c1f08.func_pm_class_rm_funcs__cxvf8mp3"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0004-t00",
+        "session_id": "s12103-0004",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1024,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 1071,
+          "recomputed_tokens": 1024,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            1071,
+            1072,
+            1073,
+            1074,
+            1075,
+            1076,
+            1077,
+            1078,
+            1079,
+            1080,
+            1081,
+            1082,
+            1083,
+            1084,
+            1085,
+            1086,
+            1087,
+            1088,
+            1089,
+            1090,
+            1091,
+            1092,
+            1093,
+            1094,
+            1095,
+            1096,
+            1097,
+            1098,
+            1099,
+            1100,
+            1101,
+            1102,
+            1103,
+            1104,
+            1105,
+            1106,
+            1107,
+            1108,
+            1109,
+            1110,
+            1111,
+            1112,
+            1113,
+            1114,
+            1115,
+            1116,
+            1117,
+            1118,
+            1119,
+            1120,
+            1121,
+            1122,
+            1123,
+            1124,
+            1125,
+            1126,
+            1127,
+            1128,
+            1129,
+            1130,
+            1131,
+            1132,
+            1133,
+            1134,
+            1135,
+            1136,
+            1137,
+            1138,
+            1139,
+            1140,
+            1141,
+            1142,
+            1143,
+            1144,
+            1145,
+            1146,
+            1147,
+            1148,
+            1149,
+            1150,
+            1151,
+            1152,
+            1153,
+            1154,
+            1155,
+            1156,
+            1157,
+            1158,
+            1159,
+            1160,
+            1161,
+            1162,
+            1163,
+            1164,
+            1165,
+            1166,
+            1167,
+            1168,
+            1169,
+            1170,
+            1171,
+            1172,
+            1173,
+            1174,
+            1175,
+            1176,
+            1177,
+            1178,
+            1179,
+            1180,
+            1181
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "pylint-dev__astroid.b114f6b5.pr_2596"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0005-t00",
+        "session_id": "s12103-0005",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 512,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 519,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            519,
+            520,
+            521,
+            522,
+            523,
+            524,
+            525,
+            526,
+            527,
+            528,
+            529,
+            530,
+            531,
+            532,
+            533,
+            534,
+            535,
+            536,
+            537,
+            538,
+            539,
+            540,
+            541,
+            542,
+            543,
+            544,
+            545,
+            546,
+            547,
+            548,
+            549,
+            550,
+            551,
+            552,
+            553,
+            554,
+            555,
+            556,
+            557,
+            558,
+            559,
+            560,
+            561,
+            562,
+            563,
+            564,
+            565,
+            566,
+            567,
+            568,
+            569,
+            570,
+            571,
+            572,
+            573,
+            574,
+            575,
+            576,
+            577,
+            578,
+            579,
+            580,
+            581,
+            582,
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            589,
+            590,
+            591,
+            592,
+            593,
+            594,
+            595,
+            596,
+            597,
+            598,
+            599,
+            600,
+            601,
+            602,
+            603,
+            604,
+            605,
+            606,
+            607,
+            608,
+            609,
+            610,
+            611,
+            612,
+            613,
+            614,
+            615
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "hukkin__tomli.443a0c1b.func_pm_op_change_const__kq0aa43b"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0006-t00",
+        "session_id": "s12103-0006",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 512,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 523,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            523,
+            524,
+            525,
+            526,
+            527,
+            528,
+            529,
+            530,
+            531,
+            532,
+            533,
+            534,
+            535,
+            536,
+            537,
+            538,
+            539,
+            540,
+            541,
+            542,
+            543,
+            544,
+            545,
+            546,
+            547,
+            548,
+            549,
+            550,
+            551,
+            552,
+            553,
+            554,
+            555,
+            556,
+            557,
+            558,
+            559,
+            560,
+            561,
+            562,
+            563,
+            564,
+            565,
+            566,
+            567,
+            568,
+            569,
+            570,
+            571,
+            572,
+            573,
+            574,
+            575,
+            576,
+            577,
+            578,
+            579,
+            580,
+            581,
+            582,
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            589,
+            590,
+            591,
+            592,
+            593,
+            594,
+            595,
+            596,
+            597,
+            598,
+            599,
+            600,
+            601,
+            602,
+            603,
+            604,
+            605,
+            606,
+            607,
+            608,
+            609,
+            610,
+            611,
+            612,
+            613,
+            614,
+            615,
+            616,
+            617,
+            618,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "Project-MONAI__MONAI.a09c1f08.lm_rewrite__tveptbxt"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0007-t00",
+        "session_id": "s12103-0007",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 576,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 610,
+          "recomputed_tokens": 576,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            610,
+            611,
+            612,
+            613,
+            614,
+            615,
+            616,
+            617,
+            618,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629,
+            630,
+            631,
+            632,
+            633,
+            634,
+            635,
+            636,
+            637,
+            638,
+            639,
+            640,
+            641,
+            642,
+            643,
+            644,
+            645,
+            646,
+            647,
+            648,
+            649,
+            650,
+            651,
+            652,
+            653,
+            654,
+            655,
+            656,
+            657,
+            658,
+            659,
+            660,
+            661,
+            662,
+            663,
+            664,
+            665,
+            666,
+            667,
+            668,
+            669,
+            670,
+            671,
+            672,
+            673,
+            674,
+            675,
+            676,
+            677,
+            678,
+            679,
+            680,
+            681,
+            682,
+            683,
+            684,
+            685,
+            686,
+            687,
+            688,
+            689,
+            690,
+            691,
+            692,
+            693,
+            694,
+            695,
+            696,
+            697,
+            698
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "pandas-dev__pandas.95280573.pr_60828"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0008-t00",
+        "session_id": "s12103-0008",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1472,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 607,
+          "recomputed_tokens": 576,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1503,
+            1504,
+            1505,
+            1506,
+            1507,
+            1508,
+            1509,
+            1510,
+            1511,
+            1512,
+            1513,
+            1514,
+            1515,
+            1516,
+            1517,
+            1518,
+            1519,
+            1520,
+            1521,
+            1522,
+            1523,
+            1524,
+            1525,
+            1526,
+            1527,
+            1528,
+            1529,
+            1530,
+            1531,
+            1532,
+            1533,
+            1534,
+            1535,
+            1536,
+            1537,
+            1538,
+            1539,
+            1540,
+            1541,
+            1542,
+            1543,
+            1544,
+            1545,
+            1546,
+            1547,
+            1548,
+            1549,
+            1550,
+            1551,
+            1552,
+            1553,
+            1554,
+            1555,
+            1556,
+            1557,
+            1558,
+            1559,
+            1560,
+            1561,
+            1562,
+            1563,
+            1564,
+            1565,
+            1566,
+            1567,
+            1568,
+            1569,
+            1570,
+            1571,
+            1572,
+            1573,
+            1574,
+            1575,
+            1576,
+            1577,
+            1578,
+            1579,
+            1580,
+            1581,
+            1582,
+            1583,
+            1584,
+            1585,
+            1586,
+            1587,
+            1588,
+            1589,
+            1590,
+            1591,
+            1592,
+            1593,
+            1594,
+            1595,
+            1596,
+            1597,
+            1598,
+            1599,
+            1600,
+            1601,
+            1602,
+            1603,
+            1604,
+            1605
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "python-jsonschema__jsonschema.93e0caa5.lm_rewrite__6ndoageg"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0009-t00",
+        "session_id": "s12103-0009",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1408,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 543,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1439,
+            1440,
+            1441,
+            1442,
+            1443,
+            1444,
+            1445,
+            1446,
+            1447,
+            1448,
+            1449,
+            1450,
+            1451,
+            1452,
+            1453,
+            1454,
+            1455,
+            1456,
+            1457,
+            1458,
+            1459,
+            1460,
+            1461,
+            1462,
+            1463,
+            1464,
+            1465,
+            1466,
+            1467,
+            1468,
+            1469,
+            1470,
+            1471,
+            1472,
+            1473,
+            1474,
+            1475,
+            1476,
+            1477,
+            1478,
+            1479,
+            1480,
+            1481,
+            1482,
+            1483,
+            1484,
+            1485,
+            1486,
+            1487,
+            1488,
+            1489,
+            1490,
+            1491,
+            1492,
+            1493,
+            1494,
+            1495,
+            1496,
+            1497,
+            1498,
+            1499,
+            1500,
+            1501,
+            1502,
+            1503,
+            1504,
+            1505,
+            1506,
+            1507,
+            1508,
+            1509,
+            1510,
+            1511,
+            1512,
+            1513,
+            1514,
+            1515,
+            1516,
+            1517,
+            1518,
+            1519,
+            1520,
+            1521,
+            1522,
+            1523,
+            1524,
+            1525,
+            1526,
+            1527,
+            1528,
+            1529,
+            1530,
+            1531,
+            1532,
+            1533,
+            1534,
+            1535,
+            1536,
+            1537,
+            1538
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "pylint-dev__astroid.b114f6b5.lm_rewrite__867jbnvy"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0010-t00",
+        "session_id": "s12103-0010",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 640,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 669,
+          "recomputed_tokens": 640,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            669,
+            670,
+            671,
+            672,
+            673,
+            674,
+            675,
+            676,
+            677,
+            678,
+            679,
+            680,
+            681,
+            682,
+            683,
+            684,
+            685,
+            686,
+            687,
+            688,
+            689,
+            690,
+            691,
+            692,
+            693,
+            694,
+            695,
+            696,
+            697,
+            698,
+            699,
+            700,
+            701,
+            702,
+            703,
+            704,
+            705,
+            706,
+            707,
+            708,
+            709,
+            710,
+            711,
+            712,
+            713,
+            714,
+            715,
+            716,
+            717,
+            718,
+            719,
+            720,
+            721,
+            722,
+            723,
+            724,
+            725,
+            726,
+            727,
+            728,
+            729,
+            730,
+            731,
+            732,
+            733,
+            734,
+            735,
+            736,
+            737,
+            738,
+            739,
+            740,
+            741,
+            742,
+            743,
+            744,
+            745,
+            746,
+            747,
+            748,
+            749,
+            750,
+            751,
+            752,
+            753,
+            754,
+            755,
+            756,
+            757,
+            758,
+            759,
+            760,
+            761,
+            762,
+            763,
+            764,
+            765,
+            766,
+            767,
+            768,
+            769,
+            770,
+            771,
+            772,
+            773,
+            774,
+            775
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "Project-MONAI__MONAI.a09c1f08.func_pm_remove_assign__70jyz2gr"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0011-t00",
+        "session_id": "s12103-0011",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1600,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 708,
+          "recomputed_tokens": 704,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1604,
+            1605,
+            1606,
+            1607,
+            1608,
+            1609,
+            1610,
+            1611,
+            1612,
+            1613,
+            1614,
+            1615,
+            1616,
+            1617,
+            1618,
+            1619,
+            1620,
+            1621,
+            1622,
+            1623,
+            1624,
+            1625,
+            1626,
+            1627,
+            1628,
+            1629,
+            1630,
+            1631,
+            1632,
+            1633,
+            1634,
+            1635,
+            1636,
+            1637,
+            1638,
+            1639,
+            1640,
+            1641,
+            1642,
+            1643,
+            1644,
+            1645,
+            1646,
+            1647,
+            1648,
+            1649,
+            1650,
+            1651,
+            1652,
+            1653,
+            1654,
+            1655,
+            1656,
+            1657,
+            1658,
+            1659,
+            1660,
+            1661,
+            1662,
+            1663,
+            1664,
+            1665,
+            1666,
+            1667,
+            1668,
+            1669,
+            1670,
+            1671,
+            1672,
+            1673,
+            1674,
+            1675,
+            1676,
+            1677,
+            1678,
+            1679,
+            1680,
+            1681,
+            1682,
+            1683,
+            1684,
+            1685,
+            1686,
+            1687,
+            1688,
+            1689,
+            1690,
+            1691,
+            1692,
+            1693,
+            1694,
+            1695,
+            1696,
+            1697,
+            1698,
+            1699,
+            1700,
+            1701,
+            1702,
+            1703,
+            1704,
+            1705
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "tox-dev__pipdeptree.c31b6418.combine_file__39m1aqx5"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0012-t00",
+        "session_id": "s12103-0012",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 384,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 420,
+          "recomputed_tokens": 384,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            420,
+            421,
+            422,
+            423,
+            424,
+            425,
+            426,
+            427,
+            428,
+            429,
+            430,
+            431,
+            432,
+            433,
+            434,
+            435,
+            436,
+            437,
+            438,
+            439,
+            440,
+            441,
+            442,
+            443,
+            444,
+            445,
+            446,
+            447,
+            448,
+            449,
+            450,
+            451,
+            452,
+            453,
+            454,
+            455,
+            456,
+            457,
+            458,
+            459,
+            460,
+            461,
+            462,
+            463,
+            464,
+            465,
+            466,
+            467,
+            468,
+            469,
+            470,
+            471,
+            472,
+            473,
+            474,
+            475,
+            476,
+            477,
+            478,
+            479,
+            480,
+            481,
+            482,
+            483,
+            484,
+            485,
+            486,
+            487,
+            488,
+            489,
+            490,
+            491,
+            492,
+            493,
+            494
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "graphql-python__graphene.82903263.combine_module__yrv8g06z"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0013-t00",
+        "session_id": "s12103-0013",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1536,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 688,
+          "recomputed_tokens": 640,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1584,
+            1585,
+            1586,
+            1587,
+            1588,
+            1589,
+            1590,
+            1591,
+            1592,
+            1593,
+            1594,
+            1595,
+            1596,
+            1597,
+            1598,
+            1599,
+            1600,
+            1601,
+            1602,
+            1603,
+            1604,
+            1605,
+            1606,
+            1607,
+            1608,
+            1609,
+            1610,
+            1611,
+            1612,
+            1613,
+            1614,
+            1615,
+            1616,
+            1617,
+            1618,
+            1619,
+            1620,
+            1621,
+            1622,
+            1623,
+            1624,
+            1625,
+            1626,
+            1627,
+            1628,
+            1629,
+            1630,
+            1631,
+            1632,
+            1633,
+            1634,
+            1635,
+            1636,
+            1637,
+            1638,
+            1639,
+            1640,
+            1641,
+            1642,
+            1643,
+            1644,
+            1645,
+            1646,
+            1647,
+            1648,
+            1649,
+            1650,
+            1651,
+            1652,
+            1653,
+            1654
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "mahmoud__glom.fb3c4e76.lm_rewrite__exdztgjx"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0014-t00",
+        "session_id": "s12103-0014",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 512,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 554,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            104,
+            554,
+            555,
+            556,
+            557,
+            558,
+            559,
+            560,
+            561,
+            562,
+            563,
+            564,
+            565,
+            566,
+            567,
+            568,
+            569,
+            570,
+            571,
+            572,
+            573,
+            574,
+            575,
+            576,
+            577,
+            578,
+            579,
+            580,
+            581,
+            582,
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            589,
+            590,
+            591,
+            592,
+            593,
+            594,
+            595,
+            596,
+            597,
+            598,
+            599,
+            600,
+            601,
+            602,
+            603,
+            604,
+            605,
+            606,
+            607,
+            608,
+            609,
+            610,
+            611,
+            612,
+            613,
+            614,
+            615,
+            616,
+            617,
+            618,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629,
+            630,
+            631,
+            632,
+            633,
+            634,
+            635,
+            636,
+            637,
+            638,
+            639,
+            640,
+            641,
+            642,
+            643,
+            644,
+            645,
+            646,
+            647,
+            648,
+            649,
+            650,
+            651,
+            652,
+            653,
+            654,
+            655,
+            656,
+            657,
+            658,
+            659,
+            660
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "rubik__radon.54b88e58.func_pm_class_rm_funcs__59ri2pk0"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0015-t00",
+        "session_id": "s12103-0015",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1408,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 536,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1237,
+            1432,
+            1433,
+            1434,
+            1435,
+            1436,
+            1437,
+            1438,
+            1439,
+            1440,
+            1441,
+            1442,
+            1443,
+            1444,
+            1445,
+            1446,
+            1447,
+            1448,
+            1449,
+            1450,
+            1451,
+            1452,
+            1453,
+            1454,
+            1455,
+            1456,
+            1457,
+            1458,
+            1459,
+            1460,
+            1461,
+            1462,
+            1463,
+            1464,
+            1465,
+            1466,
+            1467,
+            1468,
+            1469,
+            1470,
+            1471,
+            1472,
+            1473,
+            1474,
+            1475,
+            1476,
+            1477,
+            1478,
+            1479,
+            1480,
+            1481,
+            1482,
+            1483,
+            1484,
+            1485,
+            1486,
+            1487,
+            1488,
+            1489,
+            1490,
+            1491,
+            1492,
+            1493,
+            1494,
+            1495,
+            1496,
+            1497,
+            1498,
+            1499,
+            1500,
+            1501,
+            1502,
+            1503,
+            1504,
+            1505,
+            1506,
+            1507,
+            1508,
+            1509,
+            1510,
+            1511,
+            1512,
+            1513,
+            1514,
+            1515,
+            1516,
+            1517,
+            1518,
+            1519,
+            1520,
+            1521,
+            1522,
+            1523,
+            1524,
+            1525,
+            1526,
+            1527,
+            1528,
+            1529,
+            1530,
+            1531,
+            1532,
+            1533,
+            1534,
+            1535,
+            1536
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "mahmoud__glom.fb3c4e76.lm_rewrite__l1rms470"
+      }
+    ],
+    "scope": "Full reusable boundary on each session's first turn, which has no previous request in that session: observed reuse is cross-session. This does not exhaust shared reuse on later turns. Primary within-session return eligibility is unchanged.",
+    "totals": {
+      "cpu_reused_tokens": 0,
+      "eligible_tokens": 15424,
+      "gpu_reused_tokens": 5376,
+      "recomputed_tokens": 10048,
+      "unobserved_tokens": 0
+    }
+  },
+  "hint_messages": [
+    {
+      "acknowledgement": {
+        "accepted_ns": 311292664504722,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t00",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t00",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311292666784137,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t00",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t00",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 1,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t00",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t00",
+      "started_ns": 311292615688697
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311297335718748,
+        "actions": [
+          {
+            "action_id": "s12103-0002-t00",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0002-t00",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311297337490093,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0002-t00",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0002-t00",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 1,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0002"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0002-t00",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0002-t00",
+      "started_ns": 311297286001586
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311304567571716,
+        "actions": [
+          {
+            "action_id": "s12103-0002-t01",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0002-t01",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311304570043944,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0002-t01",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0002-t01",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 2,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0002"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0002-t01",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0002-t01",
+      "started_ns": 311304521151447
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311305422272131,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t01",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t01",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311305425094146,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t01",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t01",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 2,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t01",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t01",
+      "started_ns": 311305369162725
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311315234745369,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t02",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t02",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311315238231778,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t02",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t02",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 3,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t02",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t02",
+      "started_ns": 311315188065261
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311315797114043,
+        "actions": [
+          {
+            "action_id": "s12103-0002-t02",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0002-t02",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311315800631031,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0002-t02",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0002-t02",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 3,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0002"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0002-t02",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0002-t02",
+      "started_ns": 311315748599861
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311327061337004,
+        "actions": [
+          {
+            "action_id": "s12103-0006-t00",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0006-t00",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311327065613021,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0006-t00",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0006-t00",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 1,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0006"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0006-t00",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0006-t00",
+      "started_ns": 311327007787240
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311327630532009,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t00",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t00",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311327633963269,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t00",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t00",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 1,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t00",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t00",
+      "started_ns": 311327580593000
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311334516342708,
+        "actions": [
+          {
+            "action_id": "s12103-0010-t00",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0010-t00",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311334520021441,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0010-t00",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0010-t00",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 1,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0010"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0010-t00",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0010-t00",
+      "started_ns": 311334467827670
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311354845804184,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t03",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t03",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311354851970371,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t03",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t03",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 4,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t03",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t03",
+      "started_ns": 311354020915414
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311359807040810,
+        "actions": [
+          {
+            "action_id": "s12103-0006-t01",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0006-t01",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311359809804353,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0006-t01",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0006-t01",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 2,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0006"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0006-t01",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0006-t01",
+      "started_ns": 311359762516021
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311359807289728,
+        "actions": [
+          {
+            "action_id": "s12103-0010-t01",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0010-t01",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311359810132180,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0010-t01",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0010-t01",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 2,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0010"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0010-t01",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0010-t01",
+      "started_ns": 311359765801150
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311373096977528,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t01",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t01",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311373098821197,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t01",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t01",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 2,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t01",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t01",
+      "started_ns": 311373049887121
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311374140261359,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t04",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t04",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311374144483201,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t04",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t04",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 5,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t04",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t04",
+      "started_ns": 311374092587097
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311386923269482,
+        "actions": [
+          {
+            "action_id": "s12103-0006-t02",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0006-t02",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311386941235339,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0006-t02",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0006-t02",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 3,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0006"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0006-t02",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0006-t02",
+      "started_ns": 311384166901756
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311393362091786,
+        "actions": [
+          {
+            "action_id": "s12103-0010-t02",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0010-t02",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311393364348906,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0010-t02",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0010-t02",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 3,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0010"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0010-t02",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0010-t02",
+      "started_ns": 311393319490140
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311403917591304,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t02",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t02",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311403923068380,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t02",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t02",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 3,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t02",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t02",
+      "started_ns": 311403863834816
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311423243162332,
+        "actions": [
+          {
+            "action_id": "s12103-0006-t03",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0006-t03",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311423247165874,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0006-t03",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0006-t03",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 4,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0006"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0006-t03",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0006-t03",
+      "started_ns": 311423194571987
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311430498755731,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t05",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t05",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311430502266774,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t05",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t05",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 6,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t05",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t05",
+      "started_ns": 311430454412077
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311447019986019,
+        "actions": [
+          {
+            "action_id": "s12103-0010-t03",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0010-t03",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311447027370299,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0010-t03",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0010-t03",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 4,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0010"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0010-t03",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0010-t03",
+      "started_ns": 311446850788948
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311456828264030,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t03",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t03",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311456830467713,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t03",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t03",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 4,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t03",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t03",
+      "started_ns": 311456776667966
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311486717082923,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t04",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t04",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311486725694229,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t04",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t04",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 5,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t04",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t04",
+      "started_ns": 311486674219057
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311500416226808,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t05",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t05",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311500419927081,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t05",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t05",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 6,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t05",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t05",
+      "started_ns": 311500363667925
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311533624596583,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t06",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t06",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311533626740257,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t06",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t06",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 7,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t06",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t06",
+      "started_ns": 311533622220424
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 311545511145141,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t07",
+            "decision": "disabled",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t07",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 311545512822605,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t07",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t07",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 8,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t07",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t07",
+      "started_ns": 311545508933193
+    }
+  ],
+  "holds": {
+    "final_turn_lease_count": 0,
+    "final_turn_leases_by_ending": {},
+    "last_outcome_counters": {
+      "disabled": 25,
+      "return_release": 54
+    },
+    "lease_count": 0,
+    "observed_leases": [],
+    "peak_observed_metadata_bytes": 216176,
+    "peak_physical_held_chunks": 0,
+    "scope": "Observed owner/generation lifetimes; snapshots bound appearance/disappearance and do not establish exact release or expiry times. Final-turn holds have no later recorded return, including truncated ends. return_release is an observation/attempt counter, not a count of held leases released. Metadata-only mutations can be missed by snapshot deduplication.",
+    "sessions_with_observed_holds": 0,
+    "yield_count": 0
+  },
+  "input_sha256": {
+    "admission.json": "fcd61050a5b8ea4b47325ad2414bbd8d61969635a3ee8a0544e34773970f03e1",
+    "schedule.json": "00a17d065b7444e09aa7f1ca4d0514bcb7c456d17b5b8f9b0bafc914ebbe6aba",
+    "terminal.json": "2e9feff5c2d9dbac0b8132e2a05a31cc46fe54399f2ea54cb7b502e91f8a3832"
+  },
+  "model": "D8",
+  "refusal_capacity": [
+    {
+      "eligible_idle_chunks": 30,
+      "free_chunks": 0,
+      "idle_chunks": 44,
+      "missing_chunks": 35,
+      "monotonic_ns": 311337869727581,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0009-t01-b0b68da4",
+      "required_evictions": 35
+    },
+    {
+      "eligible_idle_chunks": 30,
+      "free_chunks": 0,
+      "idle_chunks": 44,
+      "missing_chunks": 63,
+      "monotonic_ns": 311341851572141,
+      "native_capacity_would_fit": false,
+      "reason": "insufficient idle chunks",
+      "request_id": "s12103-0009-t01-b0b68da4",
+      "required_evictions": 63
+    },
+    {
+      "eligible_idle_chunks": 62,
+      "free_chunks": 0,
+      "idle_chunks": 76,
+      "missing_chunks": 63,
+      "monotonic_ns": 311344411445774,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0009-t01-b0b68da4",
+      "required_evictions": 63
+    },
+    {
+      "eligible_idle_chunks": 12,
+      "free_chunks": 0,
+      "idle_chunks": 26,
+      "missing_chunks": 18,
+      "monotonic_ns": 311363367714091,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0011-t01-a87dbc73",
+      "required_evictions": 18
+    },
+    {
+      "eligible_idle_chunks": 12,
+      "free_chunks": 0,
+      "idle_chunks": 26,
+      "missing_chunks": 13,
+      "monotonic_ns": 311363368295321,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0009-t02-aec61c0a",
+      "required_evictions": 13
+    },
+    {
+      "eligible_idle_chunks": 12,
+      "free_chunks": 0,
+      "idle_chunks": 26,
+      "missing_chunks": 18,
+      "monotonic_ns": 311366023009428,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0011-t01-a87dbc73",
+      "required_evictions": 18
+    },
+    {
+      "eligible_idle_chunks": 12,
+      "free_chunks": 0,
+      "idle_chunks": 26,
+      "missing_chunks": 45,
+      "monotonic_ns": 311366023644422,
+      "native_capacity_would_fit": false,
+      "reason": "insufficient idle chunks",
+      "request_id": "s12103-0009-t02-aec61c0a",
+      "required_evictions": 45
+    },
+    {
+      "eligible_idle_chunks": 60,
+      "free_chunks": 0,
+      "idle_chunks": 74,
+      "missing_chunks": 64,
+      "monotonic_ns": 311367541585581,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0009-t02-aec61c0a",
+      "required_evictions": 64
+    },
+    {
+      "eligible_idle_chunks": 25,
+      "free_chunks": 0,
+      "idle_chunks": 25,
+      "missing_chunks": 31,
+      "monotonic_ns": 311386941487711,
+      "native_capacity_would_fit": false,
+      "reason": "insufficient idle chunks",
+      "request_id": "s12103-0007-t02-91e5786c",
+      "required_evictions": 31
+    },
+    {
+      "eligible_idle_chunks": 15,
+      "free_chunks": 0,
+      "idle_chunks": 29,
+      "missing_chunks": 46,
+      "monotonic_ns": 311456125501921,
+      "native_capacity_would_fit": false,
+      "reason": "insufficient idle chunks",
+      "request_id": "s12103-0011-t04-ad32741d",
+      "required_evictions": 46
+    },
+    {
+      "eligible_idle_chunks": 21,
+      "free_chunks": 0,
+      "idle_chunks": 81,
+      "missing_chunks": 28,
+      "monotonic_ns": 311483307508166,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0005-t07-aa5498fd",
+      "required_evictions": 28
+    },
+    {
+      "eligible_idle_chunks": 21,
+      "free_chunks": 0,
+      "idle_chunks": 81,
+      "missing_chunks": 28,
+      "monotonic_ns": 311483374593183,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0005-t07-aa5498fd",
+      "required_evictions": 28
+    }
+  ],
+  "refusal_scope": "Instantaneous native capacity replay ignores holds and excludes in-flight/protected offered keys. No direct obstruction does not rule out indirect cache/scheduling effects; paired refusal counts remain outcomes. Frozen screen has no store-frequency admission threshold.",
+  "resource_details": {
+    "full_job_peak_pss_bytes": 5593261056,
+    "full_job_peak_summed_rss_bytes": 6022471680,
+    "gpu_sample_distributions": {
+      "memory_used_mib": {
+        "count": 93,
+        "maximum": 9441.0,
+        "mean": 8770.247311827958,
+        "minimum": 470.0,
+        "p95": 9441.0
+      },
+      "power_w": {
+        "count": 93,
+        "maximum": 267.23,
+        "mean": 130.8667741935484,
+        "minimum": 17.24,
+        "p95": 260.0
+      },
+      "temperature_c": {
+        "count": 93,
+        "maximum": 53.0,
+        "mean": 43.806451612903224,
+        "minimum": 34.0,
+        "p95": 52.0
+      },
+      "utilization_percent": {
+        "count": 93,
+        "maximum": 100.0,
+        "mean": 46.98924731182796,
+        "minimum": 0.0,
+        "p95": 100.0
+      }
+    },
+    "host_major_faults_delta": 642,
+    "major_faults_observed_delta": 443,
+    "minor_faults_observed_delta": 1825732,
+    "process_faults": [
+      {
+        "major_faults_observed_delta": 0,
+        "minor_faults_observed_delta": 0,
+        "process_identity": "1013528:30097617"
+      },
+      {
+        "major_faults_observed_delta": 217,
+        "minor_faults_observed_delta": 349807,
+        "process_identity": "1036557:31119583"
+      },
+      {
+        "major_faults_observed_delta": 0,
+        "minor_faults_observed_delta": 0,
+        "process_identity": "1036657:31121013"
+      },
+      {
+        "major_faults_observed_delta": 226,
+        "minor_faults_observed_delta": 1474992,
+        "process_identity": "1036658:31121013"
+      },
+      {
+        "major_faults_observed_delta": 0,
+        "minor_faults_observed_delta": 0,
+        "process_identity": "1036765:31122358"
+      },
+      {
+        "major_faults_observed_delta": 0,
+        "minor_faults_observed_delta": 0,
+        "process_identity": "1036773:31122370"
+      },
+      {
+        "major_faults_observed_delta": 0,
+        "minor_faults_observed_delta": 933,
+        "process_identity": "1036826:31124265"
+      }
+    ],
+    "scope": "Observed process-counter deltas by PID/start identity; startup includes loading/staging. First samples can miss early faults, vanished processes can be missed, RSS double-counts shared pages, GPU values include graphics and are sample means rather than time integrals. GPU clocks and Windows process activity were not captured.",
+    "startup_peak_pss_bytes": 5593261056,
+    "startup_peak_summed_rss_bytes": 6022471680
+  },
+  "resources": {
+    "host_swap_out_growth_pages": 0,
+    "limits": "sampled Linux process counters; partial edge intervals prorated; processes that start and exit between samples and Windows activity can be missed; memory/swap cover startup through the final pre-cleanup sample",
+    "material_interference": false,
+    "minimum_available_bytes": 10570305536,
+    "outside_cpu_core_share": 0.0464089518972987,
+    "outside_cpu_longest_above_quarter_core_seconds": 1.684569524,
+    "outside_cpu_seconds_by_process_identity": {
+      "1006953:29950049": 2.662298883158077,
+      "1006954:29950050": 0.0,
+      "1007924:29968312": 0.0,
+      "1013524:30097613": 0.0,
+      "1013525:30097614": 0.0,
+      "1036917:31129849": 1.07,
+      "1036920:31129852": 0.0,
+      "1036921:31129852": 0.0,
+      "1036922:31129854": 0.0,
+      "1036923:31129854": 0.0,
+      "1036924:31129854": 0.0,
+      "1036925:31129854": 0.0,
+      "1036926:31129854": 0.0,
+      "1036927:31129854": 0.0,
+      "1036928:31129854": 0.0,
+      "1036967:31130928": 0.0,
+      "1036968:31130928": 0.0,
+      "1037002:31132838": 0.0,
+      "1037003:31132992": 0.0,
+      "1037008:31133027": 0.0,
+      "1037009:31133028": 0.0,
+      "1037014:31133831": 0.0,
+      "1037015:31133831": 0.0,
+      "1037016:31133892": 0.07,
+      "1037023:31133901": 0.0,
+      "1037025:31133906": 0.0,
+      "1037027:31133906": 0.0,
+      "1037042:31134727": 0.0,
+      "1037043:31134727": 0.0,
+      "1037069:31136876": 0.0,
+      "1037118:31139015": 0.5,
+      "1037256:31143303": 0.0,
+      "1037260:31143450": 0.0,
+      "1037261:31143485": 0.0,
+      "1037262:31143485": 0.0,
+      "1037283:31144301": 0.0,
+      "1037284:31144301": 0.0,
+      "1037392:31153765": 0.0,
+      "1037393:31153940": 0.0,
+      "1037394:31153974": 0.0,
+      "1037395:31153974": 0.0,
+      "1037406:31154797": 0.0,
+      "1037407:31154797": 0.0,
+      "1037476:31159962": 1.05,
+      "1037481:31159966": 0.0,
+      "1037482:31159966": 0.0,
+      "1037484:31159967": 0.0,
+      "1037485:31159967": 0.0,
+      "1037486:31159967": 0.0,
+      "1037487:31159967": 0.0,
+      "1037490:31159970": 0.0,
+      "1037532:31161042": 0.0,
+      "1037533:31161043": 0.0,
+      "1037567:31164278": 0.0,
+      "1037568:31164425": 0.0,
+      "1037573:31164462": 0.0,
+      "1037574:31164462": 0.0,
+      "1037579:31165268": 0.0,
+      "1037580:31165268": 0.0,
+      "11034:2096347": 2.206896649474251,
+      "117:451": 0.0,
+      "1:343": 0.03,
+      "214:597": 0.01,
+      "215:597": 0.0,
+      "223:599": 0.0,
+      "235:603": 0.0,
+      "242:603": 0.0,
+      "244:603": 0.0,
+      "255:605": 0.0,
+      "2:348": 0.0,
+      "300:610": 0.0,
+      "308:613": 0.0,
+      "3181:494298": 0.0,
+      "444:755": 0.0,
+      "445:755": 0.0,
+      "446:756": 0.0,
+      "448:756": 0.0,
+      "453:757": 0.0,
+      "454:757": 0.0,
+      "457:758": 0.0,
+      "491:853": 0.0,
+      "50:433": 0.03,
+      "747437:22545609": 5.941536996253436,
+      "747495:22545797": 0.0,
+      "747750:22546495": 2.152298883158084,
+      "777381:23779827": 3.0099999999999976,
+      "777538:23780401": 0.17,
+      "8:400": 0.01,
+      "90115:5063282": 0.0,
+      "90164:5063338": 0.0,
+      "90165:5063339": 0.0,
+      "90187:5063356": 0.0,
+      "90831:5066954": 0.7100000000000004,
+      "90959:5067130": 0.11,
+      "9215:1794828": 0.0,
+      "930622:27701986": 0.0,
+      "96:442": 0.13
+    },
+    "outside_gpu_pids": [],
+    "owned_swap_growth_bytes": 0,
+    "peak_owned_pss_bytes": 5593261056,
+    "window_ns": [
+      311242993649486,
+      311670993649486
+    ]
+  },
+  "schema": "pr-cell-diagnostics-v1",
+  "scope": "Derived diagnostics, preserving primary metrics and raw records. Latency descriptions are unweighted and complete-response-only, with all failure denominators alongside them; inferential comparisons use the frozen post-stratified estimator.",
+  "seed": 12103,
+  "session_completion": {
+    "all_termination_seconds": {
+      "count": 16,
+      "maximum": 229.231315816,
+      "mean": 105.329167113875,
+      "minimum": 15.932840162,
+      "p95": 215.56205481474998
+    },
+    "complete_only_seconds": {
+      "count": 16,
+      "maximum": 229.231315816,
+      "mean": 105.329167113875,
+      "minimum": 15.932840162,
+      "p95": 215.56205481474998
+    },
+    "outcomes": {
+      "complete": 16
+    },
+    "planned": 16
+  },
+  "store_failures": 0,
+  "store_refusals": 12,
+  "trace_endings": {
+    "context_limit": 12,
+    "natural": 1,
+    "turn_limit": 3
+  },
+  "transfer": {
+    "load": {
+      "bytes": 169869312,
+      "seconds": 0.014411168098449707
+    },
+    "store": {
+      "bytes": 26499612672,
+      "seconds": 2.0493011476993566
+    }
+  },
+  "working_set": {
+    "definition": "current submitted prompt's largest reusable native boundary, window/recurrent reachable keys, unique physical-key union while session active; no future turns, independent of cache readiness",
+    "largest_observed_conversation_bytes": 887095296,
+    "mean_active_prefixes": 4.405045582285047,
+    "mean_unique_reachable_bytes": 1675356015.938706,
+    "peak_unique_reachable_bytes": 5539627008
+  }
+}

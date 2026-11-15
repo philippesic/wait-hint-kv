@@ -1,0 +1,3026 @@
+{
+  "analysis": "primary",
+  "comparisons": [
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 148634726676.0,
+      "baseline_value": 2966873502.329301,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.11409415840005976,
+        0.03083726440912704
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A1--first_turn--ttft_ns--relative_harm.json",
+        "sha256": "dacadad697a8641aca4a9a9ed06b89e91b7263aab1aacf7739efeb9d0ff66de1"
+      },
+      "interval": [
+        -0.19035125676960107,
+        0.018616074207141287
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A1/first_turn/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.04437206284090467,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 141877540466.0,
+      "treatment_value": 2835227204.8429303,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 4494025598.378382,
+      "baseline_value": 93291400.50338008,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.03255502568298507,
+        0.0003831385027621703
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A1--first_turn--client_itl_ns--relative_harm.json",
+        "sha256": "5cef519911e8c8d1413150332b0609cd116ae5985cc05febfbd5141a167a0c52"
+      },
+      "interval": [
+        -0.027601879480772973,
+        0.0031162610921817713
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A1/first_turn/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.016223785743942898,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 4418703610.231789,
+      "treatment_value": 91777860.80986087,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 409236203650.0,
+      "baseline_value": 4891534883.892902,
+      "cohort": "hinted_return",
+      "contrast": "benefit",
+      "delta_interval": [
+        0.010840824131712945,
+        0.03305796585849674
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A1--hinted_return--ttft_ns--benefit.json",
+        "sha256": "fb760f1bd43bff00fb3dc6667a716f422e617d647a44b884a065c673d2aa6e54"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A1/hinted_return/ttft_ns/benefit",
+      "metric": "ttft_ns",
+      "pairs": null,
+      "point": 0.02201248187729188,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 400500044622.0,
+      "treatment_value": 4783860060.909069,
+      "undefined_replicates": 759
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 8555959521.442005,
+      "baseline_value": 107206151.3285727,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.017170842360780147,
+        0.0005429157215703917
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A1--hinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "5ff7d0ec77384b855e2b26be753b10eb341b2ff7b6d683f4c34f217ad3ff9aed"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A1/hinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": null,
+      "point": -0.008353515086893526,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 8486370068.804301,
+      "treatment_value": 106310603.12604168,
+      "undefined_replicates": 806
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 339651640512.0,
+      "baseline_value": 5478337290.150284,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.19559685829925855,
+        -0.0016342116171280674
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A1--unhinted_return--ttft_ns--relative_harm.json",
+        "sha256": "c87655a27b780153e11775ba66e7f666113ce14a1c62ae1695ef40e3eef7582d"
+      },
+      "interval": [
+        -0.13328270045008273,
+        0.07855193394642912
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A1/unhinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.10384790535215516,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 297370115845.0,
+      "treatment_value": 4909423437.755575,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 6926011264.576574,
+      "baseline_value": 112804140.5769223,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.06858085309245643,
+        0.0027191438057541095
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A1--unhinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "9b7965ff0d19d1a386fa6a974fdd1c4d0c33f2c9ac3b49d40fc9ece2dcfdbda6"
+      },
+      "interval": [
+        -0.057853136333138155,
+        -0.006049635035125456
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A1/unhinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.03358817809827164,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 6661426077.128332,
+      "treatment_value": 109015255.01300216,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 110225178617.0,
+      "baseline_value": 2900662595.1842103,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.6602949215100855,
+        0.12852206698701596
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A1--one_shot--ttft_ns--relative_harm.json",
+        "sha256": "28b0388f5fe5fb93aabf91bf96fc024e9843108d5546b446ab48419abd3a1e7e"
+      },
+      "interval": [
+        -0.5753797126976327,
+        -0.015366433411706515
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A1/one_shot/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.38083550057886495,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 68247517542.0,
+      "treatment_value": 1795987303.7368422,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 2945032803.448819,
+      "baseline_value": 77500863.24865313,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.01466741242725278,
+        -0.00020091959721546537
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A1--one_shot--client_itl_ns--relative_harm.json",
+        "sha256": "203085487c8d5f171184ca27a362575b2790c4a7855b6c8ef6d1f13bf28b235c"
+      },
+      "interval": [
+        -0.011008459186917952,
+        0.004313045407360994
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A1/one_shot/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.0074605222228544266,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 2923061320.7716537,
+      "treatment_value": 76922666.33609615,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 191296.0,
+      "baseline_raw_numerator": 43648.0,
+      "baseline_value": 0.2192644944481976,
+      "cohort": "hinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.011018083979478316,
+        0.005874048919110059
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A1--hinted_return--recompute--absolute_change.json",
+        "sha256": "dff9c6129d98ac3a5c0b910390f0f1e99f6e1f4e812e7404a850c5d43163e58f"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A1/hinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": null,
+      "point": -0.0025720175301841286,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 191296.0,
+      "treatment_raw_numerator": 43136.0,
+      "treatment_value": 0.21669247691801347,
+      "undefined_replicates": 748
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 128256.0,
+      "baseline_raw_numerator": 34752.0,
+      "baseline_value": 0.2779287088852842,
+      "cohort": "unhinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.13120882503840012,
+        0.041011822828897454
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A1--unhinted_return--recompute--absolute_change.json",
+        "sha256": "b7960ce8132dcb26f8d4cf35797810f4847d1502391449b008aa70a236a4f1a7"
+      },
+      "interval": [
+        -0.12277144302181342,
+        0.0
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A1/unhinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": 3,
+      "point": -0.04509850110475133,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 128256.0,
+      "treatment_raw_numerator": 29568.0,
+      "treatment_value": 0.23283020778053287,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 135286056005.0,
+      "baseline_value": 2708968913.699643,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.08918006668768441,
+        0.2026386735486958
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A2--first_turn--ttft_ns--relative_harm.json",
+        "sha256": "50c3bf42515abe5bcb8f055360595e87f593eb7ce5ae1cb65f9ad362fd239a3b"
+      },
+      "interval": [
+        -0.11615949858835528,
+        0.13002642656882624
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A2/first_turn/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": 0.046607508305016365,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 141877540466.0,
+      "treatment_value": 2835227204.8429303,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 4278249232.120913,
+      "baseline_value": 88878997.1300689,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.048038166075202726,
+        0.12010318831681088
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A2--first_turn--client_itl_ns--relative_harm.json",
+        "sha256": "b28fb76387bfea2e45e1996c96e672eba07c04ec02e1bf0764118fae297e7f1e"
+      },
+      "interval": [
+        -0.005030303294931149,
+        0.2295395942724261
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A2/first_turn/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.03261584596358191,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 4418703610.231789,
+      "treatment_value": 91777860.80986087,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 395398828282.0,
+      "baseline_value": 4718526807.75699,
+      "cohort": "hinted_return",
+      "contrast": "benefit",
+      "delta_interval": [
+        -0.033135828745303186,
+        0.005083444701733053
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A2--hinted_return--ttft_ns--benefit.json",
+        "sha256": "91cf87c65ba8a2c6753f6090d82cb0f18a3c07ab4b4af183f0f1204a861ed32d"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A2/hinted_return/ttft_ns/benefit",
+      "metric": "ttft_ns",
+      "pairs": null,
+      "point": -0.013846112529163568,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 400500044622.0,
+      "treatment_value": 4783860060.909069,
+      "undefined_replicates": 717
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 8674620195.464056,
+      "baseline_value": 108693949.33601746,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.06522944272158349,
+        0.023381121958631956
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A2--hinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "5ab4092a22ab2799e25f9a1330be8e95d821192e8c0a5b57490758f0f4b19923"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A2/hinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": null,
+      "point": -0.021927128644556704,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 8486370068.804301,
+      "treatment_value": 106310603.12604168,
+      "undefined_replicates": 723
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 347837458831.0,
+      "baseline_value": 5621991826.277873,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.284651766450825,
+        0.06601435865021377
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A2--unhinted_return--ttft_ns--relative_harm.json",
+        "sha256": "5dac0fc941c599b08ef2a475035689e749785ef06bb105b69f59ab2c5b186996"
+      },
+      "interval": [
+        -0.20478484371961836,
+        0.15283517377060973
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A2/unhinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.12674660699285734,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 297370115845.0,
+      "treatment_value": 4909423437.755575,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 6066273287.707536,
+      "baseline_value": 98777905.37250054,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.03653477745976996,
+        0.26420901275675246
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A2--unhinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "877253dd3d991679d6ecaa125b27c26aedafd5b35a524300729fdf8682dd8cb5"
+      },
+      "interval": [
+        0.016226164791929953,
+        0.36570293839423873
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A2/unhinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.10364007620829407,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 6661426077.128332,
+      "treatment_value": 109015255.01300216,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 77784742476.0,
+      "baseline_value": 2046966907.2631578,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.3068484372257425,
+        0.11059745642484575
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A2--one_shot--ttft_ns--relative_harm.json",
+        "sha256": "4ad70bac8161cbc80dced1db91bccbf177d825c2084babe0ba1e40a7a9ea8829"
+      },
+      "interval": [
+        -0.25615958104995895,
+        0.04521194149151908
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A2/one_shot/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.12261048414401643,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 68247517542.0,
+      "treatment_value": 1795987303.7368422,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 2964921050.944882,
+      "baseline_value": 78024238.18276004,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.022665159108137156,
+        -0.005496756074885534
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A2--one_shot--client_itl_ns--relative_harm.json",
+        "sha256": "88fa2b2f600434ddfeb8da371c9d4f7136f8424bdccbabc33ee806e1e2267dcc"
+      },
+      "interval": [
+        -0.026417993843538157,
+        -0.006313187760497718
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A2/one_shot/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.014118328769627042,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 2923061320.7716537,
+      "treatment_value": 76922666.33609615,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 191296.0,
+      "baseline_raw_numerator": 40576.0,
+      "baseline_value": 0.2038323892670928,
+      "cohort": "hinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.04679279792820059,
+        0.07251297323004194
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A2--hinted_return--recompute--absolute_change.json",
+        "sha256": "a3c6e7044bb88b122fb3a918e4b07dc354e775ea8218ee5de44e4a20a267b252"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A2/hinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": null,
+      "point": 0.01286008765092067,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 191296.0,
+      "treatment_raw_numerator": 43136.0,
+      "treatment_value": 0.21669247691801347,
+      "undefined_replicates": 750
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 128256.0,
+      "baseline_raw_numerator": 35968.0,
+      "baseline_value": 0.28758716696259656,
+      "cohort": "unhinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.2649173895935829,
+        0.15540347122945555
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4t-vs-A2--unhinted_return--recompute--absolute_change.json",
+        "sha256": "f422afc896b9abd9c60a02400d948d2c54437b0fcbc080bb41255616db9848b6"
+      },
+      "interval": [
+        -0.23824393289187562,
+        0.07925624069690831
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4t-vs-A2/unhinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": 3,
+      "point": -0.05475695918206369,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4t",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 128256.0,
+      "treatment_raw_numerator": 29568.0,
+      "treatment_value": 0.23283020778053287,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 148634726676.0,
+      "baseline_value": 2966873502.329301,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.0536667436375603,
+        0.01596543361008873
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A1--first_turn--ttft_ns--relative_harm.json",
+        "sha256": "6998a4cb9343848742871bb28b32a1a5da709f089cbe88c0405581bbfee645d7"
+      },
+      "interval": [
+        -0.04041974787937386,
+        0.06375575929896415
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A1/first_turn/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.01946857411915992,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 145472986762.0,
+      "treatment_value": 2909112705.6470313,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 4494025598.378382,
+      "baseline_value": 93291400.50338008,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.02600512416012668,
+        0.006678728583958238
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A1--first_turn--client_itl_ns--relative_harm.json",
+        "sha256": "4ee8411fa2af36eb4c0d020fdc2c791a1445cdfe26fffda989b2946d5477fbb1"
+      },
+      "interval": [
+        -0.027300562198935285,
+        -0.00030214093017844057
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A1/first_turn/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.00979803915677191,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 4446429711.42003,
+      "treatment_value": 92377327.70825787,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 409236203650.0,
+      "baseline_value": 4891534883.892902,
+      "cohort": "hinted_return",
+      "contrast": "benefit",
+      "delta_interval": [
+        0.004002242586299776,
+        0.04850133823994485
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A1--hinted_return--ttft_ns--benefit.json",
+        "sha256": "6086ac517cc86102d6c9210911747e583490d6a436f7514556a70e43c9734be2"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A1/hinted_return/ttft_ns/benefit",
+      "metric": "ttft_ns",
+      "pairs": null,
+      "point": 0.026506017843380913,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 398348521464.0,
+      "treatment_value": 4761879772.978917,
+      "undefined_replicates": 706
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 8555959521.442005,
+      "baseline_value": 107206151.3285727,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.00898247961857479,
+        0.008142196471843555
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A1--hinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "93749542fea361990f8bb063036a09e9e54e7ab1cf4676020e6c5742c97fb199"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A1/hinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": null,
+      "point": -0.000456814470024991,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 8553803747.477562,
+      "treatment_value": 107157178.00737013,
+      "undefined_replicates": 730
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 339651640512.0,
+      "baseline_value": 5478337290.150284,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.18651744767632839,
+        -0.03557400529480503
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A1--unhinted_return--ttft_ns--relative_harm.json",
+        "sha256": "4a2f396b17458f3c54387cb31f7acd3a49f7a18169a96910c89929d56a7eeac3"
+      },
+      "interval": [
+        -0.13681341580983009,
+        0.02323910114547889
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A1/unhinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.11425527396428836,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 293873134588.0,
+      "treatment_value": 4852408362.195386,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 6926011264.576574,
+      "baseline_value": 112804140.5769223,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.0710022603360696,
+        0.015229167531817245
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A1--unhinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "a51622159f0f4f4e391d43a67577d490e7e28417e13f579205fbdc8bde9b2ec5"
+      },
+      "interval": [
+        -0.05944488393207037,
+        -0.0010882573184874955
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A1/unhinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.028843163089528612,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 6689269393.366086,
+      "treatment_value": 109550512.35308802,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 110225178617.0,
+      "baseline_value": 2900662595.1842103,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.6634117138294158,
+        0.16931862570009204
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A1--one_shot--ttft_ns--relative_harm.json",
+        "sha256": "b0d75bfaf6f96573a96617a3e012308be30d54c81f36fd2838dbcfa508f13d83"
+      },
+      "interval": [
+        -0.5768649660418721,
+        0.007675846220975169
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A1/one_shot/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.3726412890445078,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 69150725972.0,
+      "treatment_value": 1819755946.631579,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 2945032803.448819,
+      "baseline_value": 77500863.24865313,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.01467500783737441,
+        0.0019145619215250598
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A1--one_shot--client_itl_ns--relative_harm.json",
+        "sha256": "55f0da8ef886251bdb7ad3e13c1590d0691821fd1dbe635ebf4b464a7902bb7f"
+      },
+      "interval": [
+        -0.011740987656118973,
+        0.004855653518506475
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A1/one_shot/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.006414846189342849,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 2926140870.9921255,
+      "treatment_value": 77003707.13137172,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 191296.0,
+      "baseline_raw_numerator": 43648.0,
+      "baseline_value": 0.2192644944481976,
+      "cohort": "hinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.011018083979478316,
+        0.005874048919110059
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A1--hinted_return--recompute--absolute_change.json",
+        "sha256": "997d33aece85c4517d899f1caa53ad81d43a7ef45c8e421d31db94b6289fe2e7"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A1/hinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": null,
+      "point": -0.0025720175301841286,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 191296.0,
+      "treatment_raw_numerator": 43136.0,
+      "treatment_value": 0.21669247691801347,
+      "undefined_replicates": 720
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 128256.0,
+      "baseline_raw_numerator": 34752.0,
+      "baseline_value": 0.2779287088852842,
+      "cohort": "unhinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.13120882503840012,
+        0.041011822828897454
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A1--unhinted_return--recompute--absolute_change.json",
+        "sha256": "62cb802587ec5452d4b8e41b2864780b08101081753228a47e0f5fdabad9adba"
+      },
+      "interval": [
+        -0.12277144302181342,
+        0.0
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A1/unhinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": 3,
+      "point": -0.04509850110475133,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 128256.0,
+      "treatment_raw_numerator": 29568.0,
+      "treatment_value": 0.23283020778053287,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 135286056005.0,
+      "baseline_value": 2708968913.699643,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.028199443498737375,
+        0.1866862439293766
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A2--first_turn--ttft_ns--relative_harm.json",
+        "sha256": "802e2bdfd56df09c97f706a3fde695cf506ad05b99a74c7c1d04fbc329bacf13"
+      },
+      "interval": [
+        -0.13674126943075204,
+        0.12598973594009388
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A2/first_turn/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": 0.07388190795960492,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 145472986762.0,
+      "treatment_value": 2909112705.6470313,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 4278249232.120913,
+      "baseline_value": 88878997.1300689,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.03984944163158999,
+        0.12510527191146625
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A2--first_turn--client_itl_ns--relative_harm.json",
+        "sha256": "c2b1e146a70fe4e24d05cc735f4d020cf26e34df53d8867f76ae52417b9a7d0d"
+      },
+      "interval": [
+        -0.0010825328025688696,
+        0.23174544728652435
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A2/first_turn/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.039360599142105324,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 4446429711.42003,
+      "treatment_value": 92377327.70825787,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 395398828282.0,
+      "baseline_value": 4718526807.75699,
+      "cohort": "hinted_return",
+      "contrast": "benefit",
+      "delta_interval": [
+        -0.0403647271542773,
+        0.02105480387604597
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A2--hinted_return--ttft_ns--benefit.json",
+        "sha256": "1447f0cdb38dc9eb9db787aea9e44b2a6a011063525004e0d94c8f96feea36e7"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A2/hinted_return/ttft_ns/benefit",
+      "metric": "ttft_ns",
+      "pairs": null,
+      "point": -0.00918781793305845,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 398348521464.0,
+      "treatment_value": 4761879772.978917,
+      "undefined_replicates": 758
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 8674620195.464056,
+      "baseline_value": 108693949.33601746,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.0688302763864832,
+        0.043765532317147526
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A2--hinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "b801b26e73349d778499c2679002dd1e7a76806ce532d2d065d9772e13c1d81b"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A2/hinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": null,
+      "point": -0.014138517719110011,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 8553803747.477562,
+      "treatment_value": 107157178.00737013,
+      "undefined_replicates": 707
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 347837458831.0,
+      "baseline_value": 5621991826.277873,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.2742623619105663,
+        0.02648975279048571
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A2--unhinted_return--ttft_ns--relative_harm.json",
+        "sha256": "99af564f7c51c853d44415a4fe83b8acb1e9381929d5b86d883cf44358705520"
+      },
+      "interval": [
+        -0.20508232436423135,
+        0.10061483404511895
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A2/unhinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.1368880439287301,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 293873134588.0,
+      "treatment_value": 4852408362.195386,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 6066273287.707536,
+      "baseline_value": 98777905.37250054,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.04688104957849604,
+        0.29051214642645795
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A2--unhinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "61a09acdeecf3253f9fb5048db66819dda87f9ef587e9e1be79d13e7873a343b"
+      },
+      "interval": [
+        0.006329764549491079,
+        0.37382118154117894
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A2/unhinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.10905887242661194,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 6689269393.366086,
+      "treatment_value": 109550512.35308802,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 77784742476.0,
+      "baseline_value": 2046966907.2631578,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.3121043105936402,
+        0.1488995604276091
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A2--one_shot--ttft_ns--relative_harm.json",
+        "sha256": "4f35d62f1cc16a2a10ee5dc63ee6da57215b7082e36f875a89588d65a637ee62"
+      },
+      "interval": [
+        -0.25876141497750127,
+        0.06967186917275336
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A2/one_shot/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.11099884410704286,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 69150725972.0,
+      "treatment_value": 1819755946.631579,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 2964921050.944882,
+      "baseline_value": 78024238.18276004,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.025339256682665345,
+        -0.0006658722874550715
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A2--one_shot--client_itl_ns--relative_harm.json",
+        "sha256": "62560510dec07630c3f5e94e047aab14ae20655d73076003c079aa362c70f548"
+      },
+      "interval": [
+        -0.020686599503963454,
+        0.00014046591879490755
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A2/one_shot/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.01307966697474039,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 2926140870.9921255,
+      "treatment_value": 77003707.13137172,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 191296.0,
+      "baseline_raw_numerator": 40576.0,
+      "baseline_value": 0.2038323892670928,
+      "cohort": "hinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.04679279792820059,
+        0.07251297323004194
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A2--hinted_return--recompute--absolute_change.json",
+        "sha256": "de7f59e431782217914eb45f3a7debc98212ccc2c2f5776eb7e4f23daa13d92f"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A2/hinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": null,
+      "point": 0.01286008765092067,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 191296.0,
+      "treatment_raw_numerator": 43136.0,
+      "treatment_value": 0.21669247691801347,
+      "undefined_replicates": 738
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 128256.0,
+      "baseline_raw_numerator": 35968.0,
+      "baseline_value": 0.28758716696259656,
+      "cohort": "unhinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.2649173895935829,
+        0.15540347122945555
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A4p-vs-A2--unhinted_return--recompute--absolute_change.json",
+        "sha256": "7709f58b39150b05ceda6434e6e3c25c8938a4d5b80b98ec300eb37d48eb9327"
+      },
+      "interval": [
+        -0.23824393289187562,
+        0.07925624069690831
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-vs-A2/unhinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": 3,
+      "point": -0.05475695918206369,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A4p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 128256.0,
+      "treatment_raw_numerator": 29568.0,
+      "treatment_value": 0.23283020778053287,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 148634726676.0,
+      "baseline_value": 2966873502.329301,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.16934940132649734,
+        -0.06877679796934266
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A1--first_turn--ttft_ns--relative_harm.json",
+        "sha256": "57ba0d96c2fd60023e00c56c9133ce9dc258c2d11420222988e3ad73453282fe"
+      },
+      "interval": [
+        -0.14816866887448665,
+        0.001918514082101641
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A1/first_turn/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.1204995109350867,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 130126186946.0,
+      "treatment_value": 2609366696.292352,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 4494025598.378382,
+      "baseline_value": 93291400.50338008,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.04948723050355475,
+        0.05757274006214819
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A1--first_turn--client_itl_ns--relative_harm.json",
+        "sha256": "417df783177459e892cde9bf6cbb9ed338fc49a1ffa33dde459474d0fa1fbb58"
+      },
+      "interval": [
+        -0.023216881819177804,
+        0.044840620377514906
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A1/first_turn/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.002614778516862204,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 4496989041.665183,
+      "treatment_value": 93535336.85322429,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 409236203650.0,
+      "baseline_value": 4891534883.892902,
+      "cohort": "hinted_return",
+      "contrast": "benefit",
+      "delta_interval": [
+        0.049486926299066925,
+        0.21190786190858446
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A1--hinted_return--ttft_ns--benefit.json",
+        "sha256": "e19c3872d9118ec3df24d378d0c7c2fa33505582d4519940500990193a7ba3cc"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A1/hinted_return/ttft_ns/benefit",
+      "metric": "ttft_ns",
+      "pairs": null,
+      "point": 0.13449905803817197,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 354129879929.0,
+      "treatment_value": 4233628049.648448,
+      "undefined_replicates": 734
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 8555959521.442005,
+      "baseline_value": 107206151.3285727,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.04694764725883038,
+        0.181961519050984
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A1--hinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "307f2e76af711ab1288981ed5b553caaf0503d1d2e6d29791eb7951ab1fe85a6"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A1/hinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": null,
+      "point": 0.06135347862107987,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 9115655374.76938,
+      "treatment_value": 113783621.64215855,
+      "undefined_replicates": 759
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 339651640512.0,
+      "baseline_value": 5478337290.150284,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.0868617739097457,
+        0.04798623465341456
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A1--unhinted_return--ttft_ns--relative_harm.json",
+        "sha256": "f795c747484ba6632dfb507034a23727165d9d4f02fdbe94a9f2bedf2d7a6681"
+      },
+      "interval": [
+        -0.06535408204457349,
+        0.00898233921996372
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A1/unhinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.021758572090496697,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 318989287747.0,
+      "treatment_value": 5359136493.286492,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 6926011264.576574,
+      "baseline_value": 112804140.5769223,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.03635037370876648,
+        0.016092904046830947
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A1--unhinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "abef0bf23dd7a51d939c54d063bb6aef8a8f847aacb20debc8adbe8add090ed1"
+      },
+      "interval": [
+        -0.04399399216013922,
+        0.0053256963873686836
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A1/unhinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.0104761007121138,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 6875671469.204993,
+      "treatment_value": 111622393.03949502,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 110225178617.0,
+      "baseline_value": 2900662595.1842103,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.18057775765401085,
+        -0.015061424181038174
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A1--one_shot--ttft_ns--relative_harm.json",
+        "sha256": "6f10e292b6d592a84d75d62e084aea96d96b850042d85a8ad909ee42ad39c662"
+      },
+      "interval": [
+        -0.14498661007451397,
+        -0.015298108366291974
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A1/one_shot/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.10162336608155331,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 99023724939.0,
+      "treatment_value": 2605887498.394737,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 2945032803.448819,
+      "baseline_value": 77500863.24865313,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.013469596582172283,
+        0.04349567163758006
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A1--one_shot--client_itl_ns--relative_harm.json",
+        "sha256": "1700016c92e1a8e4a2526d1d0da2dccd01f49bc30a402d4b2eebffc7fa2e44db"
+      },
+      "interval": [
+        -0.004716746898391189,
+        0.03421800186511592
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A1/one_shot/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.014613328271109838,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 2988069534.5748034,
+      "treatment_value": 78633408.80460009,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 191296.0,
+      "baseline_raw_numerator": 43648.0,
+      "baseline_value": 0.2192644944481976,
+      "cohort": "hinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.044082348273050354,
+        0.013218137910840755
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A1--hinted_return--recompute--absolute_change.json",
+        "sha256": "4ae5cfca4c9185d0b64eb8d14c6c8e9838171156f685d4789cfe4ac1d3c4dbd1"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A1/hinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": null,
+      "point": -0.0154321051811048,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 191296.0,
+      "treatment_raw_numerator": 40576.0,
+      "treatment_value": 0.2038323892670928,
+      "undefined_replicates": 767
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A1",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 128256.0,
+      "baseline_raw_numerator": 34752.0,
+      "baseline_value": 0.2779287088852842,
+      "cohort": "unhinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.028280199537417436,
+        0.07481658550084223
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A1--unhinted_return--recompute--absolute_change.json",
+        "sha256": "a39b84286744e0782190ea76e669ec1b522c2392ed7b8c900ec49090e2bd4053"
+      },
+      "interval": [
+        0.0,
+        0.07670354867592066
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A1/unhinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": 3,
+      "point": 0.0232681929817124,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 128256.0,
+      "treatment_raw_numerator": 36736.0,
+      "treatment_value": 0.3011969018669966,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 135286056005.0,
+      "baseline_value": 2708968913.699643,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.10978828040839439,
+        0.04224274334452516
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A2--first_turn--ttft_ns--relative_harm.json",
+        "sha256": "efe45b5256422aca9b5a1ca18bd123fb2e1ac28acd440fce406d5038457f5291"
+      },
+      "interval": [
+        -0.18692341071757113,
+        -0.0010562456395351028
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A2/first_turn/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.03676757488931981,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 130126186946.0,
+      "treatment_value": 2609366696.292352,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 4278249232.120913,
+      "baseline_value": 88878997.1300689,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.05093998298357505,
+        0.1669693798313976
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A2--first_turn--client_itl_ns--relative_harm.json",
+        "sha256": "a54d630c3ee17cf854483e026b63c668c9b3cc59249a4acb074b31d04df0523d"
+      },
+      "interval": [
+        -0.0018939319542150557,
+        0.22834893164068903
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A2/first_turn/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.05238965192576517,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 4496989041.665183,
+      "treatment_value": 93535336.85322429,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 395398828282.0,
+      "baseline_value": 4718526807.75699,
+      "cohort": "hinted_return",
+      "contrast": "benefit",
+      "delta_interval": [
+        0.019583746209171915,
+        0.17888867199059022
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A2--hinted_return--ttft_ns--benefit.json",
+        "sha256": "d2080965c9c34667b4b71256b3d30452f2ffdff2ec99b4842c969f15e46df5f7"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A2/hinted_return/ttft_ns/benefit",
+      "metric": "ttft_ns",
+      "pairs": null,
+      "point": 0.10276486239548255,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 354129879929.0,
+      "treatment_value": 4233628049.648448,
+      "undefined_replicates": 723
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 8674620195.464056,
+      "baseline_value": 108693949.33601746,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.014316432565965043,
+        0.11176053018702459
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A2--hinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "50c7f9ba03357018f4c596a236a6152df67cf6af58639360127f372a1951dd2c"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A2/hinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": null,
+      "point": 0.04682571879329589,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 9115655374.76938,
+      "treatment_value": 113783621.64215855,
+      "undefined_replicates": 786
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 347837458831.0,
+      "baseline_value": 5621991826.277873,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.09774872754992914,
+        0.007121143771201099
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A2--unhinted_return--ttft_ns--relative_harm.json",
+        "sha256": "f163c96d30388f02fd8140c3436a86ad69501492b00045812f728a8660224744"
+      },
+      "interval": [
+        -0.06401373504925467,
+        0.09433631079148386
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A2/unhinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.04675484083110237,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 318989287747.0,
+      "treatment_value": 5359136493.286492,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 6066273287.707536,
+      "baseline_value": 98777905.37250054,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.0067460255931253155,
+        0.2856499030791462
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A2--unhinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "33d9700d3d0c2501bc7fb3153456942013926ba9e6ce54a1c8ea32f85bdd4294"
+      },
+      "interval": [
+        0.040154008835576294,
+        0.3671367258009517
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A2/unhinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.13003401538589765,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 6875671469.204993,
+      "treatment_value": 111622393.03949502,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 77784742476.0,
+      "baseline_value": 2046966907.2631578,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.03870520974003744,
+        0.6859049775730666
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A2--one_shot--ttft_ns--relative_harm.json",
+        "sha256": "1c42ef2ade092fd8106c9cac47f834f9dba28072f7048cc6d9772f208b377131"
+      },
+      "interval": [
+        0.008282652086263775,
+        0.49779352797899756
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A2/one_shot/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": 0.27304818126193786,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 99023724939.0,
+      "treatment_value": 2605887498.394737,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 2964921050.944882,
+      "baseline_value": 78024238.18276004,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.02338196902106504,
+        0.03999294645377116
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A2--one_shot--client_itl_ns--relative_harm.json",
+        "sha256": "2c33738041dc0cc4785cea3d36574c0f08c52d6f53df3b1c22709c962bbb94a4"
+      },
+      "interval": [
+        -0.016635557617896146,
+        0.029721495159878986
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A2/one_shot/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.007807453632717953,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 2988069534.5748034,
+      "treatment_value": 78633408.80460009,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 191296.0,
+      "baseline_raw_numerator": 40576.0,
+      "baseline_value": 0.2038323892670928,
+      "cohort": "hinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.022919859466482825,
+        0.022919859466482825
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A2--hinted_return--recompute--absolute_change.json",
+        "sha256": "6a6e53abdb686c7b1e272563536a2601225188144d3287c4bd843b772db52f35"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A2/hinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": null,
+      "point": 0.0,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 191296.0,
+      "treatment_raw_numerator": 40576.0,
+      "treatment_value": 0.2038323892670928,
+      "undefined_replicates": 763
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 128256.0,
+      "baseline_raw_numerator": 35968.0,
+      "baseline_value": 0.28758716696259656,
+      "cohort": "unhinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.06077177360902833,
+        0.08799124341782841
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A5-vs-A2--unhinted_return--recompute--absolute_change.json",
+        "sha256": "27dfc869fd8c9279ac2e006d4c7aceb3866f92febbc94e0ed558dabe82c7bafc"
+      },
+      "interval": [
+        -0.03876894119414154,
+        0.07925624069690831
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A5-vs-A2/unhinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": 3,
+      "point": 0.01360973490440004,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A5",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 128256.0,
+      "treatment_raw_numerator": 36736.0,
+      "treatment_value": 0.3011969018669966,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 135286056005.0,
+      "baseline_value": 2708968913.699643,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        0.008105938183929684,
+        0.1774177810410762
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--first_turn--ttft_ns--relative_harm.json",
+        "sha256": "152c9a581897601a8bcb06780614cfc5683937e149a39b662cc6e8e0f2a8a333"
+      },
+      "interval": [
+        0.017625745549772587,
+        0.1494676252198519
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/first_turn/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": 0.08947779086627317,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 148290621637.0,
+      "treatment_value": 2951361467.622895,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 4278249232.120913,
+      "baseline_value": 88878997.1300689,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.04403781801430584,
+        0.187490885308079
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--first_turn--client_itl_ns--relative_harm.json",
+        "sha256": "97c46104a9db9c49ccc10ae1309d626d502c9b20b111d178e398dd0b9f54f9a2"
+      },
+      "interval": [
+        0.003916516640080969,
+        0.16846190829254848
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/first_turn/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.06545594831848156,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 4572092858.69618,
+      "treatment_value": 94696656.17281316,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 395398828282.0,
+      "baseline_value": 4718526807.75699,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.03562506280501976,
+        0.0017868354706307432
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--hinted_return--ttft_ns--relative_harm.json",
+        "sha256": "13b92f4b938ef41d4a1f36b63b346a5ddd8d54b315976ad91969a6c8274cbe51"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/hinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": null,
+      "point": -0.017097097094658342,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 388520004886.0,
+      "treatment_value": 4637853696.781021,
+      "undefined_replicates": 731
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 8674620195.464056,
+      "baseline_value": 108693949.33601746,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.002886876322710563,
+        0.0520356019676842
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--hinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "2c959b0d690e1cd43b165421b8b4e47115c024aa5130ea758a429ee6af7616a9"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/hinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": null,
+      "point": 0.024206280637701916,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 8899093915.058699,
+      "treatment_value": 111325025.57726526,
+      "undefined_replicates": 737
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 347837458831.0,
+      "baseline_value": 5621991826.277873,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.13264145353403334,
+        -0.06772468611563398
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--unhinted_return--ttft_ns--relative_harm.json",
+        "sha256": "49413562738b81dbee1a5f14fe2f778f7a72580c3871b00a26f7679c06d8c0a2"
+      },
+      "interval": [
+        -0.11210374446938076,
+        -0.03592745202771486
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/unhinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.10076868317609922,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 305382455889.0,
+      "treatment_value": 5055471113.117059,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 6066273287.707536,
+      "baseline_value": 98777905.37250054,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        0.009100155334584192,
+        0.15005196932765674
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--unhinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "4121dea262b521e7208b0c3d72274822c238de45bfddcd78e2445bf902f5e5f0"
+      },
+      "interval": [
+        0.030081169250042672,
+        0.11927764132057006
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/unhinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.07727323409216047,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 6676532084.1459255,
+      "treatment_value": 106410793.57748304,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 77784742476.0,
+      "baseline_value": 2046966907.2631578,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.041900880112860306,
+        0.2731893376914287
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--one_shot--ttft_ns--relative_harm.json",
+        "sha256": "6dabf384ab7f1cb905280375e5deb3158169651d185694099fa3dc1d2f013690"
+      },
+      "interval": [
+        -0.009156202229759658,
+        0.20583747413697906
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/one_shot/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": 0.10446438778796674,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 85910477978.0,
+      "treatment_value": 2260802052.0526314,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 2964921050.944882,
+      "baseline_value": 78024238.18276004,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.011055224195612556,
+        0.006887820664368771
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--one_shot--client_itl_ns--relative_harm.json",
+        "sha256": "28405c3d2e3a0c5e9755ef52745d67cba13cef628206d16324c3dd7b556a7b07"
+      },
+      "interval": [
+        -0.008479825885962078,
+        0.003731523547879201
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/one_shot/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.0021240307197029074,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 2958623467.551181,
+      "treatment_value": 77858512.30397844,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 191296.0,
+      "baseline_raw_numerator": 40576.0,
+      "baseline_value": 0.2038323892670928,
+      "cohort": "hinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.01148177779788915,
+        0.05327706266338137
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--hinted_return--recompute--absolute_change.json",
+        "sha256": "c610078c683ccf9bf82e86411cc4bb48fe30272fae99304ce346ad3e09be7ae2"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/hinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": null,
+      "point": 0.02089764243274611,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 191296.0,
+      "treatment_raw_numerator": 44736.0,
+      "treatment_value": 0.2247300316998389,
+      "undefined_replicates": 746
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 128256.0,
+      "baseline_raw_numerator": 35968.0,
+      "baseline_value": 0.28758716696259656,
+      "cohort": "unhinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.03311768115571372,
+        0.01048964116681033
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--unhinted_return--recompute--absolute_change.json",
+        "sha256": "5bd1feb701cc55e3a4525f899b85e662f10ab5d9680226baa6b5b50569b3c357"
+      },
+      "interval": [
+        -0.032269117800644564,
+        0.0
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/unhinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": 3,
+      "point": -0.011314019994451696,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 128256.0,
+      "treatment_raw_numerator": 34752.0,
+      "treatment_value": 0.27627314696814487,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 135286056005.0,
+      "baseline_value": 2708968913.699643,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.08668866379569373,
+        0.1703044627272361
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A2--first_turn--ttft_ns--relative_harm.json",
+        "sha256": "aa0396f0d7c551ee056e3d4fbb4138e2f1261176121d9a1e82aae186ac7a9c66"
+      },
+      "interval": [
+        -0.10814799448285761,
+        0.10821604728392709
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A2/first_turn/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": 0.03385314847867771,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 140122756424.0,
+      "treatment_value": 2800676040.5592394,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 4278249232.120913,
+      "baseline_value": 88878997.1300689,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.05187132663966154,
+        0.11846223295313241
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A2--first_turn--client_itl_ns--relative_harm.json",
+        "sha256": "dad3c219a9886651e7f2c66169b9a26bc532a4cc3ad1aadc5623fa1762a7a228"
+      },
+      "interval": [
+        -0.009320771434254471,
+        0.22700398359103047
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A2/first_turn/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.029779642998197575,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 4406681430.575449,
+      "treatment_value": 91525781.93464017,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 395398828282.0,
+      "baseline_value": 4718526807.75699,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.0009640588698374142,
+        0.03825736436597893
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A2--hinted_return--ttft_ns--relative_harm.json",
+        "sha256": "93ac4add344c892c5d59b7cc77bf706ccd420b868a373b0a8b25e2f913d349f9"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A2/hinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": null,
+      "point": 0.018457865178863386,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 402390627002.0,
+      "treatment_value": 4805620739.417421,
+      "undefined_replicates": 728
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 8674620195.464056,
+      "baseline_value": 108693949.33601746,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.07002163487006419,
+        0.02377193404746447
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A2--hinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "c8e1f5b4d59aa750d56be24fc322866de89fd3eb25fe1ee8cbc67af30157ac5d"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A2/hinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": null,
+      "point": -0.024251185247261775,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 8465780350.604094,
+      "treatment_value": 106057992.23541321,
+      "undefined_replicates": 728
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 347837458831.0,
+      "baseline_value": 5621991826.277873,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.2831115412695978,
+        0.048434035231951
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A2--unhinted_return--ttft_ns--relative_harm.json",
+        "sha256": "c11360e25f67db1264350743f178323e4d326a2017cb93917957060209cf3b12"
+      },
+      "interval": [
+        -0.20689037822881307,
+        0.13121143524141377
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A2/unhinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.13304541087901867,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 295442504142.0,
+      "treatment_value": 4874011613.792249,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 6066273287.707536,
+      "baseline_value": 98777905.37250054,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.038025222466126496,
+        0.2660262325671605
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A2--unhinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "0f5247d9f2be8cdb3046cf9b1222683e6a9688ba9d410561c0a1694fcedae8c6"
+      },
+      "interval": [
+        0.014912434603904678,
+        0.3563861309927532
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A2/unhinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.10357840837243737,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 6651555417.757804,
+      "treatment_value": 109009163.59334739,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 77784742476.0,
+      "baseline_value": 2046966907.2631578,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.3172577791375686,
+        0.11274669029014661
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A2--one_shot--ttft_ns--relative_harm.json",
+        "sha256": "b3040c9e3b48b1eb1c33215a266bf77ecb690bbf1a527fc79c430798fd5e4584"
+      },
+      "interval": [
+        -0.2663725230190147,
+        0.039976770179700694
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A2/one_shot/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.12838130665639413,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 67798635599.0,
+      "treatment_value": 1784174621.0263157,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 2964921050.944882,
+      "baseline_value": 78024238.18276004,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.027202930091096755,
+        0.01997963724127172
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A2--one_shot--client_itl_ns--relative_harm.json",
+        "sha256": "8553ea9eaf92b5725381a702624dde61882df2758d89c15746d47d74094ce3d4"
+      },
+      "interval": [
+        -0.022679480098595106,
+        0.011404722967919279
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A2/one_shot/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.0038909685807204664,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 2953384636.2913384,
+      "treatment_value": 77720648.32345627,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 191296.0,
+      "baseline_raw_numerator": 40576.0,
+      "baseline_value": 0.2038323892670928,
+      "cohort": "hinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.03729342102544313,
+        0.07137265330038293
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A2--hinted_return--recompute--absolute_change.json",
+        "sha256": "a0db72217991026e0447d2c4ab8d8d36dd4e9745c34a99900296bd0217b06ff5"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A2/hinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": null,
+      "point": 0.017039616137469904,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 191296.0,
+      "treatment_raw_numerator": 43968.0,
+      "treatment_value": 0.2208720054045627,
+      "undefined_replicates": 801
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 128256.0,
+      "baseline_raw_numerator": 35968.0,
+      "baseline_value": 0.28758716696259656,
+      "cohort": "unhinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.2649173895935829,
+        0.15540347122945555
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A2--unhinted_return--recompute--absolute_change.json",
+        "sha256": "8f699e07678864470c6aff691fb30326333993489c4be62e7d7dff955c89d4df"
+      },
+      "interval": [
+        -0.23824393289187562,
+        0.07925624069690831
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A2/unhinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": 3,
+      "point": -0.05475695918206369,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 128256.0,
+      "treatment_raw_numerator": 29568.0,
+      "treatment_value": 0.23283020778053287,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A3",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 148290621637.0,
+      "baseline_value": 2951361467.622895,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.09559920201095884,
+        -0.004319482326369806
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A3--first_turn--ttft_ns--relative_harm.json",
+        "sha256": "4a3459914f2dba20f9e5a11e00bc87be9d6f6c904de8fae76a3e4e2a4008c6b3"
+      },
+      "interval": [
+        -0.18615530446672868,
+        -0.03343620187935714
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A3/first_turn/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.051056242590651335,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 140122756424.0,
+      "treatment_value": 2800676040.5592394,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A3",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 4572092858.69618,
+      "baseline_value": 94696656.17281316,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.17364523981016955,
+        0.13044926220373632
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A3--first_turn--client_itl_ns--relative_harm.json",
+        "sha256": "e88a58d0e49e3e8bc8a8756200bd8520e304cf57b7fc7e5081c9d6a04e88cab2"
+      },
+      "interval": [
+        -0.15503545262518348,
+        0.08162543150989565
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A3/first_turn/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.033484542816236584,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 4406681430.575449,
+      "treatment_value": 91525781.93464017,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A3",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 388520004886.0,
+      "baseline_value": 4637853696.781021,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        0.018315845672265407,
+        0.054344157237901536
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A3--hinted_return--ttft_ns--relative_harm.json",
+        "sha256": "5137e3334daf23986fe2adfc694af7994cb2691e9da690a5d447a0271459e7b5"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A3/hinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": null,
+      "point": 0.036173422795299004,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 402390627002.0,
+      "treatment_value": 4805620739.417421,
+      "undefined_replicates": 729
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A3",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 80.0,
+      "baseline_raw_numerator": 8899093915.058699,
+      "baseline_value": 111325025.57726526,
+      "cohort": "hinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.11601900913858176,
+        0.02673476980606404
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A3--hinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "6055b39d9848fc01b264c9dd53159625e6d5d19b86924fa5975f87056ed416d7"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A3/hinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": null,
+      "point": -0.047312213175252915,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 80.0,
+      "treatment_raw_numerator": 8465780350.604094,
+      "treatment_value": 106057992.23541321,
+      "undefined_replicates": 748
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A3",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 305382455889.0,
+      "baseline_value": 5055471113.117059,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.1879257682766624,
+        0.1446010055036122
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A3--unhinted_return--ttft_ns--relative_harm.json",
+        "sha256": "f9cd086fcf90a1cb6f78baa7a7374d96471f433aaad65d4b0647b7f3b1e37f99"
+      },
+      "interval": [
+        -0.12522558787859528,
+        0.1733675412920619
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A3/unhinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.03589368730720077,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 295442504142.0,
+      "treatment_value": 4874011613.792249,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A3",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 6676532084.1459255,
+      "baseline_value": 106410793.57748304,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.08668563686045327,
+        0.14903792486574874
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A3--unhinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "2ed32616a77be38297e882e8776dbe8141798030b7bf16420dca89b226e6ada5"
+      },
+      "interval": [
+        -0.0246006571700359,
+        0.28241193754286886
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A3/unhinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.024418293751115927,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 6651555417.757804,
+      "treatment_value": 109009163.59334739,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A3",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 85910477978.0,
+      "baseline_value": 2260802052.0526314,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.4632537869589485,
+        0.16032766909397367
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A3--one_shot--ttft_ns--relative_harm.json",
+        "sha256": "846e2dc53cd50051ebdd58e3804850115acef4ca67f3028085d468a57ef97eaf"
+      },
+      "interval": [
+        -0.39160335226267173,
+        0.04958700101875513
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A3/one_shot/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.21082227459656422,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 67798635599.0,
+      "treatment_value": 1784174621.0263157,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A3",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 38.0,
+      "baseline_raw_numerator": 2958623467.551181,
+      "baseline_value": 77858512.30397844,
+      "cohort": "one_shot",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.03282800396087571,
+        0.030283901617997655
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A3--one_shot--client_itl_ns--relative_harm.json",
+        "sha256": "2a2e6802c5c342e9b6b8bd7231139a1f2e7dc45ded09a76c3c7605f96d352922"
+      },
+      "interval": [
+        -0.02611876019545234,
+        0.020054608441677946
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A3/one_shot/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": -0.0017706988798337209,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 38.0,
+      "treatment_raw_numerator": 2953384636.2913384,
+      "treatment_value": 77720648.32345627,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A3",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 191296.0,
+      "baseline_raw_numerator": 44736.0,
+      "baseline_value": 0.2247300316998389,
+      "cohort": "hinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.026320662139323686,
+        0.018604609548771273
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A3--hinted_return--recompute--absolute_change.json",
+        "sha256": "734396cbddefb36148ae00d06065aafae785b917485b44a21754ebf5069c17c1"
+      },
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A3/hinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": null,
+      "point": -0.0038580262952762068,
+      "reason": "undefined bootstrap replicates",
+      "resamples": null,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 191296.0,
+      "treatment_raw_numerator": 43968.0,
+      "treatment_value": 0.2208720054045627,
+      "undefined_replicates": 791
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A3",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 128256.0,
+      "baseline_raw_numerator": 34752.0,
+      "baseline_value": 0.27627314696814487,
+      "cohort": "unhinted_return",
+      "contrast": "absolute_change",
+      "delta_interval": [
+        -0.23243410619013297,
+        0.14554822781490898
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A3--unhinted_return--recompute--absolute_change.json",
+        "sha256": "9b2b676fddddbf319c9e01ac2c9b8fbf513b1602bc21f949be657bab4f9712ea"
+      },
+      "interval": [
+        -0.20597481509123106,
+        0.07925624069690831
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A3/unhinted_return/recompute/absolute_change",
+      "metric": "recompute",
+      "pairs": 3,
+      "point": -0.043442939187611995,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 128256.0,
+      "treatment_raw_numerator": 29568.0,
+      "treatment_value": 0.23283020778053287,
+      "undefined_replicates": null
+    }
+  ],
+  "first_task_audit": null,
+  "model": "D8",
+  "primary_baseline": "A2",
+  "schema": "pr-screen-statistical-report-v1",
+  "scope": "Frozen post-stratified pooled estimands,10000 paired-seed BCa draws and clustered delta sensitivity. Calibration and invalid attempts excluded by prespecified validity rules; no individual treatment outcome excluded.",
+  "seeds": [
+    12101,
+    12102,
+    12103
+  ],
+  "source_revision": "c012a49e78e0b11e4edee746b633b74ca0f46306",
+  "whole_route_differences": [
+    {
+      "baseline": "A1",
+      "contrast": "post_benefit_minus_ttl_benefit",
+      "delta_interval": [
+        -0.007143630080958971,
+        0.016130702013137054
+      ],
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-minus-A4t-vs-A1/hinted_return/ttft_ns/post_benefit_minus_ttl_benefit",
+      "point": 0.004493535966089041,
+      "reason": "undefined bootstrap replicates",
+      "scope": "descriptive whole-route difference; not isolated delivery-hook benefit",
+      "undefined_replicates": 768
+    },
+    {
+      "baseline": "A2",
+      "contrast": "post_benefit_minus_ttl_benefit",
+      "delta_interval": [
+        -0.007371181506563205,
+        0.016687770698773616
+      ],
+      "interval": null,
+      "label": "pr-evidence-v1/D8/W1/primary/A4p-minus-A4t-vs-A2/hinted_return/ttft_ns/post_benefit_minus_ttl_benefit",
+      "point": 0.004658294596105206,
+      "reason": "undefined bootstrap replicates",
+      "scope": "descriptive whole-route difference; not isolated delivery-hook benefit",
+      "undefined_replicates": 774
+    }
+  ],
+  "workload": "W1"
+}

@@ -1,0 +1,44 @@
+{
+  "basis": "interval methods disagree across a threshold",
+  "bca": {
+    "criteria": {},
+    "reason": "missing benefit interval",
+    "verdict": "INCONCLUSIVE"
+  },
+  "delta": {
+    "criteria": {
+      "efficacy_stop": true,
+      "one_shot_itl": true,
+      "one_shot_ttft": true,
+      "positive_benefit": false,
+      "recompute_reduction": false,
+      "unhinted_itl": true,
+      "unhinted_recompute": true,
+      "unhinted_ttft": true,
+      "worthwhile_point": false
+    },
+    "harm_margins": {
+      "one_shot_itl": 0.05,
+      "one_shot_ttft": 0.2150022347138576,
+      "unhinted_itl": 0.1520257275166435,
+      "unhinted_recompute": 0.21016043041151922,
+      "unhinted_ttft": 0.1657727882507744
+    },
+    "missing_harm_intervals": [],
+    "reason": "benefit interval excludes the minimum worthwhile benefit with opportunity",
+    "verdict": "STOP"
+  },
+  "evidence_paths": [
+    "results/pr-evidence-2080ti/statistics-primary.json",
+    "results/pr-evidence-2080ti/aa-diagnosis.json",
+    "benchmarks/pr-evidence/2080ti-d8-screen.json",
+    "results/pr-evidence-2080ti/diagnostics-manifest.json"
+  ],
+  "model": "D8",
+  "opportunity": true,
+  "route": "A4p",
+  "schema": "pr-screen-decision-v1",
+  "scope": "decision arithmetic; supplied validity, identity and attribution still require receipt review",
+  "verdict": "INCONCLUSIVE",
+  "workload": "W1"
+}

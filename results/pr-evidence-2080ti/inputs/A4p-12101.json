@@ -1,0 +1,1204 @@
+{
+  "arm": "A4p",
+  "model": "D8",
+  "partition": "pilot",
+  "requests": [
+    {
+      "client_itl_ns": 67840274.94623657,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0000-t00",
+      "session_id": "s12101-0000",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "0-2048",
+      "task": "pandas-dev__pandas.95280573.func_pm_remove_assign__p4f86ye5",
+      "ttft_ns": 623250480
+    },
+    {
+      "client_itl_ns": 56896769.65853658,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 640,
+      "outcome": "complete",
+      "request_id": "s12101-0000-t01",
+      "session_id": "s12101-0000",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "0-2048",
+      "task": "pandas-dev__pandas.95280573.func_pm_remove_assign__p4f86ye5",
+      "ttft_ns": 151700917
+    },
+    {
+      "client_itl_ns": 63851528.17307692,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 768,
+      "outcome": "complete",
+      "request_id": "s12101-0000-t02",
+      "session_id": "s12101-0000",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "0-2048",
+      "task": "pandas-dev__pandas.95280573.func_pm_remove_assign__p4f86ye5",
+      "ttft_ns": 192535596
+    },
+    {
+      "client_itl_ns": 61540316.425742574,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0001-t00",
+      "session_id": "s12101-0001",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "tox-dev__pipdeptree.c31b6418.lm_rewrite__947e3phz",
+      "ttft_ns": 879112563
+    },
+    {
+      "client_itl_ns": 126437738.83098592,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 1472,
+      "outcome": "complete",
+      "request_id": "s12101-0001-t01",
+      "session_id": "s12101-0001",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "tox-dev__pipdeptree.c31b6418.lm_rewrite__947e3phz",
+      "ttft_ns": 467617734
+    },
+    {
+      "client_itl_ns": 207332668.46296296,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 1920,
+      "outcome": "complete",
+      "request_id": "s12101-0001-t02",
+      "session_id": "s12101-0001",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "tox-dev__pipdeptree.c31b6418.lm_rewrite__947e3phz",
+      "ttft_ns": 4798665053
+    },
+    {
+      "client_itl_ns": 57113134.670103095,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0002-t00",
+      "session_id": "s12101-0002",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "pylint-dev__astroid.b114f6b5.lm_rewrite__xlou735u",
+      "ttft_ns": 597929142
+    },
+    {
+      "client_itl_ns": 350268789.82222223,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 1472,
+      "outcome": "complete",
+      "request_id": "s12101-0002-t01",
+      "session_id": "s12101-0002",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "pylint-dev__astroid.b114f6b5.lm_rewrite__xlou735u",
+      "ttft_ns": 5037166897
+    },
+    {
+      "client_itl_ns": 83416793.54237288,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 4928,
+      "outcome": "complete",
+      "request_id": "s12101-0002-t02",
+      "session_id": "s12101-0002",
+      "sources": {
+        "recomputed_tokens": 4032,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "pylint-dev__astroid.b114f6b5.lm_rewrite__xlou735u",
+      "ttft_ns": 10511908837
+    },
+    {
+      "client_itl_ns": 60218281.925,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0003-t00",
+      "session_id": "s12101-0003",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "Project-MONAI__MONAI.a09c1f08.combine_module__t8g1t6q8",
+      "ttft_ns": 318763430
+    },
+    {
+      "client_itl_ns": 195845953.24137932,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 512,
+      "outcome": "complete",
+      "request_id": "s12101-0003-t01",
+      "session_id": "s12101-0003",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "Project-MONAI__MONAI.a09c1f08.combine_module__t8g1t6q8",
+      "ttft_ns": 235419736
+    },
+    {
+      "client_itl_ns": 60988302.80327869,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 832,
+      "outcome": "complete",
+      "request_id": "s12101-0003-t02",
+      "session_id": "s12101-0003",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "Project-MONAI__MONAI.a09c1f08.combine_module__t8g1t6q8",
+      "ttft_ns": 8279808490
+    },
+    {
+      "client_itl_ns": 251977748.0483871,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 5952,
+      "outcome": "complete",
+      "request_id": "s12101-0003-t03",
+      "session_id": "s12101-0003",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "Project-MONAI__MONAI.a09c1f08.combine_module__t8g1t6q8",
+      "ttft_ns": 413964490
+    },
+    {
+      "client_itl_ns": 57400467.67741936,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0004-t00",
+      "session_id": "s12101-0004",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "0-2048",
+      "task": "rubik__radon.54b88e58.func_pm_ctrl_shuffle__hlx1zipr",
+      "ttft_ns": 541457750
+    },
+    {
+      "client_itl_ns": 167963856.45714286,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1408,
+      "outcome": "complete",
+      "request_id": "s12101-0004-t01",
+      "session_id": "s12101-0004",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "0-2048",
+      "task": "rubik__radon.54b88e58.func_pm_ctrl_shuffle__hlx1zipr",
+      "ttft_ns": 4121203025
+    },
+    {
+      "client_itl_ns": 179613062.88785046,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0005-t00",
+      "session_id": "s12101-0005",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "0-2048",
+      "task": "bottlepy__bottle.a8dfef30.lm_rewrite__9h6xgj7l",
+      "ttft_ns": 663192941
+    },
+    {
+      "client_itl_ns": 60969274.8,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 1408,
+      "outcome": "complete",
+      "request_id": "s12101-0005-t01",
+      "session_id": "s12101-0005",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "0-2048",
+      "task": "bottlepy__bottle.a8dfef30.lm_rewrite__9h6xgj7l",
+      "ttft_ns": 448265477
+    },
+    {
+      "client_itl_ns": 200507022.0449438,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0006-t00",
+      "session_id": "s12101-0006",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "Project-MONAI__MONAI.a09c1f08.pr_7749",
+      "ttft_ns": 630587663
+    },
+    {
+      "client_itl_ns": 63684770.872340426,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 1472,
+      "outcome": "complete",
+      "request_id": "s12101-0006-t01",
+      "session_id": "s12101-0006",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "Project-MONAI__MONAI.a09c1f08.pr_7749",
+      "ttft_ns": 279498404
+    },
+    {
+      "client_itl_ns": 142764461.35365853,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 1728,
+      "outcome": "complete",
+      "request_id": "s12101-0006-t02",
+      "session_id": "s12101-0006",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "Project-MONAI__MONAI.a09c1f08.pr_7749",
+      "ttft_ns": 6414933820
+    },
+    {
+      "client_itl_ns": 61559431.280373834,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0007-t00",
+      "session_id": "s12101-0007",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "Project-MONAI__MONAI.a09c1f08.func_pm_remove_assign__70jyz2gr",
+      "ttft_ns": 343004233
+    },
+    {
+      "client_itl_ns": 283352339.3,
+      "cohort": "hinted_return",
+      "eligible_tokens": 640,
+      "outcome": "complete",
+      "request_id": "s12101-0007-t01",
+      "session_id": "s12101-0007",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "Project-MONAI__MONAI.a09c1f08.func_pm_remove_assign__70jyz2gr",
+      "ttft_ns": 184508268
+    },
+    {
+      "client_itl_ns": 57210390.79365079,
+      "cohort": "hinted_return",
+      "eligible_tokens": 768,
+      "outcome": "complete",
+      "request_id": "s12101-0007-t02",
+      "session_id": "s12101-0007",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "Project-MONAI__MONAI.a09c1f08.func_pm_remove_assign__70jyz2gr",
+      "ttft_ns": 181350425
+    },
+    {
+      "client_itl_ns": 71303866.3902439,
+      "cohort": "hinted_return",
+      "eligible_tokens": 896,
+      "outcome": "complete",
+      "request_id": "s12101-0007-t03",
+      "session_id": "s12101-0007",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "Project-MONAI__MONAI.a09c1f08.func_pm_remove_assign__70jyz2gr",
+      "ttft_ns": 10425735837
+    },
+    {
+      "client_itl_ns": 193781560.16494846,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0008-t00",
+      "session_id": "s12101-0008",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "2049-4096",
+      "task": "tweepy__tweepy.91a41c6e.func_pm_class_rm_funcs__y6i8y1q9",
+      "ttft_ns": 550954618
+    },
+    {
+      "client_itl_ns": 213472395.9710145,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 1536,
+      "outcome": "complete",
+      "request_id": "s12101-0008-t01",
+      "session_id": "s12101-0008",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "2049-4096",
+      "task": "tweepy__tweepy.91a41c6e.func_pm_class_rm_funcs__y6i8y1q9",
+      "ttft_ns": 655932589
+    },
+    {
+      "client_itl_ns": 57934121.284210525,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0009-t00",
+      "session_id": "s12101-0009",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "matthewwithanm__python-markdownify.6258f5c3.lm_rewrite__npl8i8n2",
+      "ttft_ns": 1563921707
+    },
+    {
+      "client_itl_ns": 67228799.125,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1536,
+      "outcome": "complete",
+      "request_id": "s12101-0009-t01",
+      "session_id": "s12101-0009",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "matthewwithanm__python-markdownify.6258f5c3.lm_rewrite__npl8i8n2",
+      "ttft_ns": 274895950
+    },
+    {
+      "client_itl_ns": 245483495.04545453,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1728,
+      "outcome": "complete",
+      "request_id": "s12101-0009-t02",
+      "session_id": "s12101-0009",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "matthewwithanm__python-markdownify.6258f5c3.lm_rewrite__npl8i8n2",
+      "ttft_ns": 3857043200
+    },
+    {
+      "client_itl_ns": 62405349.44871795,
+      "cohort": "hinted_return",
+      "eligible_tokens": 4416,
+      "outcome": "complete",
+      "request_id": "s12101-0009-t03",
+      "session_id": "s12101-0009",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "matthewwithanm__python-markdownify.6258f5c3.lm_rewrite__npl8i8n2",
+      "ttft_ns": 2645643872
+    },
+    {
+      "client_itl_ns": 57510336.23529412,
+      "cohort": "hinted_return",
+      "eligible_tokens": 5568,
+      "outcome": "complete",
+      "request_id": "s12101-0009-t04",
+      "session_id": "s12101-0009",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "matthewwithanm__python-markdownify.6258f5c3.lm_rewrite__npl8i8n2",
+      "ttft_ns": 1047486542
+    },
+    {
+      "client_itl_ns": 94014295.8952381,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0010-t00",
+      "session_id": "s12101-0010",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "buriy__python-readability.40256f40.func_pm_remove_assign__6d55u4ru",
+      "ttft_ns": 9196807248
+    },
+    {
+      "client_itl_ns": 79531833.76271187,
+      "cohort": "hinted_return",
+      "eligible_tokens": 512,
+      "outcome": "complete",
+      "request_id": "s12101-0010-t01",
+      "session_id": "s12101-0010",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "buriy__python-readability.40256f40.func_pm_remove_assign__6d55u4ru",
+      "ttft_ns": 179306522
+    },
+    {
+      "client_itl_ns": 65781140.87671233,
+      "cohort": "hinted_return",
+      "eligible_tokens": 768,
+      "outcome": "complete",
+      "request_id": "s12101-0010-t02",
+      "session_id": "s12101-0010",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "buriy__python-readability.40256f40.func_pm_remove_assign__6d55u4ru",
+      "ttft_ns": 2253499998
+    },
+    {
+      "client_itl_ns": 91803067.28571428,
+      "cohort": "hinted_return",
+      "eligible_tokens": 3008,
+      "outcome": "complete",
+      "request_id": "s12101-0010-t03",
+      "session_id": "s12101-0010",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "buriy__python-readability.40256f40.func_pm_remove_assign__6d55u4ru",
+      "ttft_ns": 602792924
+    },
+    {
+      "client_itl_ns": 127925140.1875,
+      "cohort": "hinted_return",
+      "eligible_tokens": 3136,
+      "outcome": "complete",
+      "request_id": "s12101-0010-t04",
+      "session_id": "s12101-0010",
+      "sources": {
+        "recomputed_tokens": 960,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "buriy__python-readability.40256f40.func_pm_remove_assign__6d55u4ru",
+      "ttft_ns": 2138249345
+    },
+    {
+      "client_itl_ns": 68330272.84313725,
+      "cohort": "hinted_return",
+      "eligible_tokens": 3264,
+      "outcome": "complete",
+      "request_id": "s12101-0010-t05",
+      "session_id": "s12101-0010",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "buriy__python-readability.40256f40.func_pm_remove_assign__6d55u4ru",
+      "ttft_ns": 1035975286
+    },
+    {
+      "client_itl_ns": 54587903.5,
+      "cohort": "hinted_return",
+      "eligible_tokens": 3840,
+      "outcome": "complete",
+      "request_id": "s12101-0010-t06",
+      "session_id": "s12101-0010",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "buriy__python-readability.40256f40.func_pm_remove_assign__6d55u4ru",
+      "ttft_ns": 921487770
+    },
+    {
+      "client_itl_ns": 55827979.101960786,
+      "cohort": "hinted_return",
+      "eligible_tokens": 4160,
+      "outcome": "complete",
+      "request_id": "s12101-0010-t07",
+      "session_id": "s12101-0010",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "buriy__python-readability.40256f40.func_pm_remove_assign__6d55u4ru",
+      "ttft_ns": 538777204
+    },
+    {
+      "client_itl_ns": 84050426.6635514,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0011-t00",
+      "session_id": "s12101-0011",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "bottlepy__bottle.a8dfef30.lm_rewrite__lipuhwjq",
+      "ttft_ns": 423856321
+    },
+    {
+      "client_itl_ns": 63883054.458333336,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1408,
+      "outcome": "complete",
+      "request_id": "s12101-0011-t01",
+      "session_id": "s12101-0011",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "bottlepy__bottle.a8dfef30.lm_rewrite__lipuhwjq",
+      "ttft_ns": 407312133
+    },
+    {
+      "client_itl_ns": 96523136.13235295,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1728,
+      "outcome": "complete",
+      "request_id": "s12101-0011-t02",
+      "session_id": "s12101-0011",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "bottlepy__bottle.a8dfef30.lm_rewrite__lipuhwjq",
+      "ttft_ns": 214825177
+    },
+    {
+      "client_itl_ns": 79022397.25,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1792,
+      "outcome": "complete",
+      "request_id": "s12101-0011-t03",
+      "session_id": "s12101-0011",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "bottlepy__bottle.a8dfef30.lm_rewrite__lipuhwjq",
+      "ttft_ns": 1141449791
+    },
+    {
+      "client_itl_ns": 57455568.85714286,
+      "cohort": "hinted_return",
+      "eligible_tokens": 2752,
+      "outcome": "complete",
+      "request_id": "s12101-0011-t04",
+      "session_id": "s12101-0011",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "bottlepy__bottle.a8dfef30.lm_rewrite__lipuhwjq",
+      "ttft_ns": 1281389023
+    },
+    {
+      "client_itl_ns": 147994700.796875,
+      "cohort": "hinted_return",
+      "eligible_tokens": 3584,
+      "outcome": "complete",
+      "request_id": "s12101-0011-t05",
+      "session_id": "s12101-0011",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "bottlepy__bottle.a8dfef30.lm_rewrite__lipuhwjq",
+      "ttft_ns": 317485090
+    },
+    {
+      "client_itl_ns": 124296322.57142857,
+      "cohort": "hinted_return",
+      "eligible_tokens": 3712,
+      "outcome": "complete",
+      "request_id": "s12101-0011-t06",
+      "session_id": "s12101-0011",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "bottlepy__bottle.a8dfef30.lm_rewrite__lipuhwjq",
+      "ttft_ns": 773944773
+    },
+    {
+      "client_itl_ns": 104166953.99074075,
+      "cohort": "hinted_return",
+      "eligible_tokens": 4096,
+      "outcome": "complete",
+      "request_id": "s12101-0011-t07",
+      "session_id": "s12101-0011",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "bottlepy__bottle.a8dfef30.lm_rewrite__lipuhwjq",
+      "ttft_ns": 1140879665
+    },
+    {
+      "client_itl_ns": 70981205.96078432,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0012-t00",
+      "session_id": "s12101-0012",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "0-2048",
+      "task": "rubik__radon.54b88e58.lm_rewrite__tjhst5wh",
+      "ttft_ns": 498777825
+    },
+    {
+      "client_itl_ns": 57539068.33802817,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1472,
+      "outcome": "complete",
+      "request_id": "s12101-0012-t01",
+      "session_id": "s12101-0012",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "0-2048",
+      "task": "rubik__radon.54b88e58.lm_rewrite__tjhst5wh",
+      "ttft_ns": 432920926
+    },
+    {
+      "client_itl_ns": 82141912.06172839,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0013-t00",
+      "session_id": "s12101-0013",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "pandas-dev__pandas.95280573.pr_53099",
+      "ttft_ns": 571751277
+    },
+    {
+      "client_itl_ns": 57373535.01369863,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1600,
+      "outcome": "complete",
+      "request_id": "s12101-0013-t01",
+      "session_id": "s12101-0013",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "pandas-dev__pandas.95280573.pr_53099",
+      "ttft_ns": 2473790974
+    },
+    {
+      "client_itl_ns": 72443100.12820514,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1856,
+      "outcome": "complete",
+      "request_id": "s12101-0013-t02",
+      "session_id": "s12101-0013",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "pandas-dev__pandas.95280573.pr_53099",
+      "ttft_ns": 1557467460
+    },
+    {
+      "client_itl_ns": 63302002.114285715,
+      "cohort": "hinted_return",
+      "eligible_tokens": 3136,
+      "outcome": "complete",
+      "request_id": "s12101-0013-t03",
+      "session_id": "s12101-0013",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "pandas-dev__pandas.95280573.pr_53099",
+      "ttft_ns": 321855149
+    },
+    {
+      "client_itl_ns": 174539455.6818182,
+      "cohort": "hinted_return",
+      "eligible_tokens": 3264,
+      "outcome": "complete",
+      "request_id": "s12101-0013-t04",
+      "session_id": "s12101-0013",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "pandas-dev__pandas.95280573.pr_53099",
+      "ttft_ns": 756755666
+    },
+    {
+      "client_itl_ns": 140297918.1111111,
+      "cohort": "hinted_return",
+      "eligible_tokens": 3712,
+      "outcome": "complete",
+      "request_id": "s12101-0013-t05",
+      "session_id": "s12101-0013",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "pandas-dev__pandas.95280573.pr_53099",
+      "ttft_ns": 1445761810
+    },
+    {
+      "client_itl_ns": 78934623.52,
+      "cohort": "hinted_return",
+      "eligible_tokens": 4480,
+      "outcome": "complete",
+      "request_id": "s12101-0013-t06",
+      "session_id": "s12101-0013",
+      "sources": {
+        "recomputed_tokens": 1664,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "pandas-dev__pandas.95280573.pr_53099",
+      "ttft_ns": 3964355754
+    },
+    {
+      "client_itl_ns": 66611078.96774194,
+      "cohort": "hinted_return",
+      "eligible_tokens": 4544,
+      "outcome": "complete",
+      "request_id": "s12101-0013-t07",
+      "session_id": "s12101-0013",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "pandas-dev__pandas.95280573.pr_53099",
+      "ttft_ns": 1233088219
+    },
+    {
+      "client_itl_ns": 67250383.83333333,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0014-t00",
+      "session_id": "s12101-0014",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "hukkin__tomli.443a0c1b.lm_rewrite__uaqwvdnw",
+      "ttft_ns": 1148347770
+    },
+    {
+      "client_itl_ns": 78321471.63157895,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1408,
+      "outcome": "complete",
+      "request_id": "s12101-0014-t01",
+      "session_id": "s12101-0014",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "hukkin__tomli.443a0c1b.lm_rewrite__uaqwvdnw",
+      "ttft_ns": 383100137
+    },
+    {
+      "client_itl_ns": 55670337.54545455,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1664,
+      "outcome": "complete",
+      "request_id": "s12101-0014-t02",
+      "session_id": "s12101-0014",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "hukkin__tomli.443a0c1b.lm_rewrite__uaqwvdnw",
+      "ttft_ns": 337122133
+    },
+    {
+      "client_itl_ns": 115546148.9090909,
+      "cohort": "hinted_return",
+      "eligible_tokens": 1920,
+      "outcome": "complete",
+      "request_id": "s12101-0014-t03",
+      "session_id": "s12101-0014",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "hukkin__tomli.443a0c1b.lm_rewrite__uaqwvdnw",
+      "ttft_ns": 5175086618
+    },
+    {
+      "client_itl_ns": 133954071.5,
+      "cohort": "hinted_return",
+      "eligible_tokens": 5184,
+      "outcome": "complete",
+      "request_id": "s12101-0014-t04",
+      "session_id": "s12101-0014",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "hukkin__tomli.443a0c1b.lm_rewrite__uaqwvdnw",
+      "ttft_ns": 1522893695
+    },
+    {
+      "client_itl_ns": 71339458.30275229,
+      "cohort": "first_turn",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "s12101-0015-t00",
+      "session_id": "s12101-0015",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "mozillazg__python-pinyin.e42dede5.func_pm_remove_cond__xvghgx94",
+      "ttft_ns": 589165727
+    },
+    {
+      "client_itl_ns": 71330786.48275863,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 1600,
+      "outcome": "complete",
+      "request_id": "s12101-0015-t01",
+      "session_id": "s12101-0015",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "mozillazg__python-pinyin.e42dede5.func_pm_remove_cond__xvghgx94",
+      "ttft_ns": 325095275
+    },
+    {
+      "client_itl_ns": 99326483.125,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 1728,
+      "outcome": "complete",
+      "request_id": "s12101-0015-t02",
+      "session_id": "s12101-0015",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "mozillazg__python-pinyin.e42dede5.func_pm_remove_cond__xvghgx94",
+      "ttft_ns": 2518210072
+    },
+    {
+      "client_itl_ns": 58131490.21818182,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 3712,
+      "outcome": "complete",
+      "request_id": "s12101-0015-t03",
+      "session_id": "s12101-0015",
+      "sources": {
+        "recomputed_tokens": 1600,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "mozillazg__python-pinyin.e42dede5.func_pm_remove_cond__xvghgx94",
+      "ttft_ns": 2302670113
+    },
+    {
+      "client_itl_ns": 58001241.591836736,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 3776,
+      "outcome": "complete",
+      "request_id": "s12101-0015-t04",
+      "session_id": "s12101-0015",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "mozillazg__python-pinyin.e42dede5.func_pm_remove_cond__xvghgx94",
+      "ttft_ns": 1591204038
+    },
+    {
+      "client_itl_ns": 78857894.97619048,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 3968,
+      "outcome": "complete",
+      "request_id": "s12101-0015-t05",
+      "session_id": "s12101-0015",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "mozillazg__python-pinyin.e42dede5.func_pm_remove_cond__xvghgx94",
+      "ttft_ns": 369944974
+    },
+    {
+      "client_itl_ns": 60012115.3877551,
+      "cohort": "unhinted_return",
+      "eligible_tokens": 4096,
+      "outcome": "complete",
+      "request_id": "s12101-0015-t06",
+      "session_id": "s12101-0015",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "4097-6144",
+      "task": "mozillazg__python-pinyin.e42dede5.func_pm_remove_cond__xvghgx94",
+      "ttft_ns": 1831823428
+    },
+    {
+      "client_itl_ns": 61739474.23622047,
+      "cohort": "one_shot",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "o12101-000000-t00",
+      "session_id": "o12101-000000",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "one_shot",
+      "task": null,
+      "ttft_ns": 3074335444
+    },
+    {
+      "client_itl_ns": 81613443.42519686,
+      "cohort": "one_shot",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "o12101-000001-t00",
+      "session_id": "o12101-000001",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "one_shot",
+      "task": null,
+      "ttft_ns": 1329423165
+    },
+    {
+      "client_itl_ns": 61499779.77952756,
+      "cohort": "one_shot",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "o12101-000002-t00",
+      "session_id": "o12101-000002",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "one_shot",
+      "task": null,
+      "ttft_ns": 1338391066
+    },
+    {
+      "client_itl_ns": 71700693.51181102,
+      "cohort": "one_shot",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "o12101-000003-t00",
+      "session_id": "o12101-000003",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "one_shot",
+      "task": null,
+      "ttft_ns": 1341386834
+    },
+    {
+      "client_itl_ns": 55613618.51968504,
+      "cohort": "one_shot",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "o12101-000004-t00",
+      "session_id": "o12101-000004",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "one_shot",
+      "task": null,
+      "ttft_ns": 1481370546
+    },
+    {
+      "client_itl_ns": 56064852.8031496,
+      "cohort": "one_shot",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "o12101-000005-t00",
+      "session_id": "o12101-000005",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "one_shot",
+      "task": null,
+      "ttft_ns": 1530873907
+    },
+    {
+      "client_itl_ns": 56662932.062992126,
+      "cohort": "one_shot",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "o12101-000006-t00",
+      "session_id": "o12101-000006",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "one_shot",
+      "task": null,
+      "ttft_ns": 1590324512
+    },
+    {
+      "client_itl_ns": 55743040.2519685,
+      "cohort": "one_shot",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "o12101-000007-t00",
+      "session_id": "o12101-000007",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "one_shot",
+      "task": null,
+      "ttft_ns": 1515901360
+    },
+    {
+      "client_itl_ns": 55913875.34645669,
+      "cohort": "one_shot",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "o12101-000008-t00",
+      "session_id": "o12101-000008",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "one_shot",
+      "task": null,
+      "ttft_ns": 1427812934
+    },
+    {
+      "client_itl_ns": 56694580.070866145,
+      "cohort": "one_shot",
+      "eligible_tokens": 0,
+      "outcome": "complete",
+      "request_id": "o12101-000009-t00",
+      "session_id": "o12101-000009",
+      "sources": {
+        "recomputed_tokens": 0,
+        "unobserved_tokens": 0
+      },
+      "stratum": "one_shot",
+      "task": null,
+      "ttft_ns": 1444327111
+    }
+  ],
+  "schema": "pr-cell-metrics-v1",
+  "scope": "Exact minimal request quantities for the frozen paired statistics and first-task sensitivity; original full metrics and raw records remain retained.",
+  "seed": 12101,
+  "source_metrics": {
+    "path": "artifacts/runs/pr-evidence-runtime-03/w1-d8-decision-12101-a4p-pool1-03-metrics.json",
+    "sha256": "50192065ac8aab1a10af6ffcf20d93af45afba2e8591452049f341d95c2bd6c9"
+  },
+  "stratum_weights": {
+    "0-2048": 380,
+    "2049-4096": 383,
+    "4097-6144": 928
+  }
+}

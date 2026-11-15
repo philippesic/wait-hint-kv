@@ -1,0 +1,132 @@
+{
+  "cells": [
+    {
+      "arm": "A5",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A5-12101.json",
+      "seed": 12101,
+      "sha256": "d801dc898b3d130103baeaaad1b048887f716368dd5a74c999c5791afa92b5db"
+    },
+    {
+      "arm": "A3",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A3-12101.json",
+      "seed": 12101,
+      "sha256": "acda48c51ba62b5f743cb61505ca1f95aa3d054e61e91135c80d3e5b9dddc6ea"
+    },
+    {
+      "arm": "A3p",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A3p-12101.json",
+      "seed": 12101,
+      "sha256": "a4e8c03f23cb8ae87fa877c984dc9a2b185ff11ea3ab05c9ec15abc790d62b6c"
+    },
+    {
+      "arm": "A1",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A1-12101.json",
+      "seed": 12101,
+      "sha256": "93881453eee28317e1f92935f1305dd40d0a4d342a45864ac4f2a59f70f291ec"
+    },
+    {
+      "arm": "A4t",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A4t-12101.json",
+      "seed": 12101,
+      "sha256": "83e79d6022a970568ce4820dc289e88bb95b11677b66204b51ad678abac733d2"
+    },
+    {
+      "arm": "A4p",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A4p-12101.json",
+      "seed": 12101,
+      "sha256": "1f502b66c44f36f15235864a587b3c6b1d8640fad842f3dd65763f12ab7b7b14"
+    },
+    {
+      "arm": "A2",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A2-12101.json",
+      "seed": 12101,
+      "sha256": "bb04f5b7e3e4a055c0b12ace54f71b7f23c5cf4dacde4c2019e74b9f6dfc72c3"
+    },
+    {
+      "arm": "A5",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A5-12102.json",
+      "seed": 12102,
+      "sha256": "06d55612a13bd8cb6c774c7ee1bc9024da5b8c31aa38600b72430660bca9573a"
+    },
+    {
+      "arm": "A1",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A1-12102.json",
+      "seed": 12102,
+      "sha256": "4c93b5325a2bd170f921f4270b3969ff52e8cc94f516ed3eea116a8f31b4a392"
+    },
+    {
+      "arm": "A2",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A2-12102.json",
+      "seed": 12102,
+      "sha256": "ca9f2e99bb925ac3656b83dfc1d22a8d09ffb33750904deb89f52a5014081bd2"
+    },
+    {
+      "arm": "A4t",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A4t-12102.json",
+      "seed": 12102,
+      "sha256": "098270a0daa22dd00cf1eff265fa6a1b165d9c4d450dbda7d65bdce875a63556"
+    },
+    {
+      "arm": "A4p",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A4p-12102.json",
+      "seed": 12102,
+      "sha256": "f603625bebb3d90bc6e7802a24a801c3509c14b88bd36e57be1436c32397d91d"
+    },
+    {
+      "arm": "A3",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A3-12102.json",
+      "seed": 12102,
+      "sha256": "a1cec6b22e3b3351277834db3ac11e8b0fcbb3e4a8f963bbce1c95df05ee2dcd"
+    },
+    {
+      "arm": "A3p",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A3p-12102.json",
+      "seed": 12102,
+      "sha256": "9b17344194940e4bb86e5d4cefdd53d40d67c213ab2c7e226ed49f540c9875df"
+    },
+    {
+      "arm": "A2",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A2-12103.json",
+      "seed": 12103,
+      "sha256": "84f38ff9bb45f700c1e050edd093e92e45f2d154472e2e9785b679493b1c7697"
+    },
+    {
+      "arm": "A4t",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A4t-12103.json",
+      "seed": 12103,
+      "sha256": "3c404a0adc31cfcebae69be7f26b81020d35969b02d31c290b30501298e64dcc"
+    },
+    {
+      "arm": "A3",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A3-12103.json",
+      "seed": 12103,
+      "sha256": "6885a2b5ba701621730992e2226b72ea8b9079cf632ce3a0d1946dbfd624f7c9"
+    },
+    {
+      "arm": "A4p",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A4p-12103.json",
+      "seed": 12103,
+      "sha256": "1715068b6a467057fe57f61bf5ae9556466a7a3fb3ca58c72bb1a6a8851bc1d8"
+    },
+    {
+      "arm": "A1",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A1-12103.json",
+      "seed": 12103,
+      "sha256": "0ec1bc596fff261851ab9782be1bb76cde52bdda321e7f975dd1a2bb6830e17d"
+    },
+    {
+      "arm": "A5",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A5-12103.json",
+      "seed": 12103,
+      "sha256": "0d9c567e6742afc71e1334baa102dc1b24e46ba552633b4b78cf71b48c75fb85"
+    },
+    {
+      "arm": "A3p",
+      "path": "artifacts/runs/pr-evidence-analysis-01/diagnostics/A3p-12103.json",
+      "seed": 12103,
+      "sha256": "764516b4581b76129dd12bd8610b47a91b47b8d9a77fc8bb41da49d44d39da43"
+    }
+  ],
+  "schema": "pr-diagnostics-manifest-v1",
+  "scope": "Derived from all21 valid cells, retaining raw resources, lifetimes, first-turn cross-session reuse and allocation-refusal capacity evidence."
+}

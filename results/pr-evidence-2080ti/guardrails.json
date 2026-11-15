@@ -1,0 +1,386 @@
+{
+  "criteria": [
+    {
+      "aa_interval": [
+        -0.032269117800644564,
+        0.0
+      ],
+      "aa_point": -0.011314019994451696,
+      "floor": 0.02,
+      "interval": [
+        -0.23824393289187562,
+        0.07925624069690831
+      ],
+      "margin": 0.02,
+      "method": "interval",
+      "metric": "unhinted_recompute",
+      "point": -0.05475695918206369,
+      "point_pass": true,
+      "route": "A4t",
+      "upper_pass": false
+    },
+    {
+      "aa_interval": [
+        -0.03311768115571372,
+        0.01048964116681033
+      ],
+      "aa_point": -0.011314019994451696,
+      "floor": 0.02,
+      "interval": [
+        -0.2649173895935829,
+        0.15540347122945555
+      ],
+      "margin": 0.021803661161262027,
+      "method": "delta_interval",
+      "metric": "unhinted_recompute",
+      "point": -0.05475695918206369,
+      "point_pass": true,
+      "route": "A4t",
+      "upper_pass": false
+    },
+    {
+      "aa_interval": [
+        -0.11210374446938076,
+        -0.03592745202771486
+      ],
+      "aa_point": -0.10076868317609922,
+      "floor": 0.05,
+      "interval": [
+        -0.20478484371961836,
+        0.15283517377060973
+      ],
+      "margin": 0.05,
+      "method": "interval",
+      "metric": "unhinted_ttft",
+      "point": -0.12674660699285734,
+      "point_pass": true,
+      "route": "A4t",
+      "upper_pass": false
+    },
+    {
+      "aa_interval": [
+        -0.13264145353403334,
+        -0.06772468611563398
+      ],
+      "aa_point": -0.10076868317609922,
+      "floor": 0.05,
+      "interval": [
+        -0.284651766450825,
+        0.06601435865021377
+      ],
+      "margin": 0.05,
+      "method": "delta_interval",
+      "metric": "unhinted_ttft",
+      "point": -0.12674660699285734,
+      "point_pass": true,
+      "route": "A4t",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        0.030081169250042672,
+        0.11927764132057006
+      ],
+      "aa_point": 0.07727323409216047,
+      "floor": 0.05,
+      "interval": [
+        0.016226164791929953,
+        0.36570293839423873
+      ],
+      "margin": 0.05,
+      "method": "interval",
+      "metric": "unhinted_itl",
+      "point": 0.10364007620829407,
+      "point_pass": false,
+      "route": "A4t",
+      "upper_pass": false
+    },
+    {
+      "aa_interval": [
+        0.009100155334584192,
+        0.15005196932765674
+      ],
+      "aa_point": 0.07727323409216047,
+      "floor": 0.05,
+      "interval": [
+        -0.03653477745976996,
+        0.26420901275675246
+      ],
+      "margin": 0.07047590699653627,
+      "method": "delta_interval",
+      "metric": "unhinted_itl",
+      "point": 0.10364007620829407,
+      "point_pass": false,
+      "route": "A4t",
+      "upper_pass": false
+    },
+    {
+      "aa_interval": [
+        -0.009156202229759658,
+        0.20583747413697906
+      ],
+      "aa_point": 0.10446438778796674,
+      "floor": 0.05,
+      "interval": [
+        -0.25615958104995895,
+        0.04521194149151908
+      ],
+      "margin": 0.10749683818336936,
+      "method": "interval",
+      "metric": "one_shot_ttft",
+      "point": -0.12261048414401643,
+      "point_pass": true,
+      "route": "A4t",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        -0.041900880112860306,
+        0.2731893376914287
+      ],
+      "aa_point": 0.10446438778796674,
+      "floor": 0.05,
+      "interval": [
+        -0.3068484372257425,
+        0.11059745642484575
+      ],
+      "margin": 0.15754510890214452,
+      "method": "delta_interval",
+      "metric": "one_shot_ttft",
+      "point": -0.12261048414401643,
+      "point_pass": true,
+      "route": "A4t",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        -0.008479825885962078,
+        0.003731523547879201
+      ],
+      "aa_point": -0.0021240307197029074,
+      "floor": 0.05,
+      "interval": [
+        -0.026417993843538157,
+        -0.006313187760497718
+      ],
+      "margin": 0.05,
+      "method": "interval",
+      "metric": "one_shot_itl",
+      "point": -0.014118328769627042,
+      "point_pass": true,
+      "route": "A4t",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        -0.011055224195612556,
+        0.006887820664368771
+      ],
+      "aa_point": -0.0021240307197029074,
+      "floor": 0.05,
+      "interval": [
+        -0.022665159108137156,
+        -0.005496756074885534
+      ],
+      "margin": 0.05,
+      "method": "delta_interval",
+      "metric": "one_shot_itl",
+      "point": -0.014118328769627042,
+      "point_pass": true,
+      "route": "A4t",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        -0.23824393289187562,
+        0.07925624069690831
+      ],
+      "aa_point": -0.05475695918206369,
+      "floor": 0.02,
+      "interval": [
+        -0.23824393289187562,
+        0.07925624069690831
+      ],
+      "margin": 0.15875008679439195,
+      "method": "interval",
+      "metric": "unhinted_recompute",
+      "point": -0.05475695918206369,
+      "point_pass": true,
+      "route": "A4p",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        -0.2649173895935829,
+        0.15540347122945555
+      ],
+      "aa_point": -0.05475695918206369,
+      "floor": 0.02,
+      "interval": [
+        -0.2649173895935829,
+        0.15540347122945555
+      ],
+      "margin": 0.21016043041151922,
+      "method": "delta_interval",
+      "metric": "unhinted_recompute",
+      "point": -0.05475695918206369,
+      "point_pass": true,
+      "route": "A4p",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        -0.20689037822881307,
+        0.13121143524141377
+      ],
+      "aa_point": -0.13304541087901867,
+      "floor": 0.05,
+      "interval": [
+        -0.20508232436423135,
+        0.10061483404511895
+      ],
+      "margin": 0.16905090673511342,
+      "method": "interval",
+      "metric": "unhinted_ttft",
+      "point": -0.1368880439287301,
+      "point_pass": true,
+      "route": "A4p",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        -0.2831115412695978,
+        0.048434035231951
+      ],
+      "aa_point": -0.13304541087901867,
+      "floor": 0.05,
+      "interval": [
+        -0.2742623619105663,
+        0.02648975279048571
+      ],
+      "margin": 0.1657727882507744,
+      "method": "delta_interval",
+      "metric": "unhinted_ttft",
+      "point": -0.1368880439287301,
+      "point_pass": true,
+      "route": "A4p",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        0.014912434603904678,
+        0.3563861309927532
+      ],
+      "aa_point": 0.10357840837243737,
+      "floor": 0.05,
+      "interval": [
+        0.006329764549491079,
+        0.37382118154117894
+      ],
+      "margin": 0.17073684819442425,
+      "method": "interval",
+      "metric": "unhinted_itl",
+      "point": 0.10905887242661194,
+      "point_pass": true,
+      "route": "A4p",
+      "upper_pass": false
+    },
+    {
+      "aa_interval": [
+        -0.038025222466126496,
+        0.2660262325671605
+      ],
+      "aa_point": 0.10357840837243737,
+      "floor": 0.05,
+      "interval": [
+        -0.04688104957849604,
+        0.29051214642645795
+      ],
+      "margin": 0.1520257275166435,
+      "method": "delta_interval",
+      "metric": "unhinted_itl",
+      "point": 0.10905887242661194,
+      "point_pass": true,
+      "route": "A4p",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        -0.2663725230190147,
+        0.039976770179700694
+      ],
+      "aa_point": -0.12838130665639413,
+      "floor": 0.05,
+      "interval": [
+        -0.25876141497750127,
+        0.06967186917275336
+      ],
+      "margin": 0.1531746465993577,
+      "method": "interval",
+      "metric": "one_shot_ttft",
+      "point": -0.11099884410704286,
+      "point_pass": true,
+      "route": "A4p",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        -0.3172577791375686,
+        0.11274669029014661
+      ],
+      "aa_point": -0.12838130665639413,
+      "floor": 0.05,
+      "interval": [
+        -0.3121043105936402,
+        0.1488995604276091
+      ],
+      "margin": 0.2150022347138576,
+      "method": "delta_interval",
+      "metric": "one_shot_ttft",
+      "point": -0.11099884410704286,
+      "point_pass": true,
+      "route": "A4p",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        -0.022679480098595106,
+        0.011404722967919279
+      ],
+      "aa_point": -0.0038909685807204664,
+      "floor": 0.05,
+      "interval": [
+        -0.020686599503963454,
+        0.00014046591879490755
+      ],
+      "margin": 0.05,
+      "method": "interval",
+      "metric": "one_shot_itl",
+      "point": -0.01307966697474039,
+      "point_pass": true,
+      "route": "A4p",
+      "upper_pass": true
+    },
+    {
+      "aa_interval": [
+        -0.027202930091096755,
+        0.01997963724127172
+      ],
+      "aa_point": -0.0038909685807204664,
+      "floor": 0.05,
+      "interval": [
+        -0.025339256682665345,
+        -0.0006658722874550715
+      ],
+      "margin": 0.05,
+      "method": "delta_interval",
+      "metric": "one_shot_itl",
+      "point": -0.01307966697474039,
+      "point_pass": true,
+      "route": "A4p",
+      "upper_pass": true
+    }
+  ],
+  "schema": "pr-screen-harm-audit-v1",
+  "scope": "Complete harm criteria independent of verdict short-circuit. Positive is harm; latency is relative fraction, recompute absolute share. Margin=max(floor,A/A95%CIhalfwidth); point<=margin and upper<=2*margin. No point-shift subtraction."
+}

@@ -137,7 +137,7 @@ requires build and diagnostic recipes plus sm_75/sm_120 acceptance in
 
 ## Frozen-main PR evidence runtime
 
-The active [PR evidence plan](pr-evidence-plan.md) uses an isolated runtime, separate
+The frozen [PR evidence plan](pr-evidence-plan.md) uses an isolated runtime, separate
 from the supported product runtime above. Its exact upstream revision is
 `e9281bd939d4ade90d6aacf4b2319aa89ea46c39`, supplied by wheel
 `vllm==0.34.0rc1.dev465+ge9281bd93`. The complete installed dependency versions are
@@ -150,7 +150,7 @@ runtime/pr-evidence-requirements.txt`. The clean frozen upstream checkout belong
 under `artifacts/checkouts/`. This installs the upstream wheel; it does not claim a
 local source compilation or hardware qualification.
 Both delivery routes passed the CPU feasibility gate using pinned read-only
-scheduler state. Their frozen policy contract and remaining hardware gates are
+scheduler state. Their frozen policy contract and scoped hardware qualification are
 described in [the execution boundary](pr-evidence-execution.md).
 
 Keep separate installations for delivery-unpatched and post-response arms. Apply the
@@ -159,7 +159,10 @@ named delivery patch to the latter using `python -m tools.benchmark patch-runtim
 file hashes, preserves the original, and atomically replaces the target so another
 environment or wheel cache sharing its hardlink stays unchanged. `pr-feasibility
 --post-response` checks the installed patch and exercises real engine utility
-dispatch with CPU scheduler fixtures. Hardware admission remains required.
+dispatch with CPU scheduler fixtures. D8/HM passed the recorded 2080 Ti admission;
+HS did not fit. New hardware or settings require their own admission. The
+[closed screen](../results/pr-evidence-2080ti/evidence-notes.md) records the limits,
+including D8 admission without active holds and HM with active holds.
 
 For this sm_75 screen, both evidence environments also carry `gemma-turing-main`
 (head-size-512 tile/stage adaptation) and `pr-mapped-host-pointer` (registered host

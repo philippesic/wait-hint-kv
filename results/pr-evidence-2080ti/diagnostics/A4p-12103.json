@@ -1,0 +1,4110 @@
+{
+  "analysis_source_sha256": {
+    "pr_diagnostics.py": "098414f55405dfd423edf2fcd837191b31a61b6ae5c3cd24e7a93e94047c5c11",
+    "pr_events.py": "cf0a6bf2186278f5d80ad6351404f7bab14e073b26169ad82bad30ba242fa690",
+    "pr_metrics.py": "34a140024c25932c3e7161e5e09748fac65af59190d7b11d004fb38c2d63bbea",
+    "pr_statistics.py": "ed2c35d13fcd55d05ce2f7971ccf592d526fe8168cb9e60dafa93ac3b2004d70",
+    "resources.py": "db311f46d8340c12a349d8c7120838a681f377a5540b8a2fbc332ca24d68be64",
+    "streaming.py": "571608f3e10089bf5d220232fa832c81af48706037903df643f92c3fad8c8297"
+  },
+  "arm": "A4p",
+  "cohorts": {
+    "first_turn": {
+      "coalesced_chunks": 0,
+      "complete_requests": 16,
+      "latency_ns": {
+        "client_mean_chunk_itl_ns": {
+          "count": 16,
+          "maximum": 184191213.8411215,
+          "mean": 106533824.43181786,
+          "minimum": 57768841.97183099,
+          "p95": 178824975.55586863
+        },
+        "client_mean_token_itl_ns": {
+          "count": 16,
+          "maximum": 184191213.8411215,
+          "mean": 106533824.43181786,
+          "minimum": 57768841.97183099,
+          "p95": 178824975.55586863
+        },
+        "engine_mean_token_itl_ns": {
+          "count": 16,
+          "maximum": 184211369.86879876,
+          "mean": 106570157.6801946,
+          "minimum": 57843243.90164406,
+          "p95": 178881638.81252596
+        },
+        "submission_lateness_ns": {
+          "count": 16,
+          "maximum": 9026405.0,
+          "mean": 1773880.1875,
+          "minimum": 445873.0,
+          "p95": 4452258.5
+        },
+        "ttft_scheduled_ns": {
+          "count": 16,
+          "maximum": 33972334980.0,
+          "mean": 6681923657.4375,
+          "minimum": 243012241.0,
+          "p95": 26227636008.75
+        },
+        "ttft_submitted_ns": {
+          "count": 16,
+          "maximum": 33970467047.0,
+          "mean": 6680149777.25,
+          "minimum": 241965636.0,
+          "p95": 26226047672.0
+        }
+      },
+      "outcomes": {
+        "complete": 16
+      },
+      "output_tokens": 1536,
+      "planned_requests": 16,
+      "requested_output_tokens": 1536,
+      "sources": {
+        "cpu_reused_tokens": 0,
+        "eligible_tokens": 0,
+        "gpu_reused_tokens": 0,
+        "prompt_compute_tokens": 10571,
+        "recomputed_tokens": 0,
+        "repeated_prompt_compute_tokens": 0,
+        "unobserved_tokens": 0
+      }
+    },
+    "hinted_return": {
+      "coalesced_chunks": 0,
+      "complete_requests": 30,
+      "latency_ns": {
+        "client_mean_chunk_itl_ns": {
+          "count": 30,
+          "maximum": 310422973.5,
+          "mean": 122152424.9258466,
+          "minimum": 54843037.972222224,
+          "p95": 258499789.82601866
+        },
+        "client_mean_token_itl_ns": {
+          "count": 30,
+          "maximum": 310422973.5,
+          "mean": 122152424.9258466,
+          "minimum": 54843037.972222224,
+          "p95": 258499789.82601866
+        },
+        "engine_mean_token_itl_ns": {
+          "count": 30,
+          "maximum": 310539302.6937516,
+          "mean": 122214052.04185082,
+          "minimum": 54903814.3885641,
+          "p95": 258526172.76612878
+        },
+        "submission_lateness_ns": {
+          "count": 30,
+          "maximum": 3435848.0,
+          "mean": 1486988.7666666666,
+          "minimum": 205235.0,
+          "p95": 2921805.5999999996
+        },
+        "ttft_scheduled_ns": {
+          "count": 30,
+          "maximum": 39116992220.0,
+          "mean": 10330502076.633333,
+          "minimum": 167391840.0,
+          "p95": 31053841817.449963
+        },
+        "ttft_submitted_ns": {
+          "count": 30,
+          "maximum": 39113989184.0,
+          "mean": 10329015087.866667,
+          "minimum": 165919057.0,
+          "p95": 31052302878.799965
+        }
+      },
+      "outcomes": {
+        "complete": 30
+      },
+      "output_tokens": 3164,
+      "planned_requests": 30,
+      "requested_output_tokens": 3164,
+      "sources": {
+        "cpu_reused_tokens": 576,
+        "eligible_tokens": 70400,
+        "gpu_reused_tokens": 33088,
+        "prompt_compute_tokens": 71975,
+        "recomputed_tokens": 36736,
+        "repeated_prompt_compute_tokens": 0,
+        "unobserved_tokens": 0
+      }
+    },
+    "one_shot": {
+      "coalesced_chunks": 0,
+      "complete_requests": 13,
+      "latency_ns": {
+        "client_mean_chunk_itl_ns": {
+          "count": 13,
+          "maximum": 274446360.503937,
+          "mean": 106707227.76862508,
+          "minimum": 55363664.5511811,
+          "p95": 236680914.34330702
+        },
+        "client_mean_token_itl_ns": {
+          "count": 13,
+          "maximum": 274446360.503937,
+          "mean": 106707227.76862508,
+          "minimum": 55363664.5511811,
+          "p95": 236680914.34330702
+        },
+        "engine_mean_token_itl_ns": {
+          "count": 13,
+          "maximum": 274449214.25217396,
+          "mean": 106734482.0551585,
+          "minimum": 55405978.259619504,
+          "p95": 236700397.25687903
+        },
+        "submission_lateness_ns": {
+          "count": 13,
+          "maximum": 46472025.0,
+          "mean": 5925064.384615385,
+          "minimum": 446452.0,
+          "p95": 24974615.399999946
+        },
+        "ttft_scheduled_ns": {
+          "count": 13,
+          "maximum": 7264399465.0,
+          "mean": 2325008745.8461537,
+          "minimum": 1290465436.0,
+          "p95": 6638839724.799998
+        },
+        "ttft_submitted_ns": {
+          "count": 13,
+          "maximum": 7263474081.0,
+          "mean": 2319083681.4615383,
+          "minimum": 1288834944.0,
+          "p95": 6636464770.199999
+        }
+      },
+      "outcomes": {
+        "complete": 13
+      },
+      "output_tokens": 1664,
+      "planned_requests": 13,
+      "requested_output_tokens": 1664,
+      "sources": {
+        "cpu_reused_tokens": 0,
+        "eligible_tokens": 0,
+        "gpu_reused_tokens": 0,
+        "prompt_compute_tokens": 26624,
+        "recomputed_tokens": 0,
+        "repeated_prompt_compute_tokens": 0,
+        "unobserved_tokens": 0
+      }
+    },
+    "unhinted_return": {
+      "coalesced_chunks": 0,
+      "complete_requests": 24,
+      "latency_ns": {
+        "client_mean_chunk_itl_ns": {
+          "count": 24,
+          "maximum": 229170329.78723404,
+          "mean": 117116335.35070299,
+          "minimum": 56980776.52727272,
+          "p95": 212943399.92705625
+        },
+        "client_mean_token_itl_ns": {
+          "count": 24,
+          "maximum": 229170329.78723404,
+          "mean": 117116335.35070299,
+          "minimum": 56980776.52727272,
+          "p95": 212943399.92705625
+        },
+        "engine_mean_token_itl_ns": {
+          "count": 24,
+          "maximum": 229272010.3188061,
+          "mean": 117179014.81366089,
+          "minimum": 57027674.108659,
+          "p95": 213018617.73661432
+        },
+        "submission_lateness_ns": {
+          "count": 24,
+          "maximum": 3182913.0,
+          "mean": 1567777.0833333333,
+          "minimum": 394051.0,
+          "p95": 3040305.049999999
+        },
+        "ttft_scheduled_ns": {
+          "count": 24,
+          "maximum": 35917641817.0,
+          "mean": 8888020733.333334,
+          "minimum": 189485901.0,
+          "p95": 31445581621.84999
+        },
+        "ttft_submitted_ns": {
+          "count": 24,
+          "maximum": 35914525469.0,
+          "mean": 8886452956.25,
+          "minimum": 188017807.0,
+          "p95": 31443990311.599987
+        }
+      },
+      "outcomes": {
+        "complete": 24
+      },
+      "output_tokens": 2121,
+      "planned_requests": 24,
+      "requested_output_tokens": 2121,
+      "sources": {
+        "cpu_reused_tokens": 576,
+        "eligible_tokens": 53248,
+        "gpu_reused_tokens": 28736,
+        "prompt_compute_tokens": 38189,
+        "recomputed_tokens": 23936,
+        "repeated_prompt_compute_tokens": 0,
+        "unobserved_tokens": 0
+      }
+    }
+  },
+  "eviction_count": 2695,
+  "failed_transfer_jobs": [],
+  "first_turn_cross_session_reuse": {
+    "missing_native_requests": 0,
+    "requests": [
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0000-t00",
+        "session_id": "s12103-0000",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1408,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 1472,
+          "recomputed_tokens": 1408,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            1472,
+            1473,
+            1474,
+            1475,
+            1476,
+            1477,
+            1478,
+            1479,
+            1480,
+            1481,
+            1482,
+            1483,
+            1484,
+            1485,
+            1486,
+            1487,
+            1488,
+            1489,
+            1490,
+            1491,
+            1492,
+            1493,
+            1494,
+            1495,
+            1496,
+            1497,
+            1498,
+            1499,
+            1500,
+            1501,
+            1502,
+            1503,
+            1504,
+            1505,
+            1506,
+            1507,
+            1508,
+            1509,
+            1510,
+            1511,
+            1512,
+            1513,
+            1514,
+            1515,
+            1516,
+            1517,
+            1518,
+            1519,
+            1520,
+            1521,
+            1522,
+            1523,
+            1524,
+            1525,
+            1526,
+            1527,
+            1528,
+            1529,
+            1530,
+            1531,
+            1532,
+            1533,
+            1534,
+            1535,
+            1536,
+            1537,
+            1538,
+            1539,
+            1540,
+            1541,
+            1542,
+            1543,
+            1544,
+            1545,
+            1546,
+            1547,
+            1548,
+            1549,
+            1550,
+            1551,
+            1552,
+            1553,
+            1554,
+            1555,
+            1556,
+            1557,
+            1558,
+            1559,
+            1560,
+            1561,
+            1562,
+            1563,
+            1564,
+            1565,
+            1566,
+            1567,
+            1568,
+            1569,
+            1570,
+            1571,
+            1572,
+            1573,
+            1574,
+            1575,
+            1576,
+            1577,
+            1578,
+            1579,
+            1580,
+            1581,
+            1582,
+            1583,
+            1584,
+            1585,
+            1586,
+            1587,
+            1588,
+            1589,
+            1590,
+            1591,
+            1592,
+            1593
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "pandas-dev__pandas.95280573.lm_rewrite__9ab6dmgk"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0001-t00",
+        "session_id": "s12103-0001",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 448,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 495,
+          "recomputed_tokens": 448,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            495,
+            496,
+            497,
+            498,
+            499,
+            500,
+            501,
+            502,
+            503,
+            504,
+            505,
+            506,
+            507,
+            508,
+            509,
+            510,
+            511,
+            512,
+            513,
+            514,
+            515,
+            516,
+            517,
+            518,
+            519,
+            520,
+            521,
+            522,
+            523,
+            524,
+            525,
+            526,
+            527,
+            528,
+            529,
+            530,
+            531,
+            532,
+            533,
+            534
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "Project-MONAI__MONAI.a09c1f08.pr_4186"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0002-t00",
+        "session_id": "s12103-0002",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 576,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 594,
+          "recomputed_tokens": 576,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            594,
+            595,
+            596,
+            597,
+            598,
+            599,
+            600,
+            601,
+            602,
+            603,
+            604,
+            605,
+            606,
+            607,
+            608,
+            609,
+            610,
+            611,
+            612,
+            613,
+            614,
+            615,
+            616,
+            617,
+            618,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629,
+            630,
+            631,
+            632,
+            633,
+            634,
+            635,
+            636,
+            637,
+            638,
+            639,
+            640,
+            641,
+            642,
+            643,
+            644,
+            645,
+            646,
+            647,
+            648,
+            649,
+            650,
+            651,
+            652,
+            653,
+            654,
+            655,
+            656,
+            657,
+            658,
+            659,
+            660,
+            661,
+            662,
+            663,
+            664,
+            665,
+            666,
+            667,
+            668
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "python-jsonschema__jsonschema.93e0caa5.combine_file__e7io5469"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0003-t00",
+        "session_id": "s12103-0003",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1408,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 562,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1458,
+            1459,
+            1460,
+            1461,
+            1462,
+            1463,
+            1464,
+            1465,
+            1466,
+            1467,
+            1468,
+            1469,
+            1470,
+            1471,
+            1472,
+            1473,
+            1474,
+            1475,
+            1476,
+            1477,
+            1478,
+            1479,
+            1480,
+            1481,
+            1482,
+            1483,
+            1484,
+            1485,
+            1486,
+            1487,
+            1488,
+            1489,
+            1490,
+            1491,
+            1492,
+            1493,
+            1494,
+            1495,
+            1496,
+            1497,
+            1498,
+            1499,
+            1500,
+            1501,
+            1502,
+            1503,
+            1504,
+            1505,
+            1506,
+            1507,
+            1508,
+            1509,
+            1510,
+            1511,
+            1512,
+            1513,
+            1514,
+            1515,
+            1516,
+            1517,
+            1518,
+            1519,
+            1520,
+            1521,
+            1522,
+            1523,
+            1524,
+            1525,
+            1526,
+            1527,
+            1528,
+            1529,
+            1530,
+            1531,
+            1532,
+            1533,
+            1534,
+            1535,
+            1536,
+            1537,
+            1538,
+            1539,
+            1540,
+            1541,
+            1542,
+            1543,
+            1544,
+            1545,
+            1546,
+            1547,
+            1548,
+            1549,
+            1550,
+            1551,
+            1552,
+            1553,
+            1554,
+            1555,
+            1556,
+            1557,
+            1558,
+            1559,
+            1560,
+            1561,
+            1562,
+            1563,
+            1564,
+            1565,
+            1566
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "Project-MONAI__MONAI.a09c1f08.func_pm_class_rm_funcs__cxvf8mp3"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0004-t00",
+        "session_id": "s12103-0004",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1024,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 1071,
+          "recomputed_tokens": 1024,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            1071,
+            1072,
+            1073,
+            1074,
+            1075,
+            1076,
+            1077,
+            1078,
+            1079,
+            1080,
+            1081,
+            1082,
+            1083,
+            1084,
+            1085,
+            1086,
+            1087,
+            1088,
+            1089,
+            1090,
+            1091,
+            1092,
+            1093,
+            1094,
+            1095,
+            1096,
+            1097,
+            1098,
+            1099,
+            1100,
+            1101,
+            1102,
+            1103,
+            1104,
+            1105,
+            1106,
+            1107,
+            1108,
+            1109,
+            1110,
+            1111,
+            1112,
+            1113,
+            1114,
+            1115,
+            1116,
+            1117,
+            1118,
+            1119,
+            1120,
+            1121,
+            1122,
+            1123,
+            1124,
+            1125,
+            1126,
+            1127,
+            1128,
+            1129,
+            1130,
+            1131,
+            1132,
+            1133,
+            1134,
+            1135,
+            1136,
+            1137,
+            1138,
+            1139,
+            1140,
+            1141,
+            1142,
+            1143,
+            1144,
+            1145,
+            1146,
+            1147,
+            1148,
+            1149,
+            1150,
+            1151,
+            1152,
+            1153,
+            1154,
+            1155,
+            1156,
+            1157,
+            1158,
+            1159,
+            1160,
+            1161,
+            1162,
+            1163,
+            1164,
+            1165,
+            1166,
+            1167,
+            1168,
+            1169,
+            1170,
+            1171,
+            1172,
+            1173,
+            1174,
+            1175,
+            1176,
+            1177,
+            1178,
+            1179,
+            1180,
+            1181
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "pylint-dev__astroid.b114f6b5.pr_2596"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0005-t00",
+        "session_id": "s12103-0005",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 512,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 519,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            519,
+            520,
+            521,
+            522,
+            523,
+            524,
+            525,
+            526,
+            527,
+            528,
+            529,
+            530,
+            531,
+            532,
+            533,
+            534,
+            535,
+            536,
+            537,
+            538,
+            539,
+            540,
+            541,
+            542,
+            543,
+            544,
+            545,
+            546,
+            547,
+            548,
+            549,
+            550,
+            551,
+            552,
+            553,
+            554,
+            555,
+            556,
+            557,
+            558,
+            559,
+            560,
+            561,
+            562,
+            563,
+            564,
+            565,
+            566,
+            567,
+            568,
+            569,
+            570,
+            571,
+            572,
+            573,
+            574,
+            575,
+            576,
+            577,
+            578,
+            579,
+            580,
+            581,
+            582,
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            589,
+            590,
+            591,
+            592,
+            593,
+            594,
+            595,
+            596,
+            597,
+            598,
+            599,
+            600,
+            601,
+            602,
+            603,
+            604,
+            605,
+            606,
+            607,
+            608,
+            609,
+            610,
+            611,
+            612,
+            613,
+            614,
+            615
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "hukkin__tomli.443a0c1b.func_pm_op_change_const__kq0aa43b"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0006-t00",
+        "session_id": "s12103-0006",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 512,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 523,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            523,
+            524,
+            525,
+            526,
+            527,
+            528,
+            529,
+            530,
+            531,
+            532,
+            533,
+            534,
+            535,
+            536,
+            537,
+            538,
+            539,
+            540,
+            541,
+            542,
+            543,
+            544,
+            545,
+            546,
+            547,
+            548,
+            549,
+            550,
+            551,
+            552,
+            553,
+            554,
+            555,
+            556,
+            557,
+            558,
+            559,
+            560,
+            561,
+            562,
+            563,
+            564,
+            565,
+            566,
+            567,
+            568,
+            569,
+            570,
+            571,
+            572,
+            573,
+            574,
+            575,
+            576,
+            577,
+            578,
+            579,
+            580,
+            581,
+            582,
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            589,
+            590,
+            591,
+            592,
+            593,
+            594,
+            595,
+            596,
+            597,
+            598,
+            599,
+            600,
+            601,
+            602,
+            603,
+            604,
+            605,
+            606,
+            607,
+            608,
+            609,
+            610,
+            611,
+            612,
+            613,
+            614,
+            615,
+            616,
+            617,
+            618,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "Project-MONAI__MONAI.a09c1f08.lm_rewrite__tveptbxt"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0007-t00",
+        "session_id": "s12103-0007",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 576,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 610,
+          "recomputed_tokens": 576,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            610,
+            611,
+            612,
+            613,
+            614,
+            615,
+            616,
+            617,
+            618,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629,
+            630,
+            631,
+            632,
+            633,
+            634,
+            635,
+            636,
+            637,
+            638,
+            639,
+            640,
+            641,
+            642,
+            643,
+            644,
+            645,
+            646,
+            647,
+            648,
+            649,
+            650,
+            651,
+            652,
+            653,
+            654,
+            655,
+            656,
+            657,
+            658,
+            659,
+            660,
+            661,
+            662,
+            663,
+            664,
+            665,
+            666,
+            667,
+            668,
+            669,
+            670,
+            671,
+            672,
+            673,
+            674,
+            675,
+            676,
+            677,
+            678,
+            679,
+            680,
+            681,
+            682,
+            683,
+            684,
+            685,
+            686,
+            687,
+            688,
+            689,
+            690,
+            691,
+            692,
+            693,
+            694,
+            695,
+            696,
+            697,
+            698
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "pandas-dev__pandas.95280573.pr_60828"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0008-t00",
+        "session_id": "s12103-0008",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1472,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 607,
+          "recomputed_tokens": 576,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1503,
+            1504,
+            1505,
+            1506,
+            1507,
+            1508,
+            1509,
+            1510,
+            1511,
+            1512,
+            1513,
+            1514,
+            1515,
+            1516,
+            1517,
+            1518,
+            1519,
+            1520,
+            1521,
+            1522,
+            1523,
+            1524,
+            1525,
+            1526,
+            1527,
+            1528,
+            1529,
+            1530,
+            1531,
+            1532,
+            1533,
+            1534,
+            1535,
+            1536,
+            1537,
+            1538,
+            1539,
+            1540,
+            1541,
+            1542,
+            1543,
+            1544,
+            1545,
+            1546,
+            1547,
+            1548,
+            1549,
+            1550,
+            1551,
+            1552,
+            1553,
+            1554,
+            1555,
+            1556,
+            1557,
+            1558,
+            1559,
+            1560,
+            1561,
+            1562,
+            1563,
+            1564,
+            1565,
+            1566,
+            1567,
+            1568,
+            1569,
+            1570,
+            1571,
+            1572,
+            1573,
+            1574,
+            1575,
+            1576,
+            1577,
+            1578,
+            1579,
+            1580,
+            1581,
+            1582,
+            1583,
+            1584,
+            1585,
+            1586,
+            1587,
+            1588,
+            1589,
+            1590,
+            1591,
+            1592,
+            1593,
+            1594,
+            1595,
+            1596,
+            1597,
+            1598,
+            1599,
+            1600,
+            1601,
+            1602,
+            1603,
+            1604,
+            1605
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "python-jsonschema__jsonschema.93e0caa5.lm_rewrite__6ndoageg"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0009-t00",
+        "session_id": "s12103-0009",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1408,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 543,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1439,
+            1440,
+            1441,
+            1442,
+            1443,
+            1444,
+            1445,
+            1446,
+            1447,
+            1448,
+            1449,
+            1450,
+            1451,
+            1452,
+            1453,
+            1454,
+            1455,
+            1456,
+            1457,
+            1458,
+            1459,
+            1460,
+            1461,
+            1462,
+            1463,
+            1464,
+            1465,
+            1466,
+            1467,
+            1468,
+            1469,
+            1470,
+            1471,
+            1472,
+            1473,
+            1474,
+            1475,
+            1476,
+            1477,
+            1478,
+            1479,
+            1480,
+            1481,
+            1482,
+            1483,
+            1484,
+            1485,
+            1486,
+            1487,
+            1488,
+            1489,
+            1490,
+            1491,
+            1492,
+            1493,
+            1494,
+            1495,
+            1496,
+            1497,
+            1498,
+            1499,
+            1500,
+            1501,
+            1502,
+            1503,
+            1504,
+            1505,
+            1506,
+            1507,
+            1508,
+            1509,
+            1510,
+            1511,
+            1512,
+            1513,
+            1514,
+            1515,
+            1516,
+            1517,
+            1518,
+            1519,
+            1520,
+            1521,
+            1522,
+            1523,
+            1524,
+            1525,
+            1526,
+            1527,
+            1528,
+            1529,
+            1530,
+            1531,
+            1532,
+            1533,
+            1534,
+            1535,
+            1536,
+            1537,
+            1538
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "pylint-dev__astroid.b114f6b5.lm_rewrite__867jbnvy"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0010-t00",
+        "session_id": "s12103-0010",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 640,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 669,
+          "recomputed_tokens": 640,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            669,
+            670,
+            671,
+            672,
+            673,
+            674,
+            675,
+            676,
+            677,
+            678,
+            679,
+            680,
+            681,
+            682,
+            683,
+            684,
+            685,
+            686,
+            687,
+            688,
+            689,
+            690,
+            691,
+            692,
+            693,
+            694,
+            695,
+            696,
+            697,
+            698,
+            699,
+            700,
+            701,
+            702,
+            703,
+            704,
+            705,
+            706,
+            707,
+            708,
+            709,
+            710,
+            711,
+            712,
+            713,
+            714,
+            715,
+            716,
+            717,
+            718,
+            719,
+            720,
+            721,
+            722,
+            723,
+            724,
+            725,
+            726,
+            727,
+            728,
+            729,
+            730,
+            731,
+            732,
+            733,
+            734,
+            735,
+            736,
+            737,
+            738,
+            739,
+            740,
+            741,
+            742,
+            743,
+            744,
+            745,
+            746,
+            747,
+            748,
+            749,
+            750,
+            751,
+            752,
+            753,
+            754,
+            755,
+            756,
+            757,
+            758,
+            759,
+            760,
+            761,
+            762,
+            763,
+            764,
+            765,
+            766,
+            767,
+            768,
+            769,
+            770,
+            771,
+            772,
+            773,
+            774,
+            775
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "Project-MONAI__MONAI.a09c1f08.func_pm_remove_assign__70jyz2gr"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0011-t00",
+        "session_id": "s12103-0011",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1600,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 708,
+          "recomputed_tokens": 704,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1604,
+            1605,
+            1606,
+            1607,
+            1608,
+            1609,
+            1610,
+            1611,
+            1612,
+            1613,
+            1614,
+            1615,
+            1616,
+            1617,
+            1618,
+            1619,
+            1620,
+            1621,
+            1622,
+            1623,
+            1624,
+            1625,
+            1626,
+            1627,
+            1628,
+            1629,
+            1630,
+            1631,
+            1632,
+            1633,
+            1634,
+            1635,
+            1636,
+            1637,
+            1638,
+            1639,
+            1640,
+            1641,
+            1642,
+            1643,
+            1644,
+            1645,
+            1646,
+            1647,
+            1648,
+            1649,
+            1650,
+            1651,
+            1652,
+            1653,
+            1654,
+            1655,
+            1656,
+            1657,
+            1658,
+            1659,
+            1660,
+            1661,
+            1662,
+            1663,
+            1664,
+            1665,
+            1666,
+            1667,
+            1668,
+            1669,
+            1670,
+            1671,
+            1672,
+            1673,
+            1674,
+            1675,
+            1676,
+            1677,
+            1678,
+            1679,
+            1680,
+            1681,
+            1682,
+            1683,
+            1684,
+            1685,
+            1686,
+            1687,
+            1688,
+            1689,
+            1690,
+            1691,
+            1692,
+            1693,
+            1694,
+            1695,
+            1696,
+            1697,
+            1698,
+            1699,
+            1700,
+            1701,
+            1702,
+            1703,
+            1704,
+            1705
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "tox-dev__pipdeptree.c31b6418.combine_file__39m1aqx5"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0012-t00",
+        "session_id": "s12103-0012",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 384,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 420,
+          "recomputed_tokens": 384,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            420,
+            421,
+            422,
+            423,
+            424,
+            425,
+            426,
+            427,
+            428,
+            429,
+            430,
+            431,
+            432,
+            433,
+            434,
+            435,
+            436,
+            437,
+            438,
+            439,
+            440,
+            441,
+            442,
+            443,
+            444,
+            445,
+            446,
+            447,
+            448,
+            449,
+            450,
+            451,
+            452,
+            453,
+            454,
+            455,
+            456,
+            457,
+            458,
+            459,
+            460,
+            461,
+            462,
+            463,
+            464,
+            465,
+            466,
+            467,
+            468,
+            469,
+            470,
+            471,
+            472,
+            473,
+            474,
+            475,
+            476,
+            477,
+            478,
+            479,
+            480,
+            481,
+            482,
+            483,
+            484,
+            485,
+            486,
+            487,
+            488,
+            489,
+            490,
+            491,
+            492,
+            493,
+            494
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "graphql-python__graphene.82903263.combine_module__yrv8g06z"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0013-t00",
+        "session_id": "s12103-0013",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1536,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 688,
+          "recomputed_tokens": 640,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1584,
+            1585,
+            1586,
+            1587,
+            1588,
+            1589,
+            1590,
+            1591,
+            1592,
+            1593,
+            1594,
+            1595,
+            1596,
+            1597,
+            1598,
+            1599,
+            1600,
+            1601,
+            1602,
+            1603,
+            1604,
+            1605,
+            1606,
+            1607,
+            1608,
+            1609,
+            1610,
+            1611,
+            1612,
+            1613,
+            1614,
+            1615,
+            1616,
+            1617,
+            1618,
+            1619,
+            1620,
+            1621,
+            1622,
+            1623,
+            1624,
+            1625,
+            1626,
+            1627,
+            1628,
+            1629,
+            1630,
+            1631,
+            1632,
+            1633,
+            1634,
+            1635,
+            1636,
+            1637,
+            1638,
+            1639,
+            1640,
+            1641,
+            1642,
+            1643,
+            1644,
+            1645,
+            1646,
+            1647,
+            1648,
+            1649,
+            1650,
+            1651,
+            1652,
+            1653,
+            1654
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "mahmoud__glom.fb3c4e76.lm_rewrite__exdztgjx"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0014-t00",
+        "session_id": "s12103-0014",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 512,
+          "gpu_reused_tokens": 0,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 554,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            0,
+            104,
+            554,
+            555,
+            556,
+            557,
+            558,
+            559,
+            560,
+            561,
+            562,
+            563,
+            564,
+            565,
+            566,
+            567,
+            568,
+            569,
+            570,
+            571,
+            572,
+            573,
+            574,
+            575,
+            576,
+            577,
+            578,
+            579,
+            580,
+            581,
+            582,
+            583,
+            584,
+            585,
+            586,
+            587,
+            588,
+            589,
+            590,
+            591,
+            592,
+            593,
+            594,
+            595,
+            596,
+            597,
+            598,
+            599,
+            600,
+            601,
+            602,
+            603,
+            604,
+            605,
+            606,
+            607,
+            608,
+            609,
+            610,
+            611,
+            612,
+            613,
+            614,
+            615,
+            616,
+            617,
+            618,
+            619,
+            620,
+            621,
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629,
+            630,
+            631,
+            632,
+            633,
+            634,
+            635,
+            636,
+            637,
+            638,
+            639,
+            640,
+            641,
+            642,
+            643,
+            644,
+            645,
+            646,
+            647,
+            648,
+            649,
+            650,
+            651,
+            652,
+            653,
+            654,
+            655,
+            656,
+            657,
+            658,
+            659,
+            660
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "rubik__radon.54b88e58.func_pm_class_rm_funcs__59ri2pk0"
+      },
+      {
+        "outcome": "complete",
+        "request_id": "s12103-0015-t00",
+        "session_id": "s12103-0015",
+        "sources": {
+          "complete": true,
+          "cpu_reused_tokens": 0,
+          "eligible_tokens": 1408,
+          "gpu_reused_tokens": 896,
+          "pending_load_jobs": [],
+          "per_group_restored_tokens": {},
+          "prompt_compute_tokens": 536,
+          "recomputed_tokens": 512,
+          "repeated_prompt_compute_tokens": 0,
+          "scheduled_boundaries": [
+            896,
+            1237,
+            1432,
+            1433,
+            1434,
+            1435,
+            1436,
+            1437,
+            1438,
+            1439,
+            1440,
+            1441,
+            1442,
+            1443,
+            1444,
+            1445,
+            1446,
+            1447,
+            1448,
+            1449,
+            1450,
+            1451,
+            1452,
+            1453,
+            1454,
+            1455,
+            1456,
+            1457,
+            1458,
+            1459,
+            1460,
+            1461,
+            1462,
+            1463,
+            1464,
+            1465,
+            1466,
+            1467,
+            1468,
+            1469,
+            1470,
+            1471,
+            1472,
+            1473,
+            1474,
+            1475,
+            1476,
+            1477,
+            1478,
+            1479,
+            1480,
+            1481,
+            1482,
+            1483,
+            1484,
+            1485,
+            1486,
+            1487,
+            1488,
+            1489,
+            1490,
+            1491,
+            1492,
+            1493,
+            1494,
+            1495,
+            1496,
+            1497,
+            1498,
+            1499,
+            1500,
+            1501,
+            1502,
+            1503,
+            1504,
+            1505,
+            1506,
+            1507,
+            1508,
+            1509,
+            1510,
+            1511,
+            1512,
+            1513,
+            1514,
+            1515,
+            1516,
+            1517,
+            1518,
+            1519,
+            1520,
+            1521,
+            1522,
+            1523,
+            1524,
+            1525,
+            1526,
+            1527,
+            1528,
+            1529,
+            1530,
+            1531,
+            1532,
+            1533,
+            1534,
+            1535,
+            1536
+          ],
+          "successful_restored_tokens": 0,
+          "unobserved_tokens": 0
+        },
+        "task": "mahmoud__glom.fb3c4e76.lm_rewrite__l1rms470"
+      }
+    ],
+    "scope": "Full reusable boundary on each session's first turn, which has no previous request in that session: observed reuse is cross-session. This does not exhaust shared reuse on later turns. Primary within-session return eligibility is unchanged.",
+    "totals": {
+      "cpu_reused_tokens": 0,
+      "eligible_tokens": 15424,
+      "gpu_reused_tokens": 5376,
+      "recomputed_tokens": 10048,
+      "unobserved_tokens": 0
+    }
+  },
+  "hint_messages": [
+    {
+      "acknowledgement": {
+        "accepted_ns": 309761928904568,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t00",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t00",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309761931125223,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t00",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t00",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 1,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t00",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t00",
+      "started_ns": 309761873984189
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309766588359531,
+        "actions": [
+          {
+            "action_id": "s12103-0002-t00",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0002-t00",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309766590881020,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0002-t00",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0002-t00",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 1,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0002"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0002-t00",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0002-t00",
+      "started_ns": 309766541354990
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309773836207437,
+        "actions": [
+          {
+            "action_id": "s12103-0002-t01",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0002-t01",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309773838727111,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0002-t01",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0002-t01",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 2,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0002"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0002-t01",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0002-t01",
+      "started_ns": 309773782391140
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309774685723070,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t01",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t01",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309774688803322,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t01",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t01",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 2,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t01",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t01",
+      "started_ns": 309774635106869
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309784510102976,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t02",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t02",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309784512080811,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t02",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t02",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 3,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t02",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t02",
+      "started_ns": 309784458987011
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309785080321185,
+        "actions": [
+          {
+            "action_id": "s12103-0002-t02",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0002-t02",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309785082585032,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0002-t02",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0002-t02",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 3,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0002"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0002-t02",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0002-t02",
+      "started_ns": 309785032931135
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309796294000069,
+        "actions": [
+          {
+            "action_id": "s12103-0006-t00",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0006-t00",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309796298947560,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0006-t00",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0006-t00",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 1,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0006"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0006-t00",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0006-t00",
+      "started_ns": 309796240443336
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309796753371870,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t00",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t00",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309796756262909,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t00",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t00",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 1,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t00",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t00",
+      "started_ns": 309796703921263
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309803761335563,
+        "actions": [
+          {
+            "action_id": "s12103-0010-t00",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0010-t00",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309803763832673,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0010-t00",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0010-t00",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 1,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0010"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0010-t00",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0010-t00",
+      "started_ns": 309803714097980
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309824160935656,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t03",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t03",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309824168858094,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t03",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t03",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 4,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t03",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t03",
+      "started_ns": 309823334069528
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309829114767501,
+        "actions": [
+          {
+            "action_id": "s12103-0006-t01",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0006-t01",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309829132471215,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0006-t01",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0006-t01",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 2,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0006"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0006-t01",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0006-t01",
+      "started_ns": 309829066269545
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309829115387427,
+        "actions": [
+          {
+            "action_id": "s12103-0010-t01",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0010-t01",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309829132893534,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0010-t01",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0010-t01",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 2,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0010"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0010-t01",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0010-t01",
+      "started_ns": 309829069445900
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309842462932823,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t01",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t01",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309842466012950,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t01",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t01",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 2,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t01",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t01",
+      "started_ns": 309842414253935
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309843500220268,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t04",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t04",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309843504049983,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t04",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t04",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 5,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t04",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t04",
+      "started_ns": 309843449518927
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309856310722130,
+        "actions": [
+          {
+            "action_id": "s12103-0006-t02",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0006-t02",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309856316975664,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0006-t02",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0006-t02",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 3,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0006"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0006-t02",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0006-t02",
+      "started_ns": 309853540406703
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309862776510753,
+        "actions": [
+          {
+            "action_id": "s12103-0010-t02",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0010-t02",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309862779918898,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0010-t02",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0010-t02",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 3,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0010"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0010-t02",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0010-t02",
+      "started_ns": 309862726212719
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309873386745935,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t02",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t02",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309873391419969,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t02",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t02",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 3,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t02",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t02",
+      "started_ns": 309873330473811
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309892824756743,
+        "actions": [
+          {
+            "action_id": "s12103-0006-t03",
+            "decision": "physical_limit",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0006-t03",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309892827944521,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0006-t03",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0006-t03",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 4,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0006"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0006-t03",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0006-t03",
+      "started_ns": 309892777880976
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309900099655269,
+        "actions": [
+          {
+            "action_id": "s12103-0001-t05",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0001-t05",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309900102694789,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0001-t05",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0001-t05",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 6,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0001"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0001-t05",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0001-t05",
+      "started_ns": 309900059336785
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309916660228843,
+        "actions": [
+          {
+            "action_id": "s12103-0010-t03",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0010-t03",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309916667082482,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0010-t03",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0010-t03",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 4,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0010"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0010-t03",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0010-t03",
+      "started_ns": 309916492975564
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309926538510629,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t03",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t03",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309926541811136,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t03",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t03",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 4,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t03",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t03",
+      "started_ns": 309926483920329
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309956014289324,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t04",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t04",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309956018026119,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t04",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t04",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 5,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t04",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t04",
+      "started_ns": 309955973069148
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 309970294847664,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t05",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t05",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 309970297193508,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t05",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t05",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 6,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t05",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t05",
+      "started_ns": 309970239029155
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 310003440379087,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t06",
+            "decision": "held",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t06",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 310003442024557,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t06",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t06",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 7,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t06",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t06",
+      "started_ns": 310003438705260
+    },
+    {
+      "acknowledgement": {
+        "accepted_ns": 310015364451536,
+        "actions": [
+          {
+            "action_id": "s12103-0007-t07",
+            "decision": "physical_limit",
+            "replayed": false
+          }
+        ],
+        "message_id": "s12103-0007-t07",
+        "schema": "wait-hint-policy-envelope-ack-v1"
+      },
+      "detail": "",
+      "ended_ns": 310015366118783,
+      "envelope": {
+        "actions": [
+          {
+            "action_id": "s12103-0007-t07",
+            "action_type": "wait_hint.post_response",
+            "action_version": "v1",
+            "payload": {
+              "action_id": "s12103-0007-t07",
+              "kind": "hold",
+              "schema": "wait-hint-policy-action-v1",
+              "session": {
+                "generation": 8,
+                "incarnation": "12103",
+                "schema": "wait-hint-policy-session-v1",
+                "scope": "pr-evidence",
+                "session": "s12103-0007"
+              },
+              "ttl_ms": 12000
+            }
+          }
+        ],
+        "message_id": "s12103-0007-t07",
+        "protocol_version": "v1"
+      },
+      "outcome": "accepted",
+      "request_id": "s12103-0007-t07",
+      "started_ns": 310015362605177
+    }
+  ],
+  "holds": {
+    "final_turn_lease_count": 3,
+    "final_turn_leases_by_ending": {
+      "context_limit": 3
+    },
+    "last_outcome_counters": {
+      "held": 23,
+      "physical_limit": 2,
+      "return_release": 54
+    },
+    "lease_count": 23,
+    "observed_leases": [
+      {
+        "deadline_ns": 309773928904568,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309761929079449,
+        "generation": 1,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309769523239718,
+        "maximum_observed_keys": 7,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309772638006396,
+            "first_observed_ns": 309761929079449,
+            "last_observed_ns": 309769523239718
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0001\",\"12103\"]",
+        "session_id": "s12103-0001"
+      },
+      {
+        "deadline_ns": 309778588359531,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309766588504960,
+        "generation": 1,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309766588504960,
+        "maximum_observed_keys": 9,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309769523239718,
+            "first_observed_ns": 309766588504960,
+            "last_observed_ns": 309766588504960
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0002\",\"12103\"]",
+        "session_id": "s12103-0002"
+      },
+      {
+        "deadline_ns": 309785836207437,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309773836369862,
+        "generation": 2,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309774685859727,
+        "maximum_observed_keys": 16,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309775527475572,
+            "first_observed_ns": 309773836369862,
+            "last_observed_ns": 309774685859727
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0002\",\"12103\"]",
+        "session_id": "s12103-0002"
+      },
+      {
+        "deadline_ns": 309786685723070,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309774685859727,
+        "generation": 2,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309775527475572,
+        "maximum_observed_keys": 8,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309781017940768,
+            "first_observed_ns": 309774685859727,
+            "last_observed_ns": 309775527475572
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0001\",\"12103\"]",
+        "session_id": "s12103-0001"
+      },
+      {
+        "deadline_ns": 309796510102976,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309784510252663,
+        "generation": 3,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309785080464656,
+        "maximum_observed_keys": 7,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309787642085268,
+            "first_observed_ns": 309784510252663,
+            "last_observed_ns": 309785080464656
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0001\",\"12103\"]",
+        "session_id": "s12103-0001"
+      },
+      {
+        "deadline_ns": 309797080321185,
+        "ending": "context_limit",
+        "final_recorded_turn": true,
+        "first_observed_ns": 309785080464656,
+        "generation": 3,
+        "has_later_recorded_return": false,
+        "last_observed_ns": 309796753534539,
+        "maximum_observed_keys": 7,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309797777981214,
+            "first_observed_ns": 309785080464656,
+            "last_observed_ns": 309796753534539
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0002\",\"12103\"]",
+        "session_id": "s12103-0002"
+      },
+      {
+        "deadline_ns": 309808294000069,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309796294126822,
+        "generation": 1,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309807182287384,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309813742790885,
+            "first_observed_ns": 309796294126822,
+            "last_observed_ns": 309807182287384
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0006\",\"12103\"]",
+        "session_id": "s12103-0006"
+      },
+      {
+        "deadline_ns": 309808753371870,
+        "ending": "turn_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309796753534539,
+        "generation": 1,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309807182287384,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309813742790885,
+            "first_observed_ns": 309796753534539,
+            "last_observed_ns": 309807182287384
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0007\",\"12103\"]",
+        "session_id": "s12103-0007"
+      },
+      {
+        "deadline_ns": 309815761335563,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309803761499919,
+        "generation": 1,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309813742790885,
+        "maximum_observed_keys": 10,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309816809240660,
+            "first_observed_ns": 309803761499919,
+            "last_observed_ns": 309813742790885
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0010\",\"12103\"]",
+        "session_id": "s12103-0010"
+      },
+      {
+        "deadline_ns": 309836160935656,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309824161069440,
+        "generation": 4,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309829115540237,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309829766707616,
+            "first_observed_ns": 309824161069440,
+            "last_observed_ns": 309829115540237
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0001\",\"12103\"]",
+        "session_id": "s12103-0001"
+      },
+      {
+        "deadline_ns": 309841114767501,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309829114878138,
+        "generation": 2,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309829766707616,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309832702696309,
+            "first_observed_ns": 309829114878138,
+            "last_observed_ns": 309829766707616
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0006\",\"12103\"]",
+        "session_id": "s12103-0006"
+      },
+      {
+        "deadline_ns": 309841115387427,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309829115540237,
+        "generation": 2,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309832702696309,
+        "maximum_observed_keys": 12,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309835368855432,
+            "first_observed_ns": 309829115540237,
+            "last_observed_ns": 309832702696309
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0010\",\"12103\"]",
+        "session_id": "s12103-0010"
+      },
+      {
+        "deadline_ns": 309854462932823,
+        "ending": "turn_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309842463070645,
+        "generation": 2,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309845601767772,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309847568770229,
+            "first_observed_ns": 309842463070645,
+            "last_observed_ns": 309845601767772
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0007\",\"12103\"]",
+        "session_id": "s12103-0007"
+      },
+      {
+        "deadline_ns": 309855500220268,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309843500379216,
+        "generation": 5,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309843502559779,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309845601767772,
+            "first_observed_ns": 309843500379216,
+            "last_observed_ns": 309843502559779
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0001\",\"12103\"]",
+        "session_id": "s12103-0001"
+      },
+      {
+        "deadline_ns": 309868310722130,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309856310877210,
+        "generation": 3,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309862776649176,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309865334385352,
+            "first_observed_ns": 309856310877210,
+            "last_observed_ns": 309862776649176
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0006\",\"12103\"]",
+        "session_id": "s12103-0006"
+      },
+      {
+        "deadline_ns": 309874776510753,
+        "ending": "context_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309862776649176,
+        "generation": 3,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309867001914734,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309871204247325,
+            "first_observed_ns": 309862776649176,
+            "last_observed_ns": 309867001914734
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0010\",\"12103\"]",
+        "session_id": "s12103-0010"
+      },
+      {
+        "deadline_ns": 309885386745935,
+        "ending": "turn_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309873386895182,
+        "generation": 3,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309873386895182,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309880246828197,
+            "first_observed_ns": 309873386895182,
+            "last_observed_ns": 309873386895182
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0007\",\"12103\"]",
+        "session_id": "s12103-0007"
+      },
+      {
+        "deadline_ns": 309912099655269,
+        "ending": "context_limit",
+        "final_recorded_turn": true,
+        "first_observed_ns": 309900099785555,
+        "generation": 6,
+        "has_later_recorded_return": false,
+        "last_observed_ns": 309900099785555,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309912452458011,
+            "first_observed_ns": 309900099785555,
+            "last_observed_ns": 309900099785555
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0001\",\"12103\"]",
+        "session_id": "s12103-0001"
+      },
+      {
+        "deadline_ns": 309928660228843,
+        "ending": "context_limit",
+        "final_recorded_turn": true,
+        "first_observed_ns": 309916660350911,
+        "generation": 4,
+        "has_later_recorded_return": false,
+        "last_observed_ns": 309928408722279,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309929395413041,
+            "first_observed_ns": 309916660350911,
+            "last_observed_ns": 309928408722279
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0010\",\"12103\"]",
+        "session_id": "s12103-0010"
+      },
+      {
+        "deadline_ns": 309938538510629,
+        "ending": "turn_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309926538638700,
+        "generation": 4,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309929395413041,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309931942180144,
+            "first_observed_ns": 309926538638700,
+            "last_observed_ns": 309929395413041
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0007\",\"12103\"]",
+        "session_id": "s12103-0007"
+      },
+      {
+        "deadline_ns": 309968014289324,
+        "ending": "turn_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309956014425589,
+        "generation": 5,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309956014425589,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309960640661761,
+            "first_observed_ns": 309956014425589,
+            "last_observed_ns": 309956014425589
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0007\",\"12103\"]",
+        "session_id": "s12103-0007"
+      },
+      {
+        "deadline_ns": 309982294847664,
+        "ending": "turn_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 309970295001633,
+        "generation": 6,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 309970295001633,
+        "maximum_observed_keys": 10,
+        "observed_segments": [
+          {
+            "first_absent_ns": 309975850735822,
+            "first_observed_ns": 309970295001633,
+            "last_observed_ns": 309970295001633
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0007\",\"12103\"]",
+        "session_id": "s12103-0007"
+      },
+      {
+        "deadline_ns": 310015440379087,
+        "ending": "turn_limit",
+        "final_recorded_turn": false,
+        "first_observed_ns": 310003440452882,
+        "generation": 7,
+        "has_later_recorded_return": true,
+        "last_observed_ns": 310003440452882,
+        "maximum_observed_keys": 0,
+        "observed_segments": [
+          {
+            "first_absent_ns": 310007157521637,
+            "first_observed_ns": 310003440452882,
+            "last_observed_ns": 310003440452882
+          }
+        ],
+        "owner": "[\"pr-evidence\",\"s12103-0007\",\"12103\"]",
+        "session_id": "s12103-0007"
+      }
+    ],
+    "peak_observed_metadata_bytes": 218372,
+    "peak_physical_held_chunks": 24,
+    "scope": "Observed owner/generation lifetimes; snapshots bound appearance/disappearance and do not establish exact release or expiry times. Final-turn holds have no later recorded return, including truncated ends. return_release is an observation/attempt counter, not a count of held leases released. Metadata-only mutations can be missed by snapshot deduplication.",
+    "sessions_with_observed_holds": 5,
+    "yield_count": 0
+  },
+  "input_sha256": {
+    "admission.json": "90b3453ae4cc7bdaf4adfc87622b7d71054df3ca5b6afc52525352362b9ad6bc",
+    "schedule.json": "00a17d065b7444e09aa7f1ca4d0514bcb7c456d17b5b8f9b0bafc914ebbe6aba",
+    "terminal.json": "cd77834251343836f9bfafab81a539a506b02976b0136bb563fbf32bf2dd2311"
+  },
+  "model": "D8",
+  "refusal_capacity": [
+    {
+      "eligible_idle_chunks": 30,
+      "free_chunks": 0,
+      "idle_chunks": 44,
+      "missing_chunks": 35,
+      "monotonic_ns": 309807181863486,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0009-t01-9ee4dd72",
+      "required_evictions": 35
+    },
+    {
+      "eligible_idle_chunks": 30,
+      "free_chunks": 0,
+      "idle_chunks": 44,
+      "missing_chunks": 63,
+      "monotonic_ns": 309811166168223,
+      "native_capacity_would_fit": false,
+      "reason": "insufficient idle chunks",
+      "request_id": "s12103-0009-t01-9ee4dd72",
+      "required_evictions": 63
+    },
+    {
+      "eligible_idle_chunks": 62,
+      "free_chunks": 0,
+      "idle_chunks": 76,
+      "missing_chunks": 63,
+      "monotonic_ns": 309813726676211,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0009-t01-9ee4dd72",
+      "required_evictions": 63
+    },
+    {
+      "eligible_idle_chunks": 12,
+      "free_chunks": 0,
+      "idle_chunks": 26,
+      "missing_chunks": 18,
+      "monotonic_ns": 309832702028324,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0011-t01-ab07c936",
+      "required_evictions": 18
+    },
+    {
+      "eligible_idle_chunks": 12,
+      "free_chunks": 0,
+      "idle_chunks": 26,
+      "missing_chunks": 13,
+      "monotonic_ns": 309832702498123,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0009-t02-a3fd646b",
+      "required_evictions": 13
+    },
+    {
+      "eligible_idle_chunks": 12,
+      "free_chunks": 0,
+      "idle_chunks": 26,
+      "missing_chunks": 18,
+      "monotonic_ns": 309835367909941,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0011-t01-ab07c936",
+      "required_evictions": 18
+    },
+    {
+      "eligible_idle_chunks": 12,
+      "free_chunks": 0,
+      "idle_chunks": 26,
+      "missing_chunks": 45,
+      "monotonic_ns": 309835368540048,
+      "native_capacity_would_fit": false,
+      "reason": "insufficient idle chunks",
+      "request_id": "s12103-0009-t02-a3fd646b",
+      "required_evictions": 45
+    },
+    {
+      "eligible_idle_chunks": 60,
+      "free_chunks": 0,
+      "idle_chunks": 74,
+      "missing_chunks": 64,
+      "monotonic_ns": 309836893195435,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0009-t02-a3fd646b",
+      "required_evictions": 64
+    },
+    {
+      "eligible_idle_chunks": 25,
+      "free_chunks": 0,
+      "idle_chunks": 25,
+      "missing_chunks": 31,
+      "monotonic_ns": 309856312581577,
+      "native_capacity_would_fit": false,
+      "reason": "insufficient idle chunks",
+      "request_id": "s12103-0007-t02-9860a392",
+      "required_evictions": 31
+    },
+    {
+      "eligible_idle_chunks": 15,
+      "free_chunks": 0,
+      "idle_chunks": 29,
+      "missing_chunks": 46,
+      "monotonic_ns": 309925785794638,
+      "native_capacity_would_fit": false,
+      "reason": "insufficient idle chunks",
+      "request_id": "s12103-0011-t04-9a08c2c7",
+      "required_evictions": 46
+    },
+    {
+      "eligible_idle_chunks": 0,
+      "free_chunks": 0,
+      "idle_chunks": 26,
+      "missing_chunks": 4,
+      "monotonic_ns": 309947621426531,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0015-t02-9f69c841",
+      "required_evictions": 4
+    },
+    {
+      "eligible_idle_chunks": 0,
+      "free_chunks": 0,
+      "idle_chunks": 26,
+      "missing_chunks": 4,
+      "monotonic_ns": 309947696631598,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0015-t02-9f69c841",
+      "required_evictions": 4
+    },
+    {
+      "eligible_idle_chunks": 0,
+      "free_chunks": 0,
+      "idle_chunks": 44,
+      "missing_chunks": 37,
+      "monotonic_ns": 309983671821745,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0011-t07-b325b43b",
+      "required_evictions": 37
+    },
+    {
+      "eligible_idle_chunks": 0,
+      "free_chunks": 0,
+      "idle_chunks": 44,
+      "missing_chunks": 37,
+      "monotonic_ns": 309986952025317,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0011-t07-b325b43b",
+      "required_evictions": 37
+    },
+    {
+      "eligible_idle_chunks": 31,
+      "free_chunks": 0,
+      "idle_chunks": 75,
+      "missing_chunks": 37,
+      "monotonic_ns": 309988895971027,
+      "native_capacity_would_fit": false,
+      "reason": "offered keys protect too many idle chunks",
+      "request_id": "s12103-0011-t07-b325b43b",
+      "required_evictions": 37
+    }
+  ],
+  "refusal_scope": "Instantaneous native capacity replay ignores holds and excludes in-flight/protected offered keys. No direct obstruction does not rule out indirect cache/scheduling effects; paired refusal counts remain outcomes. Frozen screen has no store-frequency admission threshold.",
+  "resource_details": {
+    "full_job_peak_pss_bytes": 5443422208,
+    "full_job_peak_summed_rss_bytes": 5909401600,
+    "gpu_sample_distributions": {
+      "memory_used_mib": {
+        "count": 92,
+        "maximum": 9441.0,
+        "mean": 8764.521739130434,
+        "minimum": 470.0,
+        "p95": 9441.0
+      },
+      "power_w": {
+        "count": 92,
+        "maximum": 262.79,
+        "mean": 130.42608695652174,
+        "minimum": 17.3,
+        "p95": 252.82800000000003
+      },
+      "temperature_c": {
+        "count": 92,
+        "maximum": 53.0,
+        "mean": 44.44565217391305,
+        "minimum": 35.0,
+        "p95": 52.0
+      },
+      "utilization_percent": {
+        "count": 92,
+        "maximum": 100.0,
+        "mean": 46.23913043478261,
+        "minimum": 0.0,
+        "p95": 100.0
+      }
+    },
+    "host_major_faults_delta": 513,
+    "major_faults_observed_delta": 363,
+    "minor_faults_observed_delta": 1820579,
+    "process_faults": [
+      {
+        "major_faults_observed_delta": 0,
+        "minor_faults_observed_delta": 0,
+        "process_identity": "1013528:30097617"
+      },
+      {
+        "major_faults_observed_delta": 187,
+        "minor_faults_observed_delta": 350184,
+        "process_identity": "1033010:30966626"
+      },
+      {
+        "major_faults_observed_delta": 0,
+        "minor_faults_observed_delta": 0,
+        "process_identity": "1033115:30968050"
+      },
+      {
+        "major_faults_observed_delta": 176,
+        "minor_faults_observed_delta": 1469196,
+        "process_identity": "1033116:30968050"
+      },
+      {
+        "major_faults_observed_delta": 0,
+        "minor_faults_observed_delta": 261,
+        "process_identity": "1033225:30969411"
+      },
+      {
+        "major_faults_observed_delta": 0,
+        "minor_faults_observed_delta": 0,
+        "process_identity": "1033232:30969424"
+      },
+      {
+        "major_faults_observed_delta": 0,
+        "minor_faults_observed_delta": 938,
+        "process_identity": "1033268:30971187"
+      }
+    ],
+    "scope": "Observed process-counter deltas by PID/start identity; startup includes loading/staging. First samples can miss early faults, vanished processes can be missed, RSS double-counts shared pages, GPU values include graphics and are sample means rather than time integrals. GPU clocks and Windows process activity were not captured.",
+    "startup_peak_pss_bytes": 5443422208,
+    "startup_peak_summed_rss_bytes": 5909401600
+  },
+  "resources": {
+    "host_swap_out_growth_pages": 0,
+    "limits": "sampled Linux process counters; partial edge intervals prorated; processes that start and exit between samples and Windows activity can be missed; memory/swap cover startup through the final pre-cleanup sample",
+    "material_interference": false,
+    "minimum_available_bytes": 10550669312,
+    "outside_cpu_core_share": 0.07121927191087023,
+    "outside_cpu_longest_above_quarter_core_seconds": 8.052280138999999,
+    "outside_cpu_seconds_by_process_identity": {
+      "1006953:29950049": 2.7799999999999923,
+      "1006954:29950050": 0.0,
+      "1007924:29968312": 0.0,
+      "1013524:30097613": 0.0,
+      "1013525:30097614": 0.0,
+      "1032621:30947467": 0.0,
+      "1033346:30976060": 0.01,
+      "1033347:30976208": 0.0,
+      "1033348:30976243": 0.0,
+      "1033349:30976243": 0.0,
+      "1033368:30977056": 0.0,
+      "1033369:30977057": 0.0,
+      "1033394:30979235": 0.9199999999999999,
+      "1033399:30979240": 0.0,
+      "1033400:30979240": 0.0,
+      "1033401:30979241": 0.0,
+      "1033402:30979241": 0.0,
+      "1033403:30979241": 0.0,
+      "1033407:30979244": 0.0,
+      "1033453:30980315": 0.0,
+      "1033454:30980315": 0.0,
+      "1033528:30986508": 0.0,
+      "1033529:30986651": 0.0,
+      "1033530:30986686": 0.0,
+      "1033531:30986686": 0.0,
+      "1033537:30987172": 0.46,
+      "1033633:30987501": 0.0,
+      "1033634:30987502": 0.0,
+      "1033661:30989039": 0.39,
+      "1033755:30989522": 0.03,
+      "1033881:30991229": 1.06,
+      "1033884:30991233": 0.0,
+      "1033885:30991233": 0.0,
+      "1033886:30991234": 0.0,
+      "1033887:30991234": 0.0,
+      "1033888:30991234": 0.0,
+      "1033889:30991234": 0.0,
+      "1033891:30991235": 0.0,
+      "1033893:30991237": 0.0,
+      "1033950:30992309": 0.0,
+      "1033951:30992309": 0.0,
+      "1033987:30994617": 0.01,
+      "1033988:30994618": 0.09,
+      "1034031:30996953": 0.0,
+      "1034039:30997089": 0.0,
+      "1034040:30997125": 0.0,
+      "1034041:30997125": 0.0,
+      "1034052:30997469": 0.0,
+      "1034053:30997470": 0.030000000000000002,
+      "1034058:30997946": 0.0,
+      "1034059:30997946": 0.0,
+      "1034168:31007392": 0.0,
+      "1034173:31007542": 0.0,
+      "1034174:31007542": 0.0,
+      "1034175:31007577": 0.0,
+      "1034176:31007577": 0.0,
+      "1034181:31008391": 0.0,
+      "1034182:31008391": 0.0,
+      "1034194:31008942": 0.01,
+      "1034195:31008944": 0.0,
+      "1034210:31009353": 1.24,
+      "1034215:31009358": 0.0,
+      "1034216:31009358": 0.0,
+      "1034217:31009358": 0.0,
+      "1034219:31009358": 0.0,
+      "1034220:31009358": 0.0,
+      "1034221:31009359": 0.0,
+      "1034224:31009361": 0.0,
+      "1034260:31010431": 0.0,
+      "1034261:31010431": 0.0,
+      "11034:2096347": 2.5667941839222066,
+      "117:451": 0.0,
+      "1:343": 0.01,
+      "214:597": 0.0,
+      "215:597": 0.0,
+      "223:599": 0.01,
+      "235:603": 0.01,
+      "242:603": 0.0,
+      "244:603": 0.0,
+      "255:605": 0.0,
+      "2:348": 0.0,
+      "300:610": 0.0,
+      "308:613": 0.0,
+      "3181:494298": 0.02,
+      "444:755": 0.0,
+      "445:755": 0.0,
+      "446:756": 0.0,
+      "448:756": 0.0,
+      "453:757": 0.0,
+      "454:757": 0.0,
+      "457:758": 0.0,
+      "491:853": 0.0,
+      "50:433": 0.04,
+      "747437:22545609": 14.749999999999972,
+      "747495:22545797": 0.0,
+      "747750:22546495": 2.0450541939301203,
+      "777381:23779827": 2.859999999999998,
+      "777538:23780401": 0.15,
+      "8:400": 0.02,
+      "90115:5063282": 0.0,
+      "90164:5063338": 0.0,
+      "90165:5063339": 0.0,
+      "90187:5063356": 0.0,
+      "90831:5066954": 0.7000000000000004,
+      "90959:5067130": 0.11,
+      "9215:1794828": 0.01,
+      "930622:27701986": 0.0,
+      "96:442": 0.15
+    },
+    "outside_gpu_pids": [],
+    "owned_swap_growth_bytes": 0,
+    "peak_owned_pss_bytes": 5443422208,
+    "window_ns": [
+      309712185540587,
+      310140185540587
+    ]
+  },
+  "schema": "pr-cell-diagnostics-v1",
+  "scope": "Derived diagnostics, preserving primary metrics and raw records. Latency descriptions are unweighted and complete-response-only, with all failure denominators alongside them; inferential comparisons use the frozen post-stratified estimator.",
+  "seed": 12103,
+  "session_completion": {
+    "all_termination_seconds": {
+      "count": 16,
+      "maximum": 229.893090653,
+      "mean": 105.69206363131251,
+      "minimum": 16.059892477,
+      "p95": 215.97981072275002
+    },
+    "complete_only_seconds": {
+      "count": 16,
+      "maximum": 229.893090653,
+      "mean": 105.69206363131251,
+      "minimum": 16.059892477,
+      "p95": 215.97981072275002
+    },
+    "outcomes": {
+      "complete": 16
+    },
+    "planned": 16
+  },
+  "store_failures": 0,
+  "store_refusals": 15,
+  "trace_endings": {
+    "context_limit": 12,
+    "natural": 1,
+    "turn_limit": 3
+  },
+  "transfer": {
+    "load": {
+      "bytes": 169869312,
+      "seconds": 0.014721279621124267
+    },
+    "store": {
+      "bytes": 26499612672,
+      "seconds": 2.0972328933477398
+    }
+  },
+  "working_set": {
+    "definition": "current submitted prompt's largest reusable native boundary, window/recurrent reachable keys, unique physical-key union while session active; no future turns, independent of cache readiness",
+    "largest_observed_conversation_bytes": 887095296,
+    "mean_active_prefixes": 4.404313479560748,
+    "mean_unique_reachable_bytes": 1675821156.9839447,
+    "peak_unique_reachable_bytes": 5539627008
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "acquisition": {
+    "path": "benchmarks/pr-evidence/2080ti-d8-screen.json",
+    "sha256": "f9828d68ded055d8625ad2ccc98e606a82dbcaeaec2aeb636a979c7faad668aa"
+  },
+  "calibration": {
+    "path": "benchmarks/pr-evidence/calibration/D8.json",
+    "sha256": "a8456f5211eaccc94aa48bed4141f970e2aa92aa77e86af0e85c471aca3fc338"
+  },
+  "first_task_audit": {
+    "path": "artifacts/runs/pr-evidence-analysis-01/first-task-audit.json",
+    "sha256": "c242a0a8c93a65aac99ca90e308a32b7afda456f377817375550a237712d9123"
+  },
+  "inputs": [
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A1-12101.json",
+      "sha256": "a758370dab8a92205a762ae3112ec472c31f69d096010f7eaa71b23d13a58646"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A1-12102.json",
+      "sha256": "10b3e597002a3d869017f70c370fa0496c0fab575ac55d0d2996e1c5c82acfe8"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A1-12103.json",
+      "sha256": "900d2324dd8d4894b6ecb0669e4694304f97ce16701280fcb055ef3d490d9469"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A2-12101.json",
+      "sha256": "dd7b90b983e3becbc56bf865f26c4516b3e91109c3a9bb10a98790c6b0f3eda5"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A2-12102.json",
+      "sha256": "70f9265772de555f49d0699cb61bd2654d749c3e5d98e09ab952fbecfc38880f"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A2-12103.json",
+      "sha256": "d98c13f2d8d640ca0bddf44ea087a93bca43e2bb25083f3dc5b7dd4dc98e9a8d"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A3-12101.json",
+      "sha256": "5376177b48d4e60ae4651e87cc57b250dedebd3acef8a142eff877f8c7f11b82"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A3-12102.json",
+      "sha256": "f26779c00b62c5b132f0d7368edaec0e6b610eaac85f00da63f1f54c21d124d5"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A3-12103.json",
+      "sha256": "5fb33822001d5e80b4bd1041d8979956c7d70da4a87754732dc85a41be7b871b"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A3p-12101.json",
+      "sha256": "6e6a6437f5c71e025fc2a32eb5f20b570f07805c01335267b310ac8aac6fec2c"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A3p-12102.json",
+      "sha256": "154c52004273d0a4637ba524e546bb3584bc0a8cb1785e06c010ea649a24a390"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A3p-12103.json",
+      "sha256": "e50d8b7818ca9dd323fe78785cc65fd86056802916d1bfaa622a1fda66451478"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A4p-12101.json",
+      "sha256": "a847d43366ce6762b9a2cdf3cf21b2d698082101a8e2e8d793319c801103211e"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A4p-12102.json",
+      "sha256": "05258d0311f64de5b78d548e072119a469ca1f5547b66e50505f43849843507a"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A4p-12103.json",
+      "sha256": "4d82b1d4c6613aa0cf953fe215687c6a54e391deeaf7e5e4d2676009f3df7be9"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A4t-12101.json",
+      "sha256": "1cc6229d64307a28b998799cd32ea488e1e4d0b343965ac0162c8dd91cea2143"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A4t-12102.json",
+      "sha256": "255a8f52d874d721672c750eee8e783ef5453a8c682aef4ce644f85ee9e56ee3"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A4t-12103.json",
+      "sha256": "297062d8bcd7418c916d9ee334d45c9b86c04872b7dab85e7251dbb5b83fce61"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A5-12101.json",
+      "sha256": "c6ff2f1d690b91e681595261e8675277c3980d4b9b1ab4d112722dae77483eea"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A5-12102.json",
+      "sha256": "cbd8bfe17b5f8b0ba61e5367d40cbd596687d0fc5116408100dba1bdf6f84333"
+    },
+    {
+      "path": "artifacts/runs/pr-evidence-analysis-01/inputs/A5-12103.json",
+      "sha256": "34dcf1c4479fbc8f8e0af05ee6ebb73bd4ea2f5414c1a1adc3f190c0d224bdb0"
+    }
+  ],
+  "schema": "pr-statistical-inputs-v1",
+  "scope": "Raw request values retained for exact inference regeneration; use tools.benchmark pr-compare-cells/pr-route-difference with the frozen labels; sensitivity adds --first-task-occurrence.",
+  "source_revision": "c012a49e78e0b11e4edee746b633b74ca0f46306"
+}

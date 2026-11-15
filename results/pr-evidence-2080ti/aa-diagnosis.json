@@ -1,0 +1,223 @@
+{
+  "aa_diagnosed": true,
+  "cpu_rechecks": {
+    "pr-policy-feasibility-12": {
+      "admission.json": {
+        "path": "artifacts/runs/pr-policy-feasibility-12/admission.json",
+        "sha256": "1f2759e2253347a2fc73c5bc9113a019c0624ec1cb62fe923833c4a7cb533ec7"
+      },
+      "execution.log": {
+        "path": "artifacts/runs/pr-policy-feasibility-12/execution.log",
+        "sha256": "fe0bddea87e90074a8f9cbc02f4b5ee9612452298b73b13223cfaefc63ec9f69"
+      },
+      "observed.json": {
+        "path": "artifacts/runs/pr-policy-feasibility-12/observed.json",
+        "sha256": "dd2a4fd16383ad03347cefb4242f8262f66e14c62e20df84592a0c4fbee9f43e"
+      },
+      "terminal.json": {
+        "path": "artifacts/runs/pr-policy-feasibility-12/terminal.json",
+        "sha256": "df97ec29dae40b3cf7aab16a5f6e8f4995564071d0540b851e69cde73b93ec59"
+      }
+    },
+    "pr-post-feasibility-04": {
+      "admission.json": {
+        "path": "artifacts/runs/pr-post-feasibility-04/admission.json",
+        "sha256": "defaaf20c9d3ce166f42f185df61624494821017d17df507b1dc6cb00fa9bf47"
+      },
+      "execution.log": {
+        "path": "artifacts/runs/pr-post-feasibility-04/execution.log",
+        "sha256": "1489d5a21e841227c7446d988d2770ea406dd63ea7d88771e8ef7ff30ac4e3ca"
+      },
+      "observed.json": {
+        "path": "artifacts/runs/pr-post-feasibility-04/observed.json",
+        "sha256": "21da5b87053f71920d3ef869b74144f9d09220c5bee7bfa01ed5a095168b58a4"
+      },
+      "terminal.json": {
+        "path": "artifacts/runs/pr-post-feasibility-04/terminal.json",
+        "sha256": "991a0d7e46d5c446b68593861060da60b9f898d62950a1955b6cb52ce3f7f8d7"
+      }
+    }
+  },
+  "hint_off_identity": true,
+  "observations": [
+    "Both CPU rechecks exit0 and pass maintained verify-pr-feasibility. Native ARC/LRU stock versus disabled eviction sequences match; actual MessagePack utility A3p/A3 sequences match.",
+    "All21 included GPU cells pass frozen capture/resource rules, complete all requests, and have zero failed stores/transfers. A3/A3p hold no chunks. Source/runtime/schedule hashes are retained per cell.",
+    "Control shifts are real measured differences, not discarded as invalid. First arrivals, task selection and tool gaps are paired; later arrivals depend on preceding response completion, so scheduling/cache histories can diverge despite deterministic policy identity for the same event sequence.",
+    "CPU identity establishes the tested native policy contract, not equality of serving timings. Disabled observation/delivery work and ordinary scheduling variation are plausible contributors; these data do not isolate their relative causes. No GPU clocks or Windows activity were captured.",
+    "All prespecified A/A estimates determine harm margins without subtracting their point estimates from treatment effects. A3p-A3 reports the full patched-control route difference, not an isolated hook cost. No threshold, seed, cell or setting changed after benefit inspection."
+  ],
+  "schema": "pr-aa-diagnosis-v1",
+  "scope": "Required source and CPU identity recheck plus measured control-difference diagnosis; serving overhead causes remain unresolved.",
+  "triggering_comparisons": [
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 135286056005.0,
+      "baseline_value": 2708968913.699643,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        0.008105938183929684,
+        0.1774177810410762
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--first_turn--ttft_ns--relative_harm.json",
+        "sha256": "152c9a581897601a8bcb06780614cfc5683937e149a39b662cc6e8e0f2a8a333"
+      },
+      "interval": [
+        0.017625745549772587,
+        0.1494676252198519
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/first_turn/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": 0.08947779086627317,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 148290621637.0,
+      "treatment_value": 2951361467.622895,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 48.0,
+      "baseline_raw_numerator": 4278249232.120913,
+      "baseline_value": 88878997.1300689,
+      "cohort": "first_turn",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.04403781801430584,
+        0.187490885308079
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--first_turn--client_itl_ns--relative_harm.json",
+        "sha256": "97c46104a9db9c49ccc10ae1309d626d502c9b20b111d178e398dd0b9f54f9a2"
+      },
+      "interval": [
+        0.003916516640080969,
+        0.16846190829254848
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/first_turn/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.06545594831848156,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 48.0,
+      "treatment_raw_numerator": 4572092858.69618,
+      "treatment_value": 94696656.17281316,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 347837458831.0,
+      "baseline_value": 5621991826.277873,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.13264145353403334,
+        -0.06772468611563398
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--unhinted_return--ttft_ns--relative_harm.json",
+        "sha256": "49413562738b81dbee1a5f14fe2f778f7a72580c3871b00a26f7679c06d8c0a2"
+      },
+      "interval": [
+        -0.11210374446938076,
+        -0.03592745202771486
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/unhinted_return/ttft_ns/relative_harm",
+      "metric": "ttft_ns",
+      "pairs": 3,
+      "point": -0.10076868317609922,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 305382455889.0,
+      "treatment_value": 5055471113.117059,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 6066273287.707536,
+      "baseline_value": 98777905.37250054,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        0.009100155334584192,
+        0.15005196932765674
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3-vs-A2--unhinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "4121dea262b521e7208b0c3d72274822c238de45bfddcd78e2445bf902f5e5f0"
+      },
+      "interval": [
+        0.030081169250042672,
+        0.11927764132057006
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3-vs-A2/unhinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.07727323409216047,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 6676532084.1459255,
+      "treatment_value": 106410793.57748304,
+      "undefined_replicates": null
+    },
+    {
+      "analysis": "primary",
+      "baseline": "A2",
+      "baseline_failures": 0,
+      "baseline_raw_denominator": 63.0,
+      "baseline_raw_numerator": 6066273287.707536,
+      "baseline_value": 98777905.37250054,
+      "cohort": "unhinted_return",
+      "contrast": "relative_harm",
+      "delta_interval": [
+        -0.038025222466126496,
+        0.2660262325671605
+      ],
+      "full_result": {
+        "path": "artifacts/runs/pr-evidence-analysis-01/statistics/primary--A3p-vs-A2--unhinted_return--client_itl_ns--relative_harm.json",
+        "sha256": "0f5247d9f2be8cdb3046cf9b1222683e6a9688ba9d410561c0a1694fcedae8c6"
+      },
+      "interval": [
+        0.014912434603904678,
+        0.3563861309927532
+      ],
+      "label": "pr-evidence-v1/D8/W1/primary/A3p-vs-A2/unhinted_return/client_itl_ns/relative_harm",
+      "metric": "client_itl_ns",
+      "pairs": 3,
+      "point": 0.10357840837243737,
+      "reason": null,
+      "resamples": 10000,
+      "treatment": "A3p",
+      "treatment_failures": 0,
+      "treatment_raw_denominator": 63.0,
+      "treatment_raw_numerator": 6651555417.757804,
+      "treatment_value": 109009163.59334739,
+      "undefined_replicates": null
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "execution_sha256": "fe0bddea87e90074a8f9cbc02f4b5ee9612452298b73b13223cfaefc63ec9f69",
+  "exit_code": 0,
+  "observed_sha256": "dd2a4fd16383ad03347cefb4242f8262f66e14c62e20df84592a0c4fbee9f43e",
+  "schema": "pr-feasibility-terminal-v1",
+  "wall_seconds": 11.691497059015092
+}

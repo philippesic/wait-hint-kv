@@ -1,0 +1,256 @@
+{
+  "analysis_revision": "c012a49e78e0b11e4edee746b633b74ca0f46306",
+  "files": [
+    {
+      "path": "results/pr-evidence-2080ti/A4p-D8-W1-input.json",
+      "sha256": "9bd87646bc3ab39f3f1be0badd6db6a6b6082da94fca1f07df4977b0d0d5d7b6"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/A4p-D8-W1-verdict.json",
+      "sha256": "346b0bf38c9bf59489270d9970ff7a486f091632605854430fec4020891d81a9"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/A4t-D8-W1-input.json",
+      "sha256": "5ec009af03de01b4b70ce911607cf51e8b3f8310b9a72381a97ee47b5896ac13"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/A4t-D8-W1-verdict.json",
+      "sha256": "b6f46000d5320e741faa05cbe144d70f8152267f0fe8eeb9b7d9a59c9f5827ea"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/aa-diagnosis.json",
+      "sha256": "cb3fee63b561c3c9771ffbdf478b34c8012e9528a8b90552dcb43a3ea38bc07a"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/cpu-attempts.json",
+      "sha256": "d4c42c6023ac91de9f038d9900618dfbdbffa3b089df17d2d93024b9e2f64612"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A1-12101.json",
+      "sha256": "93881453eee28317e1f92935f1305dd40d0a4d342a45864ac4f2a59f70f291ec"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A1-12102.json",
+      "sha256": "4c93b5325a2bd170f921f4270b3969ff52e8cc94f516ed3eea116a8f31b4a392"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A1-12103.json",
+      "sha256": "0ec1bc596fff261851ab9782be1bb76cde52bdda321e7f975dd1a2bb6830e17d"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A2-12101.json",
+      "sha256": "bb04f5b7e3e4a055c0b12ace54f71b7f23c5cf4dacde4c2019e74b9f6dfc72c3"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A2-12102.json",
+      "sha256": "ca9f2e99bb925ac3656b83dfc1d22a8d09ffb33750904deb89f52a5014081bd2"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A2-12103.json",
+      "sha256": "84f38ff9bb45f700c1e050edd093e92e45f2d154472e2e9785b679493b1c7697"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A3-12101.json",
+      "sha256": "acda48c51ba62b5f743cb61505ca1f95aa3d054e61e91135c80d3e5b9dddc6ea"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A3-12102.json",
+      "sha256": "a1cec6b22e3b3351277834db3ac11e8b0fcbb3e4a8f963bbce1c95df05ee2dcd"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A3-12103.json",
+      "sha256": "6885a2b5ba701621730992e2226b72ea8b9079cf632ce3a0d1946dbfd624f7c9"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A3p-12101.json",
+      "sha256": "a4e8c03f23cb8ae87fa877c984dc9a2b185ff11ea3ab05c9ec15abc790d62b6c"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A3p-12102.json",
+      "sha256": "9b17344194940e4bb86e5d4cefdd53d40d67c213ab2c7e226ed49f540c9875df"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A3p-12103.json",
+      "sha256": "764516b4581b76129dd12bd8610b47a91b47b8d9a77fc8bb41da49d44d39da43"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A4p-12101.json",
+      "sha256": "1f502b66c44f36f15235864a587b3c6b1d8640fad842f3dd65763f12ab7b7b14"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A4p-12102.json",
+      "sha256": "f603625bebb3d90bc6e7802a24a801c3509c14b88bd36e57be1436c32397d91d"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A4p-12103.json",
+      "sha256": "1715068b6a467057fe57f61bf5ae9556466a7a3fb3ca58c72bb1a6a8851bc1d8"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A4t-12101.json",
+      "sha256": "83e79d6022a970568ce4820dc289e88bb95b11677b66204b51ad678abac733d2"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A4t-12102.json",
+      "sha256": "098270a0daa22dd00cf1eff265fa6a1b165d9c4d450dbda7d65bdce875a63556"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A4t-12103.json",
+      "sha256": "3c404a0adc31cfcebae69be7f26b81020d35969b02d31c290b30501298e64dcc"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A5-12101.json",
+      "sha256": "d801dc898b3d130103baeaaad1b048887f716368dd5a74c999c5791afa92b5db"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A5-12102.json",
+      "sha256": "06d55612a13bd8cb6c774c7ee1bc9024da5b8c31aa38600b72430660bca9573a"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics/A5-12103.json",
+      "sha256": "0d9c567e6742afc71e1334baa102dc1b24e46ba552633b4b78cf71b48c75fb85"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/diagnostics-manifest.json",
+      "sha256": "d2ddbab0f97dc66a2e839933edba4d2b4ea68a1646b12de06e642b68e21e5af8"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/evidence-notes.md",
+      "sha256": "f40b851aec2dc36ead4beaf7dab6d356f6553b8facb737b9e9ec1d5a55eb73fc"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/first-task-audit.json",
+      "sha256": "c242a0a8c93a65aac99ca90e308a32b7afda456f377817375550a237712d9123"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/guardrails.json",
+      "sha256": "d52dde5406fcb8f2135bf240bad5e819987009d53469ae56aa7a5b020a5fce2e"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A1-12101.json",
+      "sha256": "a758370dab8a92205a762ae3112ec472c31f69d096010f7eaa71b23d13a58646"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A1-12102.json",
+      "sha256": "10b3e597002a3d869017f70c370fa0496c0fab575ac55d0d2996e1c5c82acfe8"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A1-12103.json",
+      "sha256": "900d2324dd8d4894b6ecb0669e4694304f97ce16701280fcb055ef3d490d9469"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A2-12101.json",
+      "sha256": "dd7b90b983e3becbc56bf865f26c4516b3e91109c3a9bb10a98790c6b0f3eda5"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A2-12102.json",
+      "sha256": "70f9265772de555f49d0699cb61bd2654d749c3e5d98e09ab952fbecfc38880f"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A2-12103.json",
+      "sha256": "d98c13f2d8d640ca0bddf44ea087a93bca43e2bb25083f3dc5b7dd4dc98e9a8d"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A3-12101.json",
+      "sha256": "5376177b48d4e60ae4651e87cc57b250dedebd3acef8a142eff877f8c7f11b82"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A3-12102.json",
+      "sha256": "f26779c00b62c5b132f0d7368edaec0e6b610eaac85f00da63f1f54c21d124d5"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A3-12103.json",
+      "sha256": "5fb33822001d5e80b4bd1041d8979956c7d70da4a87754732dc85a41be7b871b"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A3p-12101.json",
+      "sha256": "6e6a6437f5c71e025fc2a32eb5f20b570f07805c01335267b310ac8aac6fec2c"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A3p-12102.json",
+      "sha256": "154c52004273d0a4637ba524e546bb3584bc0a8cb1785e06c010ea649a24a390"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A3p-12103.json",
+      "sha256": "e50d8b7818ca9dd323fe78785cc65fd86056802916d1bfaa622a1fda66451478"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A4p-12101.json",
+      "sha256": "a847d43366ce6762b9a2cdf3cf21b2d698082101a8e2e8d793319c801103211e"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A4p-12102.json",
+      "sha256": "05258d0311f64de5b78d548e072119a469ca1f5547b66e50505f43849843507a"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A4p-12103.json",
+      "sha256": "4d82b1d4c6613aa0cf953fe215687c6a54e391deeaf7e5e4d2676009f3df7be9"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A4t-12101.json",
+      "sha256": "1cc6229d64307a28b998799cd32ea488e1e4d0b343965ac0162c8dd91cea2143"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A4t-12102.json",
+      "sha256": "255a8f52d874d721672c750eee8e783ef5453a8c682aef4ce644f85ee9e56ee3"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A4t-12103.json",
+      "sha256": "297062d8bcd7418c916d9ee334d45c9b86c04872b7dab85e7251dbb5b83fce61"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A5-12101.json",
+      "sha256": "c6ff2f1d690b91e681595261e8675277c3980d4b9b1ab4d112722dae77483eea"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A5-12102.json",
+      "sha256": "cbd8bfe17b5f8b0ba61e5367d40cbd596687d0fc5116408100dba1bdf6f84333"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs/A5-12103.json",
+      "sha256": "34dcf1c4479fbc8f8e0af05ee6ebb73bd4ea2f5414c1a1adc3f190c0d224bdb0"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/inputs-manifest.json",
+      "sha256": "1e31b949433ed25877181482ab274468bff6d902c36b82b7541326c099cb49c9"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/pr-policy-feasibility-12-observed.json",
+      "sha256": "dd2a4fd16383ad03347cefb4242f8262f66e14c62e20df84592a0c4fbee9f43e"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/pr-policy-feasibility-12-terminal.json",
+      "sha256": "df97ec29dae40b3cf7aab16a5f6e8f4995564071d0540b851e69cde73b93ec59"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/pr-post-feasibility-04-observed.json",
+      "sha256": "21da5b87053f71920d3ef869b74144f9d09220c5bee7bfa01ed5a095168b58a4"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/pr-post-feasibility-04-terminal.json",
+      "sha256": "991a0d7e46d5c446b68593861060da60b9f898d62950a1955b6cb52ce3f7f8d7"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/regeneration.json",
+      "sha256": "3178515cda0f6666990a0047aabf8b1b883beb34a68faca8432ef68556453e86"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/statistics-first-task-occurrence.json",
+      "sha256": "c4ae42aa36095b2819340cf4bca73fb81af0f94c8dc7efa8d071298217938a67"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/statistics-primary.json",
+      "sha256": "d9cc6ee777760522d977929485f6499f37ae40e498a81dbf4364d71579342c7e"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/verdicts.json",
+      "sha256": "20a975ecabe250c7d480c12184cd0269b3450303c86a46368928fb937e783a3d"
+    },
+    {
+      "path": "results/pr-evidence-2080ti/verification.json",
+      "sha256": "b8eda910c9a227bf23f6ecff8dc5fdd86310be0eb6139f58db0867397f9bf302"
+    }
+  ],
+  "raw_directory": "artifacts/runs/pr-evidence-analysis-01",
+  "schema": "pr-retained-analysis-index-v1",
+  "scope": "Retained numeric inputs, diagnostic reports, comparisons, identity observations/terminal receipts, and derived analysis. Original raw directories and full CPU admission receipts remain under artifacts with exact hashes. Full per-statistic reports regenerate from retained inputs and labels."
+}

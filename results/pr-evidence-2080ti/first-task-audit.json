@@ -1,0 +1,24 @@
+{
+  "excluded_sessions": [
+    {
+      "first_occurrence": [
+        12102,
+        "s12102-0015"
+      ],
+      "seed": 12103,
+      "session_id": "s12103-0008",
+      "task": "python-jsonschema__jsonschema.93e0caa5.lm_rewrite__6ndoageg"
+    },
+    {
+      "first_occurrence": [
+        12101,
+        "s12101-0007"
+      ],
+      "seed": 12103,
+      "session_id": "s12103-0010",
+      "task": "Project-MONAI__MONAI.a09c1f08.func_pm_remove_assign__70jyz2gr"
+    }
+  ],
+  "retained_unique_tasks": 46,
+  "scope": "Sensitivity only: first task by ascending seed/session_id; all one-shots retained; primary cells unchanged. Non-request cell totals remain original and are not sensitivity denominators."
+}

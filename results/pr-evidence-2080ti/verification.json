@@ -1,0 +1,11 @@
+{
+  "cpu_identity_rechecks": "Both maintained verify-pr-feasibility receipts pass.",
+  "minimal_input_check": "All21 retained input files match every retained scalar and nested source quantity against original metrics; omitted non-statistical quantities remain in raw originals.",
+  "missing_references": [],
+  "packaging_failures": "Initial fast/full lane rejected two copied CPU admissions slightly over256KiB. Removed only those redundant authored copies; immutable original admission records remain retained/hash-indexed. No check weakened or exception added.",
+  "remaining_acceptance": "Full acceptance runs after this evidence snapshot and again at final result closure.",
+  "schema": "pr-close-verification-v1",
+  "source_hashes_verified": 527,
+  "statistic_replays": "Four maintained CLI replays match all numerical, interval and descriptive fields; see regeneration.json.",
+  "verdict_replays": "Both D8 route decisions match maintained pr-screen-verdict CLI output."
+}
