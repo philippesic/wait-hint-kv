@@ -208,10 +208,25 @@ Primary metric and rules:
 - The cap, if the exit check reaches 25%.
 
 ## Next
-Settle the candidate with Philip, step by step, before any build:
-- the exact A9 definition, including whether per-wait hint hold time is part of it;
-- LRU, ARC or both underneath automatic and the candidate;
-- whether automatic needs a hold-time sensitivity check beside 30 s.
+The redesigned benchmark R3 was accepted on 2026-11-15 by GPT-6 Astra, Claude Fable 5.2
+and the coordinator. Record: `artifacts/runs/discussion-debate/proposal-redesign-r3.md`
+(briefs and R1-R2 alongside). In short:
+- Qwen2.5-7B-Instruct-AWQ with fp16 KV, 6-8 running requests.
+- One mixed-wait profile: 50% captured-shape instant waits, 35% 4 s declared waits,
+  15% authored 30-240 s long waits, reported per tool type.
+- Native-only calibration (Stage A), then Phase 1: LRU, ARC, automatic and capped oracle
+  on both bases, typical 3 seeds; uncapped oracle on LRU; automatic at 300 s and with
+  store_threshold=2; tight and roomy cells.
+- Gate: capped oracle beats the best server-only arm by at least 3 points with the same
+  sign in all seeds. Phase 2 (candidate) runs only on a base that passes.
+Captured real waits are median 0.24 s with about 1% over 30 s; the 4 s lognormal is
+declared, not fitted.
 
-A9's protocol fields trip the Stage 1 freeze check; changing that check needs
-Philip's approval. Also record the final mixed results with `pr-discussion-report`.
+Blocked on Philip:
+- The RAM upgrade, with WSL memory at 48 GB or more.
+- Raising the decision cap by about 4 h and the 16 h hard ceiling to about 19.5-20 h
+  (10.45 h spent; R3 needs about 8-9 h).
+- Approval to build.
+
+Build list: section H of R3. Also record the final mixed results with
+`pr-discussion-report`.
