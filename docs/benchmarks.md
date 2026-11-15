@@ -610,6 +610,23 @@ The discussion campaign (`artifacts/runs/discussion-2080ti`, budget caps pilot 3
 decision 13 h) reuses the frozen-main job lifecycle for two workloads; the open task
 [upstream-discussion-evidence](../tasks/upstream-discussion-evidence.md) owns the plan.
 
+### Terms
+
+Use these names in plans, reports and discussion; Philip fixed them on 2026-11-15.
+
+| Term | Meaning | Arm |
+|---|---|---|
+| LRU | vLLM's default CPU-offload eviction, no hold | A1 |
+| ARC | vLLM's built-in ARC eviction, no hold | A2 |
+| automatic | server-only hold of every finished session's prefix for a fixed time | A6s |
+| candidate | the current client-hint design, revision 3 | A9 |
+| wait-hint | the old product mechanism, reachable-hold on ARC (see [architecture](architecture.md)) | none here |
+
+Deprecated discussion arms are refused by `pr-gpu-job`; their completed cells stay on
+record: A6 (12 s automatic hold released at load), A7 (post-response hints without an
+automatic hold) and A9s (A6s plus release messages and long-class hints, a trimmed
+screen of the candidate without per-wait timing). A8 was never run and is removed.
+
 - `pr-plan-pressure --model D8|HM --partition pressure-pilot|pressure --seed N --out FILE`
   writes a deterministic synthetic pressure schedule (`pr-pressure-schedule-v1`): eight
   sessions of 5-9 growing token-ID turns up to 5,000 tokens, five hinted, three ending
@@ -625,22 +642,16 @@ decision 13 h) reuses the frozen-main job lifecycle for two workloads; the open 
   every one-shot.
   `adopt` keeps the mixed waits with a 150 s long-class hint; `adopt-long` makes 25% of
   waits long (30-240 s, authored) with a 300 s hint. Variant arms clamp hints at 300 s.
-- Arms: A1 stock LRU, A6 `AutomaticHoldLRU` (12 s hold from every request's finish, no
-  client hint) and A7 `PostResponseLRU` (post-response hints, patched runtime), both in
-  `wait_hint_offload.vllm_adapter.policy_variants`; the frozen policy files are unchanged.
-  Both use return-aware release: the frozen policy releases a hold when the returning
-  request merely arrives, so under queueing the prefix was evicted before its lookup
-  (2026-11-15 pilot). The variants keep a hold that was still live at arrival for up to
-  120 s and release it when the returning request loads or stores (after load pinning).
-- A6s `StrengthenedHoldLRU` holds for 30 s from every finish (one-shots included) and
-  keeps an arrived session's hold through queueing and its own run until that request
-  finishes (bounded at 120 s from arrival). Under the 50% hold cap it displaces older
-  waiting holds, then holds the longest leading part that fits; to free space it yields
-  waiting holds oldest-finish first and arrived holds last. A9s runs the same policy on
-  the patched runtime with client release and long-wait advice: `cancel` after one-shots
-  and known-final turns and the long-class hint; it sends no fast-class hint, which
-  would shorten the 30 s hold. A9s is a screen of the revision-3 candidate, without
-  demotion, compaction or return-time ordering.
+- Automatic (A6s, `StrengthenedHoldLRU` in
+  `wait_hint_offload.vllm_adapter.policy_variants`; frozen policy files are unchanged)
+  holds for 30 s from every finish, one-shots included. It keeps an arrived session's
+  hold through queueing and its own run until that request finishes, bounded at 120 s
+  from arrival; the frozen policy released on arrival, so under queueing the prefix was
+  evicted before its lookup (2026-11-15 pilot). Under the 50% hold cap it displaces
+  older waiting holds, then holds the longest leading part that fits; to free space it
+  yields waiting holds oldest-finish first and arrived holds last. The deprecated
+  `AutomaticHoldLRU` and `PostResponseLRU` classes remain only for A6 and A7 records,
+  and A9s uses `StrengthenedHoldLRU` on the post-response runtime.
   `pr-feasibility-native --variants` records their CPU fixture checks.
 - `pr-gpu-job --campaign artifacts/runs/discussion-2080ti --phase pilot|decision` takes
   `--pool-mib` and `--gpu-blocks` for pressure schedules (two running requests, GPU KV

@@ -15,6 +15,7 @@ from tools.benchmarking.pr_jobs import (
     _stop,
     client_command,
     model_digest,
+    run_gpu_job,
     screen_server_command,
     spent_seconds,
 )
@@ -115,6 +116,24 @@ def test_gpu_budget_retains_failed_attempt_and_blocks_unfinished_job(
     (job / "terminal.json").write_text(json.dumps({"gpu_charge_seconds": -1}))
     with pytest.raises(ValueError, match="budget"):
         spent_seconds(tmp_path)
+
+
+@pytest.mark.parametrize("arm", ["A6", "A7", "A9s"])
+def test_discussion_refuses_deprecated_arms(tmp_path: Path, arm: str) -> None:
+    root = Path(__file__).resolve().parents[1]
+    with pytest.raises(ValueError, match="deprecated"):
+        run_gpu_job(
+            root / "artifacts/runs/discussion-2080ti",
+            "deprecated",
+            tmp_path / "python",
+            tmp_path / "4da05a8edb55c6046cce958586c33b61da07bb79",
+            "D8",
+            arm,
+            "decision",
+            1,
+            60,
+            tmp_path / "schedule.json",
+        )
 
 
 def test_interruption_cleans_owned_server_and_descendant() -> None:

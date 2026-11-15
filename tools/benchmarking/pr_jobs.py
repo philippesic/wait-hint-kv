@@ -34,6 +34,7 @@ POLICIES = {
     "A9s": "StrengthenedHoldLRU",
 }
 VARIANT_ARMS = frozenset({"A6", "A7", "A6s", "A9s"})
+DEPRECATED_DISCUSSION_ARMS = frozenset({"A6", "A7", "A9s"})
 MODEL_REVISIONS = {
     "D8": "4da05a8edb55c6046cce958586c33b61da07bb79",
     "HM": "d3e78b50c727b1f34802f440ca84b25781625352",
@@ -348,6 +349,8 @@ def run_gpu_job(
     python, model = python.absolute(), model.absolute()
     caps = CAMPAIGN_CAPS.get(campaign.name, {})
     discussion = campaign.name == "discussion-2080ti"
+    if discussion and arm in DEPRECATED_DISCUSSION_ARMS:
+        raise ValueError(f"deprecated discussion arm {arm}")
     if (
         campaign.parent != root / "artifacts/runs"
         or not caps

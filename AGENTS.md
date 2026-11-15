@@ -15,6 +15,8 @@ transfer or permits approximate reuse.
 - [Checks](docs/checks.md): check modes, entry points and how to fix failures.
 - [Benchmarks](docs/benchmarks.md): functional, quick comparison and release workflows.
 - [System map](docs/system-map.md): maintained commands and product flow.
+- [Discussion terms](docs/benchmarks.md#terms): LRU, ARC, automatic, candidate and
+  wait-hint in the upstream discussion campaign.
 
 # Code
 

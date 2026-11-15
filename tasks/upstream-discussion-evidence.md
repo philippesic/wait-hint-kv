@@ -28,6 +28,9 @@ he approves is acquired and analysed, or he stops it. The evidence is closed thr
 swappiness is restored and this file is deleted.
 
 ## State
+- Terms are fixed in [docs/benchmarks.md](../docs/benchmarks.md#terms): LRU (A1), ARC (A2),
+  automatic (A6s), candidate (A9, revision 3, not yet built) and wait-hint (old
+  reachable-hold). A6, A7 and A9s are deprecated; `pr-gpu-job` refuses them.
 ### What exists (committed)
 - Campaign tooling (see the "Upstream discussion campaign" section of
   `docs/benchmarks.md`):
@@ -205,14 +208,10 @@ Primary metric and rules:
 - The cap, if the exit check reaches 25%.
 
 ## Next
-Philip deferred the next run on 2026-11-15. When he resumes it, test the actual design
-without a protocol change:
-- Per-wait hint hold time that replaces the 30 s automatic hold.
-- Displacement and yield by expected return (furthest first); automatic holds never
-  displace client-requested holds.
-- Cancel plus evict-first demotion for one-shots and finished sessions.
-- Timing at the exact gap and at a +/-50% estimate, against A6s on adopt 23001 and
-  adopt-long 23003 (6 jobs).
-- Compaction (`keep_tokens`) needs a protocol bump and a freeze-check change that
-  Philip must approve.
-Also record the final mixed results with `pr-discussion-report`.
+Settle the candidate with Philip, step by step, before any build:
+- the exact A9 definition, including whether per-wait hint hold time is part of it;
+- LRU, ARC or both underneath automatic and the candidate;
+- whether automatic needs a hold-time sensitivity check beside 30 s.
+
+A9's protocol fields trip the Stage 1 freeze check; changing that check needs
+Philip's approval. Also record the final mixed results with `pr-discussion-report`.
