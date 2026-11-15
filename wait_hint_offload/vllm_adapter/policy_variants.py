@@ -10,9 +10,47 @@ from wait_hint_offload.policy_protocol import PolicyAction
 from wait_hint_offload.vllm_adapter.policy import WaitHoldPolicy
 
 AUTOMATIC_HOLD_MS = 12000
+RETURN_PENDING_MS = 120000
 
 
-class AutomaticHold(WaitHoldPolicy):
+class ReturnAwareHold(WaitHoldPolicy):
+    def __init__(self, cache_capacity: int):
+        super().__init__(cache_capacity)
+        self.pending_returns: set[str] = set()
+
+    def _retire(self, owner: str) -> None:
+        super()._retire(owner)
+        self.pending_returns.discard(owner)
+
+    def _maintain(self) -> None:
+        now = self.clock()
+        self.book.expire(now)
+        for owner, observation in tuple(self.observations.items()):
+            if observation.expires_ns <= now:
+                self._retire(owner)
+        if self.scheduler is None or not self.observations:
+            return
+        for state in tuple(self.scheduler._req_status.values()):
+            session = self._session(state.req_context)
+            if session is None or session.owner in self.pending_returns:
+                continue
+            observation = self.observations.get(session.owner)
+            if (
+                observation is None
+                or session.generation <= observation.session.generation
+            ):
+                continue
+            self.pending_returns.add(session.owner)
+            self._count("return_pending")
+            if observation.deadline_ns > now:
+                observation.deadline_ns = now + RETURN_PENDING_MS * 1_000_000
+                observation.expires_ns = max(
+                    observation.expires_ns, observation.deadline_ns
+                )
+                self._refresh(observation)
+
+
+class AutomaticHold(ReturnAwareHold):
     request_ttl = False
 
     def on_request_finished(
@@ -44,6 +82,6 @@ AutomaticHoldLRU = type(
 )
 PostResponseLRU = type(
     "PostResponseLRU",
-    (WaitHoldPolicy, CachePolicy),
+    (ReturnAwareHold, CachePolicy),
     {"native_class": lru.LRUCachePolicy, "request_ttl": False},
 )

@@ -606,8 +606,8 @@ acquisition or public posting is authorized by this closeout.
 
 ## Upstream discussion campaign
 
-The discussion campaign (`artifacts/runs/discussion-2080ti`, budget caps pilot 2 h and
-decision 14 h) reuses the frozen-main job lifecycle for two workloads; the open task
+The discussion campaign (`artifacts/runs/discussion-2080ti`, budget caps pilot 3 h and
+decision 13 h) reuses the frozen-main job lifecycle for two workloads; the open task
 [upstream-discussion-evidence](../tasks/upstream-discussion-evidence.md) owns the plan.
 
 - `pr-plan-pressure --model D8|HM --partition pressure-pilot|pressure --seed N --out FILE`
@@ -622,6 +622,10 @@ decision 14 h) reuses the frozen-main job lifecycle for two workloads; the open 
 - Arms: A1 stock LRU, A6 `AutomaticHoldLRU` (12 s hold from every request's finish, no
   client hint) and A7 `PostResponseLRU` (post-response hints, patched runtime), both in
   `wait_hint_offload.vllm_adapter.policy_variants`; the frozen policy files are unchanged.
+  Both use return-aware release: the frozen policy releases a hold when the returning
+  request merely arrives, so under queueing the prefix was evicted before its lookup
+  (2026-11-15 pilot). The variants keep a hold that was still live at arrival for up to
+  120 s and release it when the returning request loads or stores (after load pinning).
   `pr-feasibility-native --variants` records their CPU fixture checks.
 - `pr-gpu-job --campaign artifacts/runs/discussion-2080ti --phase pilot|decision` takes
   `--pool-mib` and `--gpu-blocks` for pressure schedules (two running requests, GPU KV

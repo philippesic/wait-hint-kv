@@ -52,7 +52,15 @@ def _automatic() -> dict[str, Any]:
     assert len(policy.book.references) == 2
     returned, _ = request_fixture(owner, "return", "t", 2, [b"c", b"d"], False)
     native.on_new_request(returned)
-    assert policy.evict(0, set()) == [] and not policy.book.references
+    held = dict(policy.book.references)
+    assert policy.evict(0, set()) == [] and policy.book.references == held
+    now[0] += 30_000_000_000
+    assert policy.evict(4, set()) is None and policy.book.references == held
+    assert policy.outcomes["return_pending"] == 1
+    returned_keys = [base.make_offload_key(key, 0) for key in (b"c", b"d")]
+    native.prepare_load(returned_keys, returned)
+    assert not policy.book.references
+    native.complete_load(returned_keys, returned)
     native.on_request_finished(returned)
     assert len(policy.book.references) == 2
     filler, _ = request_fixture(owner, "filler", "u", 1, [b"e", b"f", b"g"], False)
@@ -64,7 +72,8 @@ def _automatic() -> dict[str, Any]:
         "hold_starts_at_finish_without_hint": True,
         "deadline_ms": 12000,
         "expiry_releases": True,
-        "return_releases_and_rehold": True,
+        "arrival_keeps_hold_until_load": True,
+        "load_releases_and_finish_reholds": True,
         "yields_before_store_failure": True,
     }
 

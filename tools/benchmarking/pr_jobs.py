@@ -39,7 +39,7 @@ MODEL_REVISIONS = {
 }
 CAMPAIGN_CAPS = {
     "pr-evidence-2080ti": {"admission": 3600.0, "screen": 28800.0},
-    "discussion-2080ti": {"pilot": 7200.0, "decision": 50400.0},
+    "discussion-2080ti": {"pilot": 10800.0, "decision": 46800.0},
 }
 CAPS = CAMPAIGN_CAPS["pr-evidence-2080ti"]
 GIB = 1024**3
