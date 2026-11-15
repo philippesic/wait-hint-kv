@@ -566,12 +566,14 @@ Frozen-main job entry points:
   decision arithmetic, not automatic certification of supplied qualifications;
   review the linked evidence before adopting its conclusion.
 
-The [D8 acquisition index](../benchmarks/pr-evidence/2080ti-d8-screen.json) retains
-complete decision blocks, invalid attempts, exact charges and the budget stop.
-The [HM sizing quote](../benchmarks/pr-evidence/hm-sizing-quote.json) identifies
-baseline-only calibration jobs admitted against the remaining ledger; partial
-calibration cannot establish a comparison or a model-specific rate. Every paired
-all-arm block still requires its complete reservation before starting.
+The [acquisition close](../benchmarks/pr-evidence/2080ti-acquisition-close.json)
+retains phase accounting, restoration and every budget-not-run family.
+The [D8 acquisition index](../benchmarks/pr-evidence/2080ti-d8-screen.json) identifies
+complete decision blocks and invalid attempts. [HM sizing](../benchmarks/pr-evidence/hm-sizing.json)
+contains three baseline-only observations and their formula-derived settings;
+its subsequent working-set, all-arm calibration and decision cells did not fit.
+Sizing alone establishes no route comparison. Every paired all-arm block requires
+its complete reservation before starting.
 
 The admission driver uses a fixed 4,097-token prefix and 32 generated tokens, with
 prime, GPU-resident and CPU-restored requests. The synchronous byte detector is

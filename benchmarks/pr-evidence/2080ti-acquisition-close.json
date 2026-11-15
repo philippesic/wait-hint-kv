@@ -1,0 +1,72 @@
+{
+  "D8": {
+    "path": "benchmarks/pr-evidence/2080ti-d8-screen.json",
+    "sha256": "f9828d68ded055d8625ad2ccc98e606a82dbcaeaec2aeb636a979c7faad668aa"
+  },
+  "HM": {
+    "path": "benchmarks/pr-evidence/hm-sizing.json",
+    "sha256": "fa99ebc37f60381df903147e252b3d5c39111eed0ea6ce751db18079d8d388ab"
+  },
+  "HS": "Not admitted: native GPU KV capacity at frozen settings",
+  "gpu_hours": {
+    "admission": 0.5291737030230556,
+    "screen": 7.756192231813056
+  },
+  "healthcheck": "scheduled-task:b9d30075-3c8f-4060-93da-acb406cfb8d2 deleted after acquisition",
+  "not_run": {
+    "D8_W1_decision_seeds": [
+      12104,
+      12105,
+      12106,
+      12107,
+      12108
+    ],
+    "HM_W1_all_arm_calibration": [
+      12001,
+      12002,
+      12003
+    ],
+    "HM_W1_decision_seeds": [
+      12101,
+      12102,
+      12103,
+      12104,
+      12105,
+      12106,
+      12107,
+      12108
+    ],
+    "HM_W1_working_set_calibration": [
+      12001,
+      12002,
+      12003
+    ],
+    "HS_W1": "All calibration and decision cells",
+    "HS_remaining_admission_arms": [
+      "A1",
+      "A3",
+      "A4t",
+      "A3p",
+      "A4p",
+      "A5"
+    ],
+    "W2": "All calibration and decision cells: minimum seven-arm measured window4200s before overhead exceeds remaining budget",
+    "W2-12s": "All calibration and decision cells: same budget limit",
+    "later_stages": "Stage2b and Stage3 including2080Ti pilot,5080/rental: not authorized"
+  },
+  "restoration": {
+    "path": "artifacts/runs/pr-evidence-runtime-03/swappiness-restored-01.json",
+    "sha256": "eddd9b67cee63da11bdabe9eb4cadbaa97da0a047b9e2dcd388987dbfd0b82cf"
+  },
+  "schema": "pr-gpu-acquisition-close-v1",
+  "scope": "All successful, invalid and failed attempts charged. No unused admission budget transferred to screen. Statistical analysis and close-results still required.",
+  "spent_seconds": {
+    "admission": 1905.0253308830002,
+    "screen": 27922.292034527003
+  },
+  "total_gpu_hours": 8.285365934836111,
+  "unused_seconds": {
+    "admission": 1694.9746691169998,
+    "screen": 877.7079654729969
+  }
+}

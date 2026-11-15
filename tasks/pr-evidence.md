@@ -37,22 +37,23 @@ benchmarks/pr-evidence/2080ti-d8-screen.json indexes every valid cell, verificat
 source and resource record, the first-valid-block re-quote and budget stop.
 Seeds 12104–12108 are not run: their next complete 4,389-second reservation cannot fit.
 
-Admission charged 1,905.025330883 seconds; screen charged 27,048.439091714 seconds.
-Remaining screen 1,751.560908286 seconds. No active GPU job at this checkpoint.
-The D8 campaign loop exited normally; its session 15549 is closed. Logs/metrics:
-artifacts/runs/pr-evidence-runtime-03/d8-decision-campaign-03.log.
+Acquisition is finished under the phase budgets. Admission charged 1,905.025330883
+seconds; screen charged 27,922.292034527 seconds; total 8.285365935 GPU hours.
+Remaining screen 877.707965473 seconds cannot fit the next required job. No GPU
+job is active. Both campaign sessions 15549 and 94897 closed normally.
+benchmarks/pr-evidence/2080ti-acquisition-close.json owns final accounting and every
+not-run family. Runtime-03 retains both campaign logs and all derived observations.
 
-HM baseline-only sizing is next under the frozen algorithm. Its1 GiB reference pool
-contains the conservative 838,860,800-byte maximum-conversation bound from admitted
-four-group geometry. benchmarks/pr-evidence/hm-sizing-quote.json freezes three schedules
-(seeds 12001–12003, A2, rate 0.2, no one-shots, 240-second horizon), job ceiling 840 plus
-60 cleanup. Admit each successive sizing job only if its 900-second reservation fits
-the actual ledger. The all-three upper quote 2,700 does not fit initially; this is
-not a paired treatment block. Partial calibration must remain explicit. Derive a
-rate only if all three sizing observations are valid, then assess the next A2 working-set
-job using that frozen result. Any all-arm comparison still needs its whole block.
-W2's shortest historical seven-arm block needs at least 4,200 seconds before startup,
-cleanup or calibration, so neither W2 variant can fit. HS is not admitted.
+HM's three baseline-only sizing cells are valid: 48 sessions, 173 requests, every
+request complete, no allocation refusals, failed stores/transfers, swap, capture
+failure or interference violation. benchmarks/pr-evidence/hm-sizing.json freezes
+the formula-derived rate 0.20189157519737003, one-shot rate 0.02402777777777778 and
+308-second horizon. This is sizing only, with no efficacy or opportunity verdict.
+Its next A2 working-set job reserves 308 + 600 + 60 = 968 seconds, exceeding the
+remaining 877.708 seconds. Working-set and all-arm calibration plus every HM decision
+cell are not run. No reduced allowance, shorter workload or selected treatment arm.
+W2's minimum seven-arm measured window is 4,200 seconds before overhead; both
+variants are not run. HS remains not admitted. No treatment speedup inspected yet.
 
 ### Retained attempts and qualification limits
 All GPU attempts share artifacts/runs/pr-evidence-2080ti. Admission index:
@@ -92,11 +93,12 @@ Final D8 calibration: benchmarks/pr-evidence/calibration/D8.json, native ARC bas
 ratios 1.31554/1.30654 against finite-horizon mean; report peak and actual overlap too.
 
 ### Machine restoration and reporting
-vm.swappiness is 0; restore original 60 after acquisition. Backup/boot ID:
-artifacts/runs/pr-evidence-runtime-02/swappiness-original.json. Same-machine root:
-/mnt/c/Windows/System32/wsl.exe -d Ubuntu-24.04 -u root /usr/sbin/sysctl -w vm.swappiness=60
-Do not change WSL memory or resource gates. Five-minute healthcheck remains active:
-scheduled-task:b9d30075-3c8f-4060-93da-acb406cfb8d2; delete after acquisition/restoration.
+vm.swappiness was restored to the original 60 on the same verified boot after
+acquisition; GPU idle was confirmed. Record:
+artifacts/runs/pr-evidence-runtime-03/swappiness-restored-01.json.
+The five-minute healthcheck scheduled-task:b9d30075-3c8f-4060-93da-acb406cfb8d2 was
+deleted successfully. No machine setting remains to restore and no GPU job remains.
+The requested other-thread handoff is still pending until final closeout.
 
 Read artifacts/runs/pr-evidence-runtime-02/reporting-notes.txt and runtime-03/
 reporting-design-notes.txt before analysis. They cover first-task sensitivity,
@@ -105,11 +107,12 @@ all A/A metrics and missing/degenerate intervals. Systematic statistic labels ar
 frozen in D8 calibration. Do not inspect benefits to choose more coverage/settings.
 
 ## Next
-Commit/push D8 acquisition and HM sizing quote after full acceptance. Run affordable
-HM A2 sizing jobs sequentially with fresh idle checks, preserving all attempts.
-Freeze derived settings only after three valid observations; assess subsequent jobs and
-record every budget-not-run cell. Then restore swappiness, stop healthcheck, complete
-maintained reporting/diagnostic extensions and analysis, CPU identity re-verification
-if A/A demands it, per-route verdicts and close-results. Preserve every failed and
-unfavorable attempt. Finish docs/FINDINGS, commit/push, verify GPU free, send exact
-handoff, and give Philip the plain-language result and next decisions.
+Commit/push acquisition closure and HM sizing after full acceptance. Implement and
+verify the maintained reporting/diagnostic extensions, then analyze the three valid
+D8 blocks with the frozen labels and rules. Include first-task sensitivity, native
+allocation-refusal attribution, cross-session reuse, lease activity, resource/fault
+observations and every A/A metric. Re-verify CPU identity if A/A intervals demand it.
+Close through close-results with per-route verdicts, whole-route difference, harms,
+opportunity, limitations and all not-run coverage. Update current docs/FINDINGS,
+commit/push, verify GPU still free, send the exact authorized handoff, and give
+Philip the plain-language result and next decisions. Do not stop before closure.

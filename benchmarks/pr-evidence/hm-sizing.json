@@ -1,0 +1,102 @@
+{
+  "acquisition": {
+    "path": "artifacts/runs/pr-evidence-runtime-03/hm-sizing-acquisition-01.json",
+    "sha256": "67bc4d773fadc8cf7591d366074cf26aed69e4ba6d06d012a84695413d34e905"
+  },
+  "arrival_rate": 0.20189157519737003,
+  "failed_sessions": 0,
+  "final_arrivals_seconds": {
+    "12001": 103.94743868532521,
+    "12002": 113.75773236504051,
+    "12003": 66.95540279315819,
+    "12101": 97.3743970461813,
+    "12102": 101.20536331365422,
+    "12103": 109.79121550697823,
+    "12104": 73.89329042897934,
+    "12105": 79.59157933434945,
+    "12106": 45.806169713437235,
+    "12107": 102.95400112688836,
+    "12108": 64.31766736133132
+  },
+  "horizon_seconds": 308,
+  "largest_conversation_upper_bound_bytes": 838860800,
+  "model": "HM",
+  "offered_requests": 173,
+  "one_shot_rate": 0.02402777777777778,
+  "pooled_p95_session_seconds": 96.80401973864998,
+  "reference_pool_gib": 1,
+  "schema": "pr-screen-sizing-v1",
+  "scope": "Baseline-only sizing; working-set and all-arm pool validation have not run. No decision baseline or efficacy conclusion.",
+  "seed_mean_session_seconds": [
+    42.4971977335,
+    39.6252294935,
+    36.0561704620625
+  ],
+  "sources": [
+    {
+      "capture_failures": 0,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 290.391534799,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "metrics": "artifacts/runs/pr-evidence-runtime-03/w1-hm-sizing-12001-a2-01-metrics.json",
+      "metrics_sha256": "62eeabc8905b15b800634a3589e78aa4902ea97d6ae155b2db6b3437e72cc951",
+      "minimum_available_bytes": 10142736384,
+      "name": "w1-hm-sizing-12001-a2-01",
+      "owned_swap_growth_bytes": 0,
+      "seed": 12001,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 0
+    },
+    {
+      "capture_failures": 0,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 290.212768046,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "metrics": "artifacts/runs/pr-evidence-runtime-03/w1-hm-sizing-12002-a2-01-metrics.json",
+      "metrics_sha256": "94e8adada5be138767f90d22b572363d4601f3c777323fb6c8f8acf492aeed8c",
+      "minimum_available_bytes": 10043367424,
+      "name": "w1-hm-sizing-12002-a2-01",
+      "owned_swap_growth_bytes": 0,
+      "seed": 12002,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 0
+    },
+    {
+      "capture_failures": 0,
+      "failed_transfers": [],
+      "gpu_charge_seconds": 293.248639968,
+      "host_swap_out_growth_pages": 0,
+      "interference": false,
+      "metrics": "artifacts/runs/pr-evidence-runtime-03/w1-hm-sizing-12003-a2-01-metrics.json",
+      "metrics_sha256": "bb757d569013cbf89081e61c085176a53aacf08f8d85ceca883643d6e3030ebd",
+      "minimum_available_bytes": 10143199232,
+      "name": "w1-hm-sizing-12003-a2-01",
+      "owned_swap_growth_bytes": 0,
+      "seed": 12003,
+      "session_failures": 0,
+      "status": "client_complete",
+      "store_failures": 0,
+      "store_refusals": 0
+    }
+  ],
+  "working_set_pass": {
+    "arm": "A2",
+    "cleanup_reserve_seconds": 60,
+    "fits": false,
+    "maximum_seconds": 908,
+    "per_job_reserve_seconds": 968,
+    "remaining_screen_seconds": 877.7079654729969,
+    "seeds": [
+      12001,
+      12002,
+      12003
+    ],
+    "status": "not run: budget"
+  }
+}
