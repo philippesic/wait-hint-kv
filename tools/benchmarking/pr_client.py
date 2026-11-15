@@ -103,7 +103,7 @@ async def run_schedule(
 
     async with aiohttp.ClientSession(
         headers={"Authorization": "Bearer " + api_key},
-        connector=aiohttp.TCPConnector(limit=0),
+        connector=aiohttp.TCPConnector(limit=0, keepalive_timeout=2),
         timeout=aiohttp.ClientTimeout(total=None),
     ) as client:
 
