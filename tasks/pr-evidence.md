@@ -21,6 +21,17 @@ harms, opportunity, failed/not-run coverage and update docs/FINDINGS; delete thi
 task only after closure and push.
 
 ## State
+Capture repair 921318e8 is accepted and pushed (137 portable tests, 105 rule proofs).
+Decision seed 12101 attempt02 is invalid because A3 had outside CPU activity:
+18.38% of one core averaged across the cell and 44.09 seconds continuously above
+25%. A separate thread's filesystem-wide search correlates in time and duration;
+its exited PID command was not captured, so exact attribution remains an inference.
+That thread finished normally. All three acquired cells (A5/A3/A3p) are retained;
+the four remaining arms were stopped before launch. The task-only checkpoint
+invoked the existing clean-source gate after A3p closed. No active GPU job remains.
+The complete seven-arm rerun is attempt03; no previous-attempt cell is substituted.
+Compact accounting is benchmarks/pr-evidence/2080ti-screen-invalid-attempts.json.
+
 Current agent owns main. Stage 1 is frozen/pushed; both routes use the same hold-only
 mechanism. The public-callback-only infeasibility conclusion was corrected in
 results/pr-evidence-feasibility. Read-only private scheduler access is allowed and
@@ -89,11 +100,13 @@ HS/A2-02 is not admitted: weights 8.44 GiB leave 0.20 GiB native GPU cache at th
 frozen 0.85 fraction, below 0.74 GiB required for 6,144 tokens. No fraction/context/
 sequence/block override change is allowed for W1. Remaining HS arms and W1 not run.
 
-Admission is complete: 1,905.025330883 seconds (0.529174 hours), leaving
-1,694.974669117 seconds unused. The screen has used 15,613.102814949 seconds,
-including calibration and the invalid decision block; 13,186.897185051 seconds
-remain. GPU is idle at this checkpoint.
-benchmarks/pr-evidence/2080ti-admission.json indexes every charged attempt.
+Admission is complete: 1905.025330883 seconds (0.529174 hours), leaving
+1,694.974669117 seconds unused. Screen usage is 17048.254263326 seconds,
+including all calibration and invalid attempts; 11751.745736674 seconds remain.
+GPU is idle at this checkpoint. All three attempt02 cells passed capture coverage,
+completed every request and had zero store/transfer failures or swap. Only A3
+violated the unchanged outside CPU limit. No treatment speedup has been inspected.
+benchmarks/pr-evidence/2080ti-admission.json indexes every admission attempt.
 
 Post-response holds were acknowledged but snapshots could miss their lifetime
 before the next return. The delivery utility now invokes the common read-only
@@ -150,8 +163,8 @@ no raw receipt was edited and no old cell enters the primary comparison.
 
 The runner now polls before sampling and uses that observed return code, ensuring
 another sample if the client exits during capture. A real-process regression test
-reproduces the race without sleeping. Fast checks pass 137 tests; full acceptance
-is required before the repair commit. No coverage or resource check was weakened.
+reproduces the race without sleeping. Full acceptance passes 137 portable tests
+and 105 rule proofs. No coverage or resource check was weakened.
 benchmarks/pr-evidence/2080ti-screen-capture.json defines capture campaign 02, which
 inherits the valid committed calibration and repeats all seven arms of seed 12101.
 Use artifacts/runs/pr-evidence-runtime-03 for new metrics/logs, but keep every GPU
@@ -159,14 +172,15 @@ attempt in the same cumulative pr-evidence-2080ti ledger. Mechanism, runtime,
 routes, workload, thresholds and schedule hashes are unchanged.
 
 ## Next
-Commit and push the capture repair after full acceptance. Start capture campaign 02
-with the complete seed 12101 rerun (attempt 02), then decision seeds 12102–12108 in
-order until the next complete seven-arm block cannot fit. Job ceiling remains 567
-seconds plus 60 cleanup reserve; reserve 4,389 seconds before each block. The first
-decision-block re-quote includes the invalid block and mandatory rerun; update it
-from the first valid block's actual costs too. Do not inspect speedups to choose
-coverage or change settings. Continue HM baseline calibration if it fits after D8;
-report incomplete model/workload coverage honestly. W2's shortest
+Commit and push the interference checkpoint after full acceptance. Repeat complete
+seed 12101 with attempt03, then decision seeds 12102–12108 in frozen order until
+the next complete seven-arm block cannot fit. Job ceiling stays 567 seconds plus
+60 cleanup reserve; reserve 4,389 seconds before each block. Re-quote after the
+first valid block, retaining invalid-attempt costs. Three valid blocks are forecast
+to fit, subject to actual charges. Stop newly invalid attempts after the active
+cell and document unrun arms; treatment failures remain evidence, not exclusions.
+Do not inspect speedups to choose coverage or change settings. Continue HM baseline
+calibration if it fits after D8; report incomplete coverage honestly. W2's shortest
 historical seven-arm block needs at least 4,200 seconds before startup/cleanup,
 calibration and contingency. Restore swappiness, delete healthcheck, close results,
 push and send the exact handoff only when genuinely finished.
