@@ -45,6 +45,13 @@ profile with the claim limits the thread must state.
   A1/A6/A7 x 8 seeds, D8 1,254 MiB x 4 seeds, A1 repeats x 3, large pools x 2, 13 W1
   regular cells), detached driver PID in `decision-driver.pid`. Pilot used 1.9 GPU h;
   decision estimate ~11.8 h. Touch the campaign's `STOP` file to stop between jobs.
+- Spare budget, declared after 20 decision cells and before any comparison was
+  computed (cells ran ~5 min, so ~9 h total was projected): `manifest-extension.json`
+  adds pressure seeds 22009-22016 (D8 2,048 MiB and HM 428 MiB, A1/A6/A7), then W1
+  regular seeds 12109-12116 (A1/A7; W1 schedule seed range widened to 12101-12116,
+  same frozen calibration and generator). It starts automatically after the decision
+  driver exits and stops when the 13 h decision cap refuses a job; unpaired cells are
+  excluded from paired comparisons.
 
 ### Plan (revision 4, after debate with GPT-6.1 Sol)
 - Claims: C1 hints cut hinted-return recompute and TTFT under pressure (LRU pair);

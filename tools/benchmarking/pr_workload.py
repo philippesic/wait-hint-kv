@@ -219,7 +219,7 @@ def validate_schedule(schedule: dict[str, Any]) -> None:
     expected_seeds = (
         range(12001, 12004)
         if schedule["partition"] == "calibration"
-        else range(12101, 12109)
+        else range(12101, 12117)
     )
     if type(schedule["seed"]) is not int or schedule["seed"] not in expected_seeds:
         raise ValueError("screen seed outside frozen family")
