@@ -6,6 +6,8 @@ from typing import Any
 from wait_hint_offload.contracts import bounded_name, positive_integer
 from wait_hint_offload.policy_protocol import PolicySession
 
+MAX_CONTEXT_TOKENS = 17408
+
 
 @dataclass(frozen=True)
 class EvidenceRequest:
@@ -31,12 +33,12 @@ class EvidenceRequest:
         tokens = raw["prompt_token_ids"]
         if (
             not isinstance(tokens, list)
-            or not 1 <= len(tokens) <= 6144
+            or not 1 <= len(tokens) <= MAX_CONTEXT_TOKENS
             or any(type(token) is not int or not 0 <= token < 2**31 for token in tokens)
         ):
             raise ValueError("invalid prompt token IDs")
         output = positive_integer(raw["output_tokens"], "output_tokens", 256)
-        if len(tokens) + output > 6144:
+        if len(tokens) + output > MAX_CONTEXT_TOKENS:
             raise ValueError("context limit exceeded")
         ttl = raw["ttl_ms"]
         if ttl is not None:

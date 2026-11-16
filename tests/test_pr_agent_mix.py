@@ -15,12 +15,13 @@ from tools.benchmarking.pr_agent_mix import (
     validate_agent_mix_schedule,
 )
 from tools.benchmarking.pr_jobs import agent_server_command, run_gpu_job
-from tools.benchmarking.pr_workload import validate_schedule
+from tools.benchmarking.pr_workload import request_payload, validate_schedule
 from wait_hint_offload.discussion_protocol import (
     Advice,
     AdviceEnvelope,
     validate_advice_acknowledgement,
 )
+from wait_hint_offload.evidence_protocol import EvidenceRequest
 from wait_hint_offload.policy_protocol import PolicySession
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -209,3 +210,16 @@ def test_native_campaign_keeps_models_and_arms_apart(tmp_path: Path) -> None:
             60,
             tmp_path / "schedule.json",
         )
+
+
+def test_longest_agent_turn_passes_the_request_parser(schedule: dict[str, Any]) -> None:
+    session, index = max(
+        (
+            (session, index)
+            for session in schedule["sessions"]
+            for index in range(len(session["turns"]))
+        ),
+        key=lambda item: len(item[0]["turns"][item[1]]["prompt_tokens"]),
+    )
+    payload = request_payload(schedule, session, index, "oracle-lru")
+    assert EvidenceRequest.parse(payload).prompt_token_ids

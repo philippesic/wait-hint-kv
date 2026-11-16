@@ -20,6 +20,7 @@ from tools.benchmarking.resources import sample_process_tree
 from tools.config import pr_evidence_environment
 from tools.process import process_identity, signal_owned, stop_session
 from tools.runtime_verify import snapshot, write_record
+from wait_hint_offload.evidence_protocol import MAX_CONTEXT_TOKENS
 
 POLICIES = {
     "A1": "lru",
@@ -43,7 +44,7 @@ MODEL_REVISIONS = {
     "Q7": "b25037543e9394b818fdfca67ab2a00ecc7dd641",
 }
 NATIVE_CAMPAIGN = "discussion-native"
-AGENT_MODEL_LENGTH = 17408
+AGENT_MODEL_LENGTH = MAX_CONTEXT_TOKENS
 CAMPAIGN_CAPS = {
     "pr-evidence-2080ti": {"admission": 3600.0, "screen": 28800.0},
     "discussion-2080ti": {"pilot": 10800.0, "decision": 46800.0},

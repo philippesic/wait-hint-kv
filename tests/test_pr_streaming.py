@@ -93,7 +93,7 @@ def test_evidence_request_refuses_unbounded_or_boolean_parameters() -> None:
         raw | {"output_tokens": 257},
         raw | {"prompt_token_ids": [True]},
         raw | {"prompt_token_ids": [-1]},
-        raw | {"prompt_token_ids": [1] * 6144},
+        raw | {"prompt_token_ids": [1] * 17408},
         raw | {"ttl_ms": 60001},
     ):
         with pytest.raises(ValueError):
