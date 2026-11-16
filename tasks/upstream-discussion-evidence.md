@@ -326,6 +326,24 @@ change much. Seeds 33002-33003 at 2 GiB finish as pre-registered. Exploratory, n
 the gate: the same trio at 4 GiB on seed 33001, to see whether information helps when the
 pool can hold 2-3 waiting prefixes.
 
+### Phase 1b result (long mix, 2 GiB, LRU, 3 seeds): gate failed
+| Seed | LRU | auto300old | oracle-gpu | Gate points | All returns LRU / best server / oracle |
+|---|---|---|---|---|---|
+| 33001 | 10.9% | 10.7% | 10.8% | -0.1 | 11.3 / 10.9 / 10.0 |
+| 33002 | 12.2% | 9.2% | 3.9% | 5.3 | 14.4 / 11.2 / 5.5 |
+| 33003 | 16.1% | 15.8% | 13.7% | 2.1 | 15.6 / 15.4 / 11.4 |
+Opt-in recompute; "all returns" adds the non-hinting sessions, which gain from the
+oracle's `done` and `ephemeral` releases (seed 33003: 13.1% to 0%). No failures, queue
+share at most 8%, no interference flags, every advice accepted. Exploratory 4 GiB seed
+33001: LRU recomputes nothing, so the other two 4 GiB cells were stopped (22 s charged).
+Phase 1 (15% mix) and phase 1b agree: the benefit of client information over the best
+server-only policy is 0-5 points per seed (mean about 2 opt-in, about 3 for all returns),
+not consistently 3 or more. Short waits are covered by the GPU prefix cache; long waits
+compete for a hold budget that fits about one waiting prefix at 2 GiB; at 4 GiB and above
+LRU already keeps everything. The candidate was not run (gate rule). Roomy cells show no
+harm (equal TTFT). `vm.swappiness` and `vm.compaction_proactiveness` were restored to 60
+and 20 at 08:45. Budget: calibration 1.85 h, decision about 6.2 h of 7.56 h.
+
 ### Audit: every mechanism and its proof
 | Mechanism | Workload trigger | Proof (counter or check) |
 |---|---|---|
