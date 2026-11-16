@@ -16,10 +16,11 @@ sliding-window and recurrent chunks, so that is not part of the claim.
 - Later the same day Philip asked for a small screening test (about 90 minutes) of the
   revision-3 design before any further large run. A large run needs his decision after
   the screen.
-- Temporary `vm.swappiness=0` is authorized. Restore it to 60 with sudo at the end; the
-  backup is `artifacts/runs/discussion-host/swappiness-original.json`. If sudo is
-  needed, ask Philip with the T3 `request_secret` tool, never in chat.
-- No WSL memory change, no public posting, no upstream outreach.
+- Temporary `vm.swappiness=0` is authorized for GPU runs (the committed host
+  environment requires it). The native host default is 60; restore it with sudo when
+  acquisition ends. If sudo is needed, ask Philip with the T3 `request_secret` tool,
+  never in chat.
+- No public posting, no upstream outreach.
 
 ## Done when
 The revision-3 screen has run and been reported to Philip. Then either the large run
@@ -190,9 +191,12 @@ Primary metric and rules:
   setsid/nohup. Launch drivers with
   `systemd-run --user --unit=NAME --collect --working-directory=<runner>
   --setenv=PATH="$PATH" --setenv=HOME="$HOME" /bin/bash -c '<driver> > LOG 2>&1'`.
-  PATH must include `/usr/lib/wsl/lib` for nvidia-smi.
 - Before launching, check out the committed commit in the runner worktree (detached,
   clean) and check that the GPU is idle.
+- Since 2026-11-15 the host is native Ubuntu 26.04 (driver 595.99, 91 GB RAM, PCIe 3
+  x16 at about 7.5 GB/s pinned). All earlier screen and decision runs were on WSL2;
+  do not pool them with native runs. The GNOME desktop runs on the same GPU (about
+  260 MiB); keep the desktop idle during cells.
 - To stop between jobs, touch `<campaign>/STOP`.
 - For long jobs, keep an hourly healthcheck (a background wait that exits on driver exit
   or after about 55 min) and stop it when acquisition ends.
@@ -222,8 +226,14 @@ and the coordinator. Record: `artifacts/runs/discussion-debate/proposal-redesign
 Captured real waits are median 0.24 s with about 1% over 30 s; the 4 s lognormal is
 declared, not fitted.
 
+Philip's phase order (2026-11-15): phase 1 oracle gate on LRU without tight; phase 2
+oracle with tight on LRU and ARC; phase 3 the full run with the candidate. Approved
+workload additions: a shared system prefix of about 2k tokens across sessions, and
+compaction decided at response time with `keep_tokens` in that turn's hint (keep the
+shared prefix plus a 2-3k summary).
+
 Blocked on Philip:
-- The RAM upgrade, with WSL memory at 48 GB or more.
+- A native GPU qualification run (`tools.runtime_verify --gpu`, about 10 min).
 - Raising the decision cap by about 4 h and the 16 h hard ceiling to about 19.5-20 h
   (10.45 h spent; R3 needs about 8-9 h).
 - Approval to build.
