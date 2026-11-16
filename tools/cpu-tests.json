@@ -54,6 +54,7 @@
   "tests/test_contracts.py::test_namespace_changes_digest[tokenizer_revision]",
   "tests/test_contracts.py::test_registration_generations_and_closed_fields",
   "tests/test_contracts.py::test_schema_and_causal_clock_refusal",
+  "tests/test_cpu.py::test_check_environment_drops_outer_git_state",
   "tests/test_cpu.py::test_cpu_environment_hides_cuda",
   "tests/test_cpu.py::test_native_block_names_are_not_reservations",
   "tests/test_cpu.py::test_native_positive_control",

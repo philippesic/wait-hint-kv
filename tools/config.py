@@ -6,7 +6,9 @@ from pathlib import Path
 
 
 def check_environment(root: Path) -> dict[str, str]:
-    env = os.environ.copy()
+    env = {
+        key: value for key, value in os.environ.items() if not key.startswith("GIT_")
+    }
     env["PYTHONPATH"] = str(root)
     env["CUDA_VISIBLE_DEVICES"] = ""
     env["PYTEST_DISABLE_PLUGIN_AUTOLOAD"] = "1"

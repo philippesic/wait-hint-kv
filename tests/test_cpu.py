@@ -2,6 +2,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 from tools import native, repo_policy
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -39,3 +41,12 @@ def test_cpu_environment_hides_cuda() -> None:
     from tools.config import check_environment
 
     assert check_environment(Path.cwd())["CUDA_VISIBLE_DEVICES"] == ""
+
+
+def test_check_environment_drops_outer_git_state(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from tools.config import check_environment
+
+    monkeypatch.setenv("GIT_INDEX_FILE", "/outer/index.lock")
+    assert not any(key.startswith("GIT_") for key in check_environment(Path.cwd()))
