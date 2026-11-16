@@ -639,9 +639,10 @@ candidate on the bases that pass.
 
 - `pr-plan-agent-mix --partition stage-a|decision --seed N --sessions N --window S
   --one-shot-mean S --max-running 4|6|8 --out FILE` writes `pr-agent-mix-schedule-v1`.
-  Every prompt starts with the same 2,048-token system prefix. Sessions run 11-15 turns
+  Every prompt starts with the same 2,048-token system prefix. Sessions run 7-10 turns
   (3/8 abandon early, at least two never hint); contexts grow from about 3k tokens by
-  48-160 output and 400-1,400 tool tokens per turn up to 16,000. A turn compacts when it
+  48-160 output and 700-2,000 tool tokens per turn up to 16,000 (shortened from 11-15
+  turns after a 12-session Stage A cell took 18.5 minutes). A turn compacts when it
   would pass the ceiling or with 10% chance; the next prompt is then the system prefix,
   a new 2-3k summary and the tool result. Each wait has a type: `instant` 50% (resampled
   from captured waits up to 5 s, median 236 ms), `tool` 35% (LogNormal(4 s, 0.8),
