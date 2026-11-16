@@ -305,6 +305,14 @@ Changes, all declared in reports:
   same 3 seeds (about 0.7 GPU-h). The ARC phase needs a cap raise from Philip.
 - Ceiling check after seed 33001's `lru`: if its opt-in recompute is under 6%, stop and
   replan before the other runs.
+- Amended before any valid phase 1b cell (2026-11-16 06:05): the first attempt hit the
+  1,000 s job ceiling (long-mix cells take 17-20 min; `l-p2048-lru-s33001-a1` timed out,
+  `l-p2048-auto-lru-s33001-a1` was stopped during model load, terminal reconstructed,
+  58 s charged). Ceiling raised to 1,500 s. `auto-lru` dropped from phase 1b: in phase 1
+  it matched LRU within 0.3 points on every seed and its 30 s holds expire before any
+  long return. Unused admission and calibration caps moved to the decision phase (total
+  campaign cap unchanged at 9.5 h). Matrix: `lru`, `auto300old-lru`, `oracle-gpu-lru`
+  x 3 seeds; gate comparators `lru` and `auto300old-lru`.
 
 ### Audit: every mechanism and its proof
 | Mechanism | Workload trigger | Proof (counter or check) |

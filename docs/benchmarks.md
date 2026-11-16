@@ -632,7 +632,8 @@ screen of the candidate without per-wait timing). A8 was never run and is remove
 
 Revision 3 of the discussion benchmark runs on the native Ubuntu host as campaign
 `discussion-native` (Qwen2.5-7B-Instruct-AWQ, label `Q7`, fp16 KV, 17,408-token context,
-caps: admission 0.5 h, calibration 2 h, decision 7 h). The accepted design is
+caps: admission 300 s, calibration 6,700 s, decision 27,200 s; 9.5 h in total, moved from
+admission and calibration to the decision phase after calibration ended). The accepted design is
 `artifacts/runs/discussion-debate/proposal-redesign-r3.md`; Philip ordered it in three
 phases: oracle gate on LRU, oracle gate on LRU and ARC with a tight pool, then the
 candidate on the bases that pass.
