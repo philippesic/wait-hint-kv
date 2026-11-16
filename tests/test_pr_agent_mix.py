@@ -165,6 +165,7 @@ def test_agent_commands_match_across_arms_except_policy(tmp_path: Path) -> None:
     base = commands["lru"]
     assert base[base.index("--max-model-len") + 1] == "17408"
     assert base[base.index("--max-num-seqs") + 1] == "6"
+    assert "--enforce-eager" not in base
     for arm, command in commands.items():
         extra = json.loads(command[-1])["kv_connector_extra_config"]
         assert command[:-1] == base[:-1]

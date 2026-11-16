@@ -223,7 +223,6 @@ def agent_server_command(
         "float16",
         "--kv-cache-dtype",
         "auto",
-        "--enforce-eager",
         "--attention-backend",
         "TRITON_ATTN",
         "--gpu-memory-utilization",
