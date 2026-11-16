@@ -239,6 +239,40 @@ Plan (Philip's order): Stage A (session count, GPU-only and LRU pool sizes, rete
 horizon) -> phase 1 oracle gate on LRU (typical x3, roomy, uncapped, automatic 300 s and
 store_threshold=2) -> phase 2 ARC and tight -> phase 3 candidate on passing bases.
 
+### Stage A result (2026-11-16, seeds 31003-31004, LRU)
+| Sessions | Pool | Opt-in recompute | Queue share of TTFT | Note |
+|---|---|---|---|---|
+| 9 | 24 GiB | 0% | 9.6% | eviction-free (roomy) |
+| 9 | 8 GiB | 0% | 8.9% | 11 evictions |
+| 9 | 4 GiB | 4.7% | 6.9% | horizon about 120 s |
+| 9 | 2 GiB | 11.1% | 11.5% | horizon about 60 s; equals GPU-only |
+| 9 | 256 MiB | 11.1% | 9.6% | GPU-only proxy |
+| 12 | 24 GiB | 0% | 27.4% | overloaded |
+| 12 | 2 GiB | 14.7% | 55.8% | overloaded |
+At 9 sessions all LRU recompute comes from the 7 long-wait returns per cell; instant and
+tool waits are served by the GPU prefix cache. Frozen choices: 9 sessions, window 480 s,
+one-shot mean 20 s, 6 running; typical 2 GiB, roomy 24 GiB, tight 1 GiB. A 12-session
+4 GiB job was refused by the calibration cap (no GPU time spent).
+
+### Preflight: phase 1 (oracle gate on LRU, about 2.7 GPU-h)
+- Question: does exact client information beat the best server-only policy on LRU, so
+  that the candidate is worth running on LRU?
+- Decision-changing result: `oracle-lru` opt-in recompute at least 3 points below the
+  best of `lru`, `auto-lru`, `auto300-lru`, `auto-st2-lru` in each of 3 seeds (typical,
+  2 GiB). Otherwise no candidate run on LRU; if only `oracle-uncapped-lru` passes, the
+  cap is the finding and Philip decides.
+- Preconditions and checks: pressure (Stage A LRU 11.1% at typical, so the ceiling on the
+  gain is about 11 points, above the 3-point bar); room to hold (cap 1 GiB, about 18k
+  tokens, one or two idle long-wait prefixes); mechanisms fire (smoke counters); no
+  overload (11.5% queue share at typical). Unverified: per-seed noise with about 7 long
+  returns per cell.
+- Order and early milestone: seed 32001 `lru`, `auto-lru`, `oracle-lru` first. If
+  `oracle-lru` is not at least 1 point below `lru` there, stop and investigate before the
+  remaining 14 jobs.
+- Expectations: each job about 9-10 min, `client_complete`, no session or store
+  failures, every advice accepted, queue share under 25%, no material interference.
+  Kill: any failed job, store failures, advice delivery errors over 1%, swap growth.
+
 ### Audit: every mechanism and its proof
 | Mechanism | Workload trigger | Proof (counter or check) |
 |---|---|---|
