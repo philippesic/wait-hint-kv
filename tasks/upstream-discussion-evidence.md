@@ -21,6 +21,11 @@ sliding-window and recurrent chunks, so that is not part of the claim.
   acquisition ends. If sudo is needed, ask Philip with the T3 `request_secret` tool,
   never in chat.
 - No public posting, no upstream outreach.
+- 2026-11-16, Philip: raise the cap and build and run revision 3 on the native host
+  ("go for it"); be proactive: fix, rerun and change the benchmark when results show a
+  problem; the goal is decision-ready results, the plan is only the current route.
+  New campaign `discussion-native` caps: admission 0.5 h, calibration 2 h, decision
+  7 h (with the 10.45 h already spent, about 20 h in total).
 
 ## Done when
 The revision-3 screen has run and been reported to Philip. Then either the large run
@@ -212,30 +217,50 @@ Primary metric and rules:
 - The cap, if the exit check reaches 25%.
 
 ## Next
-The redesigned benchmark R3 was accepted on 2026-11-15 by GPT-6 Astra, Claude Fable 5.2
-and the coordinator. Record: `artifacts/runs/discussion-debate/proposal-redesign-r3.md`
-(briefs and R1-R2 alongside). In short:
-- Qwen2.5-7B-Instruct-AWQ with fp16 KV, 6-8 running requests.
-- One mixed-wait profile: 50% captured-shape instant waits, 35% 4 s declared waits,
-  15% authored 30-240 s long waits, reported per tool type.
-- Native-only calibration (Stage A), then Phase 1: LRU, ARC, automatic and capped oracle
-  on both bases, typical 3 seeds; uncapped oracle on LRU; automatic at 300 s and with
-  store_threshold=2; tight and roomy cells.
-- Gate: capped oracle beats the best server-only arm by at least 3 points with the same
-  sign in all seeds. Phase 2 (candidate) runs only on a base that passes.
-Captured real waits are median 0.24 s with about 1% over 30 s; the 4 s lognormal is
-declared, not fitted.
+Revision 3 is built and committed (see docs/benchmarks.md, "Native agent-mix campaign").
+Runner: `artifacts/checkouts/discussion-runner`, campaign
+`artifacts/runs/discussion-native` there, job helper `run-job.sh NAME ARM PHASE MIB SECONDS
+SCHEDULE`. `vm.swappiness` is 0 since 2026-11-16 00:05 (original 60 recorded in the
+campaign directory); restore it when acquisition ends.
 
-Philip's phase order (2026-11-15): phase 1 oracle gate on LRU without tight; phase 2
-oracle with tight on LRU and ARC; phase 3 the full run with the candidate. Approved
-workload additions: a shared system prefix of about 2k tokens across sessions, and
-compaction decided at response time with `keep_tokens` in that turn's hint (keep the
-shared prefix plus a 2-3k summary).
+Done on the GPU (2026-11-16):
+- Admission `q7-admission-a2`: byte-identical restore, same boundary, token identity;
+  GPU KV 55,296 tokens; CPU chunk 64 tokens (3.67 MB).
+- Smoke, 8 sessions, 2 GiB, seed 31001, one seed (not evidence): every advice mechanism
+  fired (planned 57, arrived held 73, displaced 125, partial 167, readmitted 118, keep 5,
+  done 6, ephemeral 13, demoted evictions 1,273, shared prefix kept 608). Oracle 4.3%
+  versus LRU 12.3% opt-in recompute, but the LRU cell ran with CUDA graphs (46k GPU KV
+  tokens) and is not paired. CUDA graphs gave no speedup and were reverted.
+- The engine is slow on this card (about 130 ms per decode step with 6 running, prefill
+  about 2.8 s median); at 8 sessions the queue share of TTFT was 24-35%. Stage A sets
+  the session count by the 20% rule on a roomy LRU run.
 
-Blocked on Philip:
-- Raising the decision cap by about 4 h and the 16 h hard ceiling to about 19.5-20 h
-  (10.45 h spent; R3 needs about 8-9 h).
-- Approval to build.
+Plan (Philip's order): Stage A (session count, GPU-only and LRU pool sizes, retention
+horizon) -> phase 1 oracle gate on LRU (typical x3, roomy, uncapped, automatic 300 s and
+store_threshold=2) -> phase 2 ARC and tight -> phase 3 candidate on passing bases.
 
-Build list: section H of R3. Also record the final mixed results with
-`pr-discussion-report`.
+### Audit: every mechanism and its proof
+| Mechanism | Workload trigger | Proof (counter or check) |
+|---|---|---|
+| Automatic hold at finish | every turn | `finish_planned`; CPU fixture on LRU and ARC |
+| Expected-return ranking | holds over the 50% cap | `hold_displaced`; fixture ranking-LRU/ARC |
+| Partial head hold | hold larger than free budget | `partial_hold`; fixture |
+| Intentions, re-admission | displaced or yielded holds | `readmitted`; fixture (never inside eviction) |
+| Yield before store failure | stores with holds full | `hold_yield`, store failures 0; fixture |
+| Arrived protection | any return while planned | `arrived_held`/`arrived_unheld`; fixture (120 s bound) |
+| `done` | final turn (candidate: complete only) | `done_released`; client test |
+| `ephemeral` | every one-shot | `pending` + `ephemeral_released` |
+| `keep_tokens` | compaction (ceiling or 10%) | `keep_applied`, `demoted_chunks` |
+| Shared-prefix safety | 2,048-token system prefix everywhere | `shared_kept_chunks` |
+| Demoted evicted first | done, ephemeral, compacted suffix | `demoted_evictions` |
+| Lost protection | evicted after displacement or yield | `lost_protection_evictions` |
+| Candidate uses only causal information | per-turn type median, fixed expiry | `test_advice_differs_only_in_information` |
+
+Pre-mortem guards: overload (queue share < 20% of TTFT in roomy and typical LRU); cap
+binding (uncapped oracle); unmatched arms (identical server command except policy,
+same schedule and seed; test); one-shot counts (fixed list, drained); interference
+(resource monitor, desktop idle, desktop GPU client excluded); advice delivery (advice
+outcomes in the report must all be accepted); a feature not firing (counters above
+checked in every cell); budget (cut tight first, then ask).
+
+Also record the final mixed WSL results with `pr-discussion-report`.
