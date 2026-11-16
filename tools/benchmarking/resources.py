@@ -164,6 +164,27 @@ def sample_process_tree(root_pid: int, proc: Path = Path("/proc")) -> dict[str, 
     }
 
 
+DESKTOP_GPU_PROCESSES = frozenset(
+    {
+        "/usr/libexec/xdg-desktop-portal-gnome",
+        "/usr/bin/gnome-shell",
+        "/usr/bin/Xwayland",
+    }
+)
+
+
+def foreign_gpu_processes(listing: str) -> list[str]:
+    return [
+        line
+        for line in listing.splitlines()
+        if line.strip()
+        and not (
+            len(fields := line.split(",")) == 4
+            and fields[2].strip() in DESKTOP_GPU_PROCESSES
+        )
+    ]
+
+
 def summarize_screen_resources(path: Path, start: int, end: int) -> dict[str, Any]:
     samples = [json.loads(line) for line in path.read_text().splitlines()]
     if (
@@ -215,7 +236,7 @@ def summarize_screen_resources(path: Path, start: int, end: int) -> dict[str, An
             fields[1].strip()
             for sample in samples
             if start <= sample["monotonic_ns"] <= end and "gpu" in sample
-            for line in sample["gpu"]["processes"].splitlines()
+            for line in foreign_gpu_processes(sample["gpu"]["processes"])
             if len(fields := line.split(",")) == 4
             and fields[1].strip() not in owned_pids
         }

@@ -129,7 +129,7 @@ def cell_summary(metrics: dict[str, Any]) -> dict[str, Any]:
             status: sum(hint["outcome"] == status for hint in metrics["hints"])
             for status in sorted({hint["outcome"] for hint in metrics["hints"]})
         },
-        "evictions": metrics["evictions"],
+        "evictions": len(metrics["evictions"]),
         "policy_outcomes": outcomes,
         "resources": metrics.get("resources"),
     }

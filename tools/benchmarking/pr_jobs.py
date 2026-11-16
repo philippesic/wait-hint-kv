@@ -16,7 +16,7 @@ from tools.benchmarking.feasibility import SOURCE_PATHS, UPSTREAM
 from tools.benchmarking.pr_agent_mix import ARMS as AGENT_ARMS
 from tools.benchmarking.pr_workload import ALL_ARMS, POST_RESPONSE_ARMS
 from tools.benchmarking.probe import digest_file, request
-from tools.benchmarking.resources import sample_process_tree
+from tools.benchmarking.resources import foreign_gpu_processes, sample_process_tree
 from tools.config import pr_evidence_environment
 from tools.process import process_identity, signal_owned, stop_session
 from tools.runtime_verify import snapshot, write_record
@@ -249,27 +249,6 @@ def agent_server_command(
             },
             sort_keys=True,
         ),
-    ]
-
-
-DESKTOP_GPU_PROCESSES = frozenset(
-    {
-        "/usr/libexec/xdg-desktop-portal-gnome",
-        "/usr/bin/gnome-shell",
-        "/usr/bin/Xwayland",
-    }
-)
-
-
-def foreign_gpu_processes(listing: str) -> list[str]:
-    return [
-        line
-        for line in listing.splitlines()
-        if line.strip()
-        and not (
-            len(fields := line.split(",")) == 4
-            and fields[2].strip() in DESKTOP_GPU_PROCESSES
-        )
     ]
 
 

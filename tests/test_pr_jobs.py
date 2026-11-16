@@ -14,12 +14,12 @@ from tools.benchmarking.pr_jobs import (
     _sample_job,
     _stop,
     client_command,
-    foreign_gpu_processes,
     model_digest,
     run_gpu_job,
     screen_server_command,
     spent_seconds,
 )
+from tools.benchmarking.resources import foreign_gpu_processes
 from tools.process import process_identity
 
 
