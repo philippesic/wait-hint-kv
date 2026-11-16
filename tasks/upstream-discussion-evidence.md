@@ -314,6 +314,18 @@ Changes, all declared in reports:
   campaign cap unchanged at 9.5 h). Matrix: `lru`, `auto300old-lru`, `oracle-gpu-lru`
   x 3 seeds; gate comparators `lru` and `auto300old-lru`.
 
+### Phase 1b first seed and the exploratory 4 GiB point (decided 07:45, before 4 GiB data)
+Seed 33001 (long mix, 2 GiB): LRU 10.9%, `auto300old-lru` 10.7%, `oracle-gpu-lru` 10.8%
+opt-in recompute; long-return recompute 23% in all three. Most long returns are served by
+the GPU prefix cache at this light load (queue share 1%). The recomputed ones are the
+same in every arm: the oracle did hold them at finish (session 0005: 187 chunks, about
+12k tokens) but other long-wait holds with nearer returns displaced them down to the
+32-chunk system prefix. The 2 GiB pool's hold budget (292 chunks, about 18.7k tokens)
+fits about one long-wait prefix while 3-4 sessions wait at once, so selection cannot
+change much. Seeds 33002-33003 at 2 GiB finish as pre-registered. Exploratory, not part of
+the gate: the same trio at 4 GiB on seed 33001, to see whether information helps when the
+pool can hold 2-3 waiting prefixes.
+
 ### Audit: every mechanism and its proof
 | Mechanism | Workload trigger | Proof (counter or check) |
 |---|---|---|
