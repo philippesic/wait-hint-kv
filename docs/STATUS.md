@@ -6,6 +6,21 @@ Replace old state; move completed outcomes to [history](PROJECT_HISTORY.md).
 Verify stale ownership before using shared resources. Keep detailed records in
 linked evidence/run directories, not a second diary here.
 
+## Native Linux migration storage
+
+On November 15, 2026, Philip authorized removal of the old WSL runtime environments
+under `/home/philip/.cache/semantic-offload`. Their source and Git objects were archived
+and verified before removal. Completed output JSON, JSONL, SSE, log and Prometheus
+records were losslessly archived and verified before retiring their individual files;
+source scripts and Git bundles remain in `output/`.
+
+The archives, per-member hashes and exact retirement plans/journals are under
+`/home/philip/BitDraft/artifacts/receipts/native-linux-space-20261115/`.
+`semantic-output-records.tar.gz` members are relative to this checkout's `output/`;
+restore them there before using historical file paths or seal verifiers. Runtime
+environments must be rebuilt for new execution. Existing compact findings are unchanged.
+Transfer these archives with the projects when migrating the host.
+
 Latest completed handoff: [RTX 5080 Stage 6 results](../evidence/stage6-5080-20261109/RESULTS.md).
 All planned phases/audits and 42 conditional comparisons are complete/pushed; the
 full protocol failed three original activity gates. GPU released, requested
