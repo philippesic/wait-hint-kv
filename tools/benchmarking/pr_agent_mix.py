@@ -291,11 +291,21 @@ def validate_agent_mix_schedule(schedule: dict[str, Any]) -> None:
         or set(schedule["parameters"]) - {"wait_mix"} != PARAMETERS
     ):
         raise ValueError("closed agent-mix schedule required")
-    if schedule != agent_mix_schedule(
+    expected = agent_mix_schedule(
         schedule["model"],
         schedule["partition"],
         schedule["seed"],
         **schedule["parameters"],
+    )
+    order = schedule["arm_order"]
+    if (
+        schedule | {"arm_order": expected["arm_order"]} != expected
+        or not set(order) <= set(ARMS)
+        or len(set(order)) != len(order)
+        or order
+        != sorted(
+            order, key=lambda arm: seeded_order(schedule["seed"], "arm-order", arm)
+        )
     ):
         raise ValueError("agent-mix schedule differs from its deterministic generator")
 

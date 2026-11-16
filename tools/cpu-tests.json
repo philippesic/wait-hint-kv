@@ -96,6 +96,7 @@
   "tests/test_pr_agent_mix.py::test_longest_agent_turn_passes_the_request_parser",
   "tests/test_pr_agent_mix.py::test_native_campaign_keeps_models_and_arms_apart",
   "tests/test_pr_agent_mix.py::test_schedule_regenerates_exactly_and_refuses_edits",
+  "tests/test_pr_agent_mix.py::test_schedules_stay_valid_when_arms_are_added",
   "tests/test_pr_agent_mix.py::test_sessions_share_system_prefix_and_grow_to_ceiling",
   "tests/test_pr_calibration.py::test_baseline_selection_requires_all_calibration_arms_and_keeps_arc_ties",
   "tests/test_pr_calibration.py::test_pool_ranking_and_budget_quote_do_not_use_benefit",

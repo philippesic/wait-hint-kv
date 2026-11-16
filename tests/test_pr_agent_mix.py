@@ -241,3 +241,12 @@ def test_long_wait_mix_is_declared_and_regenerates() -> None:
         return waits.count("long") / len(waits)
 
     assert share(long) > share(default) + 0.15
+
+
+def test_schedules_stay_valid_when_arms_are_added(schedule: dict[str, Any]) -> None:
+    older = schedule | {
+        "arm_order": [arm for arm in schedule["arm_order"] if "gpu" not in arm]
+    }
+    validate_agent_mix_schedule(older)
+    with pytest.raises(ValueError, match="deterministic"):
+        validate_agent_mix_schedule(older | {"arm_order": older["arm_order"][::-1]})
