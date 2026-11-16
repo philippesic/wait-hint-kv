@@ -7,6 +7,9 @@ import time
 from pathlib import Path
 from typing import Any
 
+from tools.benchmarking.pr_agent_mix import ARMS as AGENT_ARMS
+from tools.benchmarking.pr_agent_mix import SCHEMA as AGENT_SCHEMA
+from tools.benchmarking.pr_agent_mix import advice_for_turn
 from tools.benchmarking.pr_workload import (
     ALL_ARMS,
     POST_RESPONSE_ARMS,
@@ -15,6 +18,11 @@ from tools.benchmarking.pr_workload import (
 )
 from tools.benchmarking.streaming import request_stream, verify_stream
 from tools.runtime_verify import write_record
+from wait_hint_offload.discussion_protocol import (
+    Advice,
+    AdviceEnvelope,
+    validate_advice_acknowledgement,
+)
 from wait_hint_offload.evidence_events import EventJournal
 from wait_hint_offload.policy_protocol import (
     PolicyAction,
@@ -70,6 +78,56 @@ async def _publish(
     }
 
 
+async def _advise(
+    client: Any,
+    url: str,
+    payload: dict[str, Any],
+    fields: dict[str, Any],
+    deadline_ns: int,
+) -> dict[str, Any]:
+    advice = Advice(
+        f"{payload['request_id']}-{fields['event']}",
+        PolicySession.parse(payload["session"]),
+        fields["event"],
+        fields.get("expected_return_ms"),
+        fields.get("expiry_ms"),
+        fields.get("keep_tokens"),
+    )
+    envelope = AdviceEnvelope(advice.action_id, (advice,)).to_dict()
+    started = time.monotonic_ns()
+    status, detail, acknowledgement = "accepted", "", None
+    try:
+        async with asyncio.timeout(max(0, min(10.0, (deadline_ns - started) / 1e9))):
+            async with client.post(
+                url + "/v1/pr-evidence/advice", json=envelope
+            ) as response:
+                body = await response.text()
+                if response.status != 200:
+                    status, detail = "http_error", body[:4096]
+                else:
+                    acknowledgement = json.loads(body)
+                    validate_advice_acknowledgement(
+                        acknowledgement, AdviceEnvelope.parse(envelope)
+                    )
+    except (ValueError, TypeError, KeyError) as error:
+        status, detail = "capture_error", str(error)
+    except TimeoutError:
+        status, detail = "timeout", "advice delivery deadline"
+    except asyncio.CancelledError:
+        status, detail = "cancelled", "advice cancelled at cell end"
+    except Exception as error:
+        status, detail = "delivery_error", f"{type(error).__name__}: {error}"
+    return {
+        "request_id": payload["request_id"],
+        "started_ns": started,
+        "ended_ns": time.monotonic_ns(),
+        "outcome": status,
+        "detail": detail,
+        "envelope": envelope,
+        "acknowledgement": acknowledgement,
+    }
+
+
 async def run_schedule(
     url: str,
     schedule: dict[str, Any],
@@ -91,6 +149,8 @@ async def run_schedule(
     sessions = []
     hints = []
     early_end = bool(schedule.get("end_when_sessions_finish"))
+    agent = schedule["schema"] == AGENT_SCHEMA
+    information = AGENT_ARMS[arm]["information"] if agent else "none"
     stop = asyncio.Event()
     measurement_end: int | None = None
 
@@ -144,6 +204,14 @@ async def run_schedule(
                 if time.monotonic_ns() >= session_deadline:
                     break
                 payload = request_payload(schedule, session, index, arm)
+                if agent and one_shot and information != "none":
+                    hint_tasks.append(
+                        asyncio.create_task(
+                            _advise(
+                                client, url, payload, {"event": "ephemeral"}, deadline
+                            )
+                        )
+                    )
                 journal.emit(
                     "offered",
                     {
@@ -188,6 +256,17 @@ async def run_schedule(
                     and index == turn_count - 1
                     and not session["turns"][index]["post_response_eligible"]
                 )
+                advice = (
+                    advice_for_turn(session, index, information)
+                    if agent and not one_shot
+                    else None
+                )
+                if advice is not None:
+                    hint_tasks.append(
+                        asyncio.create_task(
+                            _advise(client, url, payload, advice, deadline)
+                        )
+                    )
                 if done and arm in POST_RESPONSE_ARMS and "profile" in schedule:
                     hint_tasks.append(
                         asyncio.create_task(
@@ -204,7 +283,8 @@ async def run_schedule(
                 if not one_shot:
                     turn = session["turns"][index]
                     if (
-                        arm in POST_RESPONSE_ARMS
+                        not agent
+                        and arm in POST_RESPONSE_ARMS
                         and session["adopter"]
                         and turn["post_response_eligible"]
                         and (arm != "A9s" or turn.get("wait_class") == "long")
@@ -262,6 +342,8 @@ async def run_schedule(
                 measurement_end = time.monotonic_ns()
                 stop.set()
                 sessions = list(main_results) + list(await asyncio.gather(*shots))
+            elif agent:
+                sessions = await asyncio.gather(*tasks)
             else:
                 sessions = await asyncio.gather(*tasks)
                 await delay(deadline)

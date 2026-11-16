@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any
 
 from tools.benchmarking.feasibility import SOURCE_PATHS, UPSTREAM
+from tools.benchmarking.pr_agent_mix import ARMS as AGENT_ARMS
 from tools.benchmarking.pr_workload import ALL_ARMS, POST_RESPONSE_ARMS
 from tools.benchmarking.probe import digest_file, request
 from tools.benchmarking.resources import sample_process_tree
@@ -39,10 +40,14 @@ MODEL_REVISIONS = {
     "D8": "4da05a8edb55c6046cce958586c33b61da07bb79",
     "HM": "d3e78b50c727b1f34802f440ca84b25781625352",
     "HS": "7c781be42ce8d29d0975b857f6d0c0b2558d9b63",
+    "Q7": "b25037543e9394b818fdfca67ab2a00ecc7dd641",
 }
+NATIVE_CAMPAIGN = "discussion-native"
+AGENT_MODEL_LENGTH = 17408
 CAMPAIGN_CAPS = {
     "pr-evidence-2080ti": {"admission": 3600.0, "screen": 28800.0},
     "discussion-2080ti": {"pilot": 10800.0, "decision": 46800.0},
+    NATIVE_CAMPAIGN: {"admission": 1800.0, "calibration": 7200.0, "decision": 25200.0},
 }
 CAPS = CAMPAIGN_CAPS["pr-evidence-2080ti"]
 GIB = 1024**3
@@ -78,7 +83,12 @@ def screen_server_command(
     events: Path,
     byte_probe: bool,
     gpu_blocks: int | None = None,
+    agent_running: int | None = None,
 ) -> list[str]:
+    if agent_running is not None:
+        return agent_server_command(
+            python, model, arm, port, pool_bytes, events, byte_probe, agent_running
+        )
     if (
         label not in MODEL_REVISIONS
         or arm not in ALL_ARMS
@@ -148,6 +158,86 @@ def screen_server_command(
         "--language-model-only",
         "--enable-per-request-metrics",
         *pressure,
+        "--kv-transfer-config",
+        json.dumps(
+            {
+                "kv_connector": "EvidenceConnector",
+                "kv_connector_module_path": "wait_hint_offload.vllm_adapter.evidence_connector",
+                "kv_role": "kv_both",
+                "kv_connector_extra_config": extra,
+            },
+            sort_keys=True,
+        ),
+    ]
+
+
+def agent_server_command(
+    python: Path,
+    model: Path,
+    arm: str,
+    port: int,
+    pool_bytes: int,
+    events: Path,
+    byte_probe: bool,
+    running: int,
+) -> list[str]:
+    if (
+        arm not in AGENT_ARMS
+        or running not in (4, 6, 8)
+        or not 256 * 1024**2 <= pool_bytes <= 64 * GIB
+        or pool_bytes % 1024**2
+    ):
+        raise ValueError("job outside the agent-mix arms, concurrency or pools")
+    shape = AGENT_ARMS[arm]
+    extra: dict[str, Any] = {
+        "spec_name": "ObservedCPUOffloadingSpec",
+        "spec_module_path": "wait_hint_offload.vllm_adapter.evidence_manager",
+        "cpu_bytes_to_use": pool_bytes,
+        "blocks_per_chunk": 1,
+        "eviction_policy": shape["policy"],
+        "evidence_directory": str(events),
+        "evidence_byte_probe": byte_probe,
+    }
+    if shape["policy"] not in {"lru", "arc"}:
+        extra["cache_policy_module_path"] = (
+            "wait_hint_offload.vllm_adapter.policy_discussion"
+        )
+    if "store_threshold" in shape:
+        extra["store_threshold"] = shape["store_threshold"]
+    return [
+        str(python),
+        "-m",
+        "vllm.entrypoints.openai.api_server",
+        "--model",
+        str(model),
+        "--served-model-name",
+        "pr-evidence",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        str(port),
+        "--api-key",
+        "local-benchmark",
+        "--dtype",
+        "float16",
+        "--kv-cache-dtype",
+        "auto",
+        "--enforce-eager",
+        "--attention-backend",
+        "TRITON_ATTN",
+        "--gpu-memory-utilization",
+        "0.85",
+        "--max-model-len",
+        str(AGENT_MODEL_LENGTH),
+        "--max-num-seqs",
+        str(running),
+        "--max-num-batched-tokens",
+        "2048",
+        "--enable-prefix-caching",
+        "--prefix-cache-retention-interval",
+        "0",
+        "--language-model-only",
+        "--enable-per-request-metrics",
         "--kv-transfer-config",
         json.dumps(
             {
@@ -349,8 +439,18 @@ def run_gpu_job(
     python, model = python.absolute(), model.absolute()
     caps = CAMPAIGN_CAPS.get(campaign.name, {})
     discussion = campaign.name == "discussion-2080ti"
+    native = campaign.name == NATIVE_CAMPAIGN
     if discussion and arm in DEPRECATED_DISCUSSION_ARMS:
         raise ValueError(f"deprecated discussion arm {arm}")
+    if native and (
+        label != "Q7"
+        or arm not in AGENT_ARMS
+        or gpu_blocks is not None
+        or (schedule is None) != (phase == "admission")
+    ):
+        raise ValueError("agent-mix job outside its model, arms or phases")
+    if not native and (label == "Q7" or arm in AGENT_ARMS):
+        raise ValueError("agent-mix model and arms belong to the native campaign")
     if (
         campaign.parent != root / "artifacts/runs"
         or not caps
@@ -361,7 +461,7 @@ def run_gpu_job(
         or not 30 <= maximum_seconds <= 1800
         or label not in MODEL_REVISIONS
         or model.name != MODEL_REVISIONS[label]
-        or (schedule is not None) != (discussion or phase == "screen")
+        or (not native and (schedule is not None) != (discussion or phase == "screen"))
         or (not discussion and arm in VARIANT_ARMS)
     ):
         raise ValueError("job arguments outside authorized protocol")
@@ -383,9 +483,20 @@ def run_gpu_job(
         planned = json.loads(schedule.read_text())
         validate_schedule(planned)
     pressure = planned is not None and planned["schema"] == "pr-pressure-schedule-v1"
+    agent = planned is not None and planned["schema"] == "pr-agent-mix-schedule-v1"
     if pressure != (gpu_blocks is not None) or (pressure and not discussion):
         raise ValueError("GPU block cap belongs only to discussion pressure schedules")
-    if planned is not None and pressure:
+    if agent != (native and planned is not None):
+        raise ValueError("agent-mix schedules run only in the native campaign")
+    agent_running = None
+    if native:
+        agent_running = 6
+    if planned is not None and agent:
+        expected_partition = "stage-a" if phase == "calibration" else "decision"
+        if planned["model"] != label or planned["partition"] != expected_partition:
+            raise ValueError("agent-mix schedule differs from model or phase")
+        agent_running = planned["parameters"]["max_running"]
+    elif planned is not None and pressure:
         if planned["model"] != label:
             raise ValueError("pressure schedule differs from model")
         if planned["partition"] == "pressure":
@@ -436,7 +547,11 @@ def run_gpu_job(
         raise ValueError("complete job plus cleanup does not fit remaining GPU budget")
     runtime = runtime_identity(root, python, arm)
     host_environment = json.loads(
-        (root / "benchmarks/pr-evidence/2080ti-environment.json").read_text()
+        (
+            root
+            / "benchmarks/pr-evidence"
+            / ("native-environment.json" if native else "2080ti-environment.json")
+        ).read_text()
     )
     if (
         int(Path("/proc/sys/vm/swappiness").read_text())
@@ -466,6 +581,7 @@ def run_gpu_job(
         output / "events",
         phase == "admission",
         gpu_blocks,
+        agent_running,
     )
     idle = gpu_status()
     write_record(output / "idle.json", idle)
@@ -497,7 +613,9 @@ def run_gpu_job(
         "schedule_sha256": digest_file(output / "schedule.json") if schedule else None,
     }
     write_record(output / "admission.json", admission)
-    environment = pr_evidence_environment(output / "source", model)
+    environment = pr_evidence_environment(
+        output / "source", model, "pr_discussion" if native else "pr_evidence"
+    )
     captured_client = output / "source/artifacts/client"
     captured_client.parent.mkdir()
     owned: list[tuple[subprocess.Popen[str], tuple[str, int, int, int] | None]] = []

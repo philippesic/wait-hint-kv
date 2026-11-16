@@ -75,9 +75,11 @@ def benchmark_environment(
     return env
 
 
-def pr_evidence_environment(root: Path, model: Path) -> dict[str, str]:
+def pr_evidence_environment(
+    root: Path, model: Path, plugin: str = "pr_evidence"
+) -> dict[str, str]:
     env = hardware_environment(root, model)
-    env["VLLM_PLUGINS"] = "pr_evidence"
+    env["VLLM_PLUGINS"] = plugin
     env["CUDA_VISIBLE_DEVICES"] = "0"
     env["HF_HUB_OFFLINE"] = "1"
     env["TOKENIZERS_PARALLELISM"] = "false"

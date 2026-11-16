@@ -13,8 +13,21 @@ from wait_hint_offload.evidence_protocol import EvidenceRequest
 from wait_hint_offload.policy_protocol import PolicySession
 
 ARMS = ("A1", "A2", "A3", "A4t", "A3p", "A4p", "A5")
-ALL_ARMS = (*ARMS, "A6", "A7", "A6s", "A9s")
-POST_RESPONSE_ARMS = frozenset({"A3p", "A4p", "A7", "A9s"})
+DISCUSSION_ARMS = (
+    "lru",
+    "arc",
+    "auto-lru",
+    "auto-arc",
+    "auto300-lru",
+    "auto-st2-lru",
+    "oracle-lru",
+    "oracle-arc",
+    "oracle-uncapped-lru",
+    "cand-lru",
+    "cand-arc",
+)
+ALL_ARMS = (*ARMS, "A6", "A7", "A6s", "A9s", *DISCUSSION_ARMS)
+POST_RESPONSE_ARMS = frozenset({"A3p", "A4p", "A7", "A9s", *DISCUSSION_ARMS})
 
 
 def seeded_order(seed: int, label: str, identity: str) -> str:
@@ -186,6 +199,11 @@ def request_payload(
 
 
 def validate_schedule(schedule: dict[str, Any]) -> None:
+    if schedule.get("schema") == "pr-agent-mix-schedule-v1":
+        from tools.benchmarking.pr_agent_mix import validate_agent_mix_schedule
+
+        validate_agent_mix_schedule(schedule)
+        return
     if schedule.get("schema") == "pr-pressure-schedule-v1":
         from tools.benchmarking.pr_pressure import validate_pressure_schedule
 

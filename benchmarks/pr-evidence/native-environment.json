@@ -1,0 +1,8 @@
+{
+  "schema": "pr-screen-host-environment-v1",
+  "vm_swappiness": 0,
+  "original_vm_swappiness": 60,
+  "host": "native Ubuntu 26.04, RTX 2080 Ti, driver 595.99, 96 GB RAM, PCIe 3 x16",
+  "authorization": "Philip approved temporary vm.swappiness=0 for the discussion campaign; restore 60 when acquisition ends",
+  "scope": "discussion-native campaign only; earlier WSL2 campaigns use 2080ti-environment.json"
+}

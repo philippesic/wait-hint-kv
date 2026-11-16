@@ -12,6 +12,7 @@ dependencies = []
 [project.entry-points."vllm.endpoint_plugins"]
 wait_hint = "wait_hint_offload.vllm_adapter.endpoint:WaitHintEndpoint"
 pr_evidence = "wait_hint_offload.vllm_adapter.evidence_endpoint:EvidenceEndpoint"
+pr_discussion = "wait_hint_offload.vllm_adapter.discussion_endpoint:DiscussionEndpoint"
 
 [dependency-groups]
 dev = [

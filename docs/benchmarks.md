@@ -614,18 +614,62 @@ decision 13 h) reuses the frozen-main job lifecycle for two workloads; the open 
 
 Use these names in plans, reports and discussion; Philip fixed them on 2026-11-15.
 
-| Term | Meaning | Arm |
-|---|---|---|
-| LRU | vLLM's default CPU-offload eviction, no hold | A1 |
-| ARC | vLLM's built-in ARC eviction, no hold | A2 |
-| automatic | server-only hold of every finished session's prefix for a fixed time | A6s |
-| candidate | the current client-hint design, revision 3 | A9 |
-| wait-hint | the old product mechanism, reachable-hold on ARC (see [architecture](architecture.md)) | none here |
+| Term | Meaning | Arm (native campaign) | Arm (WSL screen) |
+|---|---|---|---|
+| LRU | vLLM's default CPU-offload eviction, no hold | `lru` | A1 |
+| ARC | vLLM's built-in ARC eviction, no hold | `arc` | A2 |
+| automatic | server-only hold of every finished session's prefix for a fixed time | `auto-lru`, `auto-arc` | A6s |
+| candidate | the current client-hint design, revision 3 | `cand-lru`, `cand-arc` | none |
+| oracle | diagnostic: the candidate's server with exact return times and endings | `oracle-lru`, `oracle-arc` | none |
+| wait-hint | the old product mechanism, reachable-hold on ARC (see [architecture](architecture.md)) | none | none |
 
 Deprecated discussion arms are refused by `pr-gpu-job`; their completed cells stay on
 record: A6 (12 s automatic hold released at load), A7 (post-response hints without an
 automatic hold) and A9s (A6s plus release messages and long-class hints, a trimmed
 screen of the candidate without per-wait timing). A8 was never run and is removed.
+
+### Native agent-mix campaign
+
+Revision 3 of the discussion benchmark runs on the native Ubuntu host as campaign
+`discussion-native` (Qwen2.5-7B-Instruct-AWQ, label `Q7`, fp16 KV, 17,408-token context,
+caps: admission 0.5 h, calibration 2 h, decision 7 h). The accepted design is
+`artifacts/runs/discussion-debate/proposal-redesign-r3.md`; Philip ordered it in three
+phases: oracle gate on LRU, oracle gate on LRU and ARC with a tight pool, then the
+candidate on the bases that pass.
+
+- `pr-plan-agent-mix --partition stage-a|decision --seed N --sessions N --window S
+  --one-shot-mean S --max-running 4|6|8 --out FILE` writes `pr-agent-mix-schedule-v1`.
+  Every prompt starts with the same 2,048-token system prefix. Sessions run 11-15 turns
+  (3/8 abandon early, at least two never hint); contexts grow from about 3k tokens by
+  48-160 output and 400-1,400 tool tokens per turn up to 16,000. A turn compacts when it
+  would pass the ceiling or with 10% chance; the next prompt is then the system prefix,
+  a new 2-3k summary and the tool result. Each wait has a type: `instant` 50% (resampled
+  from captured waits up to 5 s, median 236 ms), `tool` 35% (LogNormal(4 s, 0.8),
+  declared) and `long` 15% (uniform 30-240 s, authored). One-shots share the system
+  prefix, arrive at a fixed Poisson list within the window, and the cell drains.
+- The candidate and the oracle use the same server class (`AdvisedHold*` in
+  `wait_hint_offload/vllm_adapter/policy_discussion.py`) and differ only in the client's
+  information (`advice_for_turn`). After each response a hinting session posts
+  `pr-discussion-advice-v1` to `/v1/pr-evidence/advice`: `return` with an expected
+  return, an expiry and `keep_tokens` when the next turn compacts, or `done`. One-shots
+  post `ephemeral` before submission. The candidate sends the type median, a 30 s expiry
+  (240 s for `long`) and `done` only for completed sessions; the oracle sends the exact
+  wait, expiry at the wait plus 5 s, and `done` also for abandoned sessions.
+- Shared hold rules (all hold arms): at finish the server plans an automatic hold (30 s,
+  or 300 s for `auto300-lru`); holds use at most half the pool (`oracle-uncapped-lru`
+  lifts this); a hold that does not fit displaces holds with a larger remaining wait
+  (age when no estimate or overdue), then falls back to a leading partial hold;
+  displaced or yielded holds stay as intentions with their expiry and are re-admitted,
+  smallest remaining wait first, after a finish, advice or arrival, never inside an
+  eviction; an arrived session keeps protection until its request finishes or 120 s;
+  `done`, `ephemeral` and the part beyond `keep_tokens` are evicted first, except chunks
+  seen in more than one session. `pr-feasibility-native --discussion --out FILE` runs the
+  CPU fixtures for every rule on both bases.
+- `pr-agent-report --metrics DIR --out FILE` summarizes each cell (token-weighted
+  recompute for opt-in returns overall, per wait type and long-wait halves; non-hinting
+  returns; TTFT per cohort; queue share of TTFT; failures; advice outcomes; policy
+  counters), LRU's idle-age profile and retention horizon, and the gate per base.
+  Metric names follow `<study>-p<MiB>-<arm>-s<seed>-a<attempt>`.
 
 - `pr-plan-pressure --model D8|HM --partition pressure-pilot|pressure --seed N --out FILE`
   writes a deterministic synthetic pressure schedule (`pr-pressure-schedule-v1`): eight

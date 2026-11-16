@@ -156,6 +156,15 @@ def measure_cell(
                     "submission_lateness_ns": capture["submission_lateness_ns"]
                     if capture
                     else None,
+                    "queue_ns": round(
+                        (
+                            capture["engine_timing"]["scheduled_ts"]
+                            - capture["engine_timing"]["queued_ts"]
+                        )
+                        * 1e9
+                    )
+                    if capture and capture["engine_timing"]
+                    else None,
                     "scheduled_ns": capture["scheduled_ns"] if capture else None,
                     "ended_ns": capture["ended_ns"] if capture else None,
                 }

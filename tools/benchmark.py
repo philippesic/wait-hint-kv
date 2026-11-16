@@ -6,6 +6,7 @@ from pathlib import Path
 
 from tools.benchmarking.harness import grade_swebench
 from tools.benchmarking.plan import describe
+from tools.benchmarking.pr_workload import ALL_ARMS
 from tools.benchmarking.probe import probe, verify_probe
 from tools.benchmarking.report import summarize_probe
 from tools.config import benchmark_environment
@@ -59,10 +60,12 @@ def main() -> int:
     pr_job.add_argument("--name", required=True)
     pr_job.add_argument("--runtime-python", type=Path, required=True)
     pr_job.add_argument("--model-path", type=Path, required=True)
-    pr_job.add_argument("--model", choices=("D8", "HM", "HS"), required=True)
+    pr_job.add_argument("--model", choices=("D8", "HM", "HS", "Q7"), required=True)
     pr_job.add_argument("--arm", required=True)
     pr_job.add_argument(
-        "--phase", choices=("admission", "screen", "pilot", "decision"), required=True
+        "--phase",
+        choices=("admission", "screen", "pilot", "calibration", "decision"),
+        required=True,
     )
     pool = pr_job.add_mutually_exclusive_group(required=True)
     pool.add_argument("--pool-gib", type=int)
@@ -98,6 +101,7 @@ def main() -> int:
     feasibility_native.add_argument("--post-response", action="store_true")
     feasibility_native.add_argument("--instrument", action="store_true")
     feasibility_native.add_argument("--variants", action="store_true")
+    feasibility_native.add_argument("--discussion", action="store_true")
     feasibility_verify = sub.add_parser("verify-pr-feasibility")
     feasibility_verify.add_argument("directory", type=Path)
     for operation in ("pr-admit-w1", "pr-w1-native"):
@@ -138,11 +142,24 @@ def main() -> int:
         "--profile", choices=("mixed", "adopt", "adopt-long"), default="mixed"
     )
     pr_pressure.add_argument("--out", type=Path, required=True)
+    agent_plan = sub.add_parser("pr-plan-agent-mix")
+    agent_plan.add_argument(
+        "--partition", choices=("stage-a", "decision"), required=True
+    )
+    agent_plan.add_argument("--seed", type=int, required=True)
+    agent_plan.add_argument("--sessions", type=int, required=True)
+    agent_plan.add_argument("--window", type=float, required=True)
+    agent_plan.add_argument("--one-shot-mean", type=float, required=True)
+    agent_plan.add_argument("--max-running", type=int, required=True)
+    agent_plan.add_argument("--out", type=Path, required=True)
+    agent_report = sub.add_parser("pr-agent-report")
+    agent_report.add_argument("--metrics", type=Path, required=True)
+    agent_report.add_argument("--out", type=Path, required=True)
     pr_client = sub.add_parser("pr-client-native")
     pr_client.add_argument("--schedule", type=Path, required=True)
     pr_client.add_argument(
         "--arm",
-        choices=("A1", "A2", "A3", "A4t", "A3p", "A4p", "A5", "A6", "A7", "A6s", "A9s"),
+        choices=ALL_ARMS,
         required=True,
     )
     pr_client.add_argument("--url", required=True)
@@ -322,6 +339,34 @@ def main() -> int:
         from tools.benchmarking.pr_discussion import campaign_report
 
         write_record(args.out, campaign_report(args.metrics))
+        return 0
+    if args.operation == "pr-plan-agent-mix":
+        from tools.benchmarking.pr_agent_mix import agent_mix_schedule
+
+        result = agent_mix_schedule(
+            "Q7",
+            args.partition,
+            args.seed,
+            args.sessions,
+            args.window,
+            args.one_shot_mean,
+            args.max_running,
+        )
+        write_record(args.out, result)
+        print(
+            json.dumps(
+                {
+                    "schedule": str(args.out),
+                    "sessions": len(result["sessions"]),
+                    "one_shots": len(result["one_shots"]),
+                }
+            )
+        )
+        return 0
+    if args.operation == "pr-agent-report":
+        from tools.benchmarking.pr_agent_report import campaign_agent_report
+
+        write_record(args.out, campaign_agent_report(args.metrics))
         return 0
     if args.operation == "pr-plan-pressure":
         from tools.benchmarking.pr_pressure import (
@@ -535,6 +580,13 @@ def main() -> int:
             else w1.verify(args.directory)
         )
         print(json.dumps(result, indent=2))
+        return 0
+    if args.operation == "pr-feasibility-native" and args.discussion:
+        from wait_hint_offload.vllm_adapter.policy_discussion_checks import (
+            observe_discussion_policy,
+        )
+
+        write_record(args.out, observe_discussion_policy())
         return 0
     if args.operation == "pr-feasibility-native" and args.variants:
         from wait_hint_offload.vllm_adapter.policy_variant_checks import (
