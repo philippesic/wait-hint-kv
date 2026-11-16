@@ -26,6 +26,8 @@ sliding-window and recurrent chunks, so that is not part of the claim.
   problem; the goal is decision-ready results, the plan is only the current route.
   New campaign `discussion-native` caps: admission 0.5 h, calibration 2 h, decision
   7 h (with the 10.45 h already spent, about 20 h in total).
+- 2026-11-16 08:55, Philip: fund a cache-size sweep (about 6-9 GPU-h) after the phase 1b
+  gate failed. Decision cap raised by 7 h (campaign total 16.5 h, about 27 h overall).
 
 ## Done when
 The revision-3 screen has run and been reported to Philip. Then either the large run
@@ -343,6 +345,24 @@ compete for a hold budget that fits about one waiting prefix at 2 GiB; at 4 GiB 
 LRU already keeps everything. The candidate was not run (gate rule). Roomy cells show no
 harm (equal TTFT). `vm.swappiness` and `vm.compaction_proactiveness` were restored to 60
 and 20 at 08:45. Budget: calibration 1.85 h, decision about 6.2 h of 7.56 h.
+
+### Preflight: cache-size sweep (pre-registered 2026-11-16 08:55, before sweep data)
+- Question: is there a CPU pool size where client information clearly beats the best
+  server-only policy on LRU, so the candidate is worth testing there?
+- Workload and arms: long mix, 9 sessions, window 480 s, one-shot mean 20 s, 6 running;
+  `lru`, `auto300old-lru`, `oracle-gpu-lru`.
+- Matrix: 3 GiB x seeds 33001-33005 (15 runs); 2 GiB x seeds 33004-33005 (6 runs; with
+  33001-33003 already run, 5 seeds). About 21 x 17.5 min = 6.1 GPU-h.
+- Decision rule per size (5 paired seeds; replaces the all-seeds rule for this sweep
+  because per-seed differences range from -0.1 to 5.3 points): `oracle-gpu-lru`
+  opt-in recompute below the best of `lru` and `auto300old-lru` by a mean of at least 3
+  points, and lower in at least 4 of 5 seeds. All-returns recompute is reported next to
+  it. Pass at a size: `cand-gpu-lru` on the same 5 seeds at that size (about 1.5 GPU-h).
+- Preconditions and checks: opportunity at 3 GiB is unverified (2 GiB LRU 10.9-16.1%,
+  4 GiB 0%). Early milestone: if `lru` at 3 GiB seed 33001 recomputes under 3% opt-in,
+  replace 3 GiB with 2.5 GiB before the other runs.
+- Expectations and kill: each cell about 15-20 min, `client_complete`, no failures, all
+  advice accepted, queue share under 20%; kill on any failed or timed-out job.
 
 ### Audit: every mechanism and its proof
 | Mechanism | Workload trigger | Proof (counter or check) |

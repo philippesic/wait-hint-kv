@@ -48,7 +48,7 @@ AGENT_MODEL_LENGTH = MAX_CONTEXT_TOKENS
 CAMPAIGN_CAPS = {
     "pr-evidence-2080ti": {"admission": 3600.0, "screen": 28800.0},
     "discussion-2080ti": {"pilot": 10800.0, "decision": 46800.0},
-    NATIVE_CAMPAIGN: {"admission": 300.0, "calibration": 6700.0, "decision": 27200.0},
+    NATIVE_CAMPAIGN: {"admission": 300.0, "calibration": 6700.0, "decision": 52400.0},
 }
 CAPS = CAMPAIGN_CAPS["pr-evidence-2080ti"]
 GIB = 1024**3
