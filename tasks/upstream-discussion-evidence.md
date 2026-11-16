@@ -233,7 +233,6 @@ compaction decided at response time with `keep_tokens` in that turn's hint (keep
 shared prefix plus a 2-3k summary).
 
 Blocked on Philip:
-- A native GPU qualification run (`tools.runtime_verify --gpu`, about 10 min).
 - Raising the decision cap by about 4 h and the 16 h hard ceiling to about 19.5-20 h
   (10.45 h spent; R3 needs about 8-9 h).
 - Approval to build.

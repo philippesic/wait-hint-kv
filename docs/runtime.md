@@ -130,7 +130,9 @@ receipt, frozen source, model dependencies and artifact hashes without rerunning
 Without arguments the verifier exits 2 and asks for an environment and output.
 Unknown schemas, failed attempts, missing observations and changed inputs refuse.
 
-Current GPU evidence covers only the RTX 2080 Ti/WSL2 cases in [FINDINGS](../FINDINGS.md).
+Current GPU evidence covers the RTX 2080 Ti/WSL2 cases in [FINDINGS](../FINDINGS.md). The
+same card on native Ubuntu 26.04 passed this functional gate on 2026-11-15; native
+performance is unmeasured.
 The RTX 5080/sm_120 is a separate, unqualified gate. Adding owned C++/CUDA source
 requires build and diagnostic recipes plus sm_75/sm_120 acceptance in
 `tools/native.json`.
