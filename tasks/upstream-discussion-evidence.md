@@ -273,6 +273,39 @@ one-shot mean 20 s, 6 running; typical 2 GiB, roomy 24 GiB, tight 1 GiB. A 12-se
   failures, every advice accepted, queue share under 25%, no material interference.
   Kill: any failed job, store failures, advice delivery errors over 1%, swap growth.
 
+### Phase 1 result (15% long mix, typical 2 GiB, LRU): gate failed
+Opt-in recompute per seed: 32001 LRU 8.5%, auto 8.2%, auto300 8.5%, auto-st2 7.0%,
+oracle 4.2% (4.3 points versus the gate comparators, 2.8 versus st2, which is descriptive
+only); 32002 LRU 2.7%, oracle 2.7%; 32003 LRU 3.1%, oracle 1.6%. Two causes, both
+verified in the receipts:
+- Ceiling: instant and tool waits never recompute (the GPU prefix cache keeps them; GPU
+  retention is about 60 s at 9 sessions), so LRU recompute comes only from the 5-9 long
+  returns per cell and was 2.7-3.1% on two seeds, below the 3-point bar.
+- Ranking flaw: "largest remaining wait loses first" spends the 50% hold budget on
+  short waits the GPU already covers and pushes out the long waits. In seed 32002 a
+  227 s wait's hold fell from 110 chunks to the 32-chunk system prefix while the hold
+  budget stayed full (292 of 292 chunks). The candidate inherits this (tool median 4 s
+  outranks long 135 s).
+
+### Phase 1b (pre-registered 2026-11-16 before any phase 1b data)
+Changes, all declared in reports:
+- GPU-aware advised holds (`oracle-gpu-*`, `cand-gpu-*`): a hint whose expected wait is
+  under the measured GPU retention (60 s, Stage A) gets no CPU hold; unhinted sessions
+  get no automatic hold in these arms; arrivals are still protected; ranking among the
+  remaining holds is unchanged. Original arms stay on record.
+- Fairer server-only comparator `auto300old-*`: 300 s automatic hold that keeps the
+  oldest holds (new finishes cannot displace older ones; yield takes the youngest).
+- Long-heavy wait mix (`--wait-mix long`: instant 35%, tool 25%, long 40%), authored
+  as the workload where holds should matter; the 15% mix and roomy cells remain the
+  "should not matter" checks.
+- Matrix (typical 2 GiB, 9 sessions, seeds 33001-33003): `lru`, `auto-lru`,
+  `auto300old-lru`, `oracle-gpu-lru` (12 runs, about 2.8 GPU-h).
+- Gate unchanged in form: `oracle-gpu-lru` opt-in recompute at least 3 points below the
+  best of `lru`, `auto-lru`, `auto300old-lru` in each seed. Pass: `cand-gpu-lru` on the
+  same 3 seeds (about 0.7 GPU-h). The ARC phase needs a cap raise from Philip.
+- Ceiling check after seed 33001's `lru`: if its opt-in recompute is under 6%, stop and
+  replan before the other runs.
+
 ### Audit: every mechanism and its proof
 | Mechanism | Workload trigger | Proof (counter or check) |
 |---|---|---|

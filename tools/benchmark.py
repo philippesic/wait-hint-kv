@@ -151,6 +151,9 @@ def main() -> int:
     agent_plan.add_argument("--window", type=float, required=True)
     agent_plan.add_argument("--one-shot-mean", type=float, required=True)
     agent_plan.add_argument("--max-running", type=int, required=True)
+    agent_plan.add_argument(
+        "--wait-mix", choices=("default", "long"), default="default"
+    )
     agent_plan.add_argument("--out", type=Path, required=True)
     agent_report = sub.add_parser("pr-agent-report")
     agent_report.add_argument("--metrics", type=Path, required=True)
@@ -351,6 +354,7 @@ def main() -> int:
             args.window,
             args.one_shot_mean,
             args.max_running,
+            args.wait_mix,
         )
         write_record(args.out, result)
         print(

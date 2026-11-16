@@ -21,7 +21,10 @@ CONTEXT_CEILING = 16000
 TURNS = (7, 10)
 COMPACTION_SHARE = 0.10
 ABANDON_SHARE = 3 / 8
-WAIT_MIX = (("instant", 0.50), ("tool", 0.35), ("long", 0.15))
+WAIT_MIXES = {
+    "default": (("instant", 0.50), ("tool", 0.35), ("long", 0.15)),
+    "long": (("instant", 0.35), ("tool", 0.25), ("long", 0.40)),
+}
 TOOL_MEDIAN_SECONDS = 4.0
 TOOL_SIGMA = 0.8
 LONG_WAIT = (30.0, 240.0)
@@ -50,6 +53,12 @@ ARMS: dict[str, dict[str, Any]] = {
     "oracle-uncapped-lru": {"policy": "AdvisedUncappedLRU", "information": "oracle"},
     "cand-lru": {"policy": "AdvisedHoldLRU", "information": "candidate"},
     "cand-arc": {"policy": "AdvisedHoldARC", "information": "candidate"},
+    "oracle-gpu-lru": {"policy": "AdvisedGpuLRU", "information": "oracle"},
+    "oracle-gpu-arc": {"policy": "AdvisedGpuARC", "information": "oracle"},
+    "cand-gpu-lru": {"policy": "AdvisedGpuLRU", "information": "candidate"},
+    "cand-gpu-arc": {"policy": "AdvisedGpuARC", "information": "candidate"},
+    "auto300old-lru": {"policy": "AutoHold300OldLRU", "information": "none"},
+    "auto300old-arc": {"policy": "AutoHold300OldARC", "information": "none"},
 }
 if tuple(ARMS) != DISCUSSION_ARMS:
     raise RuntimeError("discussion arm tables differ")
@@ -93,10 +102,10 @@ def system_prefix() -> list[int]:
     return _tokens(_rng(0, "agent-mix-system"), SYSTEM_TOKENS)
 
 
-def _wait(rng: Any) -> tuple[str, float]:
+def _wait(rng: Any, mix: str) -> tuple[str, float]:
     draw = rng.random()
     total = 0.0
-    for name, share in WAIT_MIX:
+    for name, share in WAIT_MIXES[mix]:
         total += share
         if draw < total:
             break
@@ -118,6 +127,7 @@ def _session(
     abandon: bool,
     adopter: bool,
     arrival: float,
+    mix: str,
 ) -> dict[str, Any]:
     content = _rng(seed, f"agent-mix-content-{index}")
     waits = _rng(seed, f"agent-mix-waits-{index}")
@@ -132,7 +142,7 @@ def _session(
         tool = _tokens(content, content.randint(*TOOL_TOKENS))
         grown = len(prompt) + output + len(tool)
         compacts = grown > CONTEXT_CEILING or content.random() < COMPACTION_SHARE
-        wait_class, gap = _wait(waits)
+        wait_class, gap = _wait(waits, mix)
         turns.append(
             {
                 "message_index": len(turns),
@@ -186,9 +196,11 @@ def agent_mix_schedule(
     window_seconds: float,
     one_shot_mean_seconds: float,
     max_running: int,
+    wait_mix: str = "default",
 ) -> dict[str, Any]:
     if (
-        model not in MODELS
+        wait_mix not in WAIT_MIXES
+        or model not in MODELS
         or partition not in PARTITIONS
         or not 4 <= sessions <= 48
         or not 60 <= window_seconds <= 1800
@@ -217,6 +229,7 @@ def agent_mix_schedule(
             index in abandoning,
             index not in silent,
             1.0 + index * stagger,
+            wait_mix,
         )
         for index in range(sessions)
     ]
@@ -244,7 +257,8 @@ def agent_mix_schedule(
             "window_seconds": window_seconds,
             "one_shot_mean_seconds": one_shot_mean_seconds,
             "max_running": max_running,
-        },
+        }
+        | ({} if wait_mix == "default" else {"wait_mix": wait_mix}),
         "horizon_seconds": 3600,
         "request_deadline_seconds": REQUEST_DEADLINE_SECONDS,
         "session_deadline_seconds": 3600,
@@ -274,7 +288,7 @@ def validate_agent_mix_schedule(schedule: dict[str, Any]) -> None:
             "arm_order",
             "stratum_weights",
         }
-        or set(schedule["parameters"]) != PARAMETERS
+        or set(schedule["parameters"]) - {"wait_mix"} != PARAMETERS
     ):
         raise ValueError("closed agent-mix schedule required")
     if schedule != agent_mix_schedule(

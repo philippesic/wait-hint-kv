@@ -12,14 +12,12 @@ AGE_BINS = (0.0, 1.0, 5.0, 15.0, 30.0, 45.0, 60.0, 90.0, 120.0, 180.0, 240.0)
 GATE_POINTS = 3.0
 BASES: dict[str, dict[str, Any]] = {
     "lru": {
-        "oracle": "oracle-lru",
-        "candidate": "cand-lru",
-        "server": ("lru", "auto-lru", "auto300-lru", "auto-st2-lru"),
+        "oracles": ("oracle-lru", "oracle-gpu-lru"),
+        "server": ("lru", "auto-lru", "auto300-lru", "auto-st2-lru", "auto300old-lru"),
     },
     "arc": {
-        "oracle": "oracle-arc",
-        "candidate": "cand-arc",
-        "server": ("arc", "auto-arc"),
+        "oracles": ("oracle-arc", "oracle-gpu-arc"),
+        "server": ("arc", "auto-arc", "auto300old-arc"),
     },
 }
 NAME = re.compile(
@@ -152,23 +150,34 @@ def retention_horizon(profile: list[dict[str, Any]]) -> float | None:
     return None
 
 
-def _gate(cells: dict[tuple[str, int], dict[str, Any]], base: str) -> dict[str, Any]:
+def _gate(
+    cells: dict[tuple[str, int], dict[str, Any]], base: str, oracle_arm: str
+) -> dict[str, Any]:
     shape = BASES[base]
     seeds = sorted(
         seed
         for arm, seed in cells
-        if arm == shape["oracle"]
+        if arm == oracle_arm
         and any((server, seed) in cells for server in shape["server"])
     )
+    comparators = [
+        arm
+        for arm in shape["server"]
+        if seeds and all((arm, seed) in cells for seed in seeds)
+    ]
     rows = []
     for seed in seeds:
-        server = {
+        descriptive = {
             arm: cells[(arm, seed)]["opt_in"]["recompute_share"]
             for arm in shape["server"]
             if (arm, seed) in cells
-            and cells[(arm, seed)]["opt_in"]["recompute_share"] is not None
         }
-        oracle = cells[(shape["oracle"], seed)]["opt_in"]["recompute_share"]
+        server = {
+            arm: share
+            for arm, share in descriptive.items()
+            if arm in comparators and share is not None
+        }
+        oracle = cells[(oracle_arm, seed)]["opt_in"]["recompute_share"]
         if not server or oracle is None:
             continue
         best = min(server, key=server.__getitem__)
@@ -179,12 +188,15 @@ def _gate(cells: dict[tuple[str, int], dict[str, Any]], base: str) -> dict[str, 
                 "best_server_arm": best,
                 "best_server": server[best],
                 "points": 100 * (server[best] - oracle),
+                "all_server_arms": descriptive,
             }
         )
     passed = len(rows) >= 3 and all(row["points"] >= GATE_POINTS for row in rows)
     return {
         "base": base,
+        "oracle_arm": oracle_arm,
         "seeds": rows,
+        "comparators": comparators,
         "passed": passed,
         "rule": f"capped oracle beats the best server-only arm by >= {GATE_POINTS} recompute points in every seed (at least 3)",
     }
@@ -216,6 +228,11 @@ def campaign_agent_report(metrics_directory: Path) -> dict[str, Any]:
             },
             "lru_idle_profile": profile,
             "lru_retention_horizon_seconds": retention_horizon(profile),
-            "gates": {base: _gate(cells, base) for base in BASES},
+            "gates": {
+                oracle: _gate(cells, base, oracle)
+                for base, shape in BASES.items()
+                for oracle in shape["oracles"]
+                if any(arm == oracle for arm, _ in cells)
+            },
         }
     return report

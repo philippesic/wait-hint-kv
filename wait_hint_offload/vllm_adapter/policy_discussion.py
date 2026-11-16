@@ -41,6 +41,8 @@ class DiscussionHold(WaitHoldPolicy):
     request_deadline_ms = 120_000
     accepts_advice = False
     uncapped = False
+    gpu_horizon_ms = 0
+    keep_oldest = False
 
     def __init__(self, cache_capacity: int):
         super().__init__(cache_capacity)
@@ -63,7 +65,16 @@ class DiscussionHold(WaitHoldPolicy):
             return -math.inf
         if plan.expected_ns is not None and now < plan.expected_ns:
             return float(plan.expected_ns - now)
-        return float(now - plan.finished_ns)
+        age = float(now - plan.finished_ns)
+        return -age if self.keep_oldest else age
+
+    def _gpu_covered(self, plan: Plan) -> bool:
+        if not self.gpu_horizon_ms or plan.arrived_ns is not None:
+            return False
+        return (
+            plan.expected_ns is None
+            or plan.expected_ns - plan.finished_ns < self.gpu_horizon_ms * MS
+        )
 
     def _boundary_keys(self, prefix: PolicyPrefix, boundary: int) -> frozenset[bytes]:
         partial = boundary % prefix.alignment_tokens != 0
@@ -159,6 +170,11 @@ class DiscussionHold(WaitHoldPolicy):
             or owner not in self.observations
         ):
             return "inactive"
+        if self._gpu_covered(plan):
+            if plan.held:
+                self._release(owner, "hold_gpu_covered")
+            self._count("gpu_covered")
+            return "inactive"
         boundary, keys = self._extent(owner, plan)
         if not keys:
             if plan.held:
@@ -205,7 +221,9 @@ class DiscussionHold(WaitHoldPolicy):
             (
                 owner
                 for owner, plan in self.plans.items()
-                if not plan.held and plan.expiry_ns > now
+                if not plan.held
+                and plan.expiry_ns > now
+                and not self._gpu_covered(plan)
             ),
             key=lambda owner: self._rank(owner, now),
         )
@@ -524,4 +542,16 @@ AdvisedHoldLRU = _variant("AdvisedHoldLRU", lru.LRUCachePolicy, accepts_advice=T
 AdvisedHoldARC = _variant("AdvisedHoldARC", arc.ARCCachePolicy, accepts_advice=True)
 AdvisedUncappedLRU = _variant(
     "AdvisedUncappedLRU", lru.LRUCachePolicy, accepts_advice=True, uncapped=True
+)
+AdvisedGpuLRU = _variant(
+    "AdvisedGpuLRU", lru.LRUCachePolicy, accepts_advice=True, gpu_horizon_ms=60_000
+)
+AdvisedGpuARC = _variant(
+    "AdvisedGpuARC", arc.ARCCachePolicy, accepts_advice=True, gpu_horizon_ms=60_000
+)
+AutoHold300OldLRU = _variant(
+    "AutoHold300OldLRU", lru.LRUCachePolicy, automatic_ms=300_000, keep_oldest=True
+)
+AutoHold300OldARC = _variant(
+    "AutoHold300OldARC", arc.ARCCachePolicy, automatic_ms=300_000, keep_oldest=True
 )

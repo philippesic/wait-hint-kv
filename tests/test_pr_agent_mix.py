@@ -223,3 +223,21 @@ def test_longest_agent_turn_passes_the_request_parser(schedule: dict[str, Any]) 
     )
     payload = request_payload(schedule, session, index, "oracle-lru")
     assert EvidenceRequest.parse(payload).prompt_token_ids
+
+
+def test_long_wait_mix_is_declared_and_regenerates() -> None:
+    default = agent_mix_schedule("Q7", "decision", 33001, 9, 480, 20, 6)
+    long = agent_mix_schedule("Q7", "decision", 33001, 9, 480, 20, 6, "long")
+    validate_agent_mix_schedule(long)
+    assert "wait_mix" not in default["parameters"]
+    assert long["parameters"]["wait_mix"] == "long"
+
+    def share(schedule: dict[str, Any]) -> float:
+        waits = [
+            turn["wait_class"]
+            for session in schedule["sessions"]
+            for turn in session["turns"][:-1]
+        ]
+        return waits.count("long") / len(waits)
+
+    assert share(long) > share(default) + 0.15

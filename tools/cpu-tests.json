@@ -92,6 +92,7 @@
   "tests/test_pr_agent_mix.py::test_agent_commands_match_across_arms_except_policy",
   "tests/test_pr_agent_mix.py::test_cohorts_waits_and_one_shots",
   "tests/test_pr_agent_mix.py::test_compaction_keeps_only_system_prefix",
+  "tests/test_pr_agent_mix.py::test_long_wait_mix_is_declared_and_regenerates",
   "tests/test_pr_agent_mix.py::test_longest_agent_turn_passes_the_request_parser",
   "tests/test_pr_agent_mix.py::test_native_campaign_keeps_models_and_arms_apart",
   "tests/test_pr_agent_mix.py::test_schedule_regenerates_exactly_and_refuses_edits",

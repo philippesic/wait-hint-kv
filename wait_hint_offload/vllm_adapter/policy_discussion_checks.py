@@ -13,10 +13,14 @@ from wait_hint_offload.vllm_adapter.policy_checks import (
     request_fixture,
 )
 from wait_hint_offload.vllm_adapter.policy_discussion import (
+    AdvisedGpuARC,
+    AdvisedGpuLRU,
     AdvisedHoldARC,
     AdvisedHoldLRU,
     AdvisedUncappedLRU,
     AutoHold300LRU,
+    AutoHold300OldARC,
+    AutoHold300OldLRU,
     AutoHoldARC,
     AutoHoldLRU,
     DiscussionHold,
@@ -293,6 +297,49 @@ def _messages() -> dict[str, Any]:
     }
 
 
+def _gpu_aware(name: str) -> dict[str, Any]:
+    harness = Harness(name)
+    policy = harness.policy
+    harness.finish("s", hashes("s", 3))
+    assert harness.advise("s", "return", expected=4_000, expiry=30_000) == "planned"
+    harness.finish("n", hashes("n", 3))
+    harness.finish("l", hashes("l", 3))
+    harness.advise("l", "return", expected=135_000, expiry=240_000)
+    assert harness.leases() == {"l"}
+    assert harness.count("gpu_covered") >= 2
+    harness.arrive("s", hashes("s", 3), 2)
+    assert harness.leases() == {"l", "s"}
+    harness.native.reset_cache()
+    return {
+        "short_expected_wait_not_held": True,
+        "unhinted_not_held": True,
+        "long_expected_wait_held": True,
+        "arrival_still_protected": True,
+    }
+
+
+def _keep_oldest(name: str) -> dict[str, Any]:
+    harness = Harness(name)
+    policy = harness.policy
+    harness.finish("x", hashes("x", 6))
+    plan = policy.plans['["fixture","x","i"]']
+    assert plan.expiry_ns == plan.finished_ns + 300 * SECOND
+    harness.advance(10)
+    harness.finish("y", hashes("y", 6))
+    assert "x" in harness.leases()
+    assert len(policy.book.leases['["fixture","y","i"]'].keys) == 2
+    harness.store("f", hashes("f", 6))
+    yields = harness.count("hold_yield")
+    harness.store("g", hashes("g", 10))
+    assert harness.count("hold_yield") > yields and harness.leases() == {"x"}
+    harness.native.reset_cache()
+    return {
+        "expiry_ms": 300000,
+        "new_finish_cannot_displace_older": True,
+        "yield_takes_youngest": True,
+    }
+
+
 def _classes() -> dict[str, Any]:
     return {
         cls.__name__: {
@@ -308,6 +355,10 @@ def _classes() -> dict[str, Any]:
             AdvisedHoldLRU,
             AdvisedHoldARC,
             AdvisedUncappedLRU,
+            AdvisedGpuLRU,
+            AdvisedGpuARC,
+            AutoHold300OldLRU,
+            AutoHold300OldARC,
         )
     }
 
@@ -335,5 +386,13 @@ def observe_discussion_policy() -> dict[str, Any]:
             for base in ("LRU", "ARC")
         },
         "messages": _messages(),
+        **{
+            f"gpu_aware-{base}": _gpu_aware(f"AdvisedGpu{base}")
+            for base in ("LRU", "ARC")
+        },
+        **{
+            f"keep_oldest-{base}": _keep_oldest(f"AutoHold300Old{base}")
+            for base in ("LRU", "ARC")
+        },
         "scope": "CPU fixtures on frozen main; no serving or GPU qualification",
     }

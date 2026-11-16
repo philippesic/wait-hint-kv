@@ -25,6 +25,12 @@ DISCUSSION_ARMS = (
     "oracle-uncapped-lru",
     "cand-lru",
     "cand-arc",
+    "oracle-gpu-lru",
+    "oracle-gpu-arc",
+    "cand-gpu-lru",
+    "cand-gpu-arc",
+    "auto300old-lru",
+    "auto300old-arc",
 )
 ALL_ARMS = (*ARMS, "A6", "A7", "A6s", "A9s", *DISCUSSION_ARMS)
 POST_RESPONSE_ARMS = frozenset({"A3p", "A4p", "A7", "A9s", *DISCUSSION_ARMS})

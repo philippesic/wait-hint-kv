@@ -666,6 +666,12 @@ candidate on the bases that pass.
   `done`, `ephemeral` and the part beyond `keep_tokens` are evicted first, except chunks
   seen in more than one session. `pr-feasibility-native --discussion --out FILE` runs the
   CPU fixtures for every rule on both bases.
+- GPU-aware variants (`oracle-gpu-*`, `cand-gpu-*`, classes `AdvisedGpu*`) give no CPU
+  hold to a hint whose expected wait is under 60 s (the GPU prefix cache's measured
+  retention at 9 sessions) and no automatic hold to unhinted sessions; arrivals stay
+  protected. `auto300old-*` (`AutoHold300Old*`) holds every finish for 300 s and keeps
+  the oldest holds. `--wait-mix long` (instant 35%, tool 25%, long 40%) is the authored
+  long-heavy mix.
 - `pr-agent-report --metrics DIR --out FILE` summarizes each cell (token-weighted
   recompute for opt-in returns overall, per wait type and long-wait halves; non-hinting
   returns; TTFT per cohort; queue share of TTFT; failures; advice outcomes; policy
