@@ -14,6 +14,7 @@ from tools.benchmarking.pr_jobs import (
     _sample_job,
     _stop,
     client_command,
+    foreign_gpu_processes,
     model_digest,
     run_gpu_job,
     screen_server_command,
@@ -241,3 +242,10 @@ def test_client_exit_during_sampling_requires_a_sample_after_exit(
             client.wait(timeout=5)
         if client.stdin is not None and not client.stdin.closed:
             client.stdin.close()
+
+
+def test_desktop_gpu_clients_do_not_count_as_busy() -> None:
+    desktop = "GPU-1, 8661, /usr/libexec/xdg-desktop-portal-gnome, 5"
+    other = "GPU-1, 9000, python, 300"
+    assert foreign_gpu_processes(desktop + "\n") == []
+    assert foreign_gpu_processes(desktop + "\n" + other) == [other]

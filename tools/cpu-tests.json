@@ -110,6 +110,7 @@
   "tests/test_pr_feasibility.py::test_receipt_rejects_tampering_and_unsupported_inferences",
   "tests/test_pr_jobs.py::test_captured_client_command_passes_real_output_guard",
   "tests/test_pr_jobs.py::test_client_exit_during_sampling_requires_a_sample_after_exit",
+  "tests/test_pr_jobs.py::test_desktop_gpu_clients_do_not_count_as_busy",
   "tests/test_pr_jobs.py::test_discussion_refuses_deprecated_arms[A6]",
   "tests/test_pr_jobs.py::test_discussion_refuses_deprecated_arms[A7]",
   "tests/test_pr_jobs.py::test_discussion_refuses_deprecated_arms[A9s]",

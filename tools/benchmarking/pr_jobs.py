@@ -251,6 +251,27 @@ def agent_server_command(
     ]
 
 
+DESKTOP_GPU_PROCESSES = frozenset(
+    {
+        "/usr/libexec/xdg-desktop-portal-gnome",
+        "/usr/bin/gnome-shell",
+        "/usr/bin/Xwayland",
+    }
+)
+
+
+def foreign_gpu_processes(listing: str) -> list[str]:
+    return [
+        line
+        for line in listing.splitlines()
+        if line.strip()
+        and not (
+            len(fields := line.split(",")) == 4
+            and fields[2].strip() in DESKTOP_GPU_PROCESSES
+        )
+    ]
+
+
 def gpu_status() -> dict[str, Any]:
     captures = {}
     for name, query in (
@@ -406,7 +427,9 @@ def verify_gpu_job(directory: Path) -> dict[str, Any]:
         terminal["gpu_charge_seconds"]
         != (terminal["ended_ns"] - admission["started_ns"]) / 1e9
         or not 0 <= terminal["gpu_charge_seconds"] <= admission["maximum_seconds"] + 60
-        or json.loads((directory / "idle.json").read_text())["processes"].strip()
+        or foreign_gpu_processes(
+            json.loads((directory / "idle.json").read_text())["processes"]
+        )
     ):
         raise ValueError("GPU time or idle evidence differs")
     return {
@@ -585,7 +608,7 @@ def run_gpu_job(
     )
     idle = gpu_status()
     write_record(output / "idle.json", idle)
-    if idle["processes"].strip():
+    if foreign_gpu_processes(idle["processes"]):
         write_record(
             output / "deferred.json",
             {"reason": "GPU busy; no process started", "gpu_charge_seconds": 0},
