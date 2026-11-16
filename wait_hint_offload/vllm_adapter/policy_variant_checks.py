@@ -12,8 +12,11 @@ from wait_hint_offload.vllm_adapter.policy_checks import (
     request_fixture,
 )
 from wait_hint_offload.vllm_adapter.policy_variants import (
+    AutomaticHold,
     AutomaticHoldLRU,
+    LeaseHold,
     PostResponseLRU,
+    ReturnAwareHold,
     StrengthenedHoldLRU,
 )
 
@@ -24,6 +27,7 @@ def _automatic() -> dict[str, Any]:
     native, owner = policy_fixture("AutomaticHoldLRU", 4, VARIANTS)
     policy = native._policy
     assert isinstance(policy, AutomaticHoldLRU)
+    assert isinstance(policy, AutomaticHold)
     now = [1_000_000_000]
     policy.clock = lambda: now[0]
     context, _ = request_fixture(owner, "first", "s", 1, [b"a", b"b"], False)
@@ -84,6 +88,7 @@ def _post_response() -> dict[str, Any]:
     native, owner = policy_fixture("PostResponseLRU", 4, VARIANTS)
     policy = native._policy
     assert isinstance(policy, PostResponseLRU)
+    assert isinstance(policy, ReturnAwareHold)
     now = [1_000_000_000]
     policy.clock = lambda: now[0]
     context, action = request_fixture(owner, "first", "s", 1, [b"a", b"b"])
@@ -127,7 +132,8 @@ def _finish(native: Any, owner: Any, name: str, hashes: list[bytes]) -> None:
 def _strengthened() -> dict[str, Any]:
     native, owner = policy_fixture("StrengthenedHoldLRU", 16, VARIANTS)
     policy = native._policy
-    assert isinstance(policy, StrengthenedHoldLRU) and policy.book.limit == 8
+    assert isinstance(policy, StrengthenedHoldLRU)
+    assert isinstance(policy, LeaseHold) and policy.book.limit == 8
     now = [1_000_000_000]
     policy.clock = lambda: now[0]
     _finish(native, owner, "s", [b"s1", b"s2"])

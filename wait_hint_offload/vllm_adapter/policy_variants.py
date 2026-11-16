@@ -54,8 +54,8 @@ class ReturnAwareHold(WaitHoldPolicy):
     def _maintain(self) -> None:
         now = self.clock()
         self.book.expire(now)
-        for owner, observation in tuple(self.observations.items()):
-            if observation.expires_ns <= now:
+        for owner, expired in tuple(self.observations.items()):
+            if expired.expires_ns <= now:
                 self._retire(owner)
         if self.scheduler is None or not self.observations:
             return
