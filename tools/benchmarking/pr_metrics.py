@@ -212,6 +212,9 @@ def measure_cell(
         metrics["resources"] = summarize_screen_resources(
             resources,
             report["started_ns"],
-            report.get("measurement_end_ns", report["scheduled_end_ns"]),
+            report.get(
+                "measurement_end_ns",
+                min(report["scheduled_end_ns"], report["ended_ns"]),
+            ),
         )
     return metrics
