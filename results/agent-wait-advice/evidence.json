@@ -1,0 +1,3006 @@
+{
+ "schema": "agent-wait-advice-evidence-v1",
+ "question": "Does client wait advice (tool-type expected return, done, ephemeral, keep_tokens) reduce CPU-offload prefix recomputation for agent sessions beyond the best server-only hold, and under which pool sizes?",
+ "platform": {
+  "model": "Qwen2.5-7B-Instruct-AWQ b25037543e9394b818fdfca67ab2a00ecc7dd641, fp16 KV",
+  "gpu": "RTX 2080 Ti 11 GB, native Ubuntu 26.04, driver 595.99",
+  "vllm": "0.34.0rc1.dev465+ge9281bd93 with the pr-post-response engine-core patch for every arm",
+  "gpu_kv_tokens": 55296,
+  "cpu_chunk_tokens": 64,
+  "max_running": 6,
+  "admission": "q7-admission-a2: byte-identical restore, same boundary, token identity"
+ },
+ "workload": {
+  "generator": "tools/benchmarking/pr_agent_mix.py",
+  "sessions": 9,
+  "turns": "7-10",
+  "system_prompt_tokens": 2048,
+  "context_tokens": "about 3k to 16k, compaction at 16k or with 10% chance",
+  "abandoning_share": "3/8",
+  "non_hinting_sessions": "at least 2",
+  "waits": {
+   "instant": "resampled from captured release-01 waits up to 5 s, median 236 ms",
+   "tool": "LogNormal median 4 s, sigma 0.8 (declared)",
+   "long": "uniform 30-240 s (authored)"
+  },
+  "mixes": {
+   "default": "instant 50%, tool 35%, long 15%",
+   "long": "instant 35%, tool 25%, long 40%"
+  }
+ },
+ "metric": "token-weighted recomputed share of eligible reusable prefix tokens on returning turns of hinting sessions",
+ "phases": [
+  {
+   "name": "stage-a",
+   "runner_commit": "987a643bc6aa689be3c276c25d0a55087a58a85f",
+   "description": "Calibration: LRU at 9 and 12 sessions, 15% long-wait mix"
+  },
+  {
+   "name": "phase-1",
+   "runner_commit": "d8a0f1b051b2f1e3ad522eef5f17a44a749c4e7b",
+   "description": "Oracle gate on LRU, 15% long-wait mix, rule fixed in d8a0f1b0"
+  },
+  {
+   "name": "phase-1b",
+   "runner_commit": "d72f9347912a1ed904e40c3fc748f0de24534c96",
+   "description": "GPU-aware oracle gate on LRU, 40% long-wait mix, rule fixed in 07a8ed29 and amended in d72f9347"
+  },
+  {
+   "name": "sweep",
+   "runner_commit": "f0f608ed4b033e6741e7ff449c251e19bf78a836",
+   "description": "Cache-size sweep and candidate, 40% long-wait mix, rule fixed in f0f608ed"
+  }
+ ],
+ "rules": {
+  "phase-1": "oracle-lru at least 3 points below the best of lru and auto-lru in each of 3 seeds (sensitivity arms descriptive only)",
+  "phase-1b": "oracle-gpu-lru at least 3 points below the best of lru and auto300old-lru in each of 3 seeds",
+  "sweep": "per pool size: oracle-gpu-lru mean lead at least 3 points and lower in at least 4 of 5 seeds; pass runs cand-gpu-lru on the same seeds"
+ },
+ "gates": {
+  "phase-1": {
+   "passed": false,
+   "seeds": [
+    {
+     "seed": 32001,
+     "arm": "oracle-lru",
+     "value_pct": 4.17,
+     "best_server_pct": 8.24,
+     "lead_points": 4.07
+    },
+    {
+     "seed": 32002,
+     "arm": "oracle-lru",
+     "value_pct": 2.71,
+     "best_server_pct": 2.71,
+     "lead_points": 0.0
+    },
+    {
+     "seed": 32003,
+     "arm": "oracle-lru",
+     "value_pct": 1.63,
+     "best_server_pct": 3.11,
+     "lead_points": 1.48
+    }
+   ]
+  },
+  "phase-1b": {
+   "passed": false,
+   "seeds": [
+    {
+     "seed": 33001,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 10.75,
+     "best_server_pct": 10.73,
+     "lead_points": -0.02
+    },
+    {
+     "seed": 33002,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 3.87,
+     "best_server_pct": 9.2,
+     "lead_points": 5.33
+    },
+    {
+     "seed": 33003,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 13.67,
+     "best_server_pct": 15.83,
+     "lead_points": 2.16
+    }
+   ]
+  },
+  "sweep-2048": {
+   "passed": true,
+   "seeds": [
+    {
+     "seed": 33001,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 10.75,
+     "best_server_pct": 10.73,
+     "lead_points": -0.02
+    },
+    {
+     "seed": 33002,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 3.87,
+     "best_server_pct": 9.2,
+     "lead_points": 5.33
+    },
+    {
+     "seed": 33003,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 13.67,
+     "best_server_pct": 15.83,
+     "lead_points": 2.16
+    },
+    {
+     "seed": 33004,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 3.91,
+     "best_server_pct": 7.98,
+     "lead_points": 4.07
+    },
+    {
+     "seed": 33005,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 7.22,
+     "best_server_pct": 11.2,
+     "lead_points": 3.98
+    }
+   ],
+   "mean_lead_points": 3.1,
+   "seeds_lower": 4
+  },
+  "sweep-3072": {
+   "passed": true,
+   "seeds": [
+    {
+     "seed": 33001,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 0.0,
+     "best_server_pct": 5.45,
+     "lead_points": 5.45
+    },
+    {
+     "seed": 33002,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 0.0,
+     "best_server_pct": 7.26,
+     "lead_points": 7.26
+    },
+    {
+     "seed": 33003,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 2.74,
+     "best_server_pct": 14.29,
+     "lead_points": 11.55
+    },
+    {
+     "seed": 33004,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 0.0,
+     "best_server_pct": 3.53,
+     "lead_points": 3.53
+    },
+    {
+     "seed": 33005,
+     "arm": "oracle-gpu-lru",
+     "value_pct": 2.53,
+     "best_server_pct": 8.49,
+     "lead_points": 5.96
+    }
+   ],
+   "mean_lead_points": 6.75,
+   "seeds_lower": 5
+  },
+  "candidate-3072": {
+   "seeds": [
+    {
+     "seed": 33001,
+     "arm": "cand-gpu-lru",
+     "value_pct": 0.0,
+     "best_server_pct": 5.45,
+     "lead_points": 5.45
+    },
+    {
+     "seed": 33002,
+     "arm": "cand-gpu-lru",
+     "value_pct": 0.0,
+     "best_server_pct": 7.26,
+     "lead_points": 7.26
+    },
+    {
+     "seed": 33003,
+     "arm": "cand-gpu-lru",
+     "value_pct": 2.76,
+     "best_server_pct": 14.29,
+     "lead_points": 11.53
+    },
+    {
+     "seed": 33004,
+     "arm": "cand-gpu-lru",
+     "value_pct": 0.0,
+     "best_server_pct": 3.53,
+     "lead_points": 3.53
+    },
+    {
+     "seed": 33005,
+     "arm": "cand-gpu-lru",
+     "value_pct": 4.54,
+     "best_server_pct": 8.49,
+     "lead_points": 3.95
+    }
+   ],
+   "mean_lead_points": 6.34,
+   "seeds_lower": 5
+  }
+ },
+ "excluded_attempts": {
+  "smoke-*": "functional smoke runs before calibration; not evidence",
+  "probe-n12-p32768-lru-s31002-a1": "longer-session calibration probe before sessions were shortened; queue share 29%",
+  "a-n12-p4096-lru-s31004-a1": "refused by the calibration cap; no GPU time",
+  "l-p2048-lru-s33001-a1": "hit the 1,000 s job ceiling; invalid",
+  "l-p2048-auto-lru-s33001-a1": "stopped during model load; terminal reconstructed, 58 s charged",
+  "x-p4096-auto300old-lru-s33001-a1": "stopped deliberately after LRU at 4 GiB recomputed nothing; 22 s charged"
+ },
+ "gpu_hours": {
+  "calibration": 1.85,
+  "decision": 13.45,
+  "admission": 0.02
+ },
+ "cells": [
+  {
+   "phase": "stage-a",
+   "job": "a-n12-p2048-lru-s31004-a1",
+   "arm": "lru",
+   "seed": 31004,
+   "pool_mib": 2048,
+   "sessions": 12,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 855.2,
+   "opt_in": {
+    "requests": 69,
+    "eligible_tokens": 480320,
+    "recomputed_tokens": 70400,
+    "recompute_pct": 14.66
+   },
+   "non_hinting": {
+    "eligible_tokens": 59456,
+    "recomputed_tokens": 3904,
+    "recompute_pct": 6.57
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.97,
+    "tool": 11.97,
+    "long": 50.9
+   },
+   "ttft_mean_s": {
+    "first_turn": 3.45,
+    "hinted_return": 12.91,
+    "unhinted_return": 12.26,
+    "one_shot": 20.4
+   },
+   "queue_share_of_ttft": 0.558,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "stage-a",
+   "job": "a-n12-p24576-lru-s31004-a1",
+   "arm": "lru",
+   "seed": 31004,
+   "pool_mib": 24576,
+   "sessions": 12,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 797.2,
+   "opt_in": {
+    "requests": 69,
+    "eligible_tokens": 480320,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 59456,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 3.19,
+    "hinted_return": 6.57,
+    "unhinted_return": 7.56,
+    "one_shot": 6.86
+   },
+   "queue_share_of_ttft": 0.274,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "stage-a",
+   "job": "a-n9-p2048-lru-s31003-a1",
+   "arm": "lru",
+   "seed": 31003,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 534.8,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 309632,
+    "recomputed_tokens": 34240,
+    "recompute_pct": 11.06
+   },
+   "non_hinting": {
+    "eligible_tokens": 140416,
+    "recomputed_tokens": 7232,
+    "recompute_pct": 5.15
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 70.49
+   },
+   "ttft_mean_s": {
+    "first_turn": 3.63,
+    "hinted_return": 7.88,
+    "unhinted_return": 6.84,
+    "one_shot": 6.1
+   },
+   "queue_share_of_ttft": 0.115,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "stage-a",
+   "job": "a-n9-p24576-lru-s31003-a1",
+   "arm": "lru",
+   "seed": 31003,
+   "pool_mib": 24576,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 524.7,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 309632,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 140416,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 4.45,
+    "hinted_return": 5.66,
+    "unhinted_return": 5.43,
+    "one_shot": 3.05
+   },
+   "queue_share_of_ttft": 0.096,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "stage-a",
+   "job": "a-n9-p256-lru-s31003-a1",
+   "arm": "lru",
+   "seed": 31003,
+   "pool_mib": 256,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 532.9,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 309632,
+    "recomputed_tokens": 34240,
+    "recompute_pct": 11.06
+   },
+   "non_hinting": {
+    "eligible_tokens": 140416,
+    "recomputed_tokens": 7232,
+    "recompute_pct": 5.15
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 70.49
+   },
+   "ttft_mean_s": {
+    "first_turn": 3.64,
+    "hinted_return": 7.69,
+    "unhinted_return": 7.63,
+    "one_shot": 5.4
+   },
+   "queue_share_of_ttft": 0.096,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "stage-a",
+   "job": "a-n9-p4096-lru-s31003-a1",
+   "arm": "lru",
+   "seed": 31003,
+   "pool_mib": 4096,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 514.5,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 309632,
+    "recomputed_tokens": 14528,
+    "recompute_pct": 4.69
+   },
+   "non_hinting": {
+    "eligible_tokens": 140416,
+    "recomputed_tokens": 7232,
+    "recompute_pct": 5.15
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 29.91
+   },
+   "ttft_mean_s": {
+    "first_turn": 3.66,
+    "hinted_return": 6.8,
+    "unhinted_return": 7.51,
+    "one_shot": 5.08
+   },
+   "queue_share_of_ttft": 0.069,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "stage-a",
+   "job": "a-n9-p8192-lru-s31003-a1",
+   "arm": "lru",
+   "seed": 31003,
+   "pool_mib": 8192,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 514.0,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 309632,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 140416,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 3.68,
+    "hinted_return": 5.86,
+    "unhinted_return": 6.24,
+    "one_shot": 3.21
+   },
+   "queue_share_of_ttft": 0.089,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-auto-lru-s32001-a1",
+   "arm": "auto-lru",
+   "seed": 32001,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 555.1,
+   "opt_in": {
+    "requests": 50,
+    "eligible_tokens": 358720,
+    "recomputed_tokens": 29568,
+    "recompute_pct": 8.24
+   },
+   "non_hinting": {
+    "eligible_tokens": 34176,
+    "recomputed_tokens": 2944,
+    "recompute_pct": 8.61
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 55.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.58,
+    "hinted_return": 6.8,
+    "unhinted_return": 5.53,
+    "one_shot": 5.48
+   },
+   "queue_share_of_ttft": 0.05,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 90,
+    "arrived_held": 45,
+    "arrived_unheld": 1,
+    "hold_displaced": 133,
+    "partial_hold": 131,
+    "readmitted": 122,
+    "lost_protection_evictions": 1077
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-auto-lru-s32002-a1",
+   "arm": "auto-lru",
+   "seed": 32002,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 971.5,
+   "opt_in": {
+    "requests": 46,
+    "eligible_tokens": 321664,
+    "recomputed_tokens": 8704,
+    "recompute_pct": 2.71
+   },
+   "non_hinting": {
+    "eligible_tokens": 109568,
+    "recomputed_tokens": 8128,
+    "recompute_pct": 7.42
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 19.57
+   },
+   "ttft_mean_s": {
+    "first_turn": 4.18,
+    "hinted_return": 7.17,
+    "unhinted_return": 11.51,
+    "one_shot": 9.14
+   },
+   "queue_share_of_ttft": 0.29,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 103,
+    "arrived_held": 48,
+    "arrived_unheld": 6,
+    "hold_displaced": 229,
+    "partial_hold": 213,
+    "readmitted": 213,
+    "lost_protection_evictions": 1030
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-auto-lru-s32003-a1",
+   "arm": "auto-lru",
+   "seed": 32003,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 722.6,
+   "opt_in": {
+    "requests": 42,
+    "eligible_tokens": 293824,
+    "recomputed_tokens": 9152,
+    "recompute_pct": 3.11
+   },
+   "non_hinting": {
+    "eligible_tokens": 95424,
+    "recomputed_tokens": 5184,
+    "recompute_pct": 5.43
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 29.85
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.39,
+    "hinted_return": 5.65,
+    "unhinted_return": 5.17,
+    "one_shot": 2.76
+   },
+   "queue_share_of_ttft": 0.026,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 86,
+    "arrived_held": 46,
+    "arrived_unheld": 4,
+    "hold_displaced": 116,
+    "partial_hold": 119,
+    "readmitted": 108,
+    "lost_protection_evictions": 970
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-auto-st2-lru-s32001-a1",
+   "arm": "auto-st2-lru",
+   "seed": 32001,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 553.9,
+   "opt_in": {
+    "requests": 50,
+    "eligible_tokens": 358720,
+    "recomputed_tokens": 25280,
+    "recompute_pct": 7.05
+   },
+   "non_hinting": {
+    "eligible_tokens": 34176,
+    "recomputed_tokens": 2944,
+    "recompute_pct": 8.61
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 47.02
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.63,
+    "hinted_return": 6.97,
+    "unhinted_return": 6.38,
+    "one_shot": 4.94
+   },
+   "queue_share_of_ttft": 0.068,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 90,
+    "arrived_held": 45,
+    "arrived_unheld": 1,
+    "hold_displaced": 45,
+    "partial_hold": 25,
+    "readmitted": 43,
+    "lost_protection_evictions": 203
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-auto300-lru-s32001-a1",
+   "arm": "auto300-lru",
+   "seed": 32001,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 562.8,
+   "opt_in": {
+    "requests": 50,
+    "eligible_tokens": 358720,
+    "recomputed_tokens": 30656,
+    "recompute_pct": 8.55
+   },
+   "non_hinting": {
+    "eligible_tokens": 34176,
+    "recomputed_tokens": 2944,
+    "recompute_pct": 8.61
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 57.02
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.58,
+    "hinted_return": 7.09,
+    "unhinted_return": 6.0,
+    "one_shot": 6.47
+   },
+   "queue_share_of_ttft": 0.077,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 90,
+    "arrived_held": 55,
+    "arrived_unheld": 2,
+    "hold_displaced": 1341,
+    "partial_hold": 372,
+    "readmitted": 1335,
+    "lost_protection_evictions": 1754
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-lru-s32001-a1",
+   "arm": "lru",
+   "seed": 32001,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 562.7,
+   "opt_in": {
+    "requests": 50,
+    "eligible_tokens": 358720,
+    "recomputed_tokens": 30656,
+    "recompute_pct": 8.55
+   },
+   "non_hinting": {
+    "eligible_tokens": 34176,
+    "recomputed_tokens": 2944,
+    "recompute_pct": 8.61
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 57.02
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.51,
+    "hinted_return": 7.12,
+    "unhinted_return": 5.55,
+    "one_shot": 6.61
+   },
+   "queue_share_of_ttft": 0.078,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-lru-s32002-a1",
+   "arm": "lru",
+   "seed": 32002,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 972.3,
+   "opt_in": {
+    "requests": 46,
+    "eligible_tokens": 321664,
+    "recomputed_tokens": 8704,
+    "recompute_pct": 2.71
+   },
+   "non_hinting": {
+    "eligible_tokens": 109568,
+    "recomputed_tokens": 8128,
+    "recompute_pct": 7.42
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 19.57
+   },
+   "ttft_mean_s": {
+    "first_turn": 4.28,
+    "hinted_return": 6.93,
+    "unhinted_return": 10.92,
+    "one_shot": 9.12
+   },
+   "queue_share_of_ttft": 0.303,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-lru-s32003-a1",
+   "arm": "lru",
+   "seed": 32003,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 724.0,
+   "opt_in": {
+    "requests": 42,
+    "eligible_tokens": 293824,
+    "recomputed_tokens": 9152,
+    "recompute_pct": 3.11
+   },
+   "non_hinting": {
+    "eligible_tokens": 95424,
+    "recomputed_tokens": 5184,
+    "recompute_pct": 5.43
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 29.85
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.4,
+    "hinted_return": 5.64,
+    "unhinted_return": 5.16,
+    "one_shot": 2.79
+   },
+   "queue_share_of_ttft": 0.026,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-oracle-lru-s32001-a1",
+   "arm": "oracle-lru",
+   "seed": 32001,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 550.8,
+   "opt_in": {
+    "requests": 50,
+    "eligible_tokens": 358720,
+    "recomputed_tokens": 14976,
+    "recompute_pct": 4.17
+   },
+   "non_hinting": {
+    "eligible_tokens": 34176,
+    "recomputed_tokens": 2176,
+    "recompute_pct": 6.37
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 27.86
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.61,
+    "hinted_return": 6.42,
+    "unhinted_return": 5.23,
+    "one_shot": 6.69
+   },
+   "queue_share_of_ttft": 0.089,
+   "failures": 0,
+   "advice": {
+    "accepted": 81
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 66,
+    "advice_return": 50,
+    "arrived_held": 54,
+    "arrived_unheld": 1,
+    "hold_displaced": 105,
+    "partial_hold": 104,
+    "readmitted": 104,
+    "done_released": 7,
+    "ephemeral_released": 24,
+    "keep_applied": 7,
+    "demoted_evictions": 1692,
+    "shared_kept_chunks": 992,
+    "lost_protection_evictions": 437
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-oracle-lru-s32002-a1",
+   "arm": "oracle-lru",
+   "seed": 32002,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 963.7,
+   "opt_in": {
+    "requests": 46,
+    "eligible_tokens": 321664,
+    "recomputed_tokens": 8704,
+    "recompute_pct": 2.71
+   },
+   "non_hinting": {
+    "eligible_tokens": 109568,
+    "recomputed_tokens": 3328,
+    "recompute_pct": 3.04
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 19.57
+   },
+   "ttft_mean_s": {
+    "first_turn": 4.18,
+    "hinted_return": 6.91,
+    "unhinted_return": 8.79,
+    "one_shot": 7.84
+   },
+   "queue_share_of_ttft": 0.222,
+   "failures": 0,
+   "advice": {
+    "accepted": 85
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 71,
+    "advice_return": 46,
+    "arrived_held": 53,
+    "arrived_unheld": 5,
+    "hold_displaced": 118,
+    "partial_hold": 90,
+    "readmitted": 113,
+    "done_released": 7,
+    "ephemeral_released": 32,
+    "keep_applied": 4,
+    "demoted_evictions": 1972,
+    "shared_kept_chunks": 1248,
+    "lost_protection_evictions": 184
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-oracle-lru-s32003-a1",
+   "arm": "oracle-lru",
+   "seed": 32003,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 723.1,
+   "opt_in": {
+    "requests": 42,
+    "eligible_tokens": 293824,
+    "recomputed_tokens": 4800,
+    "recompute_pct": 1.63
+   },
+   "non_hinting": {
+    "eligible_tokens": 95424,
+    "recomputed_tokens": 5184,
+    "recompute_pct": 5.43
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 15.66
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.37,
+    "hinted_return": 5.51,
+    "unhinted_return": 4.8,
+    "one_shot": 2.8
+   },
+   "queue_share_of_ttft": 0.021,
+   "failures": 0,
+   "advice": {
+    "accepted": 68
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 67,
+    "advice_return": 42,
+    "arrived_held": 49,
+    "arrived_unheld": 4,
+    "hold_displaced": 120,
+    "partial_hold": 94,
+    "readmitted": 115,
+    "done_released": 7,
+    "ephemeral_released": 19,
+    "keep_applied": 2,
+    "demoted_evictions": 1428,
+    "shared_kept_chunks": 832,
+    "lost_protection_evictions": 101
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-oracle-uncapped-lru-s32001-a1",
+   "arm": "oracle-uncapped-lru",
+   "seed": 32001,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 548.9,
+   "opt_in": {
+    "requests": 50,
+    "eligible_tokens": 358720,
+    "recomputed_tokens": 13440,
+    "recompute_pct": 3.75
+   },
+   "non_hinting": {
+    "eligible_tokens": 34176,
+    "recomputed_tokens": 1600,
+    "recompute_pct": 4.68
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 25.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.55,
+    "hinted_return": 6.23,
+    "unhinted_return": 5.1,
+    "one_shot": 6.53
+   },
+   "queue_share_of_ttft": 0.09,
+   "failures": 0,
+   "advice": {
+    "accepted": 81
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 66,
+    "advice_return": 50,
+    "arrived_held": 55,
+    "readmitted": 8,
+    "hold_yield": 8,
+    "done_released": 7,
+    "ephemeral_released": 24,
+    "keep_applied": 7,
+    "demoted_evictions": 1675,
+    "shared_kept_chunks": 992,
+    "lost_protection_evictions": 241
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-oracle-uncapped-lru-s32002-a1",
+   "arm": "oracle-uncapped-lru",
+   "seed": 32002,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 963.2,
+   "opt_in": {
+    "requests": 46,
+    "eligible_tokens": 321664,
+    "recomputed_tokens": 8704,
+    "recompute_pct": 2.71
+   },
+   "non_hinting": {
+    "eligible_tokens": 109568,
+    "recomputed_tokens": 2304,
+    "recompute_pct": 2.1
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 19.57
+   },
+   "ttft_mean_s": {
+    "first_turn": 4.28,
+    "hinted_return": 6.73,
+    "unhinted_return": 8.99,
+    "one_shot": 7.5
+   },
+   "queue_share_of_ttft": 0.199,
+   "failures": 0,
+   "advice": {
+    "accepted": 85
+   },
+   "material_interference": true,
+   "policy_outcomes": {
+    "finish_planned": 71,
+    "advice_return": 46,
+    "arrived_held": 58,
+    "readmitted": 6,
+    "hold_yield": 6,
+    "done_released": 7,
+    "ephemeral_released": 32,
+    "keep_applied": 4,
+    "demoted_evictions": 1872,
+    "shared_kept_chunks": 1248,
+    "lost_protection_evictions": 104
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "d-p2048-oracle-uncapped-lru-s32003-a1",
+   "arm": "oracle-uncapped-lru",
+   "seed": 32003,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 722.2,
+   "opt_in": {
+    "requests": 42,
+    "eligible_tokens": 293824,
+    "recomputed_tokens": 3456,
+    "recompute_pct": 1.18
+   },
+   "non_hinting": {
+    "eligible_tokens": 95424,
+    "recomputed_tokens": 5184,
+    "recompute_pct": 5.43
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 11.27
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.36,
+    "hinted_return": 5.38,
+    "unhinted_return": 5.06,
+    "one_shot": 3.13
+   },
+   "queue_share_of_ttft": 0.035,
+   "failures": 0,
+   "advice": {
+    "accepted": 68
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 67,
+    "advice_return": 42,
+    "arrived_held": 54,
+    "readmitted": 1,
+    "hold_yield": 1,
+    "done_released": 7,
+    "ephemeral_released": 19,
+    "keep_applied": 2,
+    "demoted_evictions": 1350,
+    "shared_kept_chunks": 832,
+    "lost_protection_evictions": 18
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "r-p24576-auto-lru-s32001-a1",
+   "arm": "auto-lru",
+   "seed": 32001,
+   "pool_mib": 24576,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 534.5,
+   "opt_in": {
+    "requests": 50,
+    "eligible_tokens": 358720,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 34176,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.61,
+    "hinted_return": 5.48,
+    "unhinted_return": 4.85,
+    "one_shot": 3.8
+   },
+   "queue_share_of_ttft": 0.038,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 90,
+    "arrived_held": 46
+   }
+  },
+  {
+   "phase": "phase-1",
+   "job": "r-p24576-lru-s32001-a1",
+   "arm": "lru",
+   "seed": 32001,
+   "pool_mib": 24576,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 533.3,
+   "opt_in": {
+    "requests": 50,
+    "eligible_tokens": 358720,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 34176,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.56,
+    "hinted_return": 5.51,
+    "unhinted_return": 4.83,
+    "one_shot": 4.45
+   },
+   "queue_share_of_ttft": 0.033,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "phase-1",
+   "job": "r-p24576-oracle-lru-s32001-a1",
+   "arm": "oracle-lru",
+   "seed": 32001,
+   "pool_mib": 24576,
+   "sessions": 9,
+   "wait_mix": "default",
+   "status": "client_complete",
+   "gpu_seconds": 534.2,
+   "opt_in": {
+    "requests": 50,
+    "eligible_tokens": 358720,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 34176,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.62,
+    "hinted_return": 5.45,
+    "unhinted_return": 4.85,
+    "one_shot": 3.86
+   },
+   "queue_share_of_ttft": 0.034,
+   "failures": 0,
+   "advice": {
+    "accepted": 81
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 66,
+    "advice_return": 50,
+    "arrived_held": 55,
+    "done_released": 7,
+    "ephemeral_released": 24,
+    "keep_applied": 7,
+    "shared_kept_chunks": 992
+   }
+  },
+  {
+   "phase": "phase-1b",
+   "job": "l-p2048-auto300old-lru-s33001-a2",
+   "arm": "auto300old-lru",
+   "seed": 33001,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1019.7,
+   "opt_in": {
+    "requests": 43,
+    "eligible_tokens": 318400,
+    "recomputed_tokens": 34176,
+    "recompute_pct": 10.73
+   },
+   "non_hinting": {
+    "eligible_tokens": 105792,
+    "recomputed_tokens": 11968,
+    "recompute_pct": 11.31
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 23.21
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.24,
+    "hinted_return": 6.25,
+    "unhinted_return": 5.5,
+    "one_shot": 2.98
+   },
+   "queue_share_of_ttft": 0.001,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 86,
+    "arrived_held": 52,
+    "arrived_unheld": 5,
+    "hold_displaced": 164,
+    "partial_hold": 181,
+    "readmitted": 159,
+    "lost_protection_evictions": 1597
+   }
+  },
+  {
+   "phase": "phase-1b",
+   "job": "l-p2048-auto300old-lru-s33002-a2",
+   "arm": "auto300old-lru",
+   "seed": 33002,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 879.2,
+   "opt_in": {
+    "requests": 45,
+    "eligible_tokens": 284544,
+    "recomputed_tokens": 26176,
+    "recompute_pct": 9.2
+   },
+   "non_hinting": {
+    "eligible_tokens": 52992,
+    "recomputed_tokens": 11584,
+    "recompute_pct": 21.86
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 19.84
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.81,
+    "hinted_return": 5.7,
+    "unhinted_return": 5.38,
+    "one_shot": 3.58
+   },
+   "queue_share_of_ttft": 0.019,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 91,
+    "arrived_held": 51,
+    "arrived_unheld": 4,
+    "hold_displaced": 144,
+    "partial_hold": 181,
+    "readmitted": 140,
+    "lost_protection_evictions": 1049
+   }
+  },
+  {
+   "phase": "phase-1b",
+   "job": "l-p2048-auto300old-lru-s33003-a2",
+   "arm": "auto300old-lru",
+   "seed": 33003,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 863.9,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 340736,
+    "recomputed_tokens": 53952,
+    "recompute_pct": 15.83
+   },
+   "non_hinting": {
+    "eligible_tokens": 69120,
+    "recomputed_tokens": 9024,
+    "recompute_pct": 13.06
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 33.73
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.3,
+    "hinted_return": 7.12,
+    "unhinted_return": 9.24,
+    "one_shot": 5.94
+   },
+   "queue_share_of_ttft": 0.067,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 90,
+    "arrived_held": 57,
+    "arrived_unheld": 4,
+    "hold_displaced": 181,
+    "partial_hold": 163,
+    "readmitted": 177,
+    "lost_protection_evictions": 2034
+   }
+  },
+  {
+   "phase": "phase-1b",
+   "job": "l-p2048-lru-s33001-a2",
+   "arm": "lru",
+   "seed": 33001,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1021.6,
+   "opt_in": {
+    "requests": 43,
+    "eligible_tokens": 318400,
+    "recomputed_tokens": 34560,
+    "recompute_pct": 10.85
+   },
+   "non_hinting": {
+    "eligible_tokens": 105792,
+    "recomputed_tokens": 13568,
+    "recompute_pct": 12.83
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 23.47
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.25,
+    "hinted_return": 6.79,
+    "unhinted_return": 5.64,
+    "one_shot": 3.17
+   },
+   "queue_share_of_ttft": 0.01,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "phase-1b",
+   "job": "l-p2048-lru-s33002-a2",
+   "arm": "lru",
+   "seed": 33002,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 884.7,
+   "opt_in": {
+    "requests": 45,
+    "eligible_tokens": 284544,
+    "recomputed_tokens": 34752,
+    "recompute_pct": 12.21
+   },
+   "non_hinting": {
+    "eligible_tokens": 52992,
+    "recomputed_tokens": 13824,
+    "recompute_pct": 26.09
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 26.35
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.82,
+    "hinted_return": 5.71,
+    "unhinted_return": 5.61,
+    "one_shot": 4.45
+   },
+   "queue_share_of_ttft": 0.029,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "phase-1b",
+   "job": "l-p2048-lru-s33003-a2",
+   "arm": "lru",
+   "seed": 33003,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 864.4,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 340736,
+    "recomputed_tokens": 54784,
+    "recompute_pct": 16.08
+   },
+   "non_hinting": {
+    "eligible_tokens": 69120,
+    "recomputed_tokens": 9088,
+    "recompute_pct": 13.15
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 34.25
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.26,
+    "hinted_return": 7.68,
+    "unhinted_return": 9.78,
+    "one_shot": 6.22
+   },
+   "queue_share_of_ttft": 0.075,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "phase-1b",
+   "job": "l-p2048-oracle-gpu-lru-s33001-a2",
+   "arm": "oracle-gpu-lru",
+   "seed": 33001,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1029.9,
+   "opt_in": {
+    "requests": 43,
+    "eligible_tokens": 318400,
+    "recomputed_tokens": 34240,
+    "recompute_pct": 10.75
+   },
+   "non_hinting": {
+    "eligible_tokens": 105792,
+    "recomputed_tokens": 8128,
+    "recompute_pct": 7.68
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 23.25
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.23,
+    "hinted_return": 6.95,
+    "unhinted_return": 4.88,
+    "one_shot": 3.0
+   },
+   "queue_share_of_ttft": 0.059,
+   "failures": 0,
+   "advice": {
+    "accepted": 70
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 66,
+    "advice_return": 43,
+    "gpu_covered": 93,
+    "arrived_held": 16,
+    "arrived_unheld": 35,
+    "hold_displaced": 22,
+    "partial_hold": 28,
+    "readmitted": 22,
+    "done_released": 7,
+    "ephemeral_released": 20,
+    "keep_applied": 1,
+    "demoted_evictions": 1328,
+    "shared_kept_chunks": 864,
+    "lost_protection_evictions": 459
+   }
+  },
+  {
+   "phase": "phase-1b",
+   "job": "l-p2048-oracle-gpu-lru-s33002-a2",
+   "arm": "oracle-gpu-lru",
+   "seed": 33002,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 868.0,
+   "opt_in": {
+    "requests": 45,
+    "eligible_tokens": 284544,
+    "recomputed_tokens": 11008,
+    "recompute_pct": 3.87
+   },
+   "non_hinting": {
+    "eligible_tokens": 52992,
+    "recomputed_tokens": 7680,
+    "recompute_pct": 14.49
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 8.35
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.84,
+    "hinted_return": 4.87,
+    "unhinted_return": 5.1,
+    "one_shot": 3.54
+   },
+   "queue_share_of_ttft": 0.014,
+   "failures": 0,
+   "advice": {
+    "accepted": 79
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 64,
+    "advice_return": 45,
+    "gpu_covered": 91,
+    "arrived_held": 17,
+    "arrived_unheld": 31,
+    "hold_displaced": 25,
+    "partial_hold": 22,
+    "readmitted": 24,
+    "done_released": 7,
+    "ephemeral_released": 27,
+    "keep_applied": 7,
+    "demoted_evictions": 1780,
+    "shared_kept_chunks": 1088,
+    "lost_protection_evictions": 166
+   }
+  },
+  {
+   "phase": "phase-1b",
+   "job": "l-p2048-oracle-gpu-lru-s33003-a2",
+   "arm": "oracle-gpu-lru",
+   "seed": 33003,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 864.4,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 340736,
+    "recomputed_tokens": 46592,
+    "recompute_pct": 13.67
+   },
+   "non_hinting": {
+    "eligible_tokens": 69120,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 29.13
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.27,
+    "hinted_return": 7.18,
+    "unhinted_return": 7.05,
+    "one_shot": 6.03
+   },
+   "queue_share_of_ttft": 0.084,
+   "failures": 0,
+   "advice": {
+    "accepted": 76
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 70,
+    "advice_return": 49,
+    "gpu_covered": 101,
+    "arrived_held": 17,
+    "arrived_unheld": 39,
+    "hold_displaced": 43,
+    "partial_hold": 41,
+    "readmitted": 42,
+    "done_released": 7,
+    "ephemeral_released": 20,
+    "keep_applied": 6,
+    "demoted_evictions": 1628,
+    "shared_kept_chunks": 864,
+    "lost_protection_evictions": 656
+   }
+  },
+  {
+   "phase": "phase-1b",
+   "job": "x-p4096-lru-s33001-a1",
+   "arm": "lru",
+   "seed": 33001,
+   "pool_mib": 4096,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 983.2,
+   "opt_in": {
+    "requests": 43,
+    "eligible_tokens": 318400,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 105792,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.16,
+    "hinted_return": 4.65,
+    "unhinted_return": 3.79,
+    "one_shot": 2.56
+   },
+   "queue_share_of_ttft": 0.021,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "sweep",
+   "job": "l-p2048-auto300old-lru-s33004-a2",
+   "arm": "auto300old-lru",
+   "seed": 33004,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1003.3,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 333632,
+    "recomputed_tokens": 26624,
+    "recompute_pct": 7.98
+   },
+   "non_hinting": {
+    "eligible_tokens": 61120,
+    "recomputed_tokens": 5184,
+    "recompute_pct": 8.48
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 17.64
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.87,
+    "hinted_return": 6.77,
+    "unhinted_return": 5.85,
+    "one_shot": 2.51
+   },
+   "queue_share_of_ttft": 0.095,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 86,
+    "arrived_held": 56,
+    "arrived_unheld": 4,
+    "hold_displaced": 209,
+    "partial_hold": 169,
+    "readmitted": 205,
+    "lost_protection_evictions": 1218
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "l-p2048-auto300old-lru-s33005-a2",
+   "arm": "auto300old-lru",
+   "seed": 33005,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1241.9,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 302976,
+    "recomputed_tokens": 33920,
+    "recompute_pct": 11.2
+   },
+   "non_hinting": {
+    "eligible_tokens": 118080,
+    "recomputed_tokens": 9280,
+    "recompute_pct": 7.86
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 24.59
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.85,
+    "hinted_return": 7.73,
+    "unhinted_return": 6.78,
+    "one_shot": 6.91
+   },
+   "queue_share_of_ttft": 0.173,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 94,
+    "arrived_held": 57,
+    "arrived_unheld": 4,
+    "hold_displaced": 231,
+    "partial_hold": 175,
+    "readmitted": 227,
+    "lost_protection_evictions": 1051
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "l-p2048-lru-s33004-a2",
+   "arm": "lru",
+   "seed": 33004,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1005.0,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 333632,
+    "recomputed_tokens": 28800,
+    "recompute_pct": 8.63
+   },
+   "non_hinting": {
+    "eligible_tokens": 61120,
+    "recomputed_tokens": 5184,
+    "recompute_pct": 8.48
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 19.08
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.67,
+    "hinted_return": 6.71,
+    "unhinted_return": 6.68,
+    "one_shot": 2.46
+   },
+   "queue_share_of_ttft": 0.1,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "sweep",
+   "job": "l-p2048-lru-s33005-a2",
+   "arm": "lru",
+   "seed": 33005,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1247.5,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 302976,
+    "recomputed_tokens": 39296,
+    "recompute_pct": 12.97
+   },
+   "non_hinting": {
+    "eligible_tokens": 118080,
+    "recomputed_tokens": 15040,
+    "recompute_pct": 12.74
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 2.34,
+    "long": 27.38
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.85,
+    "hinted_return": 8.66,
+    "unhinted_return": 8.75,
+    "one_shot": 9.51
+   },
+   "queue_share_of_ttft": 0.288,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "sweep",
+   "job": "l-p2048-oracle-gpu-lru-s33004-a2",
+   "arm": "oracle-gpu-lru",
+   "seed": 33004,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 971.3,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 333632,
+    "recomputed_tokens": 13056,
+    "recompute_pct": 3.91
+   },
+   "non_hinting": {
+    "eligible_tokens": 61120,
+    "recomputed_tokens": 5184,
+    "recompute_pct": 8.48
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 8.65
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.74,
+    "hinted_return": 5.61,
+    "unhinted_return": 5.06,
+    "one_shot": 2.37
+   },
+   "queue_share_of_ttft": 0.096,
+   "failures": 0,
+   "advice": {
+    "accepted": 73
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 69,
+    "advice_return": 49,
+    "gpu_covered": 97,
+    "arrived_held": 21,
+    "arrived_unheld": 35,
+    "hold_displaced": 40,
+    "partial_hold": 55,
+    "readmitted": 40,
+    "done_released": 7,
+    "ephemeral_released": 17,
+    "keep_applied": 4,
+    "demoted_evictions": 1346,
+    "shared_kept_chunks": 768,
+    "lost_protection_evictions": 220
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "l-p2048-oracle-gpu-lru-s33005-a2",
+   "arm": "oracle-gpu-lru",
+   "seed": 33005,
+   "pool_mib": 2048,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1248.3,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 302976,
+    "recomputed_tokens": 21888,
+    "recompute_pct": 7.22
+   },
+   "non_hinting": {
+    "eligible_tokens": 118080,
+    "recomputed_tokens": 7296,
+    "recompute_pct": 6.18
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 15.87
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.85,
+    "hinted_return": 7.18,
+    "unhinted_return": 6.47,
+    "one_shot": 4.92
+   },
+   "queue_share_of_ttft": 0.099,
+   "failures": 0,
+   "advice": {
+    "accepted": 75
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 70,
+    "advice_return": 44,
+    "gpu_covered": 94,
+    "arrived_held": 20,
+    "arrived_unheld": 37,
+    "hold_displaced": 28,
+    "partial_hold": 26,
+    "readmitted": 28,
+    "done_released": 7,
+    "ephemeral_released": 24,
+    "keep_applied": 5,
+    "demoted_evictions": 1708,
+    "shared_kept_chunks": 992,
+    "lost_protection_evictions": 304
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-auto300old-lru-s33001-a1",
+   "arm": "auto300old-lru",
+   "seed": 33001,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1003.4,
+   "opt_in": {
+    "requests": 43,
+    "eligible_tokens": 318400,
+    "recomputed_tokens": 17344,
+    "recompute_pct": 5.45
+   },
+   "non_hinting": {
+    "eligible_tokens": 105792,
+    "recomputed_tokens": 9344,
+    "recompute_pct": 8.83
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 11.78
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.29,
+    "hinted_return": 5.66,
+    "unhinted_return": 5.09,
+    "one_shot": 3.03
+   },
+   "queue_share_of_ttft": 0.007,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 86,
+    "arrived_held": 53,
+    "arrived_unheld": 4,
+    "hold_displaced": 90,
+    "partial_hold": 149,
+    "readmitted": 86,
+    "lost_protection_evictions": 807
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-auto300old-lru-s33002-a1",
+   "arm": "auto300old-lru",
+   "seed": 33002,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 871.9,
+   "opt_in": {
+    "requests": 45,
+    "eligible_tokens": 284544,
+    "recomputed_tokens": 20672,
+    "recompute_pct": 7.26
+   },
+   "non_hinting": {
+    "eligible_tokens": 52992,
+    "recomputed_tokens": 10112,
+    "recompute_pct": 19.08
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 15.67
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.83,
+    "hinted_return": 5.3,
+    "unhinted_return": 4.97,
+    "one_shot": 3.45
+   },
+   "queue_share_of_ttft": 0.007,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 91,
+    "arrived_held": 54,
+    "arrived_unheld": 1,
+    "hold_displaced": 78,
+    "partial_hold": 134,
+    "readmitted": 77,
+    "lost_protection_evictions": 590
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-auto300old-lru-s33003-a1",
+   "arm": "auto300old-lru",
+   "seed": 33003,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 866.0,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 340736,
+    "recomputed_tokens": 48704,
+    "recompute_pct": 14.29
+   },
+   "non_hinting": {
+    "eligible_tokens": 69120,
+    "recomputed_tokens": 3328,
+    "recompute_pct": 4.81
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 30.45
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.29,
+    "hinted_return": 7.06,
+    "unhinted_return": 7.69,
+    "one_shot": 6.24
+   },
+   "queue_share_of_ttft": 0.079,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 90,
+    "arrived_held": 56,
+    "arrived_unheld": 5,
+    "hold_displaced": 129,
+    "partial_hold": 158,
+    "readmitted": 124,
+    "lost_protection_evictions": 1278
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-auto300old-lru-s33004-a1",
+   "arm": "auto300old-lru",
+   "seed": 33004,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 963.0,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 333632,
+    "recomputed_tokens": 11776,
+    "recompute_pct": 3.53
+   },
+   "non_hinting": {
+    "eligible_tokens": 61120,
+    "recomputed_tokens": 5184,
+    "recompute_pct": 8.48
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 7.8
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.68,
+    "hinted_return": 6.11,
+    "unhinted_return": 5.61,
+    "one_shot": 3.31
+   },
+   "queue_share_of_ttft": 0.083,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 86,
+    "arrived_held": 57,
+    "arrived_unheld": 3,
+    "hold_displaced": 87,
+    "partial_hold": 142,
+    "readmitted": 84,
+    "lost_protection_evictions": 704
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-auto300old-lru-s33005-a1",
+   "arm": "auto300old-lru",
+   "seed": 33005,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1236.0,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 302976,
+    "recomputed_tokens": 25728,
+    "recompute_pct": 8.49
+   },
+   "non_hinting": {
+    "eligible_tokens": 118080,
+    "recomputed_tokens": 7296,
+    "recompute_pct": 6.18
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 18.65
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.85,
+    "hinted_return": 8.12,
+    "unhinted_return": 6.49,
+    "one_shot": 6.13
+   },
+   "queue_share_of_ttft": 0.193,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 94,
+    "arrived_held": 56,
+    "arrived_unheld": 5,
+    "hold_displaced": 165,
+    "partial_hold": 168,
+    "readmitted": 160,
+    "lost_protection_evictions": 695
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-cand-gpu-lru-s33001-a1",
+   "arm": "cand-gpu-lru",
+   "seed": 33001,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 988.6,
+   "opt_in": {
+    "requests": 43,
+    "eligible_tokens": 318400,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 105792,
+    "recomputed_tokens": 832,
+    "recompute_pct": 0.79
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.24,
+    "hinted_return": 4.64,
+    "unhinted_return": 3.94,
+    "one_shot": 2.52
+   },
+   "queue_share_of_ttft": 0.033,
+   "failures": 0,
+   "advice": {
+    "accepted": 70
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 66,
+    "advice_return": 46,
+    "gpu_covered": 92,
+    "arrived_held": 19,
+    "arrived_unheld": 32,
+    "hold_displaced": 16,
+    "partial_hold": 22,
+    "readmitted": 15,
+    "done_released": 4,
+    "ephemeral_released": 20,
+    "keep_applied": 2,
+    "demoted_evictions": 926,
+    "shared_kept_chunks": 768
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-cand-gpu-lru-s33002-a1",
+   "arm": "cand-gpu-lru",
+   "seed": 33002,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 863.5,
+   "opt_in": {
+    "requests": 45,
+    "eligible_tokens": 284544,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 52992,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.81,
+    "hinted_return": 4.36,
+    "unhinted_return": 3.35,
+    "one_shot": 2.45
+   },
+   "queue_share_of_ttft": 0.005,
+   "failures": 0,
+   "advice": {
+    "accepted": 79
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 64,
+    "advice_return": 47,
+    "gpu_covered": 88,
+    "arrived_held": 22,
+    "arrived_unheld": 27,
+    "hold_displaced": 7,
+    "partial_hold": 7,
+    "readmitted": 7,
+    "done_released": 5,
+    "ephemeral_released": 27,
+    "keep_applied": 8,
+    "demoted_evictions": 1592,
+    "shared_kept_chunks": 1024
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-cand-gpu-lru-s33003-a1",
+   "arm": "cand-gpu-lru",
+   "seed": 33003,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 808.1,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 340736,
+    "recomputed_tokens": 9408,
+    "recompute_pct": 2.76
+   },
+   "non_hinting": {
+    "eligible_tokens": 69120,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 5.88
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.28,
+    "hinted_return": 4.76,
+    "unhinted_return": 6.34,
+    "one_shot": 4.25
+   },
+   "queue_share_of_ttft": 0.029,
+   "failures": 0,
+   "advice": {
+    "accepted": 76
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 70,
+    "advice_return": 51,
+    "gpu_covered": 100,
+    "arrived_held": 19,
+    "arrived_unheld": 37,
+    "hold_displaced": 41,
+    "partial_hold": 39,
+    "readmitted": 39,
+    "done_released": 5,
+    "ephemeral_released": 20,
+    "keep_applied": 6,
+    "demoted_evictions": 1222,
+    "shared_kept_chunks": 800,
+    "lost_protection_evictions": 140
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-cand-gpu-lru-s33004-a1",
+   "arm": "cand-gpu-lru",
+   "seed": 33004,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 946.5,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 333632,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 61120,
+    "recomputed_tokens": 256,
+    "recompute_pct": 0.42
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.68,
+    "hinted_return": 5.06,
+    "unhinted_return": 3.63,
+    "one_shot": 2.37
+   },
+   "queue_share_of_ttft": 0.051,
+   "failures": 0,
+   "advice": {
+    "accepted": 73
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 69,
+    "advice_return": 51,
+    "gpu_covered": 98,
+    "arrived_held": 20,
+    "arrived_unheld": 36,
+    "hold_displaced": 14,
+    "partial_hold": 21,
+    "readmitted": 13,
+    "done_released": 5,
+    "ephemeral_released": 17,
+    "keep_applied": 4,
+    "demoted_evictions": 1094,
+    "shared_kept_chunks": 704,
+    "lost_protection_evictions": 25
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-cand-gpu-lru-s33005-a1",
+   "arm": "cand-gpu-lru",
+   "seed": 33005,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1244.4,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 302976,
+    "recomputed_tokens": 13760,
+    "recompute_pct": 4.54
+   },
+   "non_hinting": {
+    "eligible_tokens": 118080,
+    "recomputed_tokens": 5440,
+    "recompute_pct": 4.61
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 9.98
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.86,
+    "hinted_return": 6.18,
+    "unhinted_return": 6.5,
+    "one_shot": 5.61
+   },
+   "queue_share_of_ttft": 0.074,
+   "failures": 0,
+   "advice": {
+    "accepted": 75
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 70,
+    "advice_return": 47,
+    "gpu_covered": 95,
+    "arrived_held": 18,
+    "arrived_unheld": 39,
+    "hold_displaced": 28,
+    "partial_hold": 26,
+    "readmitted": 25,
+    "done_released": 4,
+    "ephemeral_released": 24,
+    "keep_applied": 6,
+    "demoted_evictions": 1590,
+    "shared_kept_chunks": 896,
+    "lost_protection_evictions": 215
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-lru-s33001-a1",
+   "arm": "lru",
+   "seed": 33001,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1034.4,
+   "opt_in": {
+    "requests": 43,
+    "eligible_tokens": 318400,
+    "recomputed_tokens": 38976,
+    "recompute_pct": 12.24
+   },
+   "non_hinting": {
+    "eligible_tokens": 105792,
+    "recomputed_tokens": 11840,
+    "recompute_pct": 11.19
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 26.47
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.24,
+    "hinted_return": 7.04,
+    "unhinted_return": 5.49,
+    "one_shot": 2.52
+   },
+   "queue_share_of_ttft": 0.046,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-lru-s33002-a1",
+   "arm": "lru",
+   "seed": 33002,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 885.3,
+   "opt_in": {
+    "requests": 45,
+    "eligible_tokens": 284544,
+    "recomputed_tokens": 34432,
+    "recompute_pct": 12.1
+   },
+   "non_hinting": {
+    "eligible_tokens": 52992,
+    "recomputed_tokens": 13824,
+    "recompute_pct": 26.09
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 26.1
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.83,
+    "hinted_return": 5.7,
+    "unhinted_return": 5.58,
+    "one_shot": 4.41
+   },
+   "queue_share_of_ttft": 0.031,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-lru-s33003-a1",
+   "arm": "lru",
+   "seed": 33003,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 860.0,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 340736,
+    "recomputed_tokens": 48896,
+    "recompute_pct": 14.35
+   },
+   "non_hinting": {
+    "eligible_tokens": 69120,
+    "recomputed_tokens": 8768,
+    "recompute_pct": 12.69
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 30.57
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.28,
+    "hinted_return": 6.92,
+    "unhinted_return": 8.1,
+    "one_shot": 6.07
+   },
+   "queue_share_of_ttft": 0.058,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-lru-s33004-a1",
+   "arm": "lru",
+   "seed": 33004,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 986.8,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 333632,
+    "recomputed_tokens": 20928,
+    "recompute_pct": 6.27
+   },
+   "non_hinting": {
+    "eligible_tokens": 61120,
+    "recomputed_tokens": 5184,
+    "recompute_pct": 8.48
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 13.87
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.71,
+    "hinted_return": 5.84,
+    "unhinted_return": 5.14,
+    "one_shot": 2.52
+   },
+   "queue_share_of_ttft": 0.085,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-lru-s33005-a1",
+   "arm": "lru",
+   "seed": 33005,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1242.4,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 302976,
+    "recomputed_tokens": 35584,
+    "recompute_pct": 11.74
+   },
+   "non_hinting": {
+    "eligible_tokens": 118080,
+    "recomputed_tokens": 13632,
+    "recompute_pct": 11.54
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 25.8
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.86,
+    "hinted_return": 8.92,
+    "unhinted_return": 8.24,
+    "one_shot": 7.87
+   },
+   "queue_share_of_ttft": 0.23,
+   "failures": 0,
+   "advice": {},
+   "material_interference": false,
+   "policy_outcomes": {}
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-oracle-gpu-lru-s33001-a1",
+   "arm": "oracle-gpu-lru",
+   "seed": 33001,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 988.9,
+   "opt_in": {
+    "requests": 43,
+    "eligible_tokens": 318400,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 105792,
+    "recomputed_tokens": 832,
+    "recompute_pct": 0.79
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.28,
+    "hinted_return": 4.64,
+    "unhinted_return": 3.96,
+    "one_shot": 2.56
+   },
+   "queue_share_of_ttft": 0.021,
+   "failures": 0,
+   "advice": {
+    "accepted": 70
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 66,
+    "advice_return": 43,
+    "gpu_covered": 93,
+    "arrived_held": 16,
+    "arrived_unheld": 35,
+    "hold_displaced": 9,
+    "partial_hold": 12,
+    "readmitted": 9,
+    "done_released": 7,
+    "ephemeral_released": 20,
+    "keep_applied": 1,
+    "demoted_evictions": 1036,
+    "shared_kept_chunks": 864
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-oracle-gpu-lru-s33002-a1",
+   "arm": "oracle-gpu-lru",
+   "seed": 33002,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 863.6,
+   "opt_in": {
+    "requests": 45,
+    "eligible_tokens": 284544,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 52992,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.82,
+    "hinted_return": 4.37,
+    "unhinted_return": 3.71,
+    "one_shot": 2.48
+   },
+   "queue_share_of_ttft": 0.004,
+   "failures": 0,
+   "advice": {
+    "accepted": 79
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 64,
+    "advice_return": 45,
+    "gpu_covered": 91,
+    "arrived_held": 18,
+    "arrived_unheld": 30,
+    "hold_displaced": 1,
+    "partial_hold": 2,
+    "readmitted": 1,
+    "done_released": 7,
+    "ephemeral_released": 27,
+    "keep_applied": 7,
+    "demoted_evictions": 1592,
+    "shared_kept_chunks": 1088
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-oracle-gpu-lru-s33003-a1",
+   "arm": "oracle-gpu-lru",
+   "seed": 33003,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 808.1,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 340736,
+    "recomputed_tokens": 9344,
+    "recompute_pct": 2.74
+   },
+   "non_hinting": {
+    "eligible_tokens": 69120,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 5.84
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.28,
+    "hinted_return": 4.78,
+    "unhinted_return": 6.35,
+    "one_shot": 4.32
+   },
+   "queue_share_of_ttft": 0.03,
+   "failures": 0,
+   "advice": {
+    "accepted": 76
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 70,
+    "advice_return": 49,
+    "gpu_covered": 101,
+    "arrived_held": 18,
+    "arrived_unheld": 38,
+    "hold_displaced": 18,
+    "partial_hold": 22,
+    "readmitted": 18,
+    "done_released": 7,
+    "ephemeral_released": 20,
+    "keep_applied": 6,
+    "demoted_evictions": 1336,
+    "shared_kept_chunks": 864,
+    "lost_protection_evictions": 146
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-oracle-gpu-lru-s33004-a1",
+   "arm": "oracle-gpu-lru",
+   "seed": 33004,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 946.5,
+   "opt_in": {
+    "requests": 49,
+    "eligible_tokens": 333632,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "non_hinting": {
+    "eligible_tokens": 61120,
+    "recomputed_tokens": 0,
+    "recompute_pct": 0.0
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 0.0
+   },
+   "ttft_mean_s": {
+    "first_turn": 2.69,
+    "hinted_return": 5.09,
+    "unhinted_return": 3.57,
+    "one_shot": 2.33
+   },
+   "queue_share_of_ttft": 0.053,
+   "failures": 0,
+   "advice": {
+    "accepted": 73
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 69,
+    "advice_return": 49,
+    "gpu_covered": 97,
+    "arrived_held": 21,
+    "arrived_unheld": 35,
+    "hold_displaced": 14,
+    "partial_hold": 18,
+    "readmitted": 14,
+    "done_released": 7,
+    "ephemeral_released": 17,
+    "keep_applied": 4,
+    "demoted_evictions": 1302,
+    "shared_kept_chunks": 768
+   }
+  },
+  {
+   "phase": "sweep",
+   "job": "s-p3072-oracle-gpu-lru-s33005-a1",
+   "arm": "oracle-gpu-lru",
+   "seed": 33005,
+   "pool_mib": 3072,
+   "sessions": 9,
+   "wait_mix": "long",
+   "status": "client_complete",
+   "gpu_seconds": 1237.6,
+   "opt_in": {
+    "requests": 44,
+    "eligible_tokens": 302976,
+    "recomputed_tokens": 7680,
+    "recompute_pct": 2.53
+   },
+   "non_hinting": {
+    "eligible_tokens": 118080,
+    "recomputed_tokens": 3072,
+    "recompute_pct": 2.6
+   },
+   "by_wait_recompute_pct": {
+    "instant": 0.0,
+    "tool": 0.0,
+    "long": 5.57
+   },
+   "ttft_mean_s": {
+    "first_turn": 1.85,
+    "hinted_return": 5.93,
+    "unhinted_return": 5.41,
+    "one_shot": 4.47
+   },
+   "queue_share_of_ttft": 0.029,
+   "failures": 0,
+   "advice": {
+    "accepted": 75
+   },
+   "material_interference": false,
+   "policy_outcomes": {
+    "finish_planned": 70,
+    "advice_return": 44,
+    "gpu_covered": 94,
+    "arrived_held": 20,
+    "arrived_unheld": 37,
+    "hold_displaced": 15,
+    "partial_hold": 13,
+    "readmitted": 15,
+    "done_released": 7,
+    "ephemeral_released": 24,
+    "keep_applied": 5,
+    "demoted_evictions": 1646,
+    "shared_kept_chunks": 992,
+    "lost_protection_evictions": 120
+   }
+  }
+ ]
+}
