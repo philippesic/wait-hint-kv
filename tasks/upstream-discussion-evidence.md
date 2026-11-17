@@ -391,6 +391,15 @@ Opt-in recompute; lead = best of `lru` and `auto300old-lru` minus the arm.
 - GPU time: calibration 1.85 h, decision 13.45 h, admission 0.02 h (15.32 h in this
   campaign, about 25.8 h overall with the WSL campaigns).
 
+### Result and RFC (2026-11-16)
+- Result record: `results/agent-wait-advice/` (evidence at fcf62b31: 60 cells, gates,
+  excluded attempts, budget).
+- RFC drafted for Philip: CPU-offload policy layer with measurements, asking which
+  interface (#52113, #51428, #57103) should carry the advice; companion comments on
+  #52113 and #57103. CC from CODEOWNERS: @ApostaC, @orozery (`vllm/v1/kv_offload`),
+  @njhill (`vllm/v1/engine`). GPT-6 Astra reviews claims, links and omissions before
+  Philip posts. Posting is Philip's decision.
+
 ### Audit: every mechanism and its proof
 | Mechanism | Workload trigger | Proof (counter or check) |
 |---|---|---|

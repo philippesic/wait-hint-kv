@@ -6,6 +6,7 @@ different implementation and do not qualify this code. See the [result profile](
 
 ## Current code
 
+- **mixed** — [Tool-type wait advice cut CPU-offload recompute to 1.5% from 7.8% for the best server-only hold, but only inside a pool-size window](results/agent-wait-advice/result.md)
 - **functional** — [Exact offload and hint delivery pass the current functional checks](results/current-functionality/result.md)
 - **unresolved** — [2080 Ti screen finds no ARC-route speedup; both routes remain inconclusive](results/pr-evidence-2080ti/result.md)
 - **unresolved** — [Public callbacks omit lifecycle data; this did not establish route infeasibility](results/pr-evidence-feasibility/result.md)
