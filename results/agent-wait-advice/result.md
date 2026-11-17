@@ -2,7 +2,7 @@
 
 2026-11-16 · current · mixed
 
-On vLLM's CPU KV offload with a 40% long-wait agent mix, a GPU-aware hold policy driven by tool-type wait advice (expected return, done, ephemeral, keep_tokens) recomputed 1.5% of hinting sessions' reusable prefix at a 3 GiB pool, against 7.8% for the best server-only hold (300 s, keep oldest) and 11.3% for LRU; it was lower than the best server-only arm in 5 of 5 seeds (mean lead 6.3 points) and kept 93% of the exact-return oracle's 6.8-point lead. Non-hinting sessions also fell from 8.5-26.1% to 0-4.6% through release advice. The benefit depends on pool size: at 2 GiB the oracle's mean lead was 3.1 points (4 of 5 seeds), at 4 GiB LRU recomputed nothing, and with the 15% long-wait mix the opportunity was 2.7-8.5% and both pre-registered 3-seed gates failed. Short waits never recomputed: the GPU prefix cache kept them about 60 s, and holding them first was the flaw that sank the original ranking.
+On vLLM's CPU KV offload with a 40% long-wait agent mix, a GPU-aware hold policy driven by tool-type wait advice (expected return, done, ephemeral, keep_tokens) recomputed 1.5% of hinting sessions' reusable prefix at a 3 GiB pool, against 7.8% for the best server-only hold (300 s, keep oldest) and 11.3% for LRU; it was lower than the best server-only arm in 5 of 5 seeds (mean lead 6.3 points) and reached 94% of the exact-information arm's improvement over that comparator ((7.81 - 1.46) / (7.81 - 1.06)). Non-hinting sessions also fell from 8.5-26.1% to 0-4.6% through release advice. The benefit depends on pool size: at 2 GiB the oracle's mean lead was 3.1 points (4 of 5 seeds), at 4 GiB LRU recomputed nothing, and with the 15% long-wait mix the opportunity was 2.7-8.5% and both pre-registered 3-seed gates failed. Short waits usually hit the GPU prefix cache (all of them at 3 GiB; one 2 GiB LRU cell recomputed 2.3% of tool-type tokens), and holding them first was the flaw that sank the original ranking. The advice bundles timing and release, with no ablation separating them, and the campaign was adaptive: the design, comparator and decision rule changed after two failed gates.
 
 ![Recomputed share of reusable prefix, hinting sessions (%)](chart.svg)
 
@@ -19,6 +19,10 @@ One model, one consumer GPU, 9 sessions, LRU base only; ARC and a tight pool wer
 ## Decision
 
 Retain the GPU-aware advised hold (AdvisedGpu*), the keep-oldest server-only comparator and the agent-mix workload as the evidence for an upstream RFC that targets the CPU-offload policy layer and asks which interface (#52113, #51428, #57103) should carry the advice. The first ranking (AdvisedHold*) stays only as recorded evidence of the flaw. Open: ARC, more sessions and GPUs, captured traces, online GPU-retention estimation.
+
+## Correction
+
+2026-11-16 review by GPT-6 Astra: 93% corrected to 94% (unrounded seed means), and the claim that short waits never recomputed corrected (one 2 GiB LRU cell recomputed 2.3% of tool-type tokens); attribution and adaptive-campaign caveats added. Source: evidence.json.
 
 ## Sources
 
