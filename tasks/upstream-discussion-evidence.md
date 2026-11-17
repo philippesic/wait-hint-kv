@@ -364,6 +364,33 @@ and 20 at 08:45. Budget: calibration 1.85 h, decision about 6.2 h of 7.56 h.
 - Expectations and kill: each cell about 15-20 min, `client_complete`, no failures, all
   advice accepted, queue share under 20%; kill on any failed or timed-out job.
 
+### Cache-size sweep result (2026-11-16, long mix, LRU, 5 seeds, rule passed at 3 GiB)
+Opt-in recompute; lead = best of `lru` and `auto300old-lru` minus the arm.
+| Seed | LRU 3G | auto300old 3G | oracle-gpu 3G | cand-gpu 3G | oracle lead 2G |
+|---|---|---|---|---|---|
+| 33001 | 12.2% | 5.4% | 0.0% | 0.0% | -0.1 |
+| 33002 | 12.1% | 7.3% | 0.0% | 0.0% | 5.3 |
+| 33003 | 14.4% | 14.3% | 2.7% | 2.8% | 2.2 |
+| 33004 | 6.3% | 3.5% | 0.0% | 0.0% | 4.1 |
+| 33005 | 11.7% | 8.5% | 2.5% | 4.5% | 4.0 |
+- 3 GiB: oracle lead mean 6.8 points, better in 5 of 5; candidate lead mean 6.3, better
+  in 5 of 5 (keeps about 93% of the oracle's gain using only tool-type medians).
+  Long-wait recompute falls from 14-31% (LRU) to 0-10% (candidate). Non-hinting sessions
+  also improve (0-4.6% versus 8.5-26.1% under LRU) through `done` and `ephemeral`
+  releases.
+- 2 GiB with 5 seeds: oracle lead mean 3.1, better in 4 of 5 (passes the sweep rule
+  narrowly; the earlier 3-seed all-seeds rule failed). 4 GiB: LRU recomputes nothing.
+- Candidate counters per seed: 70-79 advice, all accepted; `gpu_covered` 88-100, done
+  4-5, ephemeral 17-27, keep 2-8, demoted evictions 926-1,592, shared prefix kept
+  704-1,024 chunks. No failures; queue share at most 8% except LRU and auto300old at
+  seed 33005 (23% and 19%, LRU's own recompute load); no interference flags.
+- Caveats: authored long-heavy mix (40% waits of 30-240 s), one model and GPU, 9
+  sessions, LRU only; the benefit appears in a pool-size window (about 2-3 GiB here)
+  where the hold budget fits some but not all waiting sessions. ARC and tight were not
+  run. `vm.swappiness` and `vm.compaction_proactiveness` restored to 60 and 20 at 17:12.
+- GPU time: calibration 1.85 h, decision 13.45 h, admission 0.02 h (15.32 h in this
+  campaign, about 25.8 h overall with the WSL campaigns).
+
 ### Audit: every mechanism and its proof
 | Mechanism | Workload trigger | Proof (counter or check) |
 |---|---|---|
