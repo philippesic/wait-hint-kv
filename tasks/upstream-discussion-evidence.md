@@ -407,6 +407,17 @@ Descriptive only, no gate: `arc`, `auto300old-arc`, `cand-gpu-arc` at 3 GiB on s
 ARC materially better than LRU here, for the base policy or with advice? About 0.9 GPU-h
 within the remaining decision cap.
 
+### ARC spot check result (seed 33001, 3 GiB, long mix; descriptive)
+| Base | Native | 300 s keep-oldest | Advice policy |
+| --- | --- | --- | --- |
+| LRU | 12.2% | 5.4% | 0.0% |
+| ARC | 5.3% | 3.9% | 2.0% |
+Opt-in recompute. ARC alone more than halves LRU's recompute on this seed; advice still
+leads the ARC server-only hold by 1.9 points (5.4 on LRU). No failures, all 70 advice
+accepted. `arc` and `cand-gpu-arc` are flagged for outside CPU (0.07 and 0.21 cores) from
+short-lived processes that were not ours and had exited; 36 cores. Settings restored at
+19:58. Decision phase used 14.29 of 14.56 GPU-h.
+
 ### Audit: every mechanism and its proof
 | Mechanism | Workload trigger | Proof (counter or check) |
 |---|---|---|
