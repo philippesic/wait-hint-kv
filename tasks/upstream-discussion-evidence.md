@@ -400,6 +400,13 @@ Opt-in recompute; lead = best of `lru` and `auto300old-lru` minus the arm.
   @njhill (`vllm/v1/engine`). GPT-6 Astra reviews claims, links and omissions before
   Philip posts. Posting is Philip's decision.
 
+### ARC spot check (decided 2026-11-16 19:20, before data; Philip: one seed)
+Descriptive only, no gate: `arc`, `auto300old-arc`, `cand-gpu-arc` at 3 GiB on seed 33001
+(long mix), paired with the known LRU cells (12.2%, 5.4%, 0.0% opt-in recompute). Seed
+33001 is the first seed, chosen by the earlier convention, not by its result. Question: is
+ARC materially better than LRU here, for the base policy or with advice? About 0.9 GPU-h
+within the remaining decision cap.
+
 ### Audit: every mechanism and its proof
 | Mechanism | Workload trigger | Proof (counter or check) |
 |---|---|---|
