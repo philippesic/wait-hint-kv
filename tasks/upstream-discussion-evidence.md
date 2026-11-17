@@ -422,12 +422,7 @@ short-lived processes that were not ours and had exited; 36 cores. Settings rest
 - RFC: https://github.com/vllm-project/vllm/issues/68079 (label RFC; #68075, filed with the
   wrong template, closed as its duplicate). Philip posts the Slack note and the #52113 and
   #57103 comments himself.
-- Activity watch: user timer `vllm-rfc-watch.timer` (every 15 min) runs
-  `~/.config/vllm-rfc-watch/check.py`, which wakes this thread through the T3 webhook task
-  "vLLM RFC #68079 activity" on new non-Philip comments or cross-references on #68079, and
-  on replies mentioning Philip or #68079 in #52113, #51428 and #57103. Remove with
-  `systemctl --user disable --now vllm-rfc-watch.timer`, delete `~/.config/vllm-rfc-watch`,
-  `~/.local/state/vllm-rfc-watch`, the two unit files, and the T3 task.
+- No automatic activity watch (set up and removed on Philip's request); check the issue by hand.
 
 ### Audit: every mechanism and its proof
 | Mechanism | Workload trigger | Proof (counter or check) |
